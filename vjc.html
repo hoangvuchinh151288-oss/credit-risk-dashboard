@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard theo dõi VIETJET AIR (VJC) · Kiểm soát rủi ro tín dụng</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08090e;--bg2:#0e0f18;--bg3:#141520;--bg4:#1a1c2a;
+  --border:rgba(255,255,255,0.06);--text:#d8daf0;--muted:#52566e;
+  --blue:#4a90e2;--green:#1fc87a;--amber:#e8a020;
+  --red:#e04040;--purple:#9b7fe8;--teal:#18c8e8;--coral:#f06840;--sky:#38bdf8;
+}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;padding:14px 18px;font-size:13px}
+.alert-bar{background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.25);border-radius:10px;padding:10px 16px;margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.alert-bar strong{color:var(--amber);font-size:12px}
+.ap-red{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:600;background:rgba(224,64,64,.15);color:#f07070}
+.ap-amber{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:600;background:rgba(232,160,32,.12);color:#f5c842}
+.ap-green{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:600;background:rgba(31,200,122,.1);color:#5dd9a8}
+.ap-blue{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:600;background:rgba(56,189,248,.1);color:var(--sky)}
+.banner{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:12px 18px;margin-bottom:10px}
+.logo{font-size:22px;font-weight:800;color:var(--sky);letter-spacing:-1px}
+.bmeta{font-size:10px;color:var(--muted)}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:12px;overflow-x:auto}
+.tab{padding:7px 13px;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;white-space:nowrap;user-select:none}
+.tab.active{color:var(--text);border-bottom-color:var(--sky)}
+.tab:hover:not(.active){color:var(--text)}
+.panel{display:none}.panel.active{display:block}
+.kpir{display:grid;gap:8px;margin-bottom:10px}
+.k5{grid-template-columns:repeat(5,1fr)}.k4{grid-template-columns:repeat(4,1fr)}.k3{grid-template-columns:repeat(3,1fr)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.g32{display:grid;grid-template-columns:3fr 2fr;gap:10px;margin-bottom:10px}
+.g23{display:grid;grid-template-columns:2fr 3fr;gap:10px;margin-bottom:10px}
+.mb10{margin-bottom:10px}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:11px 13px}
+.kpi.red{border-left:3px solid var(--red)}.kpi.amber{border-left:3px solid var(--amber)}
+.kpi.green{border-left:3px solid var(--green)}.kpi.blue{border-left:3px solid var(--sky)}
+.kpi.warn{border-left:3px solid var(--coral)}
+.kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.kv{font-size:20px;font-weight:700;line-height:1.1;margin-bottom:2px}
+.ks{font-size:10px}
+.cr{color:var(--red)}.ca{color:var(--amber)}.cg{color:var(--green)}.cm{color:var(--muted)}.cb{color:var(--blue)}.ct{color:var(--teal)}.cs{color:var(--sky)}.co{color:var(--coral)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:14px 16px}
+.ctitle{font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;white-space:nowrap}
+.t-red{background:rgba(224,64,64,.12);color:#f07070}.t-amber{background:rgba(232,160,32,.12);color:#f5c842}
+.t-green{background:rgba(31,200,122,.1);color:#5dd9a8}.t-blue{background:rgba(74,144,226,.12);color:#80b4f0}
+.t-sky{background:rgba(56,189,248,.1);color:var(--sky)}.t-muted{background:rgba(255,255,255,.05);color:var(--muted)}
+.cw{position:relative}
+.cw180{height:180px}.cw200{height:200px}.cw220{height:220px}.cw240{height:240px}.cw260{height:260px}
+.drow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px}
+.drow:last-child{border-bottom:none}.dk{color:var(--muted)}.dv{font-weight:600}
+.slr{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.sll{font-size:11px;min-width:175px;color:var(--text)}
+.slv{font-size:11px;font-weight:600;min-width:60px;text-align:right;color:var(--amber)}
+input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
+.htb{width:100%;border-collapse:collapse;font-size:11px}
+.htb th{padding:5px 9px;background:var(--bg3);color:var(--muted);font-weight:500;text-align:center;border-bottom:1px solid var(--border)}
+.htb th:first-child{text-align:left}
+.htb td{padding:5px 9px;border-bottom:1px solid rgba(255,255,255,.02);text-align:center}
+.htb td:first-child{text-align:left;color:var(--muted)}
+.htb tr:hover td{background:rgba(255,255,255,.015)}
+.wfr{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);font-size:11px}
+.wfl{flex:1}.wfb{flex:2;display:flex;align-items:center}.wfbar{height:13px;border-radius:2px;min-width:2px}
+.wfv{min-width:80px;text-align:right;font-weight:600;font-size:11px}
+.chain-box{flex-shrink:0;text-align:center;padding:8px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:7px;min-width:110px}
+.chain-arrow{color:var(--muted);padding:0 4px;font-size:13px;flex-shrink:0;align-self:center}
+#stressSignal{margin-top:9px;padding:7px 11px;border-radius:6px;font-size:11px;font-weight:600;text-align:center}
+.cbtt-row{display:flex;align-items:flex-start;gap:12px;padding:9px 12px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s}
+.cbtt-row:hover{background:var(--bg3)}
+@media(max-width:800px){.k5,.k4,.k3,.g2,.g3,.g32,.g23{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+  <div>
+    <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Công cụ kiểm soát rủi ro tín dụng</div>
+    <h1 style="font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.5px;line-height:1">Dashboard theo dõi <span style="color:var(--sky)">VIETJET AIR</span></h1>
+    <div style="font-size:11px;color:var(--muted);margin-top:3px">VJC · CTCP Hàng không Vietjet · Mô hình: Jet-A1 + USD/VND + Load factor → EBITDAR → Khả năng trang trải nợ vay</div>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:rgba(31,200,122,.1);color:var(--green);font-weight:600;border:1px solid rgba(31,200,122,.2)">🔒 Nội bộ · Kiểm soát rủi ro</span>
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">BCTC Q4/2025 (30/01/2026)</span>
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:rgba(56,189,248,.08);color:var(--sky);border:1px solid rgba(56,189,248,.2)">vnBBB- · Saigon Ratings · Ổn định</span>
+  </div>
+</div>
+
+<!-- ALERT -->
+<div class="alert-bar">
+  <strong>📋 TỔNG QUAN TÍN DỤNG — BCTC NĂM 2025 + CBTT THỰC (ir.vietjetair.com 29/03/2026)</strong>
+  <span class="ap-green">DT +14% · 82,093 tỷ · LNST +51.2%</span>
+  <span class="ap-red">🔴 TPRL 3 đợt = 10,500 tỷ trong 2025</span>
+  <span class="ap-amber">⚠️ Đổi KTV từ PwC → UHY</span>
+  <span class="ap-amber">🏛️ Tranh chấp FWA tại Tòa Anh · Thắng vòng 1</span>
+  <span class="ap-blue">22 tàu mới Q4/2025 · MoU 100 A321neo Paris Airshow</span>
+  <span class="ap-amber">BCTC kiểm toán 2025 hạn 31/03/2026 — chưa có</span>
+</div>
+
+<!-- SHEETS STATUS -->
+<div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:6px 14px;margin-bottom:10px;flex-wrap:wrap;gap:6px">
+  <div style="display:flex;align-items:center;gap:8px">
+    <span style="font-size:16px">✈️</span>
+    <div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">Nguồn dữ liệu</div>
+      <div id="sheets-status" style="font-size:11px;font-weight:600;color:var(--amber)">⟳ Kiểm tra Google Sheets...</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:6px">
+    <button onclick="loadFromSheets()" style="font-size:10px;padding:4px 10px;border-radius:5px;background:var(--bg3);color:var(--sky);border:1px solid var(--border);cursor:pointer">↻ Làm mới</button>
+    <a href="https://ir.vietjetair.com" target="_blank" style="font-size:10px;padding:4px 10px;border-radius:5px;background:rgba(56,189,248,.08);color:var(--sky);border:1px solid rgba(56,189,248,.2);text-decoration:none">🔗 ir.vietjetair.com</a>
+  </div>
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+  <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+      <div class="logo">VietJet · VJC</div>
+      <div style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(56,189,248,.12);color:var(--sky);font-weight:600">HOSE · Mã: VJC</div>
+      <div style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(31,200,122,.1);color:var(--green);font-weight:600">LCC · Low Cost Carrier</div>
+    </div>
+    <div class="bmeta">CTCP Hàng không Vietjet · Thành lập 2007 · 45% thị phần nội địa · PwC kiểm toán · Kiểm toán năm 2025 hạn 31/03/2026</div>
+    <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+      <span class="tag t-sky">Đội bay: ~110 tàu A320/A321/B737 MAX</span>
+      <span class="tag t-amber">Đặt hàng: 200 Boeing 737 MAX + 20 A330neo (7.4 tỷ USD)</span>
+      <span class="tag t-muted">28.2 triệu khách/năm · 153,000 chuyến bay 2025</span>
+    </div>
+  </div>
+  <div></div>
+  <div style="text-align:right">
+    <div style="font-size:10px;color:var(--muted)">Kỳ báo cáo: Cả năm 2025 (01/01–31/12/2025)</div>
+    <div style="font-size:16px;font-weight:700;color:var(--sky);margin:2px 0" id="banner-dt">DT hợp nhất: 82,093 tỷ</div>
+    <div style="font-size:11px;color:var(--green)">▲ +14% vs năm 2024 (~71,990 tỷ)</div>
+    <div style="font-size:11px;color:var(--green);margin-top:2px" id="banner-ln">LNST: 2,123 tỷ · Tổng TS: 139,459 tỷ</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="sw('overview')">📊 Tổng quan tài chính</div>
+  <div class="tab" onclick="sw('chain')">⛽ Chuỗi chi phí hàng không</div>
+  <div class="tab" onclick="sw('fleet')">✈️ Đội bay & Nợ vay</div>
+  <div class="tab" onclick="sw('stress')">⚡ Stress test</div>
+  <div class="tab" onclick="sw('vars')">📌 3 biến số trọng yếu</div>
+  <div class="tab" onclick="sw('cbtt')" id="tab-cbtt">📢 CBTT <span id="cbtt-badge" style="display:inline-block;background:rgba(224,64,64,.8);color:#fff;border-radius:10px;padding:1px 6px;font-size:9px;margin-left:3px;font-weight:700">30</span></div>
+</div>
+
+<!-- ════ TAB 1: OVERVIEW ════ -->
+<div class="panel active" id="panel-overview">
+  <div class="kpir k5 mb10">
+    <div class="kpi green" id="kpi-dt"><div class="kl">Doanh thu hợp nhất 2025</div><div class="kv cg">82,093 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cg">▲ +14% vs 71,990 tỷ (2024)</div></div>
+    <div class="kpi green" id="kpi-bien"><div class="kl">Biên LN gộp (Cty mẹ)</div><div class="kv cs">10.09<span style="font-size:12px;color:var(--muted)">%</span></div><div class="ks cg">▲ vs ~8.3% năm 2024</div></div>
+    <div class="kpi amber" id="kpi-icr"><div class="kl">ICR ước tính</div><div class="kv ca">~1.8<span style="font-size:12px;color:var(--muted)">x</span></div><div class="ks ca">EBIT~5,930 / Lãi vay~3,300 tỷ</div></div>
+    <div class="kpi green" id="kpi-lnst"><div class="kl">LNST hợp nhất 2025</div><div class="kv cg">2,123 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cg">▲ +51.2% vs 1,405 tỷ (2024)</div></div>
+    <div class="kpi amber" id="kpi-nde"><div class="kl">Net Debt/EBITDA ước</div><div class="kv ca">~5.5<span style="font-size:12px;color:var(--muted)">x</span></div><div class="ks ca">Điển hình ngành HK có IFRS 16</div></div>
+  </div>
+
+  <div class="g32 mb10">
+    <div class="card">
+      <div class="ctitle">P&L Waterfall — Năm 2025 (Hợp nhất ước tính) <span class="tag t-sky">BCTC Q4/2025</span></div>
+      <div id="wfDiv"></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:8px;padding:7px 10px;background:var(--bg3);border-radius:6px;line-height:1.6">
+        <span style="color:var(--sky);font-weight:600">📌 Đặc thù VJC:</span> Doanh thu bao gồm <b>bán & tái thuê tàu bay</b> (sale-and-leaseback) — khoản này không phải doanh thu bay thuần. EBITDAR (EBITDA + Aircraft Rentals) mới là chỉ số chuẩn để đánh giá ngành hàng không. Lãi vay tăng +29% do mở rộng đội bay bằng đòn bẩy tài chính.
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">So sánh 2025 vs 2024</div>
+      <div class="cw cw200"><canvas id="yoyChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="g3 mb10">
+    <div class="card">
+      <div class="ctitle">Cơ cấu chi phí vận hành <span class="tag t-amber">~70% bằng USD</span></div>
+      <div class="cw cw180"><canvas id="costChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Bảng cân đối ước tính <span class="tag t-sky">31/12/2025</span></div>
+      <div style="margin-top:4px">
+        <div class="drow"><span class="dk">Tổng tài sản</span><span class="dv cs">139,459 tỷ</span></div>
+        <div class="drow"><span class="dk">Tiền & tương đương tiền</span><span class="dv cg">~7,000 tỷ</span></div>
+        <div class="drow"><span class="dk">Tài sản cố định (tàu bay)</span><span class="dv cm">~65,000 tỷ</span></div>
+        <div class="drow"><span class="dk">Đặt cọc mua/thuê tàu bay</span><span class="dv ca">~15,000 tỷ</span></div>
+        <div class="drow"><span class="dk">Nợ phải trả ước</span><span class="dv cr">~108,000 tỷ</span></div>
+        <div class="drow"><span class="dk">Vốn chủ sở hữu ước</span><span class="dv cm">~31,459 tỷ</span></div>
+        <div class="drow"><span class="dk">Nợ vay ròng ước</span><span class="dv ca">~70,800 tỷ</span></div>
+        <div class="drow"><span class="dk">Nợ vay ròng / VCSH</span><span class="dv ca">2.25x</span></div>
+        <div class="drow"><span class="dk">Thanh khoản (current ratio)</span><span class="dv cg">1.53x ✓</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Chỉ tiêu vận hành 2025 <span class="tag t-green">Hoạt động tốt</span></div>
+      <div style="margin-top:4px">
+        <div class="drow"><span class="dk">Lượt khách vận chuyển</span><span class="dv cg">28.2 triệu (+9%)</span></div>
+        <div class="drow"><span class="dk">Số chuyến bay</span><span class="dv cg">153,000 (+11.2%)</span></div>
+        <div class="drow"><span class="dk">Thị phần nội địa</span><span class="dv cg">45%</span></div>
+        <div class="drow"><span class="dk">DT Q4/2025 (Cty mẹ)</span><span class="dv cg">29,035 tỷ (+47%)</span></div>
+        <div class="drow"><span class="dk">Khách Q4/2025</span><span class="dv cm">6.7 triệu · 36,100 CB</span></div>
+        <div class="drow"><span class="dk">Xếp hạng tín nhiệm</span><span class="dv ca">vnBBB- · Ổn định</span></div>
+        <div class="drow"><span class="dk">Phát hành CP 2025</span><span class="dv cm">50 triệu CP · +5,000 tỷ VCS</span></div>
+        <div class="drow"><span class="dk">Đóng góp ngân sách NN</span><span class="dv cm">10,537 tỷ (trực+gián tiếp)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Credit ratios -->
+  <div class="card mb10">
+    <div class="ctitle">Chỉ số Tín dụng VJC — Đánh giá từ BCTC 2025 <span class="tag t-amber">Ước tính từ BCTC Q4/2025 (chưa kiểm toán)</span></div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px" id="creditGrid"></div>
+  </div>
+</div>
+
+<!-- ════ TAB 2: CHAIN ════ -->
+<div class="panel" id="panel-chain">
+  <!-- Chain visualization -->
+  <div style="display:flex;align-items:center;overflow-x:auto;gap:0;padding:4px 0;margin-bottom:12px">
+    <div id="chain-boxes" style="display:flex;align-items:center;gap:0;min-width:max-content"></div>
+  </div>
+
+  <div class="g32 mb10">
+    <div class="card">
+      <div class="ctitle">Tương quan Jet-A1 → Biên LN gộp VJC <span class="tag t-amber">Chi phí nhiên liệu ~30-35% doanh thu</span></div>
+      <div class="cw cw220"><canvas id="txChart"></canvas></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5">
+        <span style="color:var(--amber);font-weight:600">Điểm quan trọng:</span> Năm 2025, chi phí nhiên liệu <b>giảm</b> so với 2024 (Brent từ ~85$/thùng → ~75-80$) đóng góp chính cho cải thiện biên LN gộp từ ~8.3% → ~10.1%. Mỗi USD/thùng Brent tăng ≈ tác động ~350-450 tỷ VND chi phí nhiên liệu thêm (ước tính dựa trên 28 triệu khách × ASK × suất tiêu hao).
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Cơ chế truyền dẫn đặc thù ngành hàng không</div>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px">
+        <div style="background:var(--bg3);border-radius:7px;padding:9px 11px;border-left:2px solid var(--green)">
+          <div style="font-size:11px;font-weight:600;color:var(--green);margin-bottom:3px">✅ Yếu tố hỗ trợ tích cực 2025</div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.6">Dầu Brent giảm từ đỉnh → nhiên liệu rẻ hơn. Phục hồi du lịch quốc tế mạnh. Load factor cao (~88-90%). Đội bay A321neo mới tiết kiệm 15-20% nhiên liệu so với thế hệ cũ.</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:7px;padding:9px 11px;border-left:2px solid var(--red)">
+          <div style="font-size:11px;font-weight:600;color:var(--red);margin-bottom:3px">⚠️ Rủi ro cố hữu — USD chiếm 70%+ chi phí</div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.6">Thuê tàu bay (tính bằng USD), nhiên liệu (USD), bảo dưỡng & phụ tùng (USD), phí thuê slot quốc tế (USD). VND mất giá 1% → chi phí tăng ước ~800 tỷ/năm. <b>Đây là rủi ro lớn nhất hiện tại của VJC.</b></div>
+        </div>
+        <div style="background:var(--bg3);border-radius:7px;padding:9px 11px;border-left:2px solid var(--sky)">
+          <div style="font-size:11px;font-weight:600;color:var(--sky);margin-bottom:3px">📐 Chỉ số đặc thù ngành hàng không</div>
+          <div style="font-size:10px;color:var(--teal);font-family:monospace;line-height:1.8">
+            EBITDAR = EBITDA + Aircraft Lease Cost<br>
+            EBITDAR Margin (2025 ước): ~15-17%<br>
+            Net Debt / EBITDAR: ~4.5-5.5x (vs ngưỡng ≤6x ngành)<br>
+            CASK (Cost/ASK): đo hiệu quả chi phí<br>
+            Load Factor (ngưỡng hòa vốn): ~75-78%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb10">
+    <div class="ctitle">Ma trận nhạy cảm: Brent ($/thùng) × USD/VND → Biên LN gộp VJC</div>
+    <div style="overflow-x:auto"><table class="htb" id="sensMatrix"></table></div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px">
+      <span style="color:var(--red)">🔴 &lt;8%</span>: EBITDA thu hẹp mạnh, rủi ro vi phạm covenant &nbsp;
+      <span style="color:var(--amber)">🟡 8-12%</span>: Cảnh báo &nbsp;
+      <span style="color:var(--green)">🟢 &gt;12%</span>: Tốt &nbsp;
+      <span style="color:var(--coral)">★ Vị trí 2025: Brent ~80$/thùng, USD/VND ~25,400 → Biên ~10.1%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════ TAB 3: FLEET & DEBT ════ -->
+<div class="panel" id="panel-fleet">
+  <div class="kpir k4 mb10">
+    <div class="kpi amber" id="kpi-no"><div class="kl">Nợ vay tài chính ước (2025)</div><div class="kv ca">~77,800 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks ca">Bao gồm thuê TC tàu bay (IFRS-like)</div></div>
+    <div class="kpi amber" id="kpi-laivay"><div class="kl">Lãi vay ước năm 2025</div><div class="kv ca">~3,300 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cr">↑ +29% vs 2024 (~2,550 tỷ)</div></div>
+    <div class="kpi green"><div class="kl">Thanh khoản (Current Ratio)</div><div class="kv cg">1.53<span style="font-size:12px;color:var(--muted)">x</span></div><div class="ks cg">Dẫn đầu ngành hàng không VN</div></div>
+    <div class="kpi amber"><div class="kl">Nợ vay ròng / VCSH</div><div class="kv ca">2.25<span style="font-size:12px;color:var(--muted)">x</span></div><div class="ks cm">vs thế giới thông thường 3-5x</div></div>
+  </div>
+
+  <div class="g2 mb10">
+    <div class="card">
+      <div class="ctitle">Cấu trúc nợ vay ước tính <span class="tag t-amber">Chưa kiểm toán 2025</span></div>
+      <div class="cw cw200"><canvas id="debtChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Kế hoạch đội bay 2025–2028 <span class="tag t-sky">Orderbook ~400 tàu</span></div>
+      <div class="cw cw200"><canvas id="fleetChart"></canvas></div>
+      <div style="font-size:10px;color:var(--red);margin-top:5px;line-height:1.5">Orderbook ~400 tàu (200 Boeing 737 MAX + 200 Airbus A320/A321) đòi hỏi nguồn vốn lớn trong 2025-2030. Rủi ro chính: refinancing khoản thuê tài chính khi USD tăng.</div>
+    </div>
+  </div>
+
+  <div class="g32 mb10">
+    <div class="card">
+      <div class="ctitle">Chi tiết Đội bay hiện tại <span class="tag t-sky">~110 tàu tính đến 2025</span></div>
+      <table class="htb" id="fleetTable"></table>
+    </div>
+    <div class="card">
+      <div class="ctitle">Chỉ số tín dụng chi tiết</div>
+      <div id="debtRatios" style="margin-top:4px"></div>
+    </div>
+  </div>
+
+  <div class="card mb10">
+    <div class="ctitle">Trái phiếu & Vay lớn — VJC (từ CBTT công khai) <span class="tag t-amber">Ưu tiên theo dõi đáo hạn</span></div>
+    <table class="htb" id="bondTable"></table>
+  </div>
+</div>
+
+<!-- ════ TAB 4: STRESS TEST ════ -->
+<div class="panel" id="panel-stress">
+  <div style="font-size:12px;font-weight:600;margin-bottom:9px">Điều chỉnh các biến hàng không → xem tác động đến ICR và EBITDAR margin</div>
+  <div class="g23 mb10">
+    <div class="card">
+      <div class="ctitle">Bảng điều khiển <span class="tag t-amber">Kéo để điều chỉnh</span></div>
+      <div id="sliders"></div>
+      <div style="margin-top:11px;padding:11px;background:var(--bg3);border-radius:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:7px">Kết quả ước tính (năm hóa)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px" id="stressResult"></div>
+      </div>
+      <div id="stressSignal"></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">ICR theo giá Brent <span class="tag t-sky">Cập nhật tức thì</span></div>
+      <div class="cw cw240"><canvas id="stressChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle">Bảng kịch bản — Tác động đến tài chính VJC</div>
+    <div style="overflow-x:auto"><table class="htb" id="scenTable"></table></div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px">* Kịch bản cơ sở là năm 2025. Load factor ngưỡng hòa vốn ước tính ~76-78%.</div>
+  </div>
+</div>
+
+<!-- ════ TAB 5: 3 BIẾN SỐ ════ -->
+<div class="panel" id="panel-vars">
+  <div class="g3 mb10">
+    <!-- V1: Jet fuel -->
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">
+        <span style="font-size:20px">⛽</span>
+        <div><div style="font-size:13px;font-weight:700">Biến 1 · Giá Nhiên liệu Jet-A1</div><div style="font-size:10px;color:var(--muted)">30-35% tổng chi phí vận hành · Biến động theo Brent</div></div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;margin-bottom:9px">
+        Nhiên liệu là chi phí lớn nhất của VJC, toàn bộ tính bằng USD theo giá Jet-A1 (dao động ~Brent + 15-20%). Năm 2025 được hưởng lợi từ giá dầu giảm (~80$/thùng vs đỉnh 95$/thùng 2022-2023) — đây là nguyên nhân chính cải thiện biên LN gộp từ ~8% → ~10%. <b style="color:var(--amber)">Rủi ro 2026: xung đột địa chính trị Trung Đông có thể đẩy Brent lên 90-100$.</b>
+      </div>
+      <div style="background:rgba(232,160,32,.07);border:1px solid rgba(232,160,32,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
+        <span style="color:var(--amber);font-weight:600">Ngưỡng quan trọng: </span>Brent &lt;70$/thùng → Biên LN gộp &gt;13% ✅ · Brent 80-90$ → Biên 9-11% ⚠️ · Brent &gt;100$ → Biên &lt;7% 🔴
+      </div>
+      <div class="cw" style="height:120px"><canvas id="v1c"></canvas></div>
+    </div>
+    <!-- V2: USD/VND -->
+    <div class="card" style="border-top:3px solid var(--red)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">
+        <span style="font-size:20px">💱</span>
+        <div><div style="font-size:13px;font-weight:700">Biến 2 · Tỷ giá USD/VND</div><div style="font-size:10px;color:var(--muted)">RỦI RO LỚN NHẤT · ~70% chi phí bằng USD</div></div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;margin-bottom:9px">
+        VJC thu tiền vé bằng VND (nội địa) và USD/ngoại tệ (quốc tế), nhưng chi trả gần như toàn bộ chi phí vận hành bằng USD: tiền thuê tàu bay, nhiên liệu, bảo dưỡng, phụ tùng, phí hạ cất cánh quốc tế. USD mạnh lên 1% so với VND → chi phí tăng ước <b style="color:var(--red)">~800-1,000 tỷ VND</b>. Đây là rủi ro phi đối xứng lớn nhất của VJC.
+      </div>
+      <div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
+        <span style="color:var(--red);font-weight:600">⚠️ Năm 2025: </span>Chi phí chênh lệch tỷ giá tăng đáng kể do VND mất giá. Lỗ chênh lệch tỷ giá là một trong các item lớn trong chi phí tài chính của VJC.
+      </div>
+      <div class="cw" style="height:120px"><canvas id="v2c"></canvas></div>
+    </div>
+    <!-- V3: Load factor -->
+    <div class="card" style="border-top:3px solid var(--green)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">
+        <span style="font-size:20px">🎯</span>
+        <div><div style="font-size:13px;font-weight:700">Biến 3 · Load Factor & Yield</div><div style="font-size:10px;color:var(--muted)">Tỷ lệ lấp đầy ghế · Doanh thu/RPK</div></div>
+      </div>
+      <div style="font-size:11px;line-height:1.7;margin-bottom:9px">
+        LF (Load Factor) đo hiệu quả khai thác ghế — đây là đòn bẩy doanh thu quan trọng nhất. VJC duy trì LF ~88-90% năm 2025. Ngưỡng hòa vốn ước tính ~76-78%. Yield (VND/RPK) phụ thuộc vào giá vé và mix hành khách quốc tế/nội địa. <b style="color:var(--green)">Việt Nam có cơ cấu dân số trẻ + thu nhập tăng + du lịch quốc tế phục hồi → LF có khả năng duy trì cao.</b>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px">
+        <div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.2);border-radius:5px;padding:7px;text-align:center"><div style="font-size:10px;color:var(--muted)">LF &lt;78%</div><div style="font-size:15px;font-weight:700;color:var(--red)">ICR &lt;1.2x</div><div style="font-size:9px;color:var(--red)">Nguy hiểm</div></div>
+        <div style="background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.2);border-radius:5px;padding:7px;text-align:center"><div style="font-size:10px;color:var(--muted)">LF 83-87%</div><div style="font-size:15px;font-weight:700;color:var(--amber)">ICR ~1.5x</div><div style="font-size:9px;color:var(--amber)">Cảnh báo</div></div>
+        <div style="background:rgba(31,200,122,.05);border:1px solid rgba(31,200,122,.2);border-radius:5px;padding:7px;text-align:center"><div style="font-size:10px;color:var(--muted)">LF &gt;88%</div><div style="font-size:15px;font-weight:700;color:var(--green)">ICR ~1.8x</div><div style="font-size:9px;color:var(--green)">Hiện tại ✓</div></div>
+      </div>
+      <div class="cw" style="height:120px"><canvas id="v3c"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Monitoring -->
+  <div class="card">
+    <div class="ctitle">📋 Hệ thống cảnh báo sớm — VJC · Danh sách theo dõi định kỳ</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="monitorList"></div>
+  </div>
+</div>
+
+<!-- ════ TAB 6: CBTT ════ -->
+<div class="panel" id="panel-cbtt">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+    <div>
+      <div style="font-size:14px;font-weight:700">Công bố thông tin — VietJet Air (VJC) · 2025-2026</div>
+      <div id="cbtt-status" style="font-size:10px;color:var(--amber);margin-top:2px">⟳ Nhấn tab để tải...</div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <a href="https://ir.vietjetair.com" target="_blank" style="font-size:10px;padding:5px 10px;border-radius:6px;background:var(--bg3);color:var(--sky);border:1px solid var(--border);text-decoration:none">🔗 ir.vietjetair.com</a>
+      <button onclick="cbttLoaded=false;loadCBTT()" style="font-size:10px;padding:5px 10px;border-radius:6px;background:var(--bg3);color:var(--amber);border:1px solid var(--border);cursor:pointer">↻ Làm mới</button>
+    </div>
+  </div>
+
+  <!-- Credit impact analysis -->
+  <div class="card mb10">
+    <div class="ctitle">Phân tích tác động tín dụng từ các sự kiện quan trọng <span class="tag t-sky">2025-2026</span></div>
+    <div id="cbtt-analysis"></div>
+  </div>
+
+  <!-- CBTT list -->
+  <div class="card">
+    <div class="ctitle">Danh sách Công bố Thông tin — Lọc theo danh mục</div>
+    <div id="cbtt-summary" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px"></div>
+    <div id="cbtt-list" style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+      <div style="padding:16px;text-align:center;color:var(--muted);font-size:12px">
+        <div style="font-size:20px;margin-bottom:6px">✈️</div>
+        Nhấn tab <strong style="color:var(--text)">CBTT</strong> để tải danh sách...
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── GOOGLE SHEETS CONFIG ── */
+var SHEET_ID = ''; // ← DÁN GOOGLE SHEETS ID VÀO ĐÂY
+
+/* ── DATA (BCTC 2025 ước tính từ BCTC Q4/2025 chưa kiểm toán) ── */
+var D = {
+  ten_ky:'Năm 2025', ky_den:'31/12/2025', ngay_cap_nhat:'30/01/2026',
+  /* KQKD */
+  doanh_thu: 82093, dt_2024: 71990, ln_gop: 8213, bien_ln_gop: 10.09,
+  lnbt: 2630, lnst: 2123, lnbt_2024: 1823, lnst_2024: 1405,
+  lai_vay: 3300, lai_vay_2024: 2550, khau_hao: 5500,
+  chi_phi_nhien_lieu_pct: 32, chi_phi_thue_tb_pct: 28, chi_phi_bd_pct: 12,
+  chi_phi_phi_san_bay_pct: 10, chi_phi_nhan_su_pct: 8, chi_phi_khac_pct: 10,
+  /* BCĐKT */
+  tong_tai_san: 139459, tien: 7000, vcsh: 31459, no_phai_tra: 108000,
+  no_vay_rong: 70800, thanh_khoan: 1.53, no_vay_vcsh: 2.25,
+  /* Hoạt động */
+  hanh_khach: 28.2, hanh_khach_2024: 25.9, so_chuyen_bay: 153000,
+  thi_phan_nd: 45, load_factor: 88.5,
+  /* Nguồn */
+  _source:'cache', _loaded:false
+};
+function calcDerived(){
+  D.ebit = D.lnbt + D.lai_vay;
+  D.ebitda = D.ebit + D.khau_hao;
+  D.ebitdar = D.ebitda + D.doanh_thu * 0.28; // ~28% doanh thu là thuê tàu bay
+  D.icr = D.ebit / D.lai_vay;
+  D.nd_ebitda = D.no_vay_rong / D.ebitda;
+  D.nd_ebitdar = D.no_vay_rong / D.ebitdar;
+  D.dt_yoy = ((D.doanh_thu - D.dt_2024)/D.dt_2024*100).toFixed(1);
+  D.lnst_yoy = ((D.lnst - D.lnst_2024)/D.lnst_2024*100).toFixed(1);
+}
+calcDerived();
+
+/* ── SHEETS FETCH ── */
+function loadFromSheets(){
+  var el=document.getElementById('sheets-status');
+  if(!SHEET_ID||SHEET_ID.length<10){if(el){el.textContent='⚠️ Chưa cấu hình Sheet ID — dùng cache BCTC 2025';el.style.color='var(--amber)';}return;}
+  if(el){el.textContent='⟳ Đang tải từ Google Sheets...';el.style.color='var(--amber)';}
+  var t=new Promise(function(_,r){setTimeout(function(){r(new Error('timeout'));},8000);});
+  Promise.race([fetch('https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/export?format=csv&cachebust='+Date.now()),t])
+    .then(function(r){return r.text();})
+    .then(function(csv){
+      csv.split('\n').forEach(function(row){
+        if(row.startsWith('#')||!row.trim())return;
+        var c=row.split(',');
+        if(c.length>=3&&c[1]&&c[2]){var k=c[1].trim(),v=parseFloat(c[2].trim());if(!isNaN(v))D[k]=v;}
+      });
+      calcDerived();rerenderAll();D._source='sheets';
+      if(el){el.textContent='✅ Google Sheets · '+new Date().toLocaleTimeString('vi-VN');el.style.color='var(--green)';}
+    })
+    .catch(function(e){if(el){el.textContent='⚠️ Không lấy được Sheets — cache 2025. '+e.message;el.style.color='var(--amber)';}});
+}
+
+/* ── TAB SWITCH ── */
+function sw(n){
+  ['overview','chain','fleet','stress','vars','cbtt'].forEach(function(x,i){
+    document.querySelectorAll('.tab')[i].classList.toggle('active',x===n);
+    document.getElementById('panel-'+x).classList.toggle('active',x===n);
+  });
+  if(n==='cbtt')loadCBTT();
+}
+
+/* ── CHART HELPER ── */
+function mkChart(id,type,labels,datasets,opts){
+  var base={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,backgroundColor:'rgba(5,6,12,.95)',borderColor:'rgba(255,255,255,.07)',borderWidth:1,titleColor:'#d8daf0',bodyColor:'#52566e',padding:9}},
+    scales:{x:{grid:{color:'rgba(255,255,255,.03)'},ticks:{color:'#444',font:{size:10}}},y:{grid:{color:'rgba(255,255,255,.03)'},ticks:{color:'#444',font:{size:10}}}}};
+  if(opts)Object.assign(base,opts);
+  return new Chart(document.getElementById(id),{type:type,data:{labels:labels,datasets:datasets},options:base});
+}
+
+var _charts={};
+function rerenderAll(){
+  var bd=document.getElementById('banner-dt');if(bd)bd.textContent='DT hợp nhất: '+D.doanh_thu.toLocaleString('vi')+' tỷ';
+  var bl=document.getElementById('banner-ln');if(bl)bl.textContent='LNST: '+D.lnst.toLocaleString('vi')+' tỷ · Tổng TS: '+D.tong_tai_san.toLocaleString('vi')+' tỷ';
+}
+
+/* ── TAB 1: WATERFALL ── */
+var wfData=[
+  {l:'Doanh thu thuần hợp nhất',v:82093,c:'#1fc87a',base:true},
+  {l:'(-) Nhiên liệu Jet-A1 (~32%)',v:-26270,c:'rgba(232,120,32,.8)'},
+  {l:'(-) Thuê tàu bay (~28%)',v:-22986,c:'rgba(224,64,64,.7)'},
+  {l:'(-) Bảo dưỡng kỹ thuật (~12%)',v:-9851,c:'rgba(224,64,64,.55)'},
+  {l:'(-) Phí sân bay & điều hành (~10%)',v:-8209,c:'rgba(224,64,64,.45)'},
+  {l:'(-) Nhân sự & Khác',v:-7564,c:'rgba(224,64,64,.35)'},
+  {l:'= LN gộp (~10.1%)',v:8213,c:'#e8a020',sub:true},
+  {l:'+ Doanh thu tài chính',v:1500,c:'rgba(74,144,226,.6)'},
+  {l:'(-) Lãi vay & Chi phí TC',v:-3300,c:'rgba(224,64,64,.6)'},
+  {l:'(-) Chi phí bán hàng & QLDN',v:-3783,c:'rgba(224,64,64,.4)'},
+  {l:'= LNBT (2025)',v:2630,c:'#4a90e2',sub:true},
+  {l:'(-) Thuế TNDN',v:-507,c:'rgba(224,64,64,.35)'},
+  {l:'= LNST (2025)',v:2123,c:'#1fc87a',base:true},
+  {l:'(+) Khấu hao & hao mòn TB',v:5500,c:'rgba(155,127,232,.6)'},
+  {l:'= EBITDA (2025)',v:7623,c:'#18c8e8',sub:true},
+];
+var wfDiv=document.getElementById('wfDiv');
+wfData.forEach(function(r){
+  var row=document.createElement('div');row.className='wfr';
+  var max=82093;var pct=Math.abs(r.v)/max*100;
+  row.innerHTML='<div class="wfl">'+r.l+'</div>'
+    +'<div class="wfb"><div class="wfbar" style="width:'+Math.round(pct*1.3)+'px;background:'+r.c+'"></div></div>'
+    +'<div class="wfv" style="color:'+r.c+'">'+(r.v<0?'−':'')+Math.abs(r.v).toLocaleString('vi')+'tỷ</div>';
+  wfDiv.appendChild(row);
+});
+
+/* YoY */
+_charts.yoy=mkChart('yoyChart','bar',['DT','LN gộp','Lãi vay','LNBT','LNST'],[
+  {label:'2025',data:[82093,8213,3300,2630,2123],backgroundColor:'rgba(56,189,248,.65)',borderRadius:3},
+  {label:'2024',data:[71990,5980,2550,1823,1405],backgroundColor:'rgba(31,200,122,.3)',borderRadius:3}
+],{plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:10},boxWidth:10}}},
+  scales:{x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}},
+          y:{ticks:{callback:function(v){return(v/1000).toFixed(0)+'k'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}}}});
+
+/* Cost donut */
+_charts.cost=mkChart('costChart','doughnut',['Nhiên liệu (32%)','Thuê tàu bay (28%)','Bảo dưỡng (12%)','Phí sân bay (10%)','Nhân sự (8%)','Khác (10%)'],[
+  {data:[32,28,12,10,8,10],backgroundColor:['#f06840','#e04040','#e8a020','#4a90e2','#9b7fe8','#52566e'],borderWidth:0,hoverOffset:4}
+],{plugins:{legend:{display:true,position:'right',labels:{color:'#52566e',font:{size:9},boxWidth:8,padding:3}}}});
+
+/* Credit ratios */
+var crats=[
+  {n:'ICR (EBIT/Lãi vay)',v:'~1.8x',thr:'≥ 2.0x',st:'amber',d:'EBIT ~5,930 / Lãi vay ~3,300 tỷ'},
+  {n:'Net Debt/EBITDA ước',v:'~5.5x',thr:'≤ 5x',st:'amber',d:'Điển hình ngành HK có thuê tàu bay'},
+  {n:'Net Debt/EBITDAR',v:'~4.2x',thr:'≤ 6x',st:'green',d:'Chỉ số chuẩn ngành hàng không ✓'},
+  {n:'Nợ vay ròng/VCSH',v:'2.25x',thr:'≤ 5x',st:'green',d:'Thấp hơn nhiều vs thế giới ✓'},
+  {n:'Thanh khoản',v:'1.53x',thr:'≥ 1.0x',st:'green',d:'Dẫn đầu ngành HK Việt Nam ✓'},
+  {n:'DT tăng trưởng',v:'+14%',thr:'Dương',st:'green',d:'2025: 82,093 vs 2024: 71,990 tỷ'},
+];
+var cg=document.getElementById('creditGrid');
+crats.forEach(function(r){
+  var sc=r.st==='red'?'var(--red)':r.st==='amber'?'var(--amber)':'var(--green)';
+  var bg=r.st==='red'?'rgba(224,64,64,.06)':r.st==='amber'?'rgba(232,160,32,.05)':'rgba(31,200,122,.05)';
+  var d=document.createElement('div');d.style.cssText='background:'+bg+';border-radius:7px;padding:8px 10px';
+  d.innerHTML='<div style="font-size:10px;color:var(--muted);margin-bottom:2px">'+r.n+'</div>'
+    +'<div style="font-size:16px;font-weight:700;color:'+sc+'">'+r.v+'</div>'
+    +'<div style="font-size:9px;color:var(--muted)">Ngưỡng: '+r.thr+'</div>'
+    +'<div style="font-size:9px;color:'+sc+'">'+r.d+'</div>';
+  cg.appendChild(d);
+});
+
+/* ── TAB 2: CHAIN ── */
+var chainData=[
+  {t:'🛢️ Brent Crude',v:'~80$/thùng',col:'var(--amber)'},
+  {t:'⛽ Jet-A1 Price',v:'~85$/thùng',col:'var(--coral)'},
+  {t:'💱 USD/VND',v:'~25,400đ',col:'var(--red)'},
+  {t:'✈️ Chi phí VH',v:'~73,880 tỷ',col:'var(--amber)'},
+  {t:'🎯 Load Factor',v:'~88.5%',col:'var(--green)'},
+  {t:'💰 Doanh thu',v:'82,093 tỷ (+14%)',col:'var(--sky)'},
+  {t:'📊 LN gộp',v:'~10.1% ✅',col:'var(--green)'},
+  {t:'🏦 Lãi vay',v:'~3,300 tỷ (+29%)',col:'var(--amber)'},
+  {t:'📐 ICR',v:'~1.8x ⚠️',col:'var(--coral)'},
+];
+var cb=document.getElementById('chain-boxes');
+chainData.forEach(function(b,i){
+  if(i>0){var a=document.createElement('span');a.className='chain-arrow';a.textContent='→';cb.appendChild(a);}
+  var d=document.createElement('div');d.className='chain-box';
+  d.style.borderTop='2px solid '+b.col;
+  d.innerHTML='<div style="font-size:11px;font-weight:600;margin-bottom:2px">'+b.t+'</div><div style="font-size:10px;color:var(--muted)">'+b.v+'</div>';
+  cb.appendChild(d);
+});
+
+/* Transmission chart */
+var brentPrices=[60,65,70,75,80,85,90,95,100,105,110];
+var margins=brentPrices.map(function(b){return Math.max(0,(15-(b-60)*0.25)).toFixed(1);});
+_charts.tx=mkChart('txChart','line',brentPrices.map(function(b){return b+'$'}),
+[{label:'Biên LN gộp (%)',data:margins,borderColor:'#e8a020',backgroundColor:'rgba(232,160,32,.08)',fill:true,borderWidth:2,pointRadius:3,tension:.3},
+ {label:'2025 (80$/thùng)',data:brentPrices.map(function(b){return b===80?10.1:null}),pointRadius:8,pointBackgroundColor:'#38bdf8',borderColor:'transparent',spanGaps:false}],
+{scales:{y:{ticks:{callback:function(v){return v+'%'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},min:0,title:{display:true,text:'Biên LN gộp (%)',font:{size:10},color:'#444'}},
+         x:{ticks:{color:'#444',font:{size:10}},title:{display:true,text:'Giá Brent ($/thùng)',font:{size:10},color:'#444'},grid:{color:'rgba(255,255,255,.03)'}}}});
+
+/* Sensitivity matrix: Brent x USD/VND */
+var bPrices=[60,70,80,90,100,110];
+var usdRates=[24000,24800,25400,26000,27000,28000];
+var sm=document.getElementById('sensMatrix');
+var hdr='<tr><th>Brent / USD/VND</th>';
+usdRates.forEach(function(u){hdr+='<th>'+u.toLocaleString('vi')+'đ</th>';});
+sm.innerHTML=hdr+'</tr>';
+bPrices.forEach(function(b){
+  var row='<tr><td style="font-weight:600'+(b===80?';color:var(--sky)':'')+'">'+b+'$/thùng'+(b===80?' ★':'')+'</td>';
+  usdRates.forEach(function(u){
+    var baseCost=0.32*(b/80)*(u/25400);var usdImpact=(u-25400)/25400*0.28*0.5;
+    var gm=Math.max(0,10.1-((b-80)/80*100*0.3)-((u-25400)/25400*100*0.25));
+    gm=gm.toFixed(1);
+    var cl=parseFloat(gm)<8?'var(--red)':parseFloat(gm)<12?'var(--amber)':'var(--green)';
+    var bg=parseFloat(gm)<8?'rgba(224,64,64,.08)':parseFloat(gm)<12?'rgba(232,160,32,.06)':'rgba(31,200,122,.06)';
+    var isCurr=(b===80&&u===25400);
+    row+='<td style="color:'+cl+';background:'+bg+';font-weight:'+(isCurr?'700':'600')+(isCurr?';outline:1px solid var(--sky)':'')+'">'+  (isCurr?'★ ':'')+gm+'%</td>';
+  });
+  sm.innerHTML+=row+'</tr>';
+});
+
+/* ── TAB 3: FLEET & DEBT ── */
+_charts.debt=mkChart('debtChart','doughnut',
+  ['Vay NH ngân hàng','Trái phiếu DH','Thuê TC tàu bay DH','Vay DH khác','Nợ khác'],
+  [{data:[25000,15000,28000,7800,2000],backgroundColor:['#e04040','#e8a020','rgba(56,189,248,.7)','#9b7fe8','#52566e'],borderWidth:0,hoverOffset:4}],
+  {plugins:{legend:{display:true,position:'right',labels:{color:'#52566e',font:{size:9},boxWidth:8,padding:3}}}});
+
+_charts.fleet=mkChart('fleetChart','bar',['2022','2023','2024','2025','2026F','2027F','2028F'],
+  [{label:'Số tàu bay',data:[78,82,100,110,125,145,165],backgroundColor:'rgba(56,189,248,.6)',borderRadius:3},
+   {label:'Đặt hàng chờ nhận',data:[0,0,0,0,20,30,35],backgroundColor:'rgba(232,160,32,.4)',borderRadius:3}],
+  {plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:10},boxWidth:10}}},
+   scales:{x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}},
+           y:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tàu bay',font:{size:10},color:'#444'}}}});
+
+/* Fleet table */
+var fleets=[
+  {type:'Airbus A321neo/ceo',count:65,avg_age:'4.2 năm',role:'Nội địa + QT tầm trung',lt:'SLB + Thuê TC'},
+  {type:'Airbus A320neo/ceo',count:28,avg_age:'5.1 năm',role:'Nội địa chính',lt:'Thuê hoạt động'},
+  {type:'Boeing 737 MAX 8',count:7,avg_age:'<1 năm',role:'QT mới · Vietjet Thailand',lt:'Thuê TC'},
+  {type:'Boeing 737 MAX (đặt)',count:'~193',avg_age:'2026-2032',role:'Mở rộng QT',lt:'Hợp đồng Boeing'},
+  {type:'Airbus A330neo (đặt)',count:'20',avg_age:'2026-2030',role:'Bay thân rộng',lt:'Hợp đồng 7.4 tỷ USD'},
+];
+var ft=document.getElementById('fleetTable');
+ft.innerHTML='<tr><th>Dòng tàu bay</th><th>Số lượng</th><th>Tuổi trung bình</th><th>Nhiệm vụ</th><th>Cấu trúc thuê</th></tr>';
+fleets.forEach(function(f){
+  ft.innerHTML+='<tr><td style="color:var(--sky);font-weight:600">'+f.type+'</td><td>'+f.count+'</td><td>'+f.avg_age+'</td><td>'+f.role+'</td><td>'+f.lt+'</td></tr>';
+});
+
+/* Debt ratios */
+var dr=[
+  {n:'ICR ước (EBIT/Lãi vay)',v:'~1.8x',thr:'≥ 2.0x',st:'amber',d:'Cần theo dõi — dưới ngưỡng lý tưởng'},
+  {n:'Net Debt/EBITDA ước',v:'~5.5x',thr:'≤ 5.0x',st:'amber',d:'Cao do bao gồm nợ thuê tàu bay'},
+  {n:'Net Debt/EBITDAR ước',v:'~4.2x',thr:'≤ 6.0x ngành',st:'green',d:'Chỉ số chuẩn HK · Ở mức tốt ✓'},
+  {n:'Nợ vay ròng/VCSH',v:'2.25x',thr:'≤ 5x',st:'green',d:'Thấp hơn nhiều vs trung bình ngành'},
+  {n:'Thanh khoản (current)',v:'1.53x',thr:'≥ 1.0x',st:'green',d:'Tốt nhất trong ngành HK Việt Nam'},
+  {n:'Lãi vay/Doanh thu',v:'~4.0%',thr:'≤ 5%',st:'green',d:'3,300/82,093 tỷ — chấp nhận được'},
+];
+var dd=document.getElementById('debtRatios');
+dr.forEach(function(r){
+  var sc=r.st==='red'?'var(--red)':r.st==='amber'?'var(--amber)':'var(--green)';
+  var d=document.createElement('div');
+  d.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px';
+  d.innerHTML='<div><div style="font-size:11px;font-weight:500">'+r.n+'</div><div style="font-size:10px;color:var(--muted)">'+r.d+'</div></div>'
+    +'<div style="text-align:right;margin-left:10px"><div style="font-size:14px;font-weight:700;color:'+sc+'">'+r.v+'</div><div style="font-size:9px;color:var(--muted)">Ngưỡng: '+r.thr+'</div></div>';
+  dd.appendChild(d);
+});
+
+/* Bonds table */
+var bonds=[
+  {name:'Vay NH ngân hàng (đa dạng)',val:'~25,000 tỷ',mat:'Đáo hạn cuốn chiếu hàng năm',rate:'7-9%/năm VND + SOFR+2-3%',db:'Tàu bay, QSDĐ, TG'},
+  {name:'Trái phiếu doanh nghiệp (DH)',val:'~15,000 tỷ',mat:'2025-2028',rate:'9-11%/năm',db:'Tín chấp / có TSĐB'},
+  {name:'Thuê tài chính tàu bay (dài hạn)',val:'~28,000 tỷ',mat:'2025-2030 (10-12 năm/tàu)',rate:'USD SOFR + spread',db:'Tàu bay (IFRS 16 like)'},
+  {name:'Vay Dole Asia & đối tác QT',val:'~7,800 tỷ',mat:'2026-2029',rate:'USD SOFR+2-3%',db:'Tín chấp'},
+];
+var bt=document.getElementById('bondTable');
+bt.innerHTML='<tr><th>Công cụ nợ</th><th>Quy mô (ước)</th><th>Đáo hạn</th><th>Lãi suất</th><th>Tài sản đảm bảo</th></tr>';
+bonds.forEach(function(b){
+  bt.innerHTML+='<tr><td>'+b.name+'</td><td style="font-weight:600;color:var(--amber)">'+b.val+'</td><td style="color:var(--coral)">'+b.mat+'</td><td>'+b.rate+'</td><td>'+b.db+'</td></tr>';
+});
+bt.innerHTML+='<tr><td style="font-weight:600">Tổng ước tính</td><td style="font-weight:700;color:var(--amber)">~75,800 tỷ</td><td colspan="3" style="color:var(--muted);font-size:10px">Ước tính — cần BCTC kiểm toán 2025 để xác nhận (hạn 31/03/2026)</td></tr>';
+
+/* ── TAB 4: STRESS TEST ── */
+var sParams=[
+  {id:'brent',l:'Giá Brent ($/thùng)',min:50,max:120,step:5,v:80,fmt:function(v){return v+'$'}},
+  {id:'usdvnd',l:'Tỷ giá USD/VND (đồng/USD)',min:23000,max:29000,step:200,v:25400,fmt:function(v){return(v/1000).toFixed(1)+'k đ'}},
+  {id:'loadfactor',l:'Load Factor (%)',min:72,max:95,step:1,v:88.5,fmt:function(v){return v+'%'}},
+  {id:'intrate',l:'Lãi suất bình quân (%/năm)',min:5,max:12,step:.5,v:7.5,fmt:function(v){return v+'%'}},
+];
+var sDiv=document.getElementById('sliders');
+sParams.forEach(function(p){
+  var row=document.createElement('div');row.className='slr';
+  row.innerHTML='<div class="sll">'+p.l+'</div>'
+    +'<input type="range" min="'+p.min+'" max="'+p.max+'" step="'+p.step+'" value="'+p.v+'" id="sl_'+p.id+'" oninput="updS()">'
+    +'<div class="slv" id="sv_'+p.id+'">'+p.fmt(p.v)+'</div>';
+  sDiv.appendChild(row);
+});
+var _sc=null;
+function updS(){
+  sParams.forEach(function(p){
+    var v=parseFloat(document.getElementById('sl_'+p.id).value);
+    document.getElementById('sv_'+p.id).textContent=p.fmt(v);
+  });
+  var brent=parseFloat(document.getElementById('sl_brent').value);
+  var usdvnd=parseFloat(document.getElementById('sl_usdvnd').value);
+  var lf=parseFloat(document.getElementById('sl_loadfactor').value);
+  var ir=parseFloat(document.getElementById('sl_intrate').value);
+  
+  var fuelImpact=D.doanh_thu*(D.chi_phi_nhien_lieu_pct/100)*((brent-80)/80)*((usdvnd-25400)/25400+1);
+  var usdImpact=D.doanh_thu*(D.chi_phi_thue_tb_pct/100+D.chi_phi_bd_pct/100)*((usdvnd-25400)/25400);
+  var lfImpact=D.doanh_thu*((lf-88.5)/88.5);
+  var newDT=D.doanh_thu+lfImpact;
+  var newGM=Math.max(0,D.ln_gop-fuelImpact-usdImpact+lfImpact*0.9);
+  var newLaiVay=D.no_vay_rong*ir/100;
+  var newEBIT=newGM-D.lai_vay*0.15-3783;
+  var newEBITDA=newEBIT+D.khau_hao;
+  var icr=newEBIT/newLaiVay;
+  var ndEbitda=D.no_vay_rong/newEBITDA;
+  var gm=(newGM/newDT*100).toFixed(1);
+  
+  var sr=document.getElementById('stressResult');sr.innerHTML='';
+  [{k:'DT ước',v:(newDT/1000).toFixed(0)+'k tỷ',c:newDT>D.doanh_thu?'var(--green)':'var(--amber)'},
+   {k:'Biên LN gộp',v:parseFloat(gm).toFixed(1)+'%',c:gm>12?'var(--green)':gm>8?'var(--amber)':'var(--red)'},
+   {k:'Lãi vay',v:(newLaiVay/1000).toFixed(1)+'k tỷ',c:'var(--text)'},
+   {k:'EBIT',v:(newEBIT/1000).toFixed(1)+'k tỷ',c:newEBIT>3000?'var(--green)':newEBIT>1500?'var(--amber)':'var(--red)'},
+   {k:'ICR',v:icr.toFixed(2)+'x',c:icr>=2?'var(--green)':icr>=1.2?'var(--amber)':'var(--red)'},
+   {k:'ND/EBITDA',v:ndEbitda.toFixed(1)+'x',c:ndEbitda<=5?'var(--green)':ndEbitda<=7?'var(--amber)':'var(--red)'},
+  ].forEach(function(m){
+    var d=document.createElement('div');d.style.cssText='background:var(--bg3);border-radius:5px;padding:6px 8px';
+    d.innerHTML='<div style="font-size:10px;color:var(--muted)">'+m.k+'</div><div style="font-size:15px;font-weight:700;color:'+m.c+'">'+m.v+'</div>';
+    sr.appendChild(d);
+  });
+  
+  var sig=document.getElementById('stressSignal');
+  if(icr>=2){sig.style.cssText='margin-top:9px;padding:7px 11px;border-radius:6px;font-size:11px;font-weight:600;text-align:center;background:rgba(31,200,122,.1);color:var(--green);border:1px solid rgba(31,200,122,.2)';sig.textContent='✅ AN TOÀN — ICR '+icr.toFixed(2)+'x ≥ 2.0x';}
+  else if(icr>=1.2){sig.style.cssText='margin-top:9px;padding:7px 11px;border-radius:6px;font-size:11px;font-weight:600;text-align:center;background:rgba(232,160,32,.08);color:var(--amber);border:1px solid rgba(232,160,32,.2)';sig.textContent='⚠️ CẢNH BÁO — ICR '+icr.toFixed(2)+'x dưới ngưỡng 2.0x';}
+  else{sig.style.cssText='margin-top:9px;padding:7px 11px;border-radius:6px;font-size:11px;font-weight:600;text-align:center;background:rgba(224,64,64,.08);color:var(--red);border:1px solid rgba(224,64,64,.2)';sig.textContent='🚨 NGUY HIỂM — ICR '+icr.toFixed(2)+'x · Rủi ro vi phạm covenant';}
+
+  var bPts=[50,60,70,80,90,100,110,120];
+  var icrPts=bPts.map(function(b){
+    var fi=D.doanh_thu*(D.chi_phi_nhien_lieu_pct/100)*((b-80)/80)*((usdvnd-25400)/25400+1);
+    var gm2=D.ln_gop-fi;var ebit2=gm2-D.lai_vay*0.15-3783;return Math.max(0,ebit2/newLaiVay).toFixed(2);
+  });
+  var sc2=icrPts.map(function(v){return v<1?'rgba(224,64,64,.8)':v<1.5?'rgba(232,160,32,.8)':v<2?'rgba(232,160,32,.6)':'rgba(31,200,122,.8)';});
+  if(_sc)_sc.destroy();
+  _sc=new Chart(document.getElementById('stressChart'),{type:'bar',data:{labels:bPts.map(function(b){return b+'$'}),datasets:[{label:'ICR',data:icrPts,backgroundColor:sc2,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return v+'x'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},min:0,title:{display:true,text:'ICR (lần)',font:{size:10},color:'#444'}},x:{ticks:{color:'#444',font:{size:10}},title:{display:true,text:'Giá Brent ($/thùng)',font:{size:10},color:'#444'},grid:{color:'rgba(255,255,255,.03)'}}}}});
+}
+updS();
+
+/* Scenarios */
+var scens=[
+  {n:'★ Cơ sở 2025',br:80,usd:25400,lf:88.5,ir:7.5,col:'var(--sky)',note:'Số liệu BCTC Q4/2025'},
+  {n:'Dầu cao + USD mạnh',br:100,usd:27000,lf:86,ir:8.5,col:'var(--red)',note:'Xung đột Trung Đông'},
+  {n:'Tăng trưởng thuận lợi',br:70,usd:25000,lf:90,ir:7.0,col:'var(--green)',note:'Dầu giảm + VND ổn định'},
+  {n:'Dầu siêu cao + VND yếu',br:110,usd:28000,lf:83,ir:9.0,col:'var(--red)',note:'Kịch bản xấu nhất'},
+  {n:'Hồi phục mạnh QT',br:78,usd:25200,lf:92,ir:7.0,col:'var(--green)',note:'Du lịch bùng nổ'},
+];
+var stbl=document.getElementById('scenTable');
+stbl.innerHTML='<tr><th>Kịch bản</th><th>Brent $</th><th>USD/VND</th><th>Load Factor</th><th>Biên LN gộp</th><th>ICR</th><th>ND/EBITDA</th><th>Đánh giá</th></tr>';
+scens.forEach(function(s){
+  var fi=D.doanh_thu*(D.chi_phi_nhien_lieu_pct/100)*((s.br-80)/80)*((s.usd-25400)/25400+1);
+  var ui=D.doanh_thu*(D.chi_phi_thue_tb_pct/100+D.chi_phi_bd_pct/100)*((s.usd-25400)/25400);
+  var lfi=D.doanh_thu*((s.lf-88.5)/88.5);
+  var newDT=D.doanh_thu+lfi;var newGM=Math.max(0,D.ln_gop-fi-ui+lfi*0.9);
+  var newLV=D.no_vay_rong*s.ir/100;var newEBIT=newGM-D.lai_vay*0.15-3783;
+  var gm=(newGM/newDT*100).toFixed(1);var icr=(newEBIT/newLV).toFixed(2);
+  var ndeb=(D.no_vay_rong/(newEBIT+D.khau_hao)).toFixed(1);
+  var cl=icr>=2?'var(--green)':icr>=1.2?'var(--amber)':'var(--red)';
+  var sig=icr>=2?'✅ An toàn':icr>=1.2?'⚠️ Cảnh báo':'🚨 Nguy hiểm';
+  stbl.innerHTML+='<tr><td style="color:'+s.col+';font-weight:600">'+s.n+'</td><td>'+s.br+'$</td><td>'+(s.usd/1000).toFixed(1)+'k</td><td>'+s.lf+'%</td><td style="color:'+(gm>12?'var(--green)':gm>8?'var(--amber)':'var(--red)')+'">'+gm+'%</td><td style="color:'+cl+';font-weight:700">'+icr+'x</td><td>'+ndeb+'x</td><td style="color:'+cl+'">'+sig+'</td></tr>';
+});
+
+/* ── TAB 5: VARS CHARTS ── */
+new Chart(document.getElementById('v1c'),{type:'line',data:{labels:['T1','T4','T7','T10','T1/25','T4/25','T7/25','T10/25','T12/25'],
+  datasets:[{label:'Brent $/thùng',data:[85,90,88,82,80,78,82,80,79],borderColor:'#f06840',borderWidth:2,tension:.4,yAxisID:'y1',pointRadius:2},
+            {label:'Biên LN%',data:[null,null,null,8.3,null,null,null,null,10.1],borderColor:'#38bdf8',borderWidth:1.5,borderDash:[4,3],tension:.4,yAxisID:'y2',pointRadius:4}]},
+options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:9},boxWidth:8}}},
+  scales:{y1:{ticks:{callback:function(v){return v+'$'},color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'},position:'left'},
+          y2:{ticks:{callback:function(v){return v+'%'},color:'#444',font:{size:9}},grid:{display:false},position:'right'},
+          x:{ticks:{color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+
+new Chart(document.getElementById('v2c'),{type:'bar',data:{labels:['Tác động 1% VND mất giá','Chi phí thuê TB thêm','Chi phí nhiên liệu thêm','Net tác động EBIT'],
+  datasets:[{data:[-800,-560,-240,-1600],backgroundColor:function(ctx){return ctx.raw<0?'rgba(224,64,64,.7)':'rgba(31,200,122,.65)'},borderRadius:3}]},
+options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{y:{ticks:{callback:function(v){return v+'tỷ'},color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'}},
+          x:{ticks:{color:'#444',font:{size:9},maxRotation:0},grid:{color:'rgba(255,255,255,.03)'}}}}});
+
+new Chart(document.getElementById('v3c'),{type:'bar',data:{labels:['LF 72% (khủng hoảng)','LF 78% (hòa vốn)','LF 85%','LF 88.5% (2025)','LF 92%'],
+  datasets:[{data:[0.4,0.9,1.5,1.8,2.3],backgroundColor:function(ctx){var v=ctx.raw;return v<1?'rgba(224,64,64,.8)':v<1.5?'rgba(232,160,32,.8)':v<2?'rgba(56,189,248,.6)':'rgba(31,200,122,.8)'},borderRadius:3}]},
+options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+  scales:{y:{min:0,ticks:{callback:function(v){return v+'x'},color:'#444',font:{size:9}},title:{display:true,text:'ICR',font:{size:9},color:'#444'},grid:{color:'rgba(255,255,255,.03)'}},
+          x:{ticks:{color:'#444',font:{size:9},maxRotation:0},grid:{color:'rgba(255,255,255,.03)'}}}}});
+
+/* Monitor list */
+var monitors=[
+  {c:'Hàng tuần',n:'Giá Brent Crude & Jet-A1',t:'>95$/thùng kéo dài >2 tuần',a:'Stress test ngay; kiểm tra hedge ratio',col:'var(--coral)'},
+  {c:'Hàng tuần',n:'Tỷ giá USD/VND',t:'>26,500đ/USD → Chi phí tăng đột biến',a:'Đánh giá lại EBITDAR forecast; báo cáo lên ban lãnh đạo',col:'var(--red)'},
+  {c:'Hàng tháng',n:'Load Factor (dữ liệu CAAV)',t:'<82% trong 2 tháng liên tiếp',a:'Kiểm tra yield management; xem xét capacity điều chỉnh',col:'var(--amber)'},
+  {c:'Hàng tháng',n:'ICR (EBIT/Lãi vay ước tính)',t:'<1.5x → Cảnh báo / <1.0x → Sự kiện vi phạm',a:'Kích hoạt đàm phán điều khoản vay; báo cáo tín dụng',col:'var(--amber)'},
+  {c:'Hàng quý',n:'BCTC Quý (30/4, 30/7, 30/10, 30/1)',t:'Lệch >15% so với dự báo',a:'Cập nhật model; họp đánh giá tín dụng',col:'var(--blue)'},
+  {c:'Hàng quý',n:'Net Debt/EBITDAR',t:'>7.0x → Ngưỡng nguy hiểm ngành HK',a:'Xem xét lại hạn mức tín dụng',col:'var(--amber)'},
+  {c:'Theo sự kiện',n:'BCTC kiểm toán năm 2025',t:'Hạn chót 31/03/2026',a:'Cập nhật toàn bộ dashboard với số liệu chính thức',col:'var(--sky)'},
+  {c:'Theo sự kiện',n:'Nhận tàu bay Boeing 737 MAX',t:'Mỗi lần nhận tàu mới → nợ vay tăng',a:'Cập nhật lịch đáo hạn và tổng nợ vay',col:'var(--blue)'},
+];
+var ml=document.getElementById('monitorList');
+monitors.forEach(function(m){
+  var d=document.createElement('div');
+  d.style.cssText='background:var(--bg3);border:1px solid var(--border);border-left:2px solid '+m.col+';border-radius:7px;padding:8px 10px';
+  d.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:11px;font-weight:600">'+m.n+'</span><span class="tag t-muted">'+m.c+'</span></div>'
+    +'<div style="font-size:10px;color:var(--amber);margin-bottom:2px">Ngưỡng: '+m.t+'</div>'
+    +'<div style="font-size:10px;color:var(--muted)">Hành động: '+m.a+'</div>';
+  ml.appendChild(d);
+});
+
+/* ── TAB 6: CBTT ── */
+// CBTT thực — crawled từ ir.vietjetair.com ngày 29/03/2026
+var CBTT_VJC=[
+  // 2026
+  {date:'10/03/2026',title:'CBTT Nghị Quyết HĐQT về việc tổ chức Đại hội đồng cổ đông thường niên năm 2026',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2026/20260310 - VJC - CBTT NQ HDQT vv to chuc dhdcd 2026.pdf',cat:'hanh-chinh'},
+  {date:'10/03/2026',title:'Vietjet thông báo giao dịch mua cổ phiếu của người nội bộ',link:'https://ir.vietjetair.com',cat:'co-phieu'},
+  {date:'30/01/2026',title:'Báo cáo tình hình quản trị Công ty năm 2025',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2026/20260130 - VJC Bao cao tinh hinh quan tri cong ty 2025 che tt seal.pdf',cat:'hanh-chinh'},
+  {date:'30/01/2026',title:'BCTC Hợp nhất Quý 4/2025 và Giải trình chênh lệch lợi nhuận',link:'https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy',cat:'bctc'},
+  {date:'30/01/2026',title:'BCTC Công ty mẹ Quý 4/2025 và Giải trình chênh lệch lợi nhuận',link:'https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy',cat:'bctc'},
+  // 2025 - Trái phiếu (RỦI RO LỚN)
+  {date:'30/12/2025',title:'⚠️ Nghị quyết HĐQT phê duyệt phát hành Trái phiếu riêng lẻ 2,500 tỷ đồng — Lần 3 năm 2025',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20251230 - VJC - CBTT phat hanh 2500 trai phieu lan 3 nam 2025 seal.pdf',cat:'trai-phieu'},
+  {date:'12/11/2025',title:'⚠️ Nghị quyết HĐQT phê duyệt phát hành Trái phiếu riêng lẻ 5,000 tỷ đồng — Lần 2 năm 2025',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20251112 - VJC - NQ HDQT ve viec phe duyet phuong an phat hanh TPRL 5000 ty seal_001.pdf',cat:'trai-phieu'},
+  {date:'22/09/2025',title:'Vietjet CBTT về đợt mua lại Trái phiếu trước hạn',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250922 - VJC - Thong bao mua lai TP.pdf',cat:'trai-phieu'},
+  {date:'20/09/2025',title:'Nghị quyết HĐQT điều chỉnh phương án phát hành Trái phiếu riêng lẻ 3,000 tỷ — Lần 1 năm 2025',link:'https://ir.vietjetair.com',cat:'trai-phieu'},
+  {date:'25/06/2025',title:'⚠️ Nghị quyết HĐQT phê duyệt phương án phát hành Trái phiếu riêng lẻ 3,000 tỷ đồng — Lần 1 năm 2025',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250625 - VJC - Nghi quyet phe duyet phuong an phat hanh trai phieu rieng le 3.000 ti dong.pdf',cat:'trai-phieu'},
+  // 2025 - Tranh chấp pháp lý (QUAN TRỌNG)
+  {date:'25/07/2025',title:'🏛️ Tòa án Thương mại Anh BÁC BỎ đề nghị phong tỏa tài sản của FWA (FlyWays) đối với Vietjet Air — Thắng kiện',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250725 - VJC - CBTT ve vu tranh chap thuong mai voi FWA 2607_001.pdf',cat:'phap-ly'},
+  {date:'25/06/2025',title:'Vietjet tiếp tục bảo vệ quyền lợi chính đáng trong tranh chấp thương mại liên quan đến tàu bay (FWA)',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250625 - VJC - CBTT ve vu tranh chap thuong mai voi FWA.pdf',cat:'phap-ly'},
+  // 2025 - Kiểm toán (THAY ĐỔI QUAN TRỌNG)
+  {date:'26/06/2025',title:'⚠️ CBTT ký Hợp đồng kiểm toán với UHY — Thay đổi đơn vị kiểm toán từ PwC sang UHY',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250626 - VJC - CBTT ky hop dong kiem toan nam 2025 voi UHY.pdf',cat:'bctc'},
+  // 2025 - Cổ phiếu & Vốn
+  {date:'22/10/2025',title:'Nghị quyết HĐQT thông qua phát hành cổ phiếu để trả cổ tức và tăng vốn điều lệ',link:'https://ir.vietjetair.com',cat:'co-phieu'},
+  {date:'18/09/2025',title:'Quyết định thay đổi đăng ký niêm yết (tăng vốn điều lệ lên 5,916 tỷ đồng)',link:'https://ir.vietjetair.com',cat:'co-phieu'},
+  {date:'20/06/2025',title:'CTCP Aviation trở thành cổ đông lớn của Vietjet',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250620 - CV CBTT Aviation tro thanh co dong lon 1.pdf',cat:'co-phieu'},
+  {date:'13/06/2025',title:'CBTT kết quả đợt chào bán cổ phiếu riêng lẻ 50 triệu CP — Tăng vốn CSH 5,000 tỷ đồng',link:'https://ir.vietjetair.com',cat:'co-phieu'},
+  // 2025 - Nhân sự
+  {date:'16/09/2025',title:'Thay đổi nhân sự: Bổ nhiệm Kế toán trưởng mới',link:'https://ir.vietjetair.com',cat:'nhan-su'},
+  {date:'29/07/2025',title:'Bổ nhiệm Ông Thái Trọng Cang đảm nhiệm Quyền Kế toán trưởng',link:'https://ir.vietjetair.com',cat:'nhan-su'},
+  {date:'05/07/2025',title:'CBTT bổ nhiệm Giám đốc Điều hành (COO) — Ông Nguyễn Thanh Sơn',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250705 - VJC - thong bao bo nhiem GĐ ĐH..pdf',cat:'nhan-su'},
+  {date:'04/06/2025',title:'Thay đổi thành viên Hội đồng Quản trị',link:'https://ir.vietjetair.com',cat:'nhan-su'},
+  // 2025 - Đội bay & Đầu tư
+  {date:'29/12/2025',title:'Nghị quyết HĐQT phê duyệt tăng vốn góp vào Công ty TNHH MTV Airport NEO',link:'https://ir.vietjetair.com',cat:'doi-bay'},
+  {date:'16/12/2025',title:'Góp vốn vào Công ty Cổ phần Victoria Aviation Academy',link:'https://ir.vietjetair.com',cat:'doi-bay'},
+  {date:'29/10/2025',title:'BCTC Hợp nhất Quý 3/2025 và Giải trình chênh lệch lợi nhuận',link:'https://ir.vietjetair.com',cat:'bctc'},
+  {date:'30/07/2025',title:'BCTC Hợp nhất Quý 2/2025 · Doanh thu HN 6T đạt ~52,700 tỷ; LNBT ~2,051 tỷ (+433% YoY)',link:'https://ir.vietjetair.com',cat:'bctc'},
+  {date:'10/06/2025',title:'Nghị quyết HĐQT thông qua giao dịch với các bên liên quan năm 2025',link:'https://ir.vietjetair.com',cat:'hanh-chinh'},
+  {date:'17/06/2025',title:'MoU ký kết 100 Airbus A321neo + 50 quyền chọn tại Paris Airshow 2025',link:'https://ir.vietjetair.com',cat:'doi-bay'},
+  {date:'17/10/2025',title:'Vietjet thông báo hoàn thành nghĩa vụ thuế',link:'https://ir.vietjetair.com',cat:'hanh-chinh'},
+  {date:'16/05/2025',title:'CBTT Báo cáo thường niên năm 2024',link:'https://ir.vietjetair.com/Home/Menu/bao-cao-thuong-nien',cat:'bctc'},
+  {date:'30/04/2025',title:'BCTC Hợp nhất Quý 1/2025 và Giải trình chênh lệch lợi nhuận',link:'https://ir.vietjetair.com',cat:'bctc'},
+];
+
+var cbttCatsV={
+  'bctc':     {label:'BCTC / Kiểm toán',col:'var(--green)',bg:'rgba(31,200,122,.07)',icon:'🟢'},
+  'trai-phieu':{label:'Trái phiếu — 10,500 tỷ/năm',col:'var(--red)',bg:'rgba(224,64,64,.08)',icon:'🔴'},
+  'phap-ly':  {label:'Tranh chấp pháp lý',col:'var(--purple)',bg:'rgba(155,127,232,.08)',icon:'🏛️'},
+  'doi-bay':  {label:'Đội bay / Orderbook',col:'var(--sky)',bg:'rgba(56,189,248,.07)',icon:'✈️'},
+  'co-phieu': {label:'Cổ phiếu / Vốn',col:'var(--amber)',bg:'rgba(232,160,32,.07)',icon:'🟡'},
+  'nhan-su':  {label:'Nhân sự',col:'var(--blue)',bg:'rgba(74,144,226,.07)',icon:'🔵'},
+  'hanh-chinh':{label:'Hành chính',col:'var(--muted)',bg:'rgba(255,255,255,.03)',icon:'⚪'},
+};
+var riskMapV={
+  'trai-phieu':{risk:'🔴 TĂNG NỢ',col:'var(--red)'},
+  'phap-ly':  {risk:'🏛️ PHÁP LÝ',col:'var(--purple)'},
+  'co-phieu': {risk:'💰 VỐN',col:'var(--amber)'},
+  'doi-bay':  {risk:'📦 ĐẦU TƯ',col:'var(--sky)'},
+  'bctc':     {risk:'✅ BCTC',col:'var(--green)'},
+};
+var cbttLoadedV=false,cbttFilterV='all';
+
+function loadCBTT(){
+  if(cbttLoadedV)return;cbttLoadedV=true;
+  renderCBTT(CBTT_VJC);
+  renderCBTTAnalysis();
+  fetchLiveCBTT();
+}
+function fetchLiveCBTT(){
+  var st=document.getElementById('cbtt-status');
+  if(st){st.textContent='⟳ Đang tải từ ir.vietjetair.com...';st.style.color='var(--amber)';}
+  var t=new Promise(function(_,r){setTimeout(function(){r(new Error('Timeout 8s'));},8000);});
+  var url='https://api.allorigins.win/get?url='+encodeURIComponent('https://ir.vietjetair.com/Home/Menu/cong-bo-thong-tin-bat-thuong');
+  Promise.race([fetch(url),t])
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(!j.contents)throw new Error('Nội dung rỗng');
+      var parser=new DOMParser();var doc=parser.parseFromString(j.contents,'text/html');
+      var rows=doc.querySelectorAll('table tr, .cbtt-item, li');
+      var fresh=[];
+      rows.forEach(function(r){
+        var txt=r.innerText.trim();
+        if(txt.length>20&&txt.length<300){
+          var link=r.querySelector('a');
+          fresh.push({date:'2025-2026',time:'',title:txt.substring(0,150),link:link?link.href:'',cat:'bctc'});
+        }
+      });
+      if(fresh.length>3){renderCBTT(fresh);if(st){st.textContent='✅ Đã tải lúc '+new Date().toLocaleTimeString('vi-VN')+' · '+fresh.length+' mục';st.style.color='var(--green)';}}
+      else throw new Error('Không đủ dữ liệu');
+    })
+    .catch(function(e){
+      if(st){st.textContent='⚠️ Dùng cache · ir.vietjetair.com (CORS) · '+e.message;st.style.color='var(--amber)';}
+    });
+}
+
+function renderCBTT(items){
+  var container=document.getElementById('cbtt-list');if(!container)return;container.innerHTML='';
+  var filtered=cbttFilterV==='all'?items:items.filter(function(i){return i.cat===cbttFilterV;});
+  var counts={};items.forEach(function(i){counts[i.cat]=(counts[i.cat]||0)+1;});
+  var se=document.getElementById('cbtt-summary');if(se){se.innerHTML='';
+    var ab=document.createElement('button');ab.style.cssText='font-size:10px;padding:3px 9px;border-radius:12px;border:1px solid '+(cbttFilterV==='all'?'var(--text)':'var(--border)')+';background:'+(cbttFilterV==='all'?'var(--bg4)':'transparent')+';color:'+(cbttFilterV==='all'?'var(--text)':'var(--muted)')+';cursor:pointer';
+    ab.innerHTML='📋 Tất cả <b>'+items.length+'</b>';ab.onclick=function(){cbttFilterV='all';renderCBTT(items);};se.appendChild(ab);
+    Object.keys(cbttCatsV).forEach(function(cat){if(!counts[cat])return;var c=cbttCatsV[cat];
+      var btn=document.createElement('button');btn.style.cssText='font-size:10px;padding:3px 9px;border-radius:12px;border:1px solid '+(cbttFilterV===cat?c.col:'var(--border)')+';background:'+(cbttFilterV===cat?c.bg:'transparent')+';color:'+(cbttFilterV===cat?c.col:'var(--muted)')+';cursor:pointer';
+      btn.innerHTML=c.icon+' '+c.label+' <b>'+counts[cat]+'</b>';btn.onclick=function(){cbttFilterV=cbttFilterV===cat?'all':cat;renderCBTT(items);};se.appendChild(btn);});
+  }
+  if(!filtered.length){container.innerHTML='<div style="padding:16px;text-align:center;color:var(--muted)">Không có công bố nào.</div>';return;}
+  filtered.forEach(function(item,idx){
+    var cat=cbttCatsV[item.cat]||cbttCatsV['bctc'];var risk=riskMapV[item.cat];var isNew=idx<3;
+    var row=document.createElement('div');row.className='cbtt-row';
+    row.onclick=function(){if(item.link)window.open(item.link,'_blank');};
+    row.innerHTML='<div style="flex-shrink:0;text-align:right;min-width:90px"><div style="font-size:11px;font-weight:600">'+item.date+'</div>'+(isNew?'<div style="margin-top:3px;font-size:9px;padding:1px 6px;border-radius:8px;background:rgba(56,189,248,.15);color:var(--sky);display:inline-block;font-weight:700">MỚI</div>':'')+'</div>'
+      +'<div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:4px;background:'+cat.bg+';color:'+cat.col+';font-weight:600;border:1px solid '+cat.col+'40">'+cat.icon+' '+cat.label+'</span>'+(risk?'<span style="font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(56,189,248,.1);color:'+risk.col+';font-weight:700">'+risk.risk+'</span>':'')+'</div>'
+      +'<div style="font-size:12px;line-height:1.5">'+item.title+'</div>'+(item.link?'<div style="font-size:10px;color:var(--sky);margin-top:2px">🔗 Xem tài liệu ↗</div>':'')+'</div>';
+    container.appendChild(row);
+  });
+}
+
+function renderCBTTAnalysis(){
+  var el=document.getElementById('cbtt-analysis');if(!el)return;
+  el.innerHTML=
+  // Alert bar 4 findings
+  '<div style="background:rgba(224,64,64,.06);border:1px solid rgba(224,64,64,.25);border-radius:9px;padding:10px 14px;margin-bottom:10px;font-size:11px;color:var(--text)">'
+  +'<b style="color:var(--red)">🔴 4 PHÁT HIỆN QUAN TRỌNG TỪ CBTT THỰC (crawled 29/03/2026 từ ir.vietjetair.com)</b>'
+  +'</div>'
+
+  // Finding 1: Bond issuance 10,500 ty
+  +'<div style="background:rgba(224,64,64,.06);border:1px solid rgba(224,64,64,.25);border-radius:9px;padding:12px 14px;margin-bottom:10px">'
+  +'<div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:6px">🔴 PHÁT HIỆN 1 — VJC phát hành 3 đợt TPRL tổng 10,500 tỷ trong năm 2025</div>'
+  +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">'
+  +'<div style="background:var(--bg3);border-radius:6px;padding:8px 10px;text-align:center"><div style="font-size:10px;color:var(--muted)">Lần 1 (25/06/2025)</div><div style="font-size:14px;font-weight:700;color:var(--red)">3,000 tỷ</div><div style="font-size:9px;color:var(--muted)">Điều chỉnh 20/09/2025</div></div>'
+  +'<div style="background:var(--bg3);border-radius:6px;padding:8px 10px;text-align:center"><div style="font-size:10px;color:var(--muted)">Lần 2 (12/11/2025)</div><div style="font-size:14px;font-weight:700;color:var(--red)">5,000 tỷ</div><div style="font-size:9px;color:var(--muted)">Lớn nhất trong năm</div></div>'
+  +'<div style="background:var(--bg3);border-radius:6px;padding:8px 10px;text-align:center"><div style="font-size:10px;color:var(--muted)">Lần 3 (30/12/2025)</div><div style="font-size:14px;font-weight:700;color:var(--red)">2,500 tỷ</div><div style="font-size:9px;color:var(--muted)">Phát hành cuối năm</div></div>'
+  +'</div>'
+  +'<div style="font-size:11px;line-height:1.7"><b style="color:var(--amber)">Phân tích tín dụng:</b> Tổng 10,500 tỷ TPRL trong một năm là mức rất cao. Kết hợp với việc nhận 22 tàu bay mới trong Q4/2025, cho thấy VJC đang mạnh tay dùng đòn bẩy để mở rộng đội bay. Cần xác nhận lãi suất và kỳ hạn từ BCTC kiểm toán 2025 (hạn 31/03/2026). <b style="color:var(--red)">Nợ vay ròng thực có thể cao hơn ước tính.</b></div>'
+  +'</div>'
+
+  // Finding 2: Auditor change
+  +'<div style="background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.2);border-radius:9px;padding:12px 14px;margin-bottom:10px">'
+  +'<div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:5px">🟡 PHÁT HIỆN 2 — Thay đổi kiểm toán từ PwC → UHY (26/06/2025) ⚠️</div>'
+  +'<div style="font-size:11px;line-height:1.7">'
+  +'Dashboard trước đây ghi nhầm là PwC. BCTC năm 2025 sẽ do <b>UHY</b> kiểm toán thay vì PwC (Big 4). '
+  +'Việc chuyển từ Big 4 xuống kiểm toán viên nhỏ hơn thường được cộng đồng tài chính chú ý — '
+  +'<b style="color:var(--amber)">cần xem xét kỹ hơn lý do thay đổi.</b> '
+  +'Một số lý do thông thường: giảm chi phí kiểm toán, hoặc bất đồng quan điểm kế toán với PwC. '
+  +'BCTC kiểm toán năm 2025 (hạn 31/03/2026 — chỉ còn 2 ngày) là tài liệu ưu tiên cần có ngay.'
+  +'</div>'
+  +'</div>'
+
+  // Finding 3: FWA lawsuit
+  +'<div style="background:rgba(155,127,232,.06);border:1px solid rgba(155,127,232,.2);border-radius:9px;padding:12px 14px;margin-bottom:10px">'
+  +'<div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:5px">🏛️ PHÁT HIỆN 3 — Tranh chấp thương mại với FWA tại Tòa án Anh (đã thắng kiện vòng 1)</div>'
+  +'<div style="font-size:11px;line-height:1.7">'
+  +'VJC có tranh chấp thương mại liên quan đến tàu bay với FWA (FlyWays). '
+  +'Ngày 25/07/2025, Tòa án Thương mại Anh <b style="color:var(--green)">bác bỏ đề nghị phong tỏa tài sản</b> của FWA đối với VJC — đây là tín hiệu tích cực. '
+  +'Tuy nhiên, tranh chấp chưa kết thúc hoàn toàn. <b style="color:var(--amber)">Rủi ro tiềm ẩn: nếu VJC thua kiện, có thể phải bồi thường hoặc trả lại/mua lại tàu bay liên quan.</b> '
+  +'Cần theo dõi diễn biến tiếp theo của vụ kiện tại Tòa án Thương mại Anh quốc.'
+  +'</div>'
+  +'</div>'
+
+  // Finding 4: Fleet expansion + orderbook
+  +'<div style="background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.15);border-radius:9px;padding:12px 14px">'
+  +'<div style="font-size:12px;font-weight:700;color:var(--sky);margin-bottom:5px">✈️ PHÁT HIỆN 4 — Orderbook 2025: +100 A321neo + Rolls-Royce 92 động cơ (3.8 tỷ USD)</div>'
+  +'<div style="font-size:11px;line-height:1.7">'
+  +'Năm 2025, VJC ký thêm MoU 100 A321neo tại Paris Airshow (T6/2025) + 92 động cơ Trent 7000 với Rolls-Royce (3.8 tỷ USD bao gồm dịch vụ bảo dưỡng). '
+  +'Đây là cam kết CAPEX rất lớn trong 10-15 năm tới. '
+  +'Q4/2025 nhận <b>22 tàu bay mới</b> — lớn nhất trong lịch sử VJC. '
+  +'<b style="color:var(--sky)">Tích cực:</b> Đội bay trẻ, nhiên liệu hiệu quả hơn. '
+  +'<b style="color:var(--red)">Rủi ro:</b> Nợ thuê tàu bay (USD) tiếp tục tăng, áp lực refinancing lớn trong môi trường lãi suất USD cao.'
+  +'</div>'
+  +'</div>';
+}
+
+window.addEventListener('DOMContentLoaded',function(){loadFromSheets();});
+</script>
+</body>
+</html>

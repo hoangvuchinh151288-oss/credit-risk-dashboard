@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard theo dõi TTC AGRIS (SBT) · Kiểm soát rủi ro tín dụng</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#09090f;--bg2:#0f1018;--bg3:#151722;--bg4:#1c1f2e;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
+  --text:#d8daf0;--muted:#52566e;--faint:#1e2133;
+  --blue:#4a90e2;--green:#1fc87a;--amber:#e8a020;
+  --red:#e04040;--purple:#9b7fe8;--teal:#18c8e8;--coral:#f06840;
+}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;padding:14px 18px;font-size:13px}
+
+/* ALERT BAR */
+.alert-bar{background:rgba(224,64,64,.08);border:1px solid rgba(224,64,64,.3);border-radius:10px;padding:10px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.alert-bar strong{color:var(--red);font-size:12px}
+.alert-pill{font-size:10px;padding:2px 8px;border-radius:12px;font-weight:600;white-space:nowrap}
+.ap-red{background:rgba(224,64,64,.15);color:#f07070}
+.ap-amber{background:rgba(232,160,32,.12);color:#f5c842}
+.ap-green{background:rgba(31,200,122,.1);color:#5dd9a8}
+
+/* BANNER */
+.banner{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:12px 18px;margin-bottom:12px}
+.logo{font-size:22px;font-weight:800;color:var(--amber);letter-spacing:-1px}
+.bmeta{font-size:10px;color:var(--muted)}
+.bdata{text-align:right}
+.bdata-val{font-size:13px;font-weight:600}
+
+/* TABS */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.tab{padding:7px 14px;font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;user-select:none}
+.tab.active{color:var(--text);border-bottom-color:var(--blue)}
+.tab:hover:not(.active){color:var(--text)}
+.panel{display:none}.panel.active{display:block}
+
+/* LAYOUT */
+.kpir{display:grid;gap:8px;margin-bottom:11px}
+.k4{grid-template-columns:repeat(4,1fr)}.k5{grid-template-columns:repeat(5,1fr)}.k3{grid-template-columns:repeat(3,1fr)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-bottom:11px}
+.g32{display:grid;grid-template-columns:3fr 2fr;gap:11px;margin-bottom:11px}
+.g23{display:grid;grid-template-columns:2fr 3fr;gap:11px;margin-bottom:11px}
+.mb11{margin-bottom:11px}
+
+/* KPI */
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:11px 13px}
+.kpi.red{border-left:3px solid var(--red)}.kpi.amber{border-left:3px solid var(--amber)}.kpi.green{border-left:3px solid var(--green)}.kpi.warn{border-left:3px solid var(--coral)}
+.kl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.kv{font-size:20px;font-weight:700;line-height:1.1;margin-bottom:2px}
+.ks{font-size:10px}
+.cr{color:var(--red)}.ca{color:var(--amber)}.cg{color:var(--green)}.cm{color:var(--muted)}.cb{color:var(--blue)}.ct{color:var(--teal)}.co{color:var(--coral)}
+
+/* CARD */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:14px 16px}
+.ctitle{font-size:12px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;white-space:nowrap}
+.t-red{background:rgba(224,64,64,.12);color:#f07070}
+.t-amber{background:rgba(232,160,32,.12);color:#f5c842}
+.t-green{background:rgba(31,200,122,.1);color:#5dd9a8}
+.t-blue{background:rgba(74,144,226,.12);color:#80b4f0}
+.t-muted{background:rgba(255,255,255,.05);color:var(--muted)}
+.t-coral{background:rgba(240,104,64,.12);color:#f08060}
+
+/* CHART */
+.cw{position:relative}
+.cw180{height:180px}.cw200{height:200px}.cw220{height:220px}.cw240{height:240px}
+
+/* DATA ROW */
+.drow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px}
+.drow:last-child{border-bottom:none}
+.dk{color:var(--muted)}.dv{font-weight:600}
+
+/* WATERFALL */
+.wfr{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);font-size:11px}
+.wfl{flex:1}.wfb{flex:2;display:flex;align-items:center;gap:3px}
+.wfbar{height:13px;border-radius:2px;min-width:2px}
+.wfv{min-width:80px;text-align:right;font-weight:600;font-size:11px}
+
+/* IMP BAR */
+.impr{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.impn{font-size:11px;flex:1}
+.impbg{flex:2;height:5px;background:rgba(255,255,255,.06);border-radius:3px}
+.impfill{height:100%;border-radius:3px}
+.impp{font-size:11px;font-weight:600;min-width:32px;text-align:right}
+
+/* RISK ROW */
+.riskr{display:flex;align-items:flex-start;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)}
+.riskr:last-child{border-bottom:none}
+.risico{width:22px;text-align:center;font-size:14px;flex-shrink:0;margin-top:1px}
+.risin{flex:1}
+.risn{font-size:12px;font-weight:500;margin-bottom:1px}
+.risd{font-size:10px;color:var(--muted);line-height:1.5}
+.risb{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;flex-shrink:0;white-space:nowrap}
+.rb-h{background:rgba(224,64,64,.12);color:var(--red)}
+.rb-m{background:rgba(232,160,32,.1);color:var(--amber)}
+.rb-l{background:rgba(31,200,122,.08);color:var(--green)}
+
+/* SLIDER */
+.slr{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.sll{font-size:11px;min-width:175px;color:var(--text)}
+.slv{font-size:11px;font-weight:600;min-width:55px;text-align:right;color:var(--amber)}
+input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
+
+/* TABLE */
+.htb{width:100%;border-collapse:collapse;font-size:11px}
+.htb th{padding:5px 9px;background:var(--bg3);color:var(--muted);font-weight:500;text-align:center;border-bottom:1px solid var(--border)}
+.htb th:first-child{text-align:left}
+.htb td{padding:5px 9px;border-bottom:1px solid rgba(255,255,255,.02);text-align:center}
+.htb td:first-child{text-align:left;color:var(--muted)}
+.htb tr:hover td{background:rgba(255,255,255,.015)}
+
+/* SIGNAL */
+#stressSignal{margin-top:9px;padding:7px 11px;border-radius:6px;font-size:11px;font-weight:600;text-align:center}
+
+@media(max-width:800px){.k4,.k5,.k3,.g2,.g3,.g32,.g23{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- DASHBOARD HEADER -->
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+  <div>
+    <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Công cụ kiểm soát rủi ro tín dụng</div>
+    <h1 style="font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.5px;line-height:1">Dashboard theo dõi <span style="color:var(--amber)">TTC AGRIS</span></h1>
+    <div style="font-size:11px;color:var(--muted);margin-top:3px">SBT · CTCP Thành Thành Công – Biên Hòa · Mô hình giá đường → biên lợi nhuận → khả năng trang trải nợ vay</div>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:rgba(31,200,122,.1);color:var(--green);font-weight:600;border:1px solid rgba(31,200,122,.2)">🔒 Nội bộ · Kiểm soát rủi ro</span>
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">BCTC HY1 NĐ 2025-2026 · EY soát xét</span>
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">Cập nhật: 28/02/2026</span>
+  </div>
+</div>
+
+<!-- ALERT: Cảnh báo tín dụng ưu tiên -->
+<div class="alert-bar">
+  <div id="alert-bar-content" style="display:contents">
+    <strong>⚠️ CẢNH BÁO TÍN DỤNG — BCTC HY1 NĐ 2025-2026 (31/12/2025)</strong>
+    <span class="alert-pill ap-red">Doanh thu -16% YoY</span>
+    <span class="alert-pill ap-red">Biên LN gộp 8.44% ↓ (ngưỡng nguy hiểm)</span>
+    <span class="alert-pill ap-red">Dòng tiền HĐKD ÂM -1,215 tỷ</span>
+    <span class="alert-pill ap-amber">ICR = 1.58x (dưới 2.0x)</span>
+    <span class="alert-pill ap-amber">Net Debt/EBITDA = 5.7x</span>
+    <span class="alert-pill ap-amber">Thuế CBPG Thái Lan hết hạn 15/6/2026</span>
+  </div>
+</div>
+<!-- Sheets status bar -->
+<div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:6px 14px;margin-bottom:10px;flex-wrap:wrap;gap:6px">
+  <div style="display:flex;align-items:center;gap:8px">
+    <span style="font-size:16px">📊</span>
+    <div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">Nguồn dữ liệu</div>
+      <div id="sheets-status" style="font-size:11px;font-weight:600;color:var(--amber)">⟳ Đang kiểm tra Google Sheets...</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:6px">
+    <button onclick="loadFromSheets()" style="font-size:10px;padding:4px 10px;border-radius:5px;background:var(--bg3);color:var(--blue);border:1px solid var(--border);cursor:pointer">↻ Làm mới dữ liệu</button>
+    <a href="https://sheets.google.com" target="_blank" style="font-size:10px;padding:4px 10px;border-radius:5px;background:rgba(31,200,122,.08);color:var(--green);border:1px solid rgba(31,200,122,.2);text-decoration:none">📝 Mở Google Sheet</a>
+  </div>
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+  <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+      <div class="logo">TTC AgriS · SBT</div>
+      <div style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(232,160,32,.12);color:var(--amber);font-weight:600">HOSE · Mã: SBT</div>
+    </div>
+    <div class="bmeta">CTCP Thành Thành Công – Biên Hòa · Đầu ngành mía đường VN · 46% thị phần nội địa · Kiểm toán EY Việt Nam · Ký 28/02/2026</div>
+    <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap">
+      <span class="tag t-red">Tổng nợ vay: 18,481 tỷ</span>
+      <span class="tag t-amber">Lãi vay 6T: 695 tỷ (~3.8 tỷ/ngày)</span>
+      <span class="tag t-muted">D/E: 1.94x · Tổng TS: 35,899 tỷ</span>
+      <span class="tag t-muted">VCSH: 12,210 tỷ</span>
+    </div>
+  </div>
+  <div></div>
+  <div class="bdata">
+    <div style="font-size:10px;color:var(--muted)" id="banner-ky">Kỳ báo cáo: 01/07/2025 – 31/12/2025</div>
+    <div class="bdata-val" style="color:var(--amber);margin:2px 0" id="banner-dt">DT thuần 6T: 12,105 tỷ</div>
+    <div style="font-size:11px;color:var(--red)">▼ -15.7% vs cùng kỳ (14,359 tỷ)</div>
+    <div style="font-size:11px;color:var(--green);margin-top:2px" id="banner-lnst">LNST 6T: 367 tỷ · EPS: 353đ/cp</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="sw('overview')">📊 Tổng quan tài chính</div>
+  <div class="tab" onclick="sw('chain')">🔗 Chuỗi truyền dẫn giá</div>
+  <div class="tab" onclick="sw('debt')">💳 Phân tích nợ vay</div>
+  <div class="tab" onclick="sw('stress')">⚡ Stress test</div>
+  <div class="tab" onclick="sw('vars')">📌 3 biến số trọng yếu</div>
+  <div class="tab" onclick="sw('cbtt')" id="tab-cbtt">📢 Công bố thông tin <span id="cbtt-badge" style="display:inline-block;background:rgba(224,64,64,.8);color:#fff;border-radius:10px;padding:1px 6px;font-size:9px;margin-left:3px;font-weight:700">16</span></div>
+</div>
+
+<!-- ════════════════════ TAB 1: OVERVIEW ════════════════════ -->
+<div class="panel active" id="panel-overview">
+
+  <div class="kpir k5" style="margin-bottom:10px">
+    <div class="kpi red" id="kpi-dt">
+      <div class="kl">Doanh thu 6T (thực tế)</div>
+      <div class="kv cr">12,105 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cr">▼ -15.7% vs cùng kỳ</div>
+    </div>
+    <div class="kpi red" id="kpi-bien">
+      <div class="kl">Biên LN gộp</div>
+      <div class="kv co">8.44<span style="font-size:12px;color:var(--muted)">%</span></div>
+      <div class="ks cr">▼ vs 11.6% cùng kỳ · Nguy hiểm</div>
+    </div>
+    <div class="kpi amber">
+      <div class="kl">EBIT 6T (ước)</div>
+      <div class="kv ca">1,100 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cm">LNBT 405 + lãi vay 695</div>
+    </div>
+    <div class="kpi red" id="kpi-lctt">
+      <div class="kl">Dòng tiền HĐKD</div>
+      <div class="kv cr">-1,215 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cr">⚠️ ÂM — Rủi ro thanh khoản cao</div>
+    </div>
+    <div class="kpi green" id="kpi-lnst">
+      <div class="kl">LNST 6T</div>
+      <div class="kv cg">367 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cr">▼ -21.2% vs 465 tỷ cùng kỳ</div>
+    </div>
+  </div>
+
+  <div class="g32 mb11">
+    <div class="card">
+      <div class="ctitle">P&L Waterfall thực tế — 6 tháng kết thúc 31/12/2025 <span class="tag t-blue">Số liệu BCTC</span></div>
+      <div id="wfDiv"></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:8px;padding:7px 10px;background:var(--bg3);border-radius:6px">
+        <span style="color:var(--red);font-weight:600">⚠️ Điểm quan trọng:</span> Biên LN gộp thực 8.44% giảm mạnh do giá đường nội địa giảm trong khi chi phí mía (10,164 tỷ ~ 84% doanh thu) vẫn cao. LNBT 405 tỷ bao gồm 145 tỷ từ công ty liên kết và 136 tỷ thu nhập bất thường — LNBT từ hoạt động kinh doanh cốt lõi chỉ ~124 tỷ/6 tháng.
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">So sánh kỳ này vs cùng kỳ</div>
+      <div class="cw cw200"><canvas id="yoyChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="g3 mb11">
+    <div class="card">
+      <div class="ctitle">Cấu trúc chi phí 6T <span class="tag t-amber">TM33 — Theo yếu tố</span></div>
+      <div class="cw cw180"><canvas id="costChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Bảng cân đối — Điểm rủi ro tín dụng <span class="tag t-red">31/12/2025</span></div>
+      <div style="margin-top:4px">
+        <div class="drow"><span class="dk">Tổng tài sản</span><span class="dv ct" id="bs-tongts">35,899 tỷ</span></div>
+        <div class="drow"><span class="dk">Tiền & tương đương tiền</span><span class="dv cg" id="bs-tien">3,051 tỷ</span></div>
+        <div class="drow"><span class="dk">Phải thu ngắn hạn KH</span><span class="dv ca" id="bs-phaithukh">2,862 tỷ</span></div>
+        <div class="drow"><span class="dk">Trả trước cho người bán</span><span class="dv ca" id="bs-tratruoc">6,574 tỷ ⚠️</span></div>
+        <div class="drow"><span class="dk">Hàng tồn kho (net)</span><span class="dv cm" id="bs-tonkho">3,025 tỷ</span></div>
+        <div class="drow"><span class="dk">Tổng nợ phải trả</span><span class="dv cr" id="bs-tongno">23,688 tỷ</span></div>
+        <div class="drow"><span class="dk">— Nợ ngắn hạn</span><span class="dv cr" id="bs-nonh">18,194 tỷ (77%)</span></div>
+        <div class="drow"><span class="dk">— Nợ dài hạn</span><span class="dv ca" id="bs-nodh">5,494 tỷ</span></div>
+        <div class="drow"><span class="dk">Vốn chủ sở hữu</span><span class="dv cm" id="bs-vcsh">12,210 tỷ</span></div>
+        <div class="drow"><span class="dk">D/E ratio</span><span class="dv cr" id="bs-de">1.94x</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Dòng tiền 6T <span class="tag t-red">LCTT — Rủi ro thanh khoản</span></div>
+      <div class="cw cw180"><canvas id="cfChart"></canvas></div>
+      <div style="font-size:10px;color:var(--red);margin-top:6px;line-height:1.5">LCTT HĐKD âm -1,215 tỷ chủ yếu do phải thu tăng 2,097 tỷ. Công ty phải vay mới 19,213 tỷ và trả nợ gốc 17,591 tỷ trong kỳ — cho thấy vòng quay đảo nợ ngắn hạn rất lớn.</div>
+    </div>
+  </div>
+
+  <!-- Các chỉ số tín dụng -->
+  <div class="card mb11">
+    <div class="ctitle">Chỉ số Tín dụng Quan trọng — Trực tiếp từ BCTC 31/12/2025</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px" id="creditGrid"></div>
+  </div>
+
+</div>
+
+<!-- ════════════════════ TAB 2: CHAIN ════════════════════ -->
+<div class="panel" id="panel-chain">
+
+  <!-- Chain flow -->
+  <div style="display:flex;align-items:center;overflow-x:auto;gap:0;padding:4px 0;margin-bottom:12px">
+    <div id="chain-boxes" style="display:flex;align-items:center;gap:0;min-width:max-content"></div>
+  </div>
+
+  <div class="g32 mb11">
+    <div class="card">
+      <div class="ctitle">Giá đường → Biên LN gộp SBT — Mối tương quan thực tế <span class="tag t-red">Điểm hiện tại 8.44%</span></div>
+      <div class="cw cw220"><canvas id="txChart"></canvas></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5">
+        <span style="color:var(--amber);font-weight:600">Công thức ước tính:</span> Biên LN gộp ≈ (Giá bán đường − Chi phí mía quy đổi − Chi phí SX) / Giá bán. Với cấu trúc chi phí hiện tại (~84% COGS/DT), ngưỡng hòa vốn biên LN gộp ≈ giá đường nội địa <strong style="color:var(--red)">16,000–16,500đ/kg</strong>.
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Cơ chế truyền dẫn</div>
+      <div style="display:flex;flex-direction:column;gap:7px;margin-top:4px">
+        <div style="background:var(--bg3);border-radius:7px;padding:9px 11px;border-left:2px solid var(--green)">
+          <div style="font-size:11px;font-weight:600;color:var(--green);margin-bottom:3px">✅ Khuếch đại tăng</div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.6">ICE tăng + VND yếu + thuế CBPG duy trì → Giá nội địa tăng mạnh. Chi phí mía trả cho nông dân có độ trễ 1 vụ (6 tháng) → Biên LN tăng mạnh hơn ICE.</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:7px;padding:9px 11px;border-left:2px solid var(--red)">
+          <div style="font-size:11px;font-weight:600;color:var(--red);margin-bottom:3px">⚠️ Khuếch đại giảm (đang xảy ra)</div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.6">ICE giảm từ mức cao 26 ct/lb (T1/24) về 20–21 ct/lb (T7–T12/25) → Giá nội địa giảm → Doanh thu SBT giảm 16%. Chi phí mía đã ký hợp đồng ở mức cao → "Price squeeze" → Biên LN gộp thu hẹp từ 11.6% → 8.44%.</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:7px;padding:9px 11px;border-left:2px solid var(--amber)">
+          <div style="font-size:11px;font-weight:600;color:var(--amber);margin-bottom:3px">📐 Công thức quy đổi ICE → giá VND/kg</div>
+          <div style="font-size:10px;color:var(--teal);font-family:monospace;line-height:1.8">
+            Giá tham chiếu nhập khẩu (đ/kg)<br>
+            = ICE(ct/lb) × USD/VND × 0.02205<br>
+            × (1 + thuế ATIGA 5%) × 1.08 phân phối<br>
+            ≈ ICE × 25,450 × 0.02481<br>
+            → ICE 21.4 ct/lb ≈ ~13,500đ/kg (nhập khẩu)<br>
+            Giá nội địa SBT bán: ~17,000–18,000đ/kg
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb11">
+    <div class="ctitle">Ma trận nhạy cảm: ICE (ct/lb) × Chi phí mía (%DT) → Biên LN gộp SBT</div>
+    <div style="overflow-x:auto"><table class="htb" id="sensMatrix"></table></div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px">
+      <span style="color:var(--red)">🔴 &lt;8%</span>: EBITDA không đủ bù lãi vay, rủi ro vi phạm covenant &nbsp;
+      <span style="color:var(--amber)">🟡 8–11%</span>: Cảnh báo &nbsp;
+      <span style="color:var(--green)">🟢 &gt;11%</span>: An toàn · <strong style="color:var(--coral)">★ Vị trí hiện tại: ICE ~21ct/lb, mía ~84% DT → Biên 8.44%</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════ TAB 3: DEBT ════════════════════ -->
+<div class="panel" id="panel-debt">
+
+  <div class="kpir k4 mb11">
+    <div class="kpi red" id="kpi-no">
+      <div class="kl">Tổng vay & nợ tài chính</div>
+      <div class="kv cr">18,481 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cr">↑ +2,568 tỷ vs đầu NĐ (15,913 tỷ)</div>
+    </div>
+    <div class="kpi red" id="kpi-laivay">
+      <div class="kl">Lãi vay thực tế 6T</div>
+      <div class="kv cr">695 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks ca">~3.8 tỷ/ngày · Annualized ~1,390 tỷ</div>
+    </div>
+    <div class="kpi amber" id="kpi-icr">
+      <div class="kl">ICR thực tế (6T)</div>
+      <div class="kv ca">1.58<span style="font-size:12px;color:var(--muted)">x</span></div>
+      <div class="ks ca">EBIT 1,100 / Lãi vay 695 · Ngưỡng ≥2.0x</div>
+    </div>
+    <div class="kpi red" id="kpi-ndebitda">
+      <div class="kl">Net Debt / EBITDA (ann.)</div>
+      <div class="kv cr">5.7<span style="font-size:12px;color:var(--muted)">x</span></div>
+      <div class="ks cr">Net Debt 15,430 / EBITDA ann. 2,716 tỷ</div>
+    </div>
+  </div>
+
+  <div class="g2 mb11">
+    <div class="card">
+      <div class="ctitle">Cấu trúc nợ vay theo loại <span class="tag t-red">TM26 — 31/12/2025</span></div>
+      <div class="cw cw200"><canvas id="debtStructChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Lịch đáo hạn nợ <span class="tag t-red">Rủi ro tái tài trợ cao — 72% ngắn hạn</span></div>
+      <div class="cw cw200"><canvas id="maturityChart"></canvas></div>
+      <div style="font-size:10px;color:var(--red);margin-top:5px">72% tổng nợ đáo hạn trong 12 tháng tới. Phải liên tục đảo nợ 13,000+ tỷ mỗi năm. Trong kỳ: vay mới 19,213 tỷ, trả 17,591 tỷ → Net vay thêm 1,622 tỷ.</div>
+    </div>
+  </div>
+
+  <div class="g32 mb11">
+    <div class="card">
+      <div class="ctitle">EBITDA Waterfall → Khả năng trả nợ <span class="tag t-amber">6T ann. × 2</span></div>
+      <div class="cw cw200"><canvas id="ebitdaWf"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">Chỉ số tín dụng chi tiết</div>
+      <div id="debtRatios" style="margin-top:4px"></div>
+    </div>
+  </div>
+
+  <!-- Chi tiết nợ vay chính -->
+  <div class="card mb11">
+    <div class="ctitle">Các khoản vay ngân hàng ngắn hạn lớn — Đáo hạn Q2-Q3 2026 <span class="tag t-red">Ưu tiên theo dõi</span></div>
+    <div style="overflow-x:auto">
+      <table class="htb" id="loanTable"></table>
+    </div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px">Nguồn: TM26.1 BCTC 31/12/2025. Hầu hết đáo hạn T2–T7/2026, đảm bảo bằng hàng tồn kho, phải thu, QSDĐ và tiền gửi có kỳ hạn.</div>
+  </div>
+
+</div>
+
+<!-- ════════════════════ TAB 4: STRESS TEST ════════════════════ -->
+<div class="panel" id="panel-stress">
+  <div style="font-size:12px;font-weight:600;margin-bottom:9px">Điều chỉnh các biến → xem tác động tức thì đến khả năng trả lãi (ICR) và Net Debt/EBITDA</div>
+
+  <div class="g23 mb11">
+    <div class="card">
+      <div class="ctitle">Bảng điều khiển <span class="tag t-amber">Kéo để điều chỉnh</span></div>
+      <div id="sliders"></div>
+      <div style="margin-top:11px;padding:11px;background:var(--bg3);border-radius:8px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:7px">Kết quả (6T annualized)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px" id="stressResult"></div>
+      </div>
+      <div id="stressSignal"></div>
+    </div>
+    <div class="card">
+      <div class="ctitle">ICR theo giá đường nội địa <span class="tag t-blue">Cập nhật tức thì</span></div>
+      <div class="cw cw240"><canvas id="stressChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle">Bảng kịch bản — Số liệu gốc từ BCTC + các kịch bản tương lai</div>
+    <div style="overflow-x:auto"><table class="htb" id="scenTable"></table></div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px">* Kỳ hiện tại (6T ending 31/12/2025) đã cho thấy xu hướng đáng lo ngại. Kịch bản "Thuế CBPG không gia hạn" (T6/2026) là rủi ro đơn lẻ lớn nhất.</div>
+  </div>
+</div>
+
+<!-- ════════════════════ TAB 5: BIẾN SỐ ════════════════════ -->
+<div class="panel" id="panel-vars">
+
+  <div class="g3 mb11">
+    <!-- V1 -->
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">
+        <span style="font-size:20px">📦</span>
+        <div><div style="font-size:13px;font-weight:700">Biến 1 · Giá đường thế giới & nội địa</div><div style="font-size:10px;color:var(--muted)">Tác động trực tiếp nhất đến doanh thu và biên LN</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--text);line-height:1.7;margin-bottom:9px">
+        Giá đường nội địa VN giảm từ đỉnh ~22,000đ/kg (T1/2024) về ~17,500–18,500đ/kg (HY1 NĐ 25-26) là nguyên nhân chính khiến doanh thu SBT giảm 16% và biên LN gộp thu hẹp từ 11.6% → 8.44%. Ngưỡng hòa vốn biên LN ≈ 16,000đ/kg. Khi giá đường thế giới ICE tăng trở lại >22 ct/lb + thuế CBPG duy trì → biên LN có thể phục hồi.
+      </div>
+      <div style="background:rgba(232,80,32,.07);border:1px solid rgba(232,80,32,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
+        <span style="color:var(--coral);font-weight:600">Trạng thái hiện tại (nguy hiểm): </span><span style="color:var(--text)">ICE ~21 ct/lb + Giá nội địa ~17,500đ/kg → Biên LN gộp 8.44% — sát ngưỡng rủi ro. ICR = 1.58x.</span>
+      </div>
+      <div class="cw" style="height:120px"><canvas id="v1c"></canvas></div>
+    </div>
+    <!-- V2 -->
+    <div class="card" style="border-top:3px solid var(--teal)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">
+        <span style="font-size:20px">💱</span>
+        <div><div style="font-size:13px;font-weight:700">Biến 2 · Tỷ giá USD/VND & Lãi suất</div><div style="font-size:10px;color:var(--muted)">Tác động hai chiều — doanh thu & chi phí tài chính</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--text);line-height:1.7;margin-bottom:9px">
+        SBT có nợ ngoại tệ (USD) gồm: vay Dole Asia ~85 tỷ VND (~3.2M USD, lãi SOFR+2%), vay NH ING ~1,058 tỷ và NH Mizuho ~570 tỷ. Tổng nợ USD ước ~5,000–6,000 tỷ. VND mất giá 1% → chi phí tài chính tăng ~50–60 tỷ. Lãi suất VND giảm đã giúp lãi vay 6T giảm từ 783 tỷ → 695 tỷ (-11.2%). Rủi ro: lãi suất tăng trở lại khi NHNN thắt chặt.
+      </div>
+      <div style="background:rgba(24,200,232,.06);border:1px solid rgba(24,200,232,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
+        <span style="color:var(--teal);font-weight:600">Tích cực trong kỳ: </span><span style="color:var(--text)">Lãi suất giảm tiết kiệm ~88 tỷ chi phí lãi vay vs cùng kỳ. Nhưng VND yếu (+lỗ chênh lệch tỷ giá 52.8 tỷ trong chi phí tài chính) bù trừ một phần.</span>
+      </div>
+      <div class="cw" style="height:120px"><canvas id="v2c"></canvas></div>
+    </div>
+    <!-- V3 -->
+    <div class="card" style="border-top:3px solid var(--red)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">
+        <span style="font-size:20px">⚖️</span>
+        <div><div style="font-size:13px;font-weight:700">Biến 3 · Chính sách thuế CBPG</div><div style="font-size:10px;color:var(--muted)">Sự kiện nhị phân · Hết hạn 15/6/2026 · Còn ~3 tháng</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--text);line-height:1.7;margin-bottom:9px">
+        Thuế CBPG đường Thái Lan 47.64% hết hạn 15/6/2026 — còn khoảng 3 tháng. Đây là rủi ro đơn lẻ lớn nhất. Khi đang ở biên LN gộp chỉ 8.44%, việc giá nội địa giảm thêm 10–20% (do đường Thái Lan tràn vào với thuế 5%) sẽ đẩy SBT vào tình huống không đủ EBITDA để trả lãi vay.
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px">
+        <div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.2);border-radius:5px;padding:7px;text-align:center">
+          <div style="font-size:10px;color:var(--muted)">Không gia hạn</div>
+          <div style="font-size:15px;font-weight:700;color:var(--red)">ICR ~0.7x</div>
+          <div style="font-size:9px;color:var(--red)">Vi phạm covenant</div>
+        </div>
+        <div style="background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.2);border-radius:5px;padding:7px;text-align:center">
+          <div style="font-size:10px;color:var(--muted)">Gia hạn 1 phần</div>
+          <div style="font-size:15px;font-weight:700;color:var(--amber)">ICR ~1.1x</div>
+          <div style="font-size:9px;color:var(--amber)">Vùng nguy hiểm</div>
+        </div>
+        <div style="background:rgba(31,200,122,.05);border:1px solid rgba(31,200,122,.2);border-radius:5px;padding:7px;text-align:center">
+          <div style="font-size:10px;color:var(--muted)">Gia hạn đầy đủ</div>
+          <div style="font-size:15px;font-weight:700;color:var(--green)">ICR ~1.8x</div>
+          <div style="font-size:9px;color:var(--green)">Ổn định hơn</div>
+        </div>
+      </div>
+      <div class="cw" style="height:120px"><canvas id="v3c"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Bảng theo dõi -->
+  <div class="card">
+    <div class="ctitle">📋 Hệ thống cảnh báo sớm — Danh sách theo dõi định kỳ cho người cho vay</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="monitorList"></div>
+  </div>
+
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   📊 GOOGLE SHEETS DATA LAYER — Dashboard theo dõi TTC AGRIS
+   ══════════════════════════════════════════════════════════════
+   HƯỚNG DẪN SETUP (làm 1 lần):
+   1. Mở file SBT_Data_Template.csv → Import vào Google Sheets
+   2. File → Share → Publish to web → Sheet 1 → CSV → Publish
+   3. Copy link, lấy phần ID trong URL
+   4. Dán SHEET_ID vào dòng dưới ↓
+   ══════════════════════════════════════════════════════════════ */
+var SHEET_ID = '';  // ← DÁN GOOGLE SHEETS ID VÀO ĐÂY
+/* Ví dụ: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms' */
+
+/* ── Fallback data (hardcoded từ BCTC HY1 NĐ 2025-2026) ── */
+var D = {
+  ky_tu:'01/07/2025', ky_den:'31/12/2025', ten_ky:'HY1 NĐ 2025-2026',
+  ngay_cap_nhat:'27/03/2026',
+  /* KQKD */
+  doanh_thu_thuan:12105, gia_von:11084, loi_nhuan_gop:1022,
+  bien_ln_gop:8.44, doanh_thu_tc:628, chi_phi_tc:853,
+  lai_vay:695, chi_phi_bh_qldn:673, lai_cty_lien_ket:145,
+  ln_bt:405, thue_tndn:38, ln_sau_thue:367, khau_hao:258,
+  /* BCĐKT */
+  tong_tai_san:35899, tien_tuong_duong:3051, phai_thu_kh:2862,
+  tra_truoc_nguoi_ban:6574, hang_ton_kho:3025,
+  tong_no_phai_tra:23688, no_ngan_han:18194, no_dai_han:5494,
+  von_chu_so_huu:12210, tong_no_vay_tc:18481,
+  /* LCTT */
+  lctt_hdkd:-1215, lctt_hddt:-1896, lctt_hdtc:2632,
+  vay_moi_trong_ky:19213, tra_no_goc:17591,
+  /* So sánh cùng kỳ */
+  dt_cung_ky:14359, ln_gop_cung_ky:1672, chi_phi_tc_cung_ky:1002,
+  lai_vay_cung_ky:783, ln_bt_cung_ky:542, ln_sau_thue_cung_ky:465,
+  /* Nguồn dữ liệu */
+  _source:'cache', _loaded:false
+};
+
+/* ── Hàm tính toán các chỉ số phát sinh ── */
+function calcDerived(){
+  D.ebit       = D.loi_nhuan_gop + D.doanh_thu_tc - D.chi_phi_tc - D.chi_phi_bh_qldn + D.lai_cty_lien_ket + (D.ln_bt - D.loi_nhuan_gop - D.doanh_thu_tc + D.chi_phi_tc + D.chi_phi_bh_qldn - D.lai_cty_lien_ket);
+  D.ebit       = D.ln_bt + D.lai_vay;  // Simplified: EBIT = LNBT + lãi vay
+  D.ebitda     = D.ebit + D.khau_hao;
+  D.ebit_ann   = D.ebit * 2;
+  D.ebitda_ann = D.ebitda * 2;
+  D.lai_vay_ann= D.lai_vay * 2;
+  D.icr        = D.ebit / D.lai_vay;
+  D.net_debt   = D.tong_no_vay_tc - D.tien_tuong_duong;
+  D.nd_ebitda  = D.net_debt / D.ebitda_ann;
+  D.de_ratio   = D.tong_no_phai_tra / D.von_chu_so_huu;
+  D.dt_yoy_pct = ((D.doanh_thu_thuan - D.dt_cung_ky) / D.dt_cung_ky * 100).toFixed(1);
+  D.no_nh_pct  = (D.no_ngan_han / D.tong_no_vay_tc * 100).toFixed(0);
+  D.lai_vay_per_day = (D.lai_vay_ann / 365).toFixed(1);
+}
+calcDerived();
+
+/* ── Fetch từ Google Sheets ── */
+function loadFromSheets(){
+  var statusEl = document.getElementById('sheets-status');
+  if(!SHEET_ID || SHEET_ID.length < 10){
+    if(statusEl){ statusEl.textContent = '⚠️ Chưa cấu hình Google Sheets ID — đang dùng dữ liệu cache BCTC HY1 NĐ 2025-2026'; statusEl.style.color='var(--amber)'; }
+    return;
+  }
+  if(statusEl){ statusEl.textContent = '⟳ Đang tải dữ liệu từ Google Sheets...'; statusEl.style.color='var(--amber)'; }
+  var csvUrl = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/export?format=csv&cachebust=' + Date.now();
+  var t1 = new Promise(function(_,r){setTimeout(function(){r(new Error('timeout'));},8000);});
+  Promise.race([fetch(csvUrl), t1])
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+    .then(function(csv){
+      var rows = csv.split('\n');
+      var newD = {};
+      rows.forEach(function(row){
+        if(row.startsWith('#') || !row.trim()) return;
+        var cols = row.split(',');
+        if(cols.length >= 3 && cols[1] && cols[2]){
+          var key = cols[1].trim();
+          var val = cols[2].trim();
+          var num = parseFloat(val);
+          newD[key] = isNaN(num) ? val : num;
+        }
+      });
+      /* Merge vào D */
+      Object.assign(D, newD);
+      calcDerived();
+      D._source = 'sheets';
+      D._loaded = true;
+      rerenderAll();
+      if(statusEl){ statusEl.textContent = '✅ Dữ liệu từ Google Sheets · Cập nhật: ' + new Date().toLocaleTimeString('vi-VN'); statusEl.style.color='var(--green)'; }
+    })
+    .catch(function(e){
+      if(statusEl){ statusEl.textContent = '⚠️ Không lấy được Sheets: ' + e.message + ' — đang dùng cache BCTC ' + D.ten_ky; statusEl.style.color='var(--amber)'; }
+    });
+}
+
+/* ── Re-render toàn bộ dashboard sau khi load Sheets ── */
+var _charts = {};
+function rerenderAll(){
+  /* Cập nhật banner */
+  var bannerKy = document.getElementById('banner-ky');
+  var bannerDt = document.getElementById('banner-dt');
+  var bannerLn = document.getElementById('banner-lnst');
+  if(bannerKy) bannerKy.textContent = D.ky_tu + ' – ' + D.ky_den;
+  if(bannerDt) bannerDt.textContent = 'DT thuần 6T: ' + D.doanh_thu_thuan.toLocaleString('vi') + ' tỷ';
+  if(bannerLn) bannerLn.textContent = 'LNST 6T: ' + D.ln_sau_thue + ' tỷ · Ngày: ' + D.ngay_cap_nhat;
+
+  /* Cập nhật alert bar */
+  var alertEl = document.getElementById('alert-bar-content');
+  if(alertEl) buildAlertBar(alertEl);
+
+  /* Cập nhật KPI cards */
+  setKPI('kpi-dt',     D.doanh_thu_thuan.toLocaleString('vi') + ' tỷ', D.dt_yoy_pct < 0 ? 'cr' : 'cg', '▼ ' + Math.abs(D.dt_yoy_pct) + '% vs cùng kỳ');
+  setKPI('kpi-bien',   D.bien_ln_gop.toFixed(2) + '%',  parseFloat(D.bien_ln_gop) < 8 ? 'cr' : parseFloat(D.bien_ln_gop) < 11 ? 'co' : 'cg', '');
+  setKPI('kpi-lctt',   (D.lctt_hdkd).toLocaleString('vi') + ' tỷ', D.lctt_hdkd < 0 ? 'cr' : 'cg', D.lctt_hdkd < 0 ? '⚠️ ÂM — Rủi ro thanh khoản cao' : '✅ Dương');
+  setKPI('kpi-lnst',   D.ln_sau_thue + ' tỷ', '', '');
+  setKPI('kpi-no',     D.tong_no_vay_tc.toLocaleString('vi') + ' tỷ', 'cr', 'Nợ NH: ' + D.no_ngan_han.toLocaleString('vi') + ' tỷ (' + D.no_nh_pct + '%)');
+  setKPI('kpi-laivay', D.lai_vay.toLocaleString('vi') + ' tỷ', 'cr', '~' + D.lai_vay_per_day + ' tỷ/ngày');
+  setKPI('kpi-icr',    D.icr.toFixed(2) + 'x', D.icr >= 2 ? 'cg' : D.icr >= 1.2 ? 'ca' : 'cr', D.icr < 2 ? 'Ngưỡng an toàn ≥ 2.0x' : 'Trên ngưỡng ✅');
+  setKPI('kpi-ndebitda', D.nd_ebitda.toFixed(1) + 'x', D.nd_ebitda > 5 ? 'cr' : D.nd_ebitda > 4 ? 'ca' : 'cg', 'Ngưỡng ≤ 4.0x');
+
+  /* Rebuild charts */
+  rebuildCharts();
+
+  /* Cập nhật balance sheet */
+  updateBCDKT();
+}
+
+function setKPI(id, val, colorClass, sub){
+  var el = document.getElementById(id);
+  if(!el) return;
+  var vEl = el.querySelector('.kv');
+  var sEl = el.querySelector('.ks');
+  if(vEl){ vEl.innerHTML = val; vEl.className = 'kv ' + (colorClass||''); }
+  if(sEl && sub !== undefined) sEl.textContent = sub;
+}
+
+function buildAlertBar(el){
+  var items = [];
+  if(parseFloat(D.dt_yoy_pct) < -10) items.push({cls:'ap-red', txt:'Doanh thu ' + D.dt_yoy_pct + '% YoY'});
+  if(D.bien_ln_gop < 8) items.push({cls:'ap-red', txt:'Biên LN gộp ' + D.bien_ln_gop + '% ↓ (nguy hiểm)'});
+  else if(D.bien_ln_gop < 11) items.push({cls:'ap-amber', txt:'Biên LN gộp ' + D.bien_ln_gop + '%'});
+  if(D.lctt_hdkd < 0) items.push({cls:'ap-red', txt:'Dòng tiền HĐKD ÂM ' + D.lctt_hdkd.toLocaleString('vi') + ' tỷ'});
+  if(D.icr < 1.5) items.push({cls:'ap-red', txt:'ICR = ' + D.icr.toFixed(2) + 'x (dưới 2.0x)'});
+  else if(D.icr < 2) items.push({cls:'ap-amber', txt:'ICR = ' + D.icr.toFixed(2) + 'x (dưới 2.0x)'});
+  if(D.nd_ebitda > 5) items.push({cls:'ap-red', txt:'Net Debt/EBITDA = ' + D.nd_ebitda.toFixed(1) + 'x'});
+  items.push({cls:'ap-amber', txt:'Thuế CBPG Thái Lan hết hạn 15/6/2026'});
+  el.innerHTML = '<strong>⚠️ CẢNH BÁO TÍN DỤNG — BCTC ' + D.ten_ky + ' (' + D.ky_den + ')</strong> '
+    + items.map(function(i){ return '<span class="alert-pill '+i.cls+'">'+i.txt+'</span>'; }).join(' ');
+}
+
+function rebuildCharts(){
+  /* Destroy & rebuild YoY */
+  if(_charts.yoy){ _charts.yoy.destroy(); }
+  var yoyEl = document.getElementById('yoyChart');
+  if(yoyEl) _charts.yoy = mkChart('yoyChart','bar',
+    ['DT thuần','LN gộp','Chi phí TC','Lãi vay','LNBT','LNST'],[
+      {label:'Kỳ này',data:[D.doanh_thu_thuan,D.loi_nhuan_gop,D.chi_phi_tc,D.lai_vay,D.ln_bt,D.ln_sau_thue],backgroundColor:'rgba(74,144,226,.65)',borderRadius:3},
+      {label:'Cùng kỳ trước',data:[D.dt_cung_ky,D.ln_gop_cung_ky,D.chi_phi_tc_cung_ky,D.lai_vay_cung_ky,D.ln_bt_cung_ky,D.ln_sau_thue_cung_ky],backgroundColor:'rgba(31,200,122,.3)',borderRadius:3}
+    ],{plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:10},boxWidth:10}}},
+      scales:{x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}},
+              y:{ticks:{callback:function(v){return(v/1000).toFixed(0)+'k'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}}}});
+
+  /* Rebuild CF chart */
+  if(_charts.cf){ _charts.cf.destroy(); }
+  var cfEl = document.getElementById('cfChart');
+  if(cfEl) _charts.cf = mkChart('cfChart','bar',['LCTT HĐKD','LCTT HĐ Đầu tư','LCTT HĐ TC','LCTT thuần'],[
+    {data:[D.lctt_hdkd, D.lctt_hddt, D.lctt_hdtc, D.lctt_hdkd+D.lctt_hddt+D.lctt_hdtc],
+     backgroundColor:function(ctx){return ctx.raw>=0?'rgba(31,200,122,.65)':'rgba(224,64,64,.7)'},borderRadius:3}
+  ],{scales:{y:{ticks:{callback:function(v){return v+'tỷ'},color:'#444',font:{size:10}},
+     grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tỷ VND',font:{size:10},color:'#444'}},
+     x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}}}});
+}
+
+function updateBCDKT(){
+  var map = {
+    'bs-tongts': D.tong_tai_san.toLocaleString('vi') + ' tỷ',
+    'bs-tien': D.tien_tuong_duong.toLocaleString('vi') + ' tỷ',
+    'bs-phaithukh': D.phai_thu_kh.toLocaleString('vi') + ' tỷ',
+    'bs-tratruoc': D.tra_truoc_nguoi_ban.toLocaleString('vi') + ' tỷ' + (D.tra_truoc_nguoi_ban > 8000 ? ' ⚠️' : ''),
+    'bs-tonkho': D.hang_ton_kho.toLocaleString('vi') + ' tỷ',
+    'bs-tongno': D.tong_no_phai_tra.toLocaleString('vi') + ' tỷ',
+    'bs-nonh': D.no_ngan_han.toLocaleString('vi') + ' tỷ (' + D.no_nh_pct + '%)',
+    'bs-nodh': D.no_dai_han.toLocaleString('vi') + ' tỷ',
+    'bs-vcsh': D.von_chu_so_huu.toLocaleString('vi') + ' tỷ',
+    'bs-de': D.de_ratio.toFixed(2) + 'x'
+  };
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.textContent = map[id];
+  });
+}
+
+/* Load Sheets ngay khi trang mở */
+window.addEventListener('DOMContentLoaded', function(){ loadFromSheets(); });
+
+function sw(n){
+  var ns=['overview','chain','debt','stress','vars','cbtt'];
+  ns.forEach(function(x,i){
+    document.querySelectorAll('.tab')[i].classList.toggle('active',x===n);
+    document.getElementById('panel-'+x).classList.toggle('active',x===n);
+  });
+  if(n==='cbtt') loadCBTT();
+}
+
+/* CHART HELPER */
+function mkChart(id,type,labels,datasets,opts){
+  var base={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,backgroundColor:'rgba(5,6,12,.95)',borderColor:'rgba(255,255,255,.08)',borderWidth:1,titleColor:'#d8daf0',bodyColor:'#52566e',padding:9}},
+    scales:{x:{grid:{color:'rgba(255,255,255,.03)'},ticks:{color:'#444',font:{size:10}}},
+            y:{grid:{color:'rgba(255,255,255,.03)'},ticks:{color:'#444',font:{size:10}}}}};
+  if(opts)Object.assign(base,opts);
+  return new Chart(document.getElementById(id),{type:type,data:{labels:labels,datasets:datasets},options:base});
+}
+
+/* ── TAB 1: P&L WATERFALL ── */
+var wfData=[
+  {l:'Doanh thu thuần',v:12105,c:'#1fc87a',base:true},
+  {l:'(-) Giá vốn (NVL mía, SX)',v:-11084,c:'rgba(224,64,64,.7)'},
+  {l:'= LN gộp (8.44%)',v:1022,c:'#e8a020',sub:true},
+  {l:'+ Doanh thu TC',v:628,c:'rgba(74,144,226,.6)'},
+  {l:'(-) Chi phí TC (lãi+tỷ giá)',v:-853,c:'rgba(224,64,64,.6)'},
+  {l:'  Trong đó: lãi vay',v:-695,c:'rgba(224,80,80,.4)',indent:true},
+  {l:'(-) Chi phí BH & QLDN',v:-673,c:'rgba(224,64,64,.5)'},
+  {l:'+ Lợi nhuận CT liên kết',v:145,c:'rgba(74,144,226,.5)'},
+  {l:'+ Thu nhập/chi phí khác (net)',v:136,c:'rgba(74,144,226,.4)'},
+  {l:'= LNBT (6T)',v:405,c:'#4a90e2',sub:true},
+  {l:'(-) Thuế TNDN',v:-38,c:'rgba(224,64,64,.4)'},
+  {l:'= LNST (6T)',v:367,c:'#1fc87a',base:true},
+  {l:'(+) Khấu hao (ước)',v:258,c:'rgba(155,127,232,.6)'},
+  {l:'= EBITDA 6T (ước)',v:625,c:'#18c8e8',sub:true},
+];
+var wfDiv=document.getElementById('wfDiv');
+wfData.forEach(function(r){
+  var row=document.createElement('div');row.className='wfr';
+  var max=12105;var pct=Math.abs(r.v)/max*100;
+  var ind=r.indent?'padding-left:14px':'';
+  row.innerHTML='<div class="wfl" style="'+ind+'">'+r.l+'</div>'
+    +'<div class="wfb"><div class="wfbar" style="width:'+Math.round(pct*1.5)+'px;background:'+r.c+'"></div></div>'
+    +'<div class="wfv" style="color:'+r.c+'">'+(r.v<0?'-':'')+(Math.abs(r.v)/1).toLocaleString('vi')+(r.v>9000?'':'')+'tỷ</div>';
+  wfDiv.appendChild(row);
+});
+
+/* YoY chart */
+mkChart('yoyChart','bar',['DT thuần','LN gộp','Chi phí TC','Lãi vay','LNBT','LNST'],[
+  {label:'HY1 NĐ 25/26',data:[12105,1022,853,695,405,367],backgroundColor:'rgba(74,144,226,.65)',borderRadius:3},
+  {label:'HY1 NĐ 24/25',data:[14359,1672,1002,783,542,465],backgroundColor:'rgba(31,200,122,.3)',borderRadius:3}
+],{plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:10},boxWidth:10}}},scales:{x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{callback:function(v){return(v/1000).toFixed(0)+'k'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tỷ VND',font:{size:10},color:'#444'}}}});
+
+/* Cost chart */
+mkChart('costChart','doughnut',['NVL, VL, HH (86.6%)','DV mua ngoài (6.0%)','Nhân công (4.6%)','Khấu hao (2.2%)','Khác (0.6%)'],[
+  {data:[10164,709,543,258,73],backgroundColor:['#e8a020','#9b7fe8','#4a90e2','#1fc87a','#52566e'],borderWidth:0,hoverOffset:4}
+],{plugins:{legend:{display:true,position:'right',labels:{color:'#52566e',font:{size:10},boxWidth:8,padding:4}}}});
+
+/* Cash flow chart */
+mkChart('cfChart','bar',['LCTT HĐKD','LCTT HĐ Đầu tư','LCTT HĐ TC','LCTT thuần'],[
+  {data:[-1215,-1896,2632,-479],backgroundColor:function(ctx){return ctx.raw>=0?'rgba(31,200,122,.65)':'rgba(224,64,64,.7)'},borderRadius:3}
+],{scales:{y:{ticks:{callback:function(v){return v+'tỷ'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tỷ VND',font:{size:10},color:'#444'}},x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}}}});
+
+/* Credit ratios grid */
+var crats=[
+  {n:'ICR (EBIT/Lãi vay)',v:'1.58x',thr:'≥ 2.0x',st:'red',desc:'6T thực tế'},
+  {n:'Net Debt/EBITDA',v:'5.7x',thr:'≤ 4.0x',st:'red',desc:'EBITDA ann. ~1,250 tỷ'},
+  {n:'D/E Ratio',v:'1.94x',thr:'≤ 1.5x',st:'red',desc:'Nợ 23,688 / VCSH 12,210'},
+  {n:'Biên LN gộp',v:'8.44%',thr:'≥ 11%',st:'coral',desc:'Giảm từ 11.6% cùng kỳ'},
+  {n:'LCTT HĐKD',v:'-1,215 tỷ',thr:'Dương',st:'red',desc:'ÂM — rủi ro thanh khoản'},
+  {n:'Nợ NH / Tổng nợ',v:'72%',thr:'≤ 50%',st:'red',desc:'13,199 / 18,481 tỷ'},
+];
+var cg=document.getElementById('creditGrid');
+crats.forEach(function(r){
+  var sc=r.st==='red'?'var(--red)':r.st==='coral'?'var(--coral)':r.st==='amber'?'var(--amber)':'var(--green)';
+  var bg=r.st==='red'?'rgba(224,64,64,.06)':r.st==='coral'?'rgba(240,104,64,.06)':'rgba(232,160,32,.05)';
+  var d=document.createElement('div');
+  d.style.cssText='background:'+bg+';border-radius:7px;padding:8px 10px';
+  d.innerHTML='<div style="font-size:10px;color:var(--muted);margin-bottom:2px">'+r.n+'</div>'
+    +'<div style="font-size:16px;font-weight:700;color:'+sc+'">'+r.v+'</div>'
+    +'<div style="font-size:9px;color:var(--muted)">Ngưỡng: '+r.thr+'</div>'
+    +'<div style="font-size:9px;color:'+sc+'">'+r.desc+'</div>';
+  cg.appendChild(d);
+});
+
+/* ── TAB 2: CHAIN ── */
+var chainBoxes=[
+  {t:'🌍 ICE #11',v:'~21 ct/lb',col:'var(--blue)'},
+  {t:'💱 USD/VND',v:'~25,400đ',col:'var(--teal)'},
+  {t:'🇹🇭 +Thuế CBPG',v:'47.64% (hết T6/26)',col:'var(--amber)'},
+  {t:'🇻🇳 Giá nội địa',v:'~17,500đ/kg',col:'var(--green)'},
+  {t:'🏭 Doanh thu',v:'12,105 tỷ (-16%)',col:'var(--coral)'},
+  {t:'📦 Giá vốn mía',v:'11,084 tỷ (91.6%)',col:'var(--amber)'},
+  {t:'📊 Biên LN gộp',v:'8.44% ⚠️',col:'var(--red)'},
+  {t:'🏦 Lãi vay',v:'695 tỷ/6T',col:'var(--red)'},
+  {t:'📐 ICR',v:'1.58x (nguy hiểm)',col:'var(--coral)'},
+];
+var cb=document.getElementById('chain-boxes');
+chainBoxes.forEach(function(b,i){
+  if(i>0){var arr=document.createElement('span');arr.style.cssText='color:var(--muted);padding:0 5px;font-size:14px;flex-shrink:0';arr.textContent='→';cb.appendChild(arr);}
+  var d=document.createElement('div');
+  d.style.cssText='flex-shrink:0;text-align:center;padding:8px 11px;background:var(--bg3);border:1px solid var(--border);border-top:2px solid '+b.col+';border-radius:7px;min-width:105px';
+  d.innerHTML='<div style="font-size:11px;font-weight:600;margin-bottom:2px">'+b.t+'</div><div style="font-size:10px;color:var(--muted)">'+b.v+'</div>';
+  cb.appendChild(d);
+});
+
+/* Transmission chart */
+var pricesVN=[14000,15000,16000,17000,17500,18000,18500,19000,20000,21000,22000];
+var marginsVN=pricesVN.map(function(p){return Math.max(0,((p-p*0.916)/p*100)).toFixed(1);});
+mkChart('txChart','line',pricesVN.map(function(p){return(p/1000).toFixed(1)+'k'}),[
+  {label:'Biên LN gộp (%)',data:marginsVN,borderColor:'#e8a020',backgroundColor:'rgba(232,160,32,.08)',fill:true,borderWidth:2,pointRadius:3,tension:.3},
+  {label:'Điểm hiện tại',data:pricesVN.map(function(p){return p===17500?8.44:null}),pointRadius:8,pointBackgroundColor:'#e04040',borderColor:'transparent',backgroundColor:'transparent',spanGaps:false}
+],{scales:{y:{ticks:{callback:function(v){return v+'%'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Biên LN gộp (%)',font:{size:10},color:'#444'},min:0},x:{ticks:{color:'#444',font:{size:10}},title:{display:true,text:'Giá đường nội địa (đ/kg)',font:{size:10},color:'#444'},grid:{color:'rgba(255,255,255,.03)'}}}});
+
+/* Sensitivity matrix */
+var mPrices=[16000,17000,17500,18000,18500,19000,20000,22000];
+var miaCosts=[80,84,86,88,90,92];
+var sm=document.getElementById('sensMatrix');
+var hdr='<tr><th>Giá đường / Mía(%DT)</th>';
+miaCosts.forEach(function(c){hdr+='<th>'+c+'%</th>';});sm.innerHTML=hdr+'</tr>';
+mPrices.forEach(function(p){
+  var row='<tr><td style="font-weight:600'+(p===17500?';color:var(--coral)':'')+'">'+p.toLocaleString('vi')+(p===17500?' ★':'')+' đ</td>';
+  miaCosts.forEach(function(c){
+    var gm=Math.max(0,(1-c/100)*100-2).toFixed(1);
+    var num=parseFloat(gm);
+    var cl=num<8?'var(--red)':num<11?'var(--amber)':'var(--green)';
+    var bg=num<8?'rgba(224,64,64,.08)':num<11?'rgba(232,160,32,.06)':'rgba(31,200,122,.06)';
+    var isCurr=(p===17500&&c===84);
+    row+='<td style="color:'+cl+';background:'+bg+';font-weight:'+(isCurr?'700':'600')+(isCurr?';outline:1px solid var(--coral)':'')+'">'+(isCurr?'★ ':'')+num.toFixed(1)+'%</td>';
+  });
+  sm.innerHTML+=row+'</tr>';
+});
+sm.innerHTML+='<tr><td colspan="7" style="padding:5px 9px;font-size:9px;color:var(--muted)">★ = Vị trí thực tế hiện tại (HY1 NĐ 25-26). Chi phí mía thực tế ~84% doanh thu → biên LN gộp 8.44%</td></tr>';
+
+/* ── TAB 3: DEBT ── */
+mkChart('debtStructChart','doughnut',['Vay NH (NH)',  'TP chuyển đổi NH','Nợ TTTC NH','Vay DH (NH)','Vay DH (trái phiếu)','Nợ TTTC DH','Vay bên khác DH'],[
+  {data:[11083,497,64,4188,2368,260,21],backgroundColor:['#e04040','#f06840','rgba(224,64,64,.4)','#e8a020','rgba(232,160,32,.5)','rgba(155,127,232,.5)','rgba(74,144,226,.4)'],borderWidth:0,hoverOffset:4}
+],{plugins:{legend:{display:true,position:'right',labels:{color:'#52566e',font:{size:9},boxWidth:8,padding:3}}}});
+
+mkChart('maturityChart','bar',['<1 năm (NH)','1–2 năm','2–3 năm','>3 năm'],[
+  {label:'Vay NH',data:[11083,3124,700,364],backgroundColor:'rgba(224,64,64,.7)',borderRadius:3},
+  {label:'Trái phiếu',data:[497,884,701,0],backgroundColor:'rgba(232,160,32,.6)',borderRadius:3},
+  {label:'Thuê TC',data:[64,184,12,0],backgroundColor:'rgba(155,127,232,.5)',borderRadius:3}
+],{plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:10},boxWidth:10}}},scales:{x:{stacked:true,ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}},y:{stacked:true,ticks:{callback:function(v){return(v/1000).toFixed(0)+'k'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tỷ VND',font:{size:10},color:'#444'}}}});
+
+/* EBITDA waterfall */
+mkChart('ebitdaWf','bar',['EBITDA\nann.~1,250tỷ','(-) Lãi vay\nann.~1,390tỷ','EBIT−Lãi\n(âm −140tỷ)','(+) Khấu hao\n~516tỷ','FCF gộp\n~376tỷ'],[
+  {data:[1250,-1390,-140,516,376],backgroundColor:['#1fc87a','rgba(224,64,64,.7)','rgba(224,64,64,.5)','rgba(155,127,232,.6)','#4a90e2'],borderRadius:3}
+],{plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.raw.toLocaleString()+' tỷ'}}}},scales:{y:{ticks:{callback:function(v){return v+'tỷ'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tỷ VND (annualized)',font:{size:10},color:'#444'}},x:{ticks:{color:'#444',font:{size:10},maxRotation:0},grid:{color:'rgba(255,255,255,.03)'}}}});
+
+/* Debt ratios */
+var dr=[
+  {n:'ICR thực tế (EBIT 6T / Lãi vay 6T)',v:'1.58x',thr:'≥ 2.0x',st:'red',d:'Gần mức vi phạm covenant điển hình'},
+  {n:'ICR annualized (EBIT ann./Lãi ann.)',v:'~1.58x',thr:'≥ 2.0x',st:'red',d:'Nếu HY2 tương tự → duy trì rủi ro'},
+  {n:'Net Debt/EBITDA (ann.)',v:'5.7x',thr:'≤ 4.0x',st:'red',d:'Net Debt 15,430 / EBITDA ann. 2,716'},
+  {n:'Debt/Revenue (ann.)',v:'76%',thr:'≤ 40%',st:'red',d:'Nợ 18,481 / DT ann. ~24,200 tỷ'},
+  {n:'Nợ NH / Tổng nợ vay',v:'72%',thr:'≤ 50%',st:'red',d:'13,199 tỷ phải đảo trong 12T'},
+  {n:'Tỷ lệ trả được nợ gốc NH từ EBITDA',v:'~48%',thr:'≥ 100%',st:'red',d:'EBITDA ann. ~1,250 / Nợ NH 13,199'},
+];
+var dd=document.getElementById('debtRatios');
+dr.forEach(function(r){
+  var sc=r.st==='red'?'var(--red)':'var(--amber)';
+  var bg=r.st==='red'?'rgba(224,64,64,.05)':'rgba(232,160,32,.04)';
+  var d2=document.createElement('div');
+  d2.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px';
+  d2.innerHTML='<div><div style="font-size:11px;font-weight:500">'+r.n+'</div><div style="font-size:10px;color:var(--muted)">'+r.d+'</div></div>'
+    +'<div style="text-align:right;margin-left:10px"><div style="font-size:14px;font-weight:700;color:'+sc+'">'+r.v+'</div><div style="font-size:9px;color:var(--muted)">Ngưỡng: '+r.thr+'</div></div>';
+  dd.appendChild(d2);
+});
+
+/* Loan table */
+var loans=[
+  {nh:'First Commercial Bank VN',v:'3,952',mat:'T6–T7/2026',rate:'Thị trường',db:'Hợp đồng TG'},
+  {nh:'BIDV (CN Gia Định)',v:'1,349',mat:'T2–T6/2026',rate:'Thị trường',db:'QSDĐ, CP, phải thu, HĐTG'},
+  {nh:'Vietcombank (CN Đồng Nai)',v:'1,212',mat:'T2–T6/2026',rate:'Thị trường',db:'HTK, phải thu, bảo lãnh'},
+  {nh:'BIDV (CN HCM)',v:'427',mat:'T2–T5/2026',rate:'Thị trường',db:'HĐTG, CP, QSDĐ'},
+  {nh:'United Overseas VN',v:'396',mat:'T3–T5/2026',rate:'Thị trường',db:'HĐTG, HTK, phải thu'},
+  {nh:'VN Hiện Đại (VNCB)',v:'366',mat:'T2–T5/2026',rate:'Thị trường',db:'HĐTG, HTK, phải thu'},
+  {nh:'BIDV (CN Khánh Hòa)',v:'336',mat:'T2–T7/2026',rate:'Thị trường',db:'HĐTG, TP, HTK'},
+  {nh:'Sinopac VN',v:'280',mat:'T4/2026',rate:'Thị trường',db:'Tín chấp'},
+];
+var lt=document.getElementById('loanTable');
+lt.innerHTML='<tr><th>Ngân hàng</th><th>Dư nợ (tỷ)</th><th>Đáo hạn</th><th>Lãi suất</th><th>Tài sản đảm bảo</th></tr>';
+loans.forEach(function(l){
+  lt.innerHTML+='<tr><td>'+l.nh+'</td><td style="font-weight:600;color:var(--amber)">'+l.v+'</td><td style="color:var(--red)">'+l.mat+'</td><td>'+l.rate+'</td><td>'+l.db+'</td></tr>';
+});
+lt.innerHTML+='<tr><td style="font-weight:600">Tổng 8 khoản lớn nhất</td><td style="font-weight:700;color:var(--red)">8,318</td><td colspan="3" style="color:var(--muted);font-size:10px">Đây là 8 trong số 25+ khoản vay NH ngắn hạn theo TM26.1</td></tr>';
+
+/* ── TAB 4: STRESS TEST ── */
+var sParams=[
+  {id:'price',l:'Giá đường nội địa (đ/kg)',min:14000,max:22000,step:500,v:17500,fmt:function(v){return(v/1000).toFixed(1)+'k đ'}},
+  {id:'miacost',l:'Chi phí mía (%DT)',min:78,max:95,step:1,v:84,fmt:function(v){return v+'%'}},
+  {id:'vol',l:'Sản lượng tiêu thụ (nghìn tấn/6T)',min:400,max:700,step:20,v:540,fmt:function(v){return v+'k tấn'}},
+  {id:'intrate',l:'Lãi suất bình quân vay (%)',min:6,max:13,step:.5,v:7.5,fmt:function(v){return v+'%'}},
+];
+var sDiv=document.getElementById('sliders');
+sParams.forEach(function(p){
+  var row=document.createElement('div');row.className='slr';
+  row.innerHTML='<div class="sll">'+p.l+'</div>'
+    +'<input type="range" min="'+p.min+'" max="'+p.max+'" step="'+p.step+'" value="'+p.v+'" id="sl_'+p.id+'" oninput="updS()">'
+    +'<div class="slv" id="sv_'+p.id+'">'+p.fmt(p.v)+'</div>';
+  sDiv.appendChild(row);
+});
+
+var sChartInst=null;
+function updS(){
+  sParams.forEach(function(p){
+    var v=parseFloat(document.getElementById('sl_'+p.id).value);
+    document.getElementById('sv_'+p.id).textContent=p.fmt(v);
+  });
+  var price=parseFloat(document.getElementById('sl_price').value);
+  var mia=parseFloat(document.getElementById('sl_miacost').value)/100;
+  var vol=parseFloat(document.getElementById('sl_vol').value)*1000;
+  var rate=parseFloat(document.getElementById('sl_intrate').value)/100;
+
+  var rev=price*vol;
+  var cogs=rev*mia;
+  var gpAnn=(rev-cogs)*2;
+  var ebitAnn=gpAnn-(673*2); // BQSD & QLDN annualized
+  var lvAnn=18481*rate;
+  var ebitdaAnn=ebitAnn+516;
+  var icr=ebitAnn/lvAnn;
+  var ndEbitda=15430/ebitdaAnn;
+  var gm=((1-mia)*100).toFixed(1);
+
+  var sr=document.getElementById('stressResult');sr.innerHTML='';
+  var ms=[
+    {k:'DT (ann.)',v:(rev*2/1e12).toFixed(0)+'tỷ',c:(rev*2)>24e12?'var(--green)':'var(--amber)'},
+    {k:'Biên LN gộp',v:parseFloat(gm).toFixed(1)+'%',c:gm>11?'var(--green)':gm>8?'var(--amber)':'var(--red)'},
+    {k:'EBIT (ann.)',v:(ebitAnn/1e12).toFixed(0)+'tỷ',c:ebitAnn>2e12?'var(--green)':ebitAnn>1e12?'var(--amber)':'var(--red)'},
+    {k:'Lãi vay (ann.)',v:(lvAnn/1e12).toFixed(0)+'tỷ',c:'var(--text)'},
+    {k:'ICR',v:icr.toFixed(2)+'x',c:icr>=2?'var(--green)':icr>=1.2?'var(--amber)':'var(--red)'},
+    {k:'ND/EBITDA',v:ndEbitda.toFixed(1)+'x',c:ndEbitda<=4?'var(--green)':ndEbitda<=5.5?'var(--amber)':'var(--red)'},
+  ];
+  ms.forEach(function(m){
+    var d=document.createElement('div');d.style.cssText='background:var(--bg3);border-radius:5px;padding:6px 8px';
+    d.innerHTML='<div style="font-size:10px;color:var(--muted)">'+m.k+'</div><div style="font-size:15px;font-weight:700;color:'+m.c+'">'+m.v+'</div>';
+    sr.appendChild(d);
+  });
+
+  var sig=document.getElementById('stressSignal');
+  if(icr>=2){sig.style.background='rgba(31,200,122,.1)';sig.style.color='var(--green)';sig.style.border='1px solid rgba(31,200,122,.2)';sig.textContent='✅ AN TOÀN — ICR '+icr.toFixed(2)+'x ≥ 2.0x';}
+  else if(icr>=1.2){sig.style.background='rgba(232,160,32,.08)';sig.style.color='var(--amber)';sig.style.border='1px solid rgba(232,160,32,.2)';sig.textContent='⚠️ CẢNH BÁO — ICR '+icr.toFixed(2)+'x dưới ngưỡng 2.0x';}
+  else{sig.style.background='rgba(224,64,64,.08)';sig.style.color='var(--red)';sig.style.border='1px solid rgba(224,64,64,.2)';sig.textContent='🚨 NGUY HIỂM — ICR '+icr.toFixed(2)+'x. Rủi ro vi phạm covenant / mất khả năng trả lãi.';}
+
+  var sPrices=[14000,15000,16000,17000,17500,18000,18500,19000,20000,21000,22000];
+  var sICR=sPrices.map(function(p){
+    var r2=p*vol;var c2=r2*mia;var e2=(r2-c2)*2-(673*2);return Math.max(0,e2/lvAnn).toFixed(2);
+  });
+  var sc2=sICR.map(function(v){return v<1?'rgba(224,64,64,.8)':v<1.5?'rgba(232,160,32,.8)':v<2?'rgba(240,140,32,.8)':'rgba(31,200,122,.8)';});
+  if(sChartInst)sChartInst.destroy();
+  sChartInst=new Chart(document.getElementById('stressChart'),{type:'bar',data:{labels:sPrices.map(function(p){return(p/1000).toFixed(1)+'k'}),datasets:[{label:'ICR',data:sICR,backgroundColor:sc2,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return v+'x'},color:'#444',font:{size:10}},title:{display:true,text:'ICR (lần)',font:{size:10},color:'#444'},grid:{color:'rgba(255,255,255,.03)'},min:0},x:{ticks:{color:'#444',font:{size:10}},title:{display:true,text:'Giá đường nội địa (đ/kg)',font:{size:10},color:'#444'},grid:{color:'rgba(255,255,255,.03)'}}}}});
+}
+updS();
+
+/* Scenario table */
+var scens=[
+  {n:'★ Thực tế HY1 NĐ 25-26',price:17500,mia:84,vol:540,rate:7.5,col:'var(--coral)',note:'Số liệu BCTC thực'},
+  {n:'Cơ sở (HY2 dự kiến)',price:18500,mia:83,vol:560,rate:7.5,col:'var(--blue)',note:'Vụ thu hoạch tốt'},
+  {n:'CBPG gia hạn đầy đủ',price:19500,mia:82,vol:580,rate:7.0,col:'var(--green)',note:'Bảo hộ duy trì'},
+  {n:'CBPG không gia hạn (T6/26)',price:16000,mia:85,vol:500,rate:8.0,col:'var(--red)',note:'Đường Thái Lan tràn vào'},
+  {n:'ICE giảm + CBPG hết',price:15000,mia:86,vol:480,rate:8.5,col:'var(--red)',note:'Kịch bản xấu nhất'},
+];
+var stbl=document.getElementById('scenTable');
+stbl.innerHTML='<tr><th>Kịch bản</th><th>Giá đường</th><th>Mía (%DT)</th><th>Sản lượng 6T</th><th>DT ann.</th><th>Biên LN gộp</th><th>ICR</th><th>ND/EBITDA</th><th>Đánh giá</th></tr>';
+scens.forEach(function(s){
+  var rev=s.price*s.vol*1000;
+  var gm=(1-s.mia/100)*100;
+  var gpAnn=(rev-rev*s.mia/100)*2;
+  var ebitAnn=gpAnn-(673*2);
+  var lvAnn=18481e9*s.rate/100;
+  var ebitdaAnn=ebitAnn+516e9;
+  var icr=(ebitAnn/lvAnn).toFixed(2);
+  var nd=(15430e9/ebitdaAnn).toFixed(1);
+  var cl=icr>=2?'var(--green)':icr>=1.2?'var(--amber)':'var(--red)';
+  var sig=icr>=2?'✅ An toàn':icr>=1.2?'⚠️ Cảnh báo':'🚨 Nguy hiểm';
+  stbl.innerHTML+='<tr>'
+    +'<td style="color:'+s.col+';font-weight:600">'+s.n+'</td>'
+    +'<td>'+(s.price/1000).toFixed(1)+'k đ</td>'
+    +'<td>'+s.mia+'%</td>'
+    +'<td>'+s.vol+'k tấn</td>'
+    +'<td>'+(rev*2/1e12).toFixed(0)+'tỷ</td>'
+    +'<td style="color:'+(gm>11?'var(--green)':gm>8?'var(--amber)':'var(--red)')+'">'+gm.toFixed(1)+'%</td>'
+    +'<td style="color:'+cl+';font-weight:700">'+icr+'x</td>'
+    +'<td style="color:'+(parseFloat(nd)<=4?'var(--green)':parseFloat(nd)<=6?'var(--amber)':'var(--red)')+'">'+nd+'x</td>'
+    +'<td style="color:'+cl+'">'+sig+'</td></tr>';
+});
+
+/* ── TAB 5: VARS CHARTS ── */
+/* V1 */
+new Chart(document.getElementById('v1c'),{type:'line',data:{labels:['T1/24','T4/24','T7/24','T10/24','T1/25','T4/25','T7/25','T10/25','T12/25'],
+  datasets:[
+    {label:'Giá NĐ (kđ)',data:[21,22,19.5,20,18.5,19,17.5,17.5,17.5],borderColor:'#e8a020',borderWidth:2,tension:.4,yAxisID:'y1',pointRadius:2},
+    {label:'Biên LN%',data:[null,null,null,11.6,null,null,null,null,8.44],borderColor:'#e04040',borderWidth:1.5,borderDash:[4,3],tension:.4,yAxisID:'y2',pointRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:9},boxWidth:8}}},scales:{y1:{ticks:{callback:function(v){return v+'k'},color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'},position:'left'},y2:{ticks:{callback:function(v){return v+'%'},color:'#444',font:{size:9}},grid:{display:false},position:'right'},x:{ticks:{color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+
+/* V2 */
+new Chart(document.getElementById('v2c'),{type:'bar',data:{labels:['SOFR+2%(USD)','Lãi suất VND','Chênh lệch tỷ giá','Net tác động tài chính'],
+  datasets:[{data:[-8.5,-7.5,52.8,-88],backgroundColor:function(ctx){return ctx.raw<0?'rgba(31,200,122,.6)':'rgba(224,64,64,.6)'},borderRadius:3}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{ticks:{callback:function(v){return v+'tỷ'},color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'}},x:{ticks:{color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'}}}}});
+
+/* V3 */
+new Chart(document.getElementById('v3c'),{type:'bar',data:{labels:['Không GH (giá -20%)','GH 1 phần (giá -10%)','GH đầy đủ (kỳ hiện tại)','Giá tăng +15%'],
+  datasets:[{data:[0.7,1.1,1.58,2.3],backgroundColor:function(ctx){var v=ctx.raw;return v<1?'rgba(224,64,64,.8)':v<1.5?'rgba(232,160,32,.8)':v<2?'rgba(240,104,64,.7)':'rgba(31,200,122,.7)'},borderRadius:3}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,ticks:{callback:function(v){return v+'x'},color:'#444',font:{size:9}},title:{display:true,text:'ICR',font:{size:9},color:'#444'},grid:{color:'rgba(255,255,255,.03)'}},x:{ticks:{color:'#444',font:{size:9},maxRotation:0},grid:{color:'rgba(255,255,255,.03)'}}}}});
+
+/* Monitor list */
+var monitors=[
+  {c:'Hàng tháng',n:'Giá đường nội địa VN',t:'< 16,500đ/kg → Cảnh báo đỏ',a:'Stress test ngay; yêu cầu CF 6T mới',col:'var(--blue)'},
+  {c:'Hàng tháng',n:'Giá ICE #11 thế giới',t:'< 19 ct/lb kéo dài → Nguy hiểm',a:'Đánh giá lại biên LN và ICR',col:'var(--blue)'},
+  {c:'Hàng tháng',n:'Lãi suất VND bình quân',t:'> 9% → Chi phí tài chính tăng mạnh',a:'Review chi phí lãi vay và ICR',col:'var(--teal)'},
+  {c:'Hàng quý',n:'ICR (EBIT/Lãi vay thực tế)',t:'< 1.5x → Cảnh báo / < 1.0x → Sự kiện vi phạm',a:'Kích hoạt đàm phán tái cơ cấu',col:'var(--amber)'},
+  {c:'Hàng quý',n:'Dòng tiền HĐKD',t:'Âm 2 kỳ liên tiếp → Rủi ro thanh khoản hệ thống',a:'Yêu cầu kế hoạch thanh khoản chi tiết',col:'var(--amber)'},
+  {c:'Hàng quý',n:'Trả trước cho người bán NH',t:'> 8,000 tỷ → Cảnh báo chất lượng TS',a:'Yêu cầu chi tiết danh mục và tuổi nợ',col:'var(--amber)'},
+  {c:'Theo sự kiện',n:'Thuế CBPG Thái Lan (15/6/2026)',t:'Bất kỳ thay đổi nào → Ưu tiên tối cao',a:'Stress test ngay; xem xét điều kiện bổ sung',col:'var(--red)'},
+  {c:'Theo sự kiện',n:'Đáo hạn nợ lớn',t:'30 ngày trước mỗi khoản > 500 tỷ',a:'Xác nhận kế hoạch tái tục/thanh toán',col:'var(--red)'},
+];
+var ml=document.getElementById('monitorList');
+monitors.forEach(function(m){
+  var d=document.createElement('div');
+  d.style.cssText='background:var(--bg3);border:1px solid var(--border);border-left:2px solid '+m.col+';border-radius:7px;padding:8px 10px';
+  d.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:11px;font-weight:600">'+m.n+'</span><span class="tag t-muted">'+m.c+'</span></div>'
+    +'<div style="font-size:10px;color:var(--amber);margin-bottom:2px">Ngưỡng: '+m.t+'</div>'
+    +'<div style="font-size:10px;color:var(--muted)">Hành động: '+m.a+'</div>';
+  ml.appendChild(d);
+});
+
+/* ════════════════════════════════════════════════════
+   TAB 6 · CÔNG BỐ THÔNG TIN — Live crawler
+   Nguồn: ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin?year=2026&cate=3
+   ════════════════════════════════════════════════════ */
+
+// Cached data scraped 27/03/2026
+var CBTT_CACHE = [
+  {date:"26/03/2026",time:"10:58 SA",title:"CBTT Nghị quyết HĐQT triển khai phương án phát hành cổ phiếu trả cổ tức 2024-2025",link:"https://ttcagris.com.vn/media/20260326%20-%20SBT%20-%20CBTT%20NQ%20HDQT%20trien%20khai%20PAPH%20co%20phieu%20tra%20co%20tuc%2024-25.pdf",cat:"co-tuc"},
+  {date:"25/03/2026",time:"11:20 CH",title:"Thông báo ngày đăng ký cuối cùng thực hiện quyền mua trái phiếu chuyển đổi chào bán ra công chúng 2026",link:"https://ttcagris.com.vn/media/20260325%20-%20SBT%20-%20Thong%20bao%20NDKCC%20thuc%20hien%20quyen%20mua%20TPCD%20ra%20cong%20chung.pdf",cat:"trai-phieu"},
+  {date:"25/03/2026",time:"11:15 CH",title:"CBTT Nghị quyết HĐQT thông qua kế hoạch phân phối trái phiếu chuyển đổi ra công chúng 2026",link:"https://ttcagris.com.vn/media/20260325%20-%20SBT%20-%20CBTT%20NQ%20HDQT%20thong%20qua%20ke%20hoach%20phan%20phoi%20TPCD%20ra%20cong%20chung.pdf",cat:"trai-phieu"},
+  {date:"25/03/2026",time:"11:11 CH",title:"Thông báo chào bán trái phiếu chuyển đổi ra công chúng 2026",link:"https://ttcagris.com.vn/media/20260325%20-%20SBT%20-%20Thong%20bao%20chao%20ban%20TP%20ra%20cong%20chung.pdf",cat:"trai-phieu"},
+  {date:"25/03/2026",time:"11:10 CH",title:"Giấy chứng nhận đăng ký chào bán trái phiếu chuyển đổi ra công chúng 2026",link:"https://ttcagris.com.vn/media/20260325%20-%20SBT%20-%20Giay%20CN%20dang%20ky%20chao%20ban%20TP%20ra%20cong%20chung.pdf",cat:"trai-phieu"},
+  {date:"25/03/2026",time:"11:06 CH",title:"Bản cáo bạch chào bán trái phiếu chuyển đổi ra công chúng 2026",link:"https://ttcagris.com.vn/media/20260325-%20SBT%20-%20Ban%20cao%20bach%20chao%20ban%20TPCD%20ra%20cong%20chung.pdf",cat:"trai-phieu"},
+  {date:"25/03/2026",time:"11:05 CH",title:"Phụ lục Bản cáo bạch chào bán trái phiếu chuyển đổi ra công chúng 2026",link:"https://ttcagris.com.vn/media/20260325%20-%20SBT%20-%20Phu%20luc%20ban%20cao%20bach%20chao%20ban%20trai%20phieu%20chuyen%20doi%20ra%20cong%20chung%202026.pdf",cat:"trai-phieu"},
+  {date:"25/03/2026",time:"11:00 SA",title:"Thông báo hướng dẫn thực hiện quyền mua, chuyển nhượng quyền mua trái phiếu chuyển đổi - Mẫu đăng ký mua trái phiếu chuyển đổi 2026",link:"https://ttcagris.com.vn/media/20260325%20-%20SBT%20-%20huong%20dan%20thuc%20hien%20dang%20ky%20va%20nop%20tien%20-%20mau%20giay%20de%20nghi%20chuyen%20nhuong%20-%20mau%20giay%20dang%20ky%20mua.pdf",cat:"trai-phieu"},
+  {date:"24/03/2026",time:"04:41 CH",title:"CBTT Giấy chứng nhận đăng ký hoạt động chi nhánh TTC – Biên Hòa tại Tây Ninh thay đổi lần thứ 4",link:"https://ttcagris.com.vn/media/20260324%20-%20SBT%20-%20CBTT%20GCNDK%20chi%20nhanh%20Tay%20Ninh%20thay%20doi%20lan%204.pdf",cat:"hanh-chinh"},
+  {date:"13/03/2026",time:"05:01 CH",title:"Bản cung cấp thông tin Người đứng đầu chi nhánh - Ông Huỳnh Văn Pháp",link:"https://ttcagris.com.vn/media/20260313%20-%20SBT%20-%20Ban%20CCTT%20Nguoi%20dung%20dau%20CN%20-%20Huynh%20Van%20Phap.pdf",cat:"nhan-su"},
+  {date:"13/03/2026",time:"05:00 CH",title:"CBTT miễn nhiệm và bổ nhiệm Người đứng đầu Chi nhánh - Ông Huỳnh Văn Pháp giữ chức vụ mới",link:"https://ttcagris.com.vn/media/20260313%20-%20SBT%20-%20Thong%20bao%20TDNS%20-%20Nghi%20quyet%20HDQT%20mien%20nhiem%20NDDCN%20va%20bo%20nhiem%20NDDCN%20-%20Mr%20Phap.pdf",cat:"nhan-su"},
+  {date:"03/02/2026",time:"06:01 CH",title:"CBTT Giấy chứng nhận đăng ký hoạt động văn phòng đại diện TTC - Biên Hòa tại Nghệ An thay đổi lần thứ 2",link:"https://ttcagris.com.vn/media/20260203%20-%20SBT%20-%20CBTT%20GCN%20DKHD%20VPDD%20Nghe%20An%20thay%20doi%20lan%20thu%202.pdf",cat:"hanh-chinh"},
+  {date:"02/02/2026",time:"03:57 CH",title:"Bản cung cấp thông tin Phó Tổng Giám đốc - Bà Nguyễn Bạch Kim Vy",link:"https://ttcagris.com.vn/media/20260202%20-%20SBT%20-%20Ban%20cung%20cap%20TT%20-%20Pho%20TGD%20-%20Nguyen%20Bach%20Kim%20Vy.pdf",cat:"nhan-su"},
+  {date:"02/02/2026",time:"03:50 CH",title:"Thông báo thay đổi nhân sự - Nghị quyết HĐQT bổ nhiệm Phó Tổng Giám đốc - Bà Nguyễn Bạch Kim Vy",link:"https://ttcagris.com.vn/media/20260202%20-%20SBT%20-%20TB%20TDNS%20-%20NQ%20HDQT%20bo%20nhiem%20PTGD%20-%20Nguyen%20Bach%20Kim%20Vy.pdf",cat:"nhan-su"},
+  {date:"06/01/2026",time:"03:08 CH",title:"CBTT về việc ký Hợp đồng kiểm toán BCTC Bán niên và Niên độ 2025-2026 với Công ty TNHH Ernst & Young Việt Nam",link:"https://ttcagris.com.vn/media/20260106%20-%20SBT%20-%20CBTT%20don%20vi%20kiem%20toan%20ND%202526.pdf",cat:"bctc"},
+  {date:"01/01/2026",time:"08:20 CH",title:"CBTT Nghị quyết HĐQT về việc thông qua chủ trương ký kết các hợp đồng, giao dịch với người có liên quan phát sinh trong năm 2026",link:"https://ttcagris.com.vn/media/20260101%20-%20SBT%20-%20CBTT%20NQ%20HDQT%20thong%20qua%20chu%20truong%20ky%20ket%20HD%20GD%20voi%20NLQ%20nam%202026.pdf",cat:"giao-dich-lq"}
+];
+
+var cbttCats={
+  'trai-phieu':  {label:'Trái phiếu / Tăng vốn', col:'var(--red)',    bg:'rgba(224,64,64,.08)',   icon:'🔴'},
+  'co-tuc':      {label:'Cổ tức / Cổ phiếu',     col:'var(--amber)', bg:'rgba(232,160,32,.07)', icon:'🟡'},
+  'nhan-su':     {label:'Nhân sự',                col:'var(--blue)',  bg:'rgba(74,144,226,.07)', icon:'🔵'},
+  'bctc':        {label:'BCTC / Kiểm toán',       col:'var(--green)', bg:'rgba(31,200,122,.07)', icon:'🟢'},
+  'hanh-chinh':  {label:'Hành chính',             col:'var(--muted)', bg:'rgba(255,255,255,.03)',icon:'⚪'},
+  'giao-dich-lq':{label:'Giao dịch người liên quan',col:'var(--purple)',bg:'rgba(155,127,232,.07)',icon:'🟣'}
+};
+
+// Risk tags for credit-relevant disclosures
+var cbttRiskMap = {
+  'trai-phieu': {risk:'⚠️ TĂNG NỢ', color:'var(--red)'},
+  'co-tuc':     {risk:'ℹ️ VỐN', color:'var(--amber)'},
+  'giao-dich-lq':{risk:'📋 LIÊN QUAN', color:'var(--purple)'},
+  'bctc':       {risk:'✅ BCTC', color:'var(--green)'}
+};
+
+var cbttLoaded = false;
+var cbttFilter = 'all';
+
+function loadCBTT(){
+  if(cbttLoaded) return;
+  cbttLoaded = true;
+  renderCBTT(CBTT_CACHE);
+  // Attempt live fetch via proxy
+  fetchLiveCBTT();
+}
+
+function fetchLiveCBTT(){
+  var statusEl = document.getElementById('cbtt-status');
+  if(statusEl) { statusEl.textContent = '⟳ Đang tải dữ liệu mới nhất từ ttcagris.com.vn...'; statusEl.style.color='var(--amber)'; }
+
+  // Fix: dùng Promise.race thay AbortSignal.timeout (tương thích mọi trình duyệt)
+  var timeout = new Promise(function(_, reject){
+    setTimeout(function(){ reject(new Error('Timeout sau 8 giây')); }, 8000);
+  });
+  var proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin?year=2026&cate=3');
+  Promise.race([fetch(proxyUrl), timeout])
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      var html = j.contents || '';
+      if(!html){ throw new Error('Nội dung rỗng từ proxy'); }
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var rows = doc.querySelectorAll('table tbody tr');
+      if(rows.length === 0){ throw new Error('Không tìm thấy dữ liệu trong trang'); }
+      var fresh = [];
+      rows.forEach(function(r){
+        var tds = r.querySelectorAll('td');
+        var link = r.querySelector('a');
+        if(tds.length >= 2 && tds[1].innerText.trim()){
+          var dateStr = tds[0].innerText.trim();
+          var parts = dateStr.split('|');
+          fresh.push({
+            date: parts[0]?parts[0].trim():'',
+            time: parts[1]?parts[1].trim():'',
+            title: tds[1].innerText.trim(),
+            link: link ? link.href : '',
+            cat: categorizeCBTT(tds[1].innerText.trim())
+          });
+        }
+      });
+      if(fresh.length > 0){
+        renderCBTT(fresh);
+        var badge = document.getElementById('cbtt-badge');
+        if(badge) badge.textContent = fresh.length;
+        if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' · ' + fresh.length + ' công bố năm 2026'; statusEl.style.color='var(--green)'; }
+      } else {
+        throw new Error('Không có dữ liệu hợp lệ');
+      }
+    })
+    .catch(function(e){
+      // Fallback: dùng proxy thứ 2
+      var proxy2 = 'https://corsproxy.io/?' + encodeURIComponent('https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin?year=2026&cate=3');
+      var timeout2 = new Promise(function(_, reject){ setTimeout(function(){ reject(new Error('Timeout proxy 2')); }, 6000); });
+      Promise.race([fetch(proxy2), timeout2])
+        .then(function(r){ return r.text(); })
+        .then(function(html){
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html, 'text/html');
+          var rows = doc.querySelectorAll('table tbody tr');
+          if(rows.length === 0) throw new Error('Proxy 2: không có dữ liệu');
+          var fresh = [];
+          rows.forEach(function(r){
+            var tds = r.querySelectorAll('td');
+            var link = r.querySelector('a');
+            if(tds.length >= 2 && tds[1].innerText.trim()){
+              var dateStr = tds[0].innerText.trim();
+              var parts = dateStr.split('|');
+              fresh.push({ date: parts[0]?parts[0].trim():'', time: parts[1]?parts[1].trim():'', title: tds[1].innerText.trim(), link: link?link.href:'', cat: categorizeCBTT(tds[1].innerText.trim()) });
+            }
+          });
+          if(fresh.length > 0){
+            renderCBTT(fresh);
+            var badge = document.getElementById('cbtt-badge');
+            if(badge) badge.textContent = fresh.length;
+            if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' (proxy 2) · ' + fresh.length + ' công bố'; statusEl.style.color='var(--green)'; }
+          } else throw new Error('Không có dữ liệu từ proxy 2');
+        })
+        .catch(function(e2){
+          // Cuối cùng: dùng cache có sẵn
+          renderCBTT(CBTT_CACHE);
+          if(statusEl){ statusEl.textContent = '⚠️ Không thể kết nối trực tiếp — hiển thị cache (27/03/2026). Nhấn "Làm mới" để thử lại.'; statusEl.style.color='var(--amber)'; }
+        });
+    });
+}
+
+function categorizeCBTT(title){
+  var t = title.toLowerCase();
+  if(t.includes('trái phiếu') || t.includes('chào bán') || t.includes('bản cáo bạch') || t.includes('phát hành')) return 'trai-phieu';
+  if(t.includes('cổ tức') || t.includes('cổ phiếu')) return 'co-tuc';
+  if(t.includes('nhân sự') || t.includes('bổ nhiệm') || t.includes('miễn nhiệm') || t.includes('tổng giám đốc') || t.includes('phó') || t.includes('người đứng đầu')) return 'nhan-su';
+  if(t.includes('bctc') || t.includes('báo cáo tài chính') || t.includes('kiểm toán') || t.includes('ey') || t.includes('ernst')) return 'bctc';
+  if(t.includes('liên quan') || t.includes('giao dịch')) return 'giao-dich-lq';
+  return 'hanh-chinh';
+}
+
+function renderCBTT(items){
+  var container = document.getElementById('cbtt-list');
+  if(!container) return;
+  container.innerHTML = '';
+  var filtered = cbttFilter === 'all' ? items : items.filter(function(i){ return i.cat === cbttFilter; });
+
+  // Update summary counts
+  var counts = {};
+  items.forEach(function(i){ counts[i.cat] = (counts[i.cat]||0)+1; });
+  var sumEl = document.getElementById('cbtt-summary');
+  if(sumEl){
+    sumEl.innerHTML = '';
+    ['trai-phieu','co-tuc','nhan-su','bctc','giao-dich-lq','hanh-chinh'].forEach(function(cat){
+      if(!counts[cat]) return;
+      var c = cbttCats[cat];
+      var btn = document.createElement('button');
+      btn.style.cssText='font-size:10px;padding:3px 9px;border-radius:12px;border:1px solid '+(cbttFilter===cat?c.col:'var(--border)')+';background:'+(cbttFilter===cat?c.bg:'transparent')+';color:'+(cbttFilter===cat?c.col:'var(--muted)')+';cursor:pointer;white-space:nowrap';
+      btn.innerHTML=c.icon+' '+c.label+' <span style="font-weight:700">'+counts[cat]+'</span>';
+      btn.onclick=function(){ cbttFilter = cbttFilter===cat?'all':cat; renderCBTT(items); };
+      sumEl.appendChild(btn);
+    });
+    // All button
+    var allBtn = document.createElement('button');
+    allBtn.style.cssText='font-size:10px;padding:3px 9px;border-radius:12px;border:1px solid '+(cbttFilter==='all'?'var(--text)':'var(--border)')+';background:'+(cbttFilter==='all'?'var(--bg4)':'transparent')+';color:'+(cbttFilter==='all'?'var(--text)':'var(--muted)')+';cursor:pointer';
+    allBtn.innerHTML='📋 Tất cả <span style="font-weight:700">'+items.length+'</span>';
+    allBtn.onclick=function(){ cbttFilter='all'; renderCBTT(items); };
+    sumEl.insertBefore(allBtn, sumEl.firstChild);
+  }
+
+  if(filtered.length === 0){
+    container.innerHTML='<div style="padding:20px;text-align:center;color:var(--muted);font-size:12px">Không có công bố nào trong danh mục này.</div>';
+    return;
+  }
+
+  filtered.forEach(function(item, idx){
+    var cat = cbttCats[item.cat] || cbttCats['hanh-chinh'];
+    var risk = cbttRiskMap[item.cat];
+    var isNew = idx < 3; // mark 3 newest
+    var row = document.createElement('div');
+    row.style.cssText='display:flex;align-items:flex-start;gap:12px;padding:9px 12px;border-bottom:1px solid var(--border);transition:background .1s;cursor:pointer';
+    row.onmouseover=function(){this.style.background='var(--bg3)';};
+    row.onmouseout=function(){this.style.background='';};
+    row.onclick=function(){ if(item.link) window.open(item.link,'_blank'); };
+
+    var leftCol = '<div style="flex-shrink:0;text-align:right;min-width:90px">'
+      +'<div style="font-size:11px;font-weight:600;color:var(--text)">'+item.date+'</div>'
+      +'<div style="font-size:10px;color:var(--muted)">'+item.time+'</div>'
+      +(isNew?'<div style="margin-top:3px;display:inline-block;font-size:9px;padding:1px 6px;border-radius:8px;background:rgba(31,200,122,.15);color:var(--green);font-weight:700">MỚI</div>':'')
+      +'</div>';
+
+    var catTag = '<span style="font-size:9px;padding:2px 6px;border-radius:4px;background:'+cat.bg+';color:'+cat.col+';font-weight:600;white-space:nowrap;border:1px solid '+cat.col+'40">'+cat.icon+' '+cat.label+'</span>';
+    var riskTag = risk ? '<span style="font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(224,64,64,.1);color:'+risk.color+';font-weight:700;white-space:nowrap;margin-left:4px">'+risk.risk+'</span>' : '';
+
+    var rightCol = '<div style="flex:1;min-width:0">'
+      +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap">'+catTag+riskTag+'</div>'
+      +'<div style="font-size:12px;color:var(--text);line-height:1.5">'+item.title+'</div>'
+      +(item.link?'<div style="font-size:10px;color:var(--blue);margin-top:3px">📎 Tải tài liệu PDF ↗</div>':'')
+      +'</div>';
+
+    row.innerHTML = leftCol + rightCol;
+    container.appendChild(row);
+  });
+}
+
+// Credit impact analysis of the bond issuance
+function renderCBTTAnalysis(){
+  var el = document.getElementById('cbtt-analysis');
+  if(!el) return;
+  el.innerHTML = ''
+    // Bond cluster alert
+    +'<div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.25);border-radius:9px;padding:12px 14px;margin-bottom:10px">'
+    +'<div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:6px">🔴 CẢNH BÁO TÍN DỤNG QUAN TRỌNG — Chào bán Trái phiếu chuyển đổi mới (25/03/2026)</div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">'
+    +'<div style="background:var(--bg3);border-radius:6px;padding:8px 10px"><div style="font-size:10px;color:var(--muted)">Loại trái phiếu</div><div style="font-size:12px;font-weight:600;color:var(--amber)">Chuyển đổi ra công chúng 2026</div></div>'
+    +'<div style="background:var(--bg3);border-radius:6px;padding:8px 10px"><div style="font-size:10px;color:var(--muted)">Lãi suất (từ BCTC HY1)</div><div style="font-size:12px;font-weight:600;color:var(--red)">9.5%/năm · Kỳ hạn 12/9/2026</div></div>'
+    +'<div style="background:var(--bg3);border-radius:6px;padding:8px 10px"><div style="font-size:10px;color:var(--muted)">Trái phiếu hiện hữu (TM26)</div><div style="font-size:12px;font-weight:600;color:var(--red)">~2,865 tỷ VND (DH+NH)</div></div>'
+    +'</div>'
+    +'<div style="font-size:11px;color:var(--text);line-height:1.7">'
+    +'<b style="color:var(--amber)">Tác động lên rủi ro tín dụng:</b> '
+    +'Đợt chào bán trái phiếu chuyển đổi mới ra công chúng (tháng 3/2026) cho thấy SBT đang tích cực huy động thêm vốn. '
+    +'Mục đích theo Bản cáo bạch là "cơ cấu nợ" — tín hiệu tích cực nếu dùng để chuyển nợ ngắn hạn sang dài hạn, '
+    +'nhưng cần theo dõi: (1) Tổng quy mô phát hành so với nợ hiện tại 18,481 tỷ, '
+    +'(2) Điều khoản pha loãng khi chuyển đổi, (3) Tài sản đảm bảo (lô TP này: không có TSĐB, không kèm chứng quyền).'
+    +'</div>'
+    +'</div>'
+
+    // Dividend in shares alert
+    +'<div style="background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.2);border-radius:9px;padding:12px 14px;margin-bottom:10px">'
+    +'<div style="font-size:12px;font-weight:600;color:var(--amber);margin-bottom:5px">🟡 CBTT Phát hành cổ phiếu trả cổ tức 2024-2025 (26/03/2026)</div>'
+    +'<div style="font-size:11px;color:var(--text);line-height:1.7">'
+    +'SBT triển khai phương án phát hành cổ phiếu để trả cổ tức thay vì tiền mặt — cho thấy công ty ưu tiên bảo toàn dòng tiền. '
+    +'Với dòng tiền HĐKD đang âm (-1,215 tỷ), đây là quyết định hợp lý về thanh khoản. '
+    +'Tuy nhiên, từ góc độ cho vay: pha loãng cổ phiếu làm giảm EPS và có thể ảnh hưởng khả năng huy động vốn tiếp theo.'
+    +'</div>'
+    +'</div>'
+
+    // Personnel change
+    +'<div style="background:rgba(74,144,226,.05);border:1px solid rgba(74,144,226,.15);border-radius:9px;padding:12px 14px">'
+    +'<div style="font-size:12px;font-weight:600;color:var(--blue);margin-bottom:5px">🔵 Thay đổi nhân sự cấp cao (02/02/2026)</div>'
+    +'<div style="font-size:11px;color:var(--text);line-height:1.7">'
+    +'Bổ nhiệm Bà Nguyễn Bạch Kim Vy làm Phó Tổng Giám đốc (02/02/2026). '
+    +'Đây là nhân sự thứ 2 được bổ nhiệm trong niên độ (trước đó: Ông Nguyễn Đức Hùng Linh bổ nhiệm 01/08/2025). '
+    +'Nâng tổng Ban Lãnh đạo lên 7 người. Cần theo dõi sự ổn định lãnh đạo trong bối cảnh tái cơ cấu tài chính.'
+    +'</div>'
+    +'</div>';
+}
+
+// Init CBTT analysis section right away (it's static)
+renderCBTTAnalysis();
+</script>
+
+<!-- ════════════════════ TAB 6: CÔNG BỐ THÔNG TIN ════════════════════ -->
+<div class="panel" id="panel-cbtt">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+    <div>
+      <div style="font-size:14px;font-weight:700">Công bố thông tin — TTC AgriS (SBT) · Năm 2026</div>
+      <div id="cbtt-status" style="font-size:10px;color:var(--amber);margin-top:2px">⟳ Nhấn tab để tải dữ liệu...</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center">
+      <a href="https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin?year=2026&cate=3" target="_blank"
+         style="font-size:10px;padding:5px 10px;border-radius:6px;background:var(--bg3);color:var(--blue);border:1px solid var(--border);text-decoration:none">
+        🔗 Mở trang gốc
+      </a>
+      <button onclick="cbttLoaded=false;loadCBTT();" style="font-size:10px;padding:5px 10px;border-radius:6px;background:var(--bg3);color:var(--amber);border:1px solid var(--border);cursor:pointer">
+        ↻ Làm mới
+      </button>
+    </div>
+  </div>
+
+  <!-- Phân tích tác động tín dụng -->
+  <div class="card mb11">
+    <div class="ctitle">Phân tích tác động tín dụng từ các công bố mới nhất <span class="tag t-red">Tháng 3/2026</span></div>
+    <div id="cbtt-analysis"></div>
+  </div>
+
+  <!-- Hướng dẫn deploy web realtime -->
+  <div class="card mb11" style="border:1px solid rgba(74,144,226,.3);background:rgba(74,144,226,.04)">
+    <div class="ctitle" style="color:var(--blue)">🚀 Biến Dashboard thành trang web — Nhân viên truy cập bất cứ lúc nào</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+
+      <!-- Option 1: Netlify -->
+      <div style="background:var(--bg3);border-radius:9px;padding:14px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <div style="width:28px;height:28px;background:#00AD9F;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">N</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text)">Netlify Drop</div>
+            <div style="font-size:10px;color:var(--green)">✅ Miễn phí · Không cần tài khoản · 2 phút</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.8">
+          <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">1.</span> Tải file <code style="background:var(--bg4);padding:1px 5px;border-radius:3px;color:var(--teal)">dashboard_ttc_agris.html</code> về máy</div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">2.</span> Vào <a href="https://app.netlify.com/drop" target="_blank" style="color:var(--blue)">app.netlify.com/drop</a></div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">3.</span> Kéo thả file HTML vào vùng tải lên</div>
+          <div style="display:flex;align-items:baseline;gap:6px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">4.</span> Netlify tạo link ngay: <code style="background:var(--bg4);padding:1px 5px;border-radius:3px;color:var(--green)">abc123.netlify.app</code></div>
+        </div>
+        <div style="margin-top:10px;padding:7px 10px;background:rgba(0,173,159,.08);border-radius:6px;font-size:10px;color:var(--teal);line-height:1.6">
+          <b>Cập nhật nội dung:</b> Kéo thả lại file mới vào cùng trang Netlify → link cũ tự cập nhật. Nhân viên F5 là thấy ngay.
+        </div>
+        <a href="https://app.netlify.com/drop" target="_blank" style="display:block;margin-top:10px;text-align:center;padding:7px;background:rgba(0,173,159,.15);color:#00AD9F;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;border:1px solid rgba(0,173,159,.3)">
+          🔗 Mở Netlify Drop →
+        </a>
+      </div>
+
+      <!-- Option 2: GitHub Pages -->
+      <div style="background:var(--bg3);border-radius:9px;padding:14px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <div style="width:28px;height:28px;background:#333;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">G</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:var(--text)">GitHub Pages</div>
+            <div style="font-size:10px;color:var(--green)">✅ Miễn phí · Phiên bản lịch sử · Tên miền tùy chỉnh</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.8">
+          <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">1.</span> Tạo tài khoản <a href="https://github.com" target="_blank" style="color:var(--blue)">github.com</a> (miễn phí)</div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">2.</span> Tạo repo mới → upload file HTML, đổi tên thành <code style="background:var(--bg4);padding:1px 5px;border-radius:3px;color:var(--teal)">index.html</code></div>
+          <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:3px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">3.</span> Settings → Pages → Source: <code style="background:var(--bg4);padding:1px 5px;border-radius:3px">main</code></div>
+          <div style="display:flex;align-items:baseline;gap:6px"><span style="color:var(--amber);font-weight:700;flex-shrink:0">4.</span> Tự động có link: <code style="background:var(--bg4);padding:1px 5px;border-radius:3px;color:var(--green)">username.github.io/repo</code></div>
+        </div>
+        <div style="margin-top:10px;padding:7px 10px;background:rgba(155,127,232,.08);border-radius:6px;font-size:10px;color:var(--purple);line-height:1.6">
+          <b>Cập nhật nội dung:</b> Upload file mới → commit → 1-2 phút sau tự động deploy. Lưu lịch sử mọi phiên bản.
+        </div>
+        <a href="https://github.com/new" target="_blank" style="display:block;margin-top:10px;text-align:center;padding:7px;background:rgba(155,127,232,.1);color:var(--purple);border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;border:1px solid rgba(155,127,232,.25)">
+          🔗 Tạo GitHub repo →
+        </a>
+      </div>
+    </div>
+
+    <!-- Lưu ý CORS -->
+    <div style="margin-top:12px;padding:10px 13px;background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.2);border-radius:8px;font-size:11px;color:var(--text);line-height:1.7">
+      <b style="color:var(--amber)">⚡ Về tính năng tự động cập nhật CBTT:</b>
+      Khi deploy lên Netlify/GitHub Pages, tab "Công bố thông tin" sẽ <b>tự fetch dữ liệu mới nhất từ ttcagris.com.vn mỗi khi nhân viên mở trang</b>
+      (qua proxy CORS công cộng). Không cần server riêng. Tuy nhiên nếu muốn <b>hoàn toàn độc lập và không phụ thuộc proxy bên ngoài</b>,
+      bạn có thể mua hosting VN (~100k/tháng) và đặt file PHP crawl định kỳ — hoặc dùng <a href="https://pipedream.com" target="_blank" style="color:var(--blue)">Pipedream.com</a>
+      (miễn phí) để tạo cron job tự động fetch + lưu JSON.
+    </div>
+  </div>
+    <div class="ctitle">Danh sách công bố — Lọc theo danh mục <span class="tag t-muted">Nhấn để lọc</span></div>
+    <div id="cbtt-summary" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px"></div>
+    <div id="cbtt-list" style="border:1px solid var(--border);border-radius:8px;overflow:hidden">
+      <div style="padding:16px;text-align:center;color:var(--muted);font-size:12px">
+        <div style="font-size:20px;margin-bottom:6px">📋</div>
+        Nhấn vào tab <strong style="color:var(--text)">Công bố thông tin</strong> để tải danh sách...
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

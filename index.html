@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Credit Risk Dashboards · Nội bộ</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;color:#d8daf0;font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.logo{font-size:13px;font-weight:700;letter-spacing:2px;color:#52566e;text-transform:uppercase;margin-bottom:32px}
+h1{font-size:28px;font-weight:800;margin-bottom:8px;text-align:center}
+.sub{font-size:13px;color:#52566e;margin-bottom:40px;text-align:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:680px;width:100%}
+.card{background:#0f1018;border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:28px;text-decoration:none;color:inherit;transition:all .2s;cursor:pointer}
+.card:hover{border-color:var(--c);transform:translateY(-2px);background:#151722}
+.card .icon{font-size:36px;margin-bottom:14px}
+.card .name{font-size:18px;font-weight:700;margin-bottom:4px}
+.card .ticker{font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:10px}
+.card .desc{font-size:11px;color:#52566e;line-height:1.6;margin-bottom:14px}
+.card .tags{display:flex;gap:5px;flex-wrap:wrap}
+.card .tag{font-size:10px;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.05);color:#52566e}
+.card .btn{display:block;margin-top:16px;padding:9px;text-align:center;border-radius:7px;font-size:12px;font-weight:600}
+.footer{margin-top:40px;font-size:10px;color:#2a2d40;text-align:center}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="logo">🔒 Công cụ kiểm soát rủi ro tín dụng · Nội bộ</div>
+<h1>Credit Risk <span style="color:#4a90e2">Dashboards</span></h1>
+<p class="sub">Chọn công ty để xem dashboard phân tích rủi ro tín dụng</p>
+
+<div class="grid">
+  <!-- SBT -->
+  <a href="sbt.html" class="card" style="--c:#e8a020;border-top:3px solid #e8a020">
+    <div class="icon">🍬</div>
+    <div class="name">TTC AgriS</div>
+    <div class="ticker" style="background:rgba(232,160,32,.12);color:#e8a020">HOSE · SBT</div>
+    <div class="desc">CTCP Thành Thành Công – Biên Hòa · Đầu ngành mía đường VN · 46% thị phần nội địa</div>
+    <div class="tags">
+      <span class="tag">Giá đường ICE</span>
+      <span class="tag">Biên LN gộp</span>
+      <span class="tag">ICR 1.58x ⚠️</span>
+      <span class="tag">Thuế CBPG T6/2026</span>
+    </div>
+    <div class="btn" style="background:rgba(232,160,32,.1);color:#e8a020">Mở Dashboard SBT →</div>
+  </a>
+
+  <!-- VJC -->
+  <a href="vjc.html" class="card" style="--c:#38bdf8;border-top:3px solid #38bdf8">
+    <div class="icon">✈️</div>
+    <div class="name">VietJet Air</div>
+    <div class="ticker" style="background:rgba(56,189,248,.12);color:#38bdf8">HOSE · VJC</div>
+    <div class="desc">CTCP Hàng không Vietjet · LCC hàng đầu VN · 45% thị phần nội địa · 28.2tr khách/năm</div>
+    <div class="tags">
+      <span class="tag">Jet-A1 · Brent</span>
+      <span class="tag">USD/VND</span>
+      <span class="tag">Load Factor</span>
+      <span class="tag">TPRL 10,500 tỷ ⚠️</span>
+    </div>
+    <div class="btn" style="background:rgba(56,189,248,.08);color:#38bdf8">Mở Dashboard VJC →</div>
+  </a>
+</div>
+
+<div class="footer">
+  Dữ liệu từ BCTC chính thức · SBT: HY1 NĐ 2025-2026 (31/12/2025) · VJC: Q4/2025 (30/01/2026)<br>
+  CBTT crawled từ ttcagris.com.vn & ir.vietjetair.com · Cập nhật: 31/03/2026
+</div>
+</body>
+</html>
