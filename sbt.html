@@ -1061,84 +1061,23 @@ function loadCBTT(){
 }
 
 function fetchLiveCBTT(){
-  var statusEl = document.getElementById('cbtt-status');
-  if(statusEl) { statusEl.textContent = '⟳ Đang tải dữ liệu mới nhất từ ttcagris.com.vn...'; statusEl.style.color='var(--amber)'; }
-
-  // Fix: dùng Promise.race thay AbortSignal.timeout (tương thích mọi trình duyệt)
-  var timeout = new Promise(function(_, reject){
-    setTimeout(function(){ reject(new Error('Timeout sau 8 giây')); }, 8000);
-  });
-  var proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin?year=2026&cate=3');
-  Promise.race([fetch(proxyUrl), timeout])
-    .then(function(r){ return r.json(); })
-    .then(function(j){
-      var html = j.contents || '';
-      if(!html){ throw new Error('Nội dung rỗng từ proxy'); }
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(html, 'text/html');
-      var rows = doc.querySelectorAll('table tbody tr');
-      if(rows.length === 0){ throw new Error('Không tìm thấy dữ liệu trong trang'); }
-      var fresh = [];
-      rows.forEach(function(r){
-        var tds = r.querySelectorAll('td');
-        var link = r.querySelector('a');
-        if(tds.length >= 2 && tds[1].innerText.trim()){
-          var dateStr = tds[0].innerText.trim();
-          var parts = dateStr.split('|');
-          fresh.push({
-            date: parts[0]?parts[0].trim():'',
-            time: parts[1]?parts[1].trim():'',
-            title: tds[1].innerText.trim(),
-            link: link ? link.href : '',
-            cat: categorizeCBTT(tds[1].innerText.trim())
-          });
-        }
-      });
-      if(fresh.length > 0){
-        renderCBTT(fresh);
-        var badge = document.getElementById('cbtt-badge');
-        if(badge) badge.textContent = fresh.length;
-        if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' · ' + fresh.length + ' công bố năm 2026'; statusEl.style.color='var(--green)'; }
-      } else {
-        throw new Error('Không có dữ liệu hợp lệ');
-      }
+  var st=document.getElementById('cbtt-status');
+  if(st){st.textContent='⏳ Dang tai du lieu...';st.style.color='var(--amber)';}
+  fetch('data/sbt.json?v='+Date.now())
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(function(data){
+      var items=data.cbtt||[];
+      if(!items.length)throw new Error('empty');
+      renderCBTT(items);
+      var badge=document.getElementById('cbtt-badge');if(badge)badge.textContent=items.length;
+      var newTxt=data.new_count>0?' · 🆕 '+data.new_count+' mới':'';
+      if(st){st.innerHTML='✅ Tự động cập nhật hàng ngày · GitHub Actions · Lần cuối: <b>'+(data.updated||'')+'</b>'+newTxt;st.style.color='var(--green)';}
     })
-    .catch(function(e){
-      // Fallback: dùng proxy thứ 2
-      var proxy2 = 'https://corsproxy.io/?' + encodeURIComponent('https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin?year=2026&cate=3');
-      var timeout2 = new Promise(function(_, reject){ setTimeout(function(){ reject(new Error('Timeout proxy 2')); }, 6000); });
-      Promise.race([fetch(proxy2), timeout2])
-        .then(function(r){ return r.text(); })
-        .then(function(html){
-          var parser = new DOMParser();
-          var doc = parser.parseFromString(html, 'text/html');
-          var rows = doc.querySelectorAll('table tbody tr');
-          if(rows.length === 0) throw new Error('Proxy 2: không có dữ liệu');
-          var fresh = [];
-          rows.forEach(function(r){
-            var tds = r.querySelectorAll('td');
-            var link = r.querySelector('a');
-            if(tds.length >= 2 && tds[1].innerText.trim()){
-              var dateStr = tds[0].innerText.trim();
-              var parts = dateStr.split('|');
-              fresh.push({ date: parts[0]?parts[0].trim():'', time: parts[1]?parts[1].trim():'', title: tds[1].innerText.trim(), link: link?link.href:'', cat: categorizeCBTT(tds[1].innerText.trim()) });
-            }
-          });
-          if(fresh.length > 0){
-            renderCBTT(fresh);
-            var badge = document.getElementById('cbtt-badge');
-            if(badge) badge.textContent = fresh.length;
-            if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' (proxy 2) · ' + fresh.length + ' công bố'; statusEl.style.color='var(--green)'; }
-          } else throw new Error('Không có dữ liệu từ proxy 2');
-        })
-        .catch(function(e2){
-          // Cuối cùng: dùng cache có sẵn
-          renderCBTT(CBTT_CACHE);
-          if(statusEl){ statusEl.textContent = '⚠️ Không thể kết nối trực tiếp — hiển thị cache (27/03/2026). Nhấn "Làm mới" để thử lại.'; statusEl.style.color='var(--amber)'; }
-        });
+    .catch(function(){
+      renderCBTT(CBTT_CACHE);
+      if(st){st.textContent='⚠️ Dùng cache offline · Nhấn Làm mới để thử lại';st.style.color='var(--amber)';}
     });
 }
-
 function categorizeCBTT(title){
   var t = title.toLowerCase();
   if(t.includes('trái phiếu') || t.includes('chào bán') || t.includes('bản cáo bạch') || t.includes('phát hành')) return 'trai-phieu';
