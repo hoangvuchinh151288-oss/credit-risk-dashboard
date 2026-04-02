@@ -62,7 +62,11 @@ def main():
     new_count = sum(1 for i in unique if i["title"] not in existing_titles)
     merged = {i["title"] for i in unique}
     old_only = [i for i in existing.get("cbtt",[]) if i["title"] not in merged]
-    final = sorted(unique + old_only, key=lambda x: x.get("date",""), reverse=True)[:80]
+    def sort_key(x):
+        d = x.get("date","")
+        m = __import__("re").match(r"(\d{1,2})/(\d{2})/(\d{4})", d)
+        return (m.group(3)+"/"+m.group(2)+"/"+m.group(1).zfill(2)) if m else "0000/00/00"
+    final = sorted(unique + old_only, key=sort_key, reverse=True)[:80]
     
     os.makedirs("data", exist_ok=True)
     result = {"cbtt": final, "updated": datetime.now().strftime("%d/%m/%Y %H:%M"), "source": "ttcagris.com.vn", "new_count": new_count}
