@@ -1,30 +1,607 @@
 {
   "cbtt": [
-    {"date": "10/03/2026", "title": "CBTT Nghi Quyet HDQT to chuc Dai hoi dong co dong thuong nien nam 2026", "link": "https://ir.vietjetair.com", "cat": "hanh-chinh"},
-    {"date": "30/01/2026", "title": "Bao cao tinh hinh quan tri Cong ty nam 2025", "link": "https://ir.vietjetair.com", "cat": "hanh-chinh"},
-    {"date": "30/01/2026", "title": "BCTC Hop nhat Quy 4/2025 - DT 82,093 ty (+14%), LNST 2,123 ty (+51.2%), Tong TS 139,459 ty", "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy", "cat": "bctc"},
-    {"date": "30/01/2026", "title": "BCTC Cong ty me Quy 4/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy", "cat": "bctc"},
-    {"date": "30/12/2025", "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 2,500 ty dong - LAN 3 nam 2025 (Tong 2025: 10,500 ty)", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "12/11/2025", "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 5,000 ty dong - LAN 2 nam 2025", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "22/09/2025", "title": "Vietjet CBTT ve dot mua lai Trai phieu truoc han", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "29/10/2025", "title": "BCTC Hop nhat Quy 3/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "22/10/2025", "title": "Nghi quyet HDQT thong qua phat hanh co phieu de tra co tuc va tang von dieu le", "link": "https://ir.vietjetair.com", "cat": "co-phieu"},
-    {"date": "17/10/2025", "title": "Vietjet hoan thanh nghia vu thue - Dong gop 10,537 ty dong vao ngan sach NN", "link": "https://ir.vietjetair.com", "cat": "hanh-chinh"},
-    {"date": "25/07/2025", "title": "TOA AN ANH BAC BO phong toa tai san cua FWA - Vietjet thang kien vong 1 (tranh chap tau bay)", "link": "https://ir.vietjetair.com", "cat": "phap-ly"},
-    {"date": "25/06/2025", "title": "Vietjet tiep tuc bao ve quyen loi trong tranh chap voi FWA lien quan den tau bay", "link": "https://ir.vietjetair.com", "cat": "phap-ly"},
-    {"date": "26/06/2025", "title": "CANH BAO: CBTT ky Hop dong kiem toan voi UHY - Thay doi KTV tu PwC (Big4) sang UHY cho BCTC 2025", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "25/06/2025", "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 3,000 ty dong - LAN 1 nam 2025", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "17/06/2025", "title": "MoU ky ket 100 Airbus A321neo tai Paris Airshow 2025 (+ 50 quyen chon)", "link": "https://ir.vietjetair.com", "cat": "doi-bay"},
-    {"date": "13/06/2025", "title": "CBTT ket qua chao ban co phieu rieng le 50 trieu CP - Tang von CSH 5,000 ty dong", "link": "https://ir.vietjetair.com", "cat": "co-phieu"},
-    {"date": "05/07/2025", "title": "CBTT bo nhiem Giam doc Dieu hanh (COO) - Ong Nguyen Thanh Son", "link": "https://ir.vietjetair.com", "cat": "nhan-su"},
-    {"date": "30/07/2025", "title": "BCTC Hop nhat Quy 2/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "30/04/2025", "title": "BCTC Hop nhat Quy 1/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "16/05/2025", "title": "CBTT Bao cao thuong nien 2024", "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-thuong-nien", "cat": "bctc"},
-    {"date": "16/09/2025", "title": "Thay doi nhan su: Bo nhiem Ke toan truong moi", "link": "https://ir.vietjetair.com", "cat": "nhan-su"},
-    {"date": "30/01/2026", "title": "Nhan 22 tau bay moi trong Q4/2025 - Lon nhat trong lich su Vietjet. Ky 92 dong co Trent 7000 voi Rolls-Royce (3.8 ty USD)", "link": "https://ir.vietjetair.com", "cat": "doi-bay"},
-    {"date": "28/01/2025", "title": "BCTC Hop nhat Quy 4/2024 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"}
+    {
+      "date": "31/12/2024",
+      "title": "Vietjet CBTT Nghị quyết HĐQT thông qua phương án chào bán cổ phiếu riêng lẻ đáp ứng tỷ lệ sở hữu nước ngoài và hồ sơ chào bán cổ phiếu riêng lẻ",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2024/20241231 - VJC - CBTT NQ HĐQT thong qua phuong an chao ban va ho so.pdf",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "31/10/2023",
+      "title": "Vietjet CBTT NQ phê duyệt phát hành trái phiếu doanh nghiệp riêng lẻ 3.000 tỷ đồng",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2023/20231031 - VJC - CBTT NQ cua HDQT phat hanh trai phieu 3.000 ty dong.pdf",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "31/10/2017",
+      "title": "Thông báo giao dịch của người có liên quan (Ms Đỗ Kim Thịnh)",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2017/CBTT GIAO DICH NGUOI CO LIEN QUAN DKT S 100K CHE.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/08/2018",
+      "title": "CBTT chốt danh sách cổ đông",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/2. CBTT NQ HĐQT lay y kien Cdong bang van ban 14-18.VJC-CBTT.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/08/2018",
+      "title": "Thông báo giao dịch cổ đông nội bộ Ông Đỗ Xuân Quang",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/1. Giao dich ban 17.09.2018-16.10.2018 (che tt).pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/08/2018",
+      "title": "Thông báo giao dịch cổ đông nội bộ Bà Trần Dương Ngọc Thảo",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/1. Giao dich Ban 12.09.2018 - 11.10.2018 (Da che Thong tin ca nhan).pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/08/2017",
+      "title": "Nghị quyết 36 - Ngày đăng ký cuối cùng nhận cổ phiếu phát hành từ nguồn vốn chủ sở hữu",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2017/NQ 36.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/05/2025",
+      "title": "Vietjet CBTT Biên bản họp và Nghị quyết ĐHĐCĐ 2025",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250531 - VJC - CBTT BBKPBQ va NQ DHDCD nam 2025 - VN.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/05/2022",
+      "title": "VJC CBTT về Thay đổi nhân sự",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2022/CBTT_Thay doi nhan su_310522_Signed_0106_F.pdf",
+      "cat": "nhan-su"
+    },
+    {
+      "date": "31/05/2022",
+      "title": "VJC CBTT về việc Bổ nhiệm nhân sự nội bộ",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2022/Bổ nhiệm nhân sự nội bộ.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/05/2022",
+      "title": "VJC CBTT về việc bầu các chức danh HĐQT nhiệm kỳ 2022-2027",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2022/1. CBTT_Bầu chức danh HĐQT_Signed.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/05/2017",
+      "title": "Vietjet ký kết hợp đồng tại Hoa Kỳ",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2017/06012017-CBTT KY KET HOP DONG TAI HOA KY.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "31/03/2023",
+      "title": "VietJet xin dời ngày công bố BCTC kiểm toán năm 2022",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2023/HOSE_CV gia han Bao cao tai chinh 2022 -Signed.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/12/2025",
+      "title": "Nghị quyết HĐQT về việc phê duyệt Phương án phát hành Trái phiếu riêng lẻ 2.500 tỷ đồng (Lần 3 năm 2025)",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20251230 - VJC - CBTT phat hanh 2500 trai phieu lan 3 nam 2025 seal.pdf",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "30/12/2025",
+      "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 2,500 ty dong - LAN 3 nam 2025 (Tong 2025: 10,500 ty)",
+      "link": "https://ir.vietjetair.com",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "30/11/2018",
+      "title": "Báo cáo giao dịch cổ đông nội bộ Ms Nguyễn Thị Thúy Bình",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/4. Bao cao GD Nguyen Thi Thuy Binh 30.11.2018.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/10/2024",
+      "title": "Báo cáo tài chính Hợp nhất Quý 3/2024 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2024/20241030 - VJC - CV CBTT BCTC Hop nhat Quy 3.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2024",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 3/2024 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2024/20241030 - VJC - CV CBTT BCTC Cong ty me Quy 3.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2023",
+      "title": "Báo cáo tài chính Hợp nhất Quý 3/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/BCTC hợp nhất Q3.2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2023",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 3/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/BCTC riêng Quý 3.2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2022",
+      "title": "Báo cáo tài chính Hợp nhất Quý 3/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/Vietjet Air - BCTC QIII 2022 - Consol - VN - Final_001.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2022",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 3/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/Vietjet Air - BCTC QIII 2022 - Separate - VN - Final_001.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2020",
+      "title": "Báo cáo tài chính Hợp nhất Quý 3/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2020/VJC BCTC Hợp Nhất Q3.2020.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2020",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 3/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2020/VJC BCTC Công ty Mẹ Q3.2020.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2019",
+      "title": "Báo cáo tài chính hợp nhất quý 3/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/FS Consol Q3.2019 (signed).pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/10/2019",
+      "title": "Báo cáo tài chính riêng quý 3/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/FS Separate Q3.2019 (signed).pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/10/2018",
+      "title": "Báo cáo tài chính hợp nhất Quý 3/2018",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2018/1 Signed_Q3 2018_Vietjet_Consol.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/10/2018",
+      "title": "Báo cáo tài chính riêng Quý 3/2018",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2018/1 Signed_Q3 2018_Vietjet_Sep.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/10/2017",
+      "title": "Báo cáo tài chính hợp nhất quý 3/2017",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2017/Vietjet-FS300917-Consol-VN-VAS-26Oct2017-signed.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/10/2017",
+      "title": "Báo cáo tài chính riêng quý 3/2017",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2017/Vietjet-FS300917-Separate-VN-VAS-26Oct2017-signed.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/09/2020",
+      "title": "VJC CBTT về việc ông Nguyễn Đức Tâm nghỉ hưu",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2020/VJC CBTT về VP Nguyễn Đức Tâm-full.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2025",
+      "title": "Báo cáo tình hình quản trị Công ty 6 tháng đầu năm 2025",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20250730 - VJC - Bao cao tinh hinh quan tri cong ty 6 thang dau nam 2025.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2025",
+      "title": "Báo cáo tài chính Hợp nhất Quý 2/2025 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2025/CV CBTT BCTC Q 2 2025_001.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2025",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 2/2025 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2025/CV CBTT BCTC Q 2 2025.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2025",
+      "title": "BCTC Hop nhat Quy 2/2025 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2024",
+      "title": "Vietjet CBTT Báo cáo tình hình Quản trị Công ty 6 tháng năm 2024",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2024/20240730 - VJC - Bao cao tinh hinh QTCT 6th.2024..pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2024",
+      "title": "Báo cáo tài chính Hợp nhất Quý 2/2024 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2024/20240730 - VJC - CV CBTT BCTC Hop nhat Q2.2024 - vF.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2024",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 2/2024 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2024/20240730 - VJC - CV CBTT BCTC Cong ty me Q2.2024 - vF.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2023",
+      "title": "Báo cáo tài chính Hợp nhất Quý 2/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/20230730 - VJC -  CBTT BCTC HN Q2.2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2023",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 2/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/20230730 - VJC -  CBTT BCTC Cong ty Me Q2.2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2022",
+      "title": "VJC công bố Báo cáo Quản trị 6 tháng đầu năm 2022",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2022/VJC_Báo cáo quản trị 6T năm 2022_Bản rút gọn_Signed.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2022",
+      "title": "Báo cáo tài chính Hợp nhất Quý 2/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/VietjetAir - BCTC QII 2022 - Consol - VN.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2022",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 2/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/VietjetAir - BCTC QII 2022 - Single - VN.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2021",
+      "title": "Báo cáo định kỳ tình hình thanh toán gốc, lãi trái phiếu doanh nghiệp",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2021/VJC Báo cáo tình hình thanh toán gốc, lãi TP 6M2021.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2021",
+      "title": "Báo cáo tài chính Hợp nhất Quý 2/2021",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2021/VJC_FS_Q2.2021_Consilidated_vn.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2021",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 2/2021",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2021/VJC_FS_Q2.2021_Separate_vn.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2020",
+      "title": "Báo cáo tình hình quản trị công ty bán niên 2020",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2020/VJC - Bao cao tinh hinh quan tri -1H2020.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2020",
+      "title": "Báo cáo tài chính Hợp nhất quý 2/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/VJC BCTC Hợp Nhất Q2.2020.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2020",
+      "title": "Báo cáo tài chính riêng quý 2/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2020/VJC BCTC Công ty Mẹ Q2.2020.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2019",
+      "title": "Báo cáo tình hình quản trị bán niên 2019",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2019/BC Tinh hinh Qtri Cty 6 thang 2019 - 30.07.2019.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2019",
+      "title": "Báo cáo tài chính hợp nhất quý 2/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/2. BCTC Hop nhat Quy 2.2019 - 30.07.2019 - Final.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2019",
+      "title": "Báo cáo tài chính riêng quý 2/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/3. BCTC Rieng Quy 2.2019 - 30.07.2019.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/07/2018",
+      "title": "Báo cáo mua VJC (Petechim)",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/684_TMDK Báo cáo kết quả giao dịch cổ phiếu của người có liên quan của người nội bộ.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2018",
+      "title": "Báo cáo tình hình quản trị công ty bán niên 2018",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/1. Báo cáo tinh hinh quan tri Cty 6 thang dau 2018_001.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2018",
+      "title": "Báo cáo tài chính hợp nhất Quý 2/2018",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2018/Signed_Q2 2018 Vietjet-FS300618-Consol-VN-VAS.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/07/2018",
+      "title": "Báo cáo tài chính riêng Quý 2/2018",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2018/Signed_Q2.2018 Vietjet-FS300618-Separate-VN-VAS.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/05/2018",
+      "title": "Thông báo mua cổ phiếu của CĐNB Ông Lưu Đức Khánh",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/1. Mr Luu Duc Khanh - DK mua cp 30.05.2018.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/04/2025",
+      "title": "Báo cáo tài chính Hợp nhất Quý 1/2025 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2025/CV CBTT BCTC va giai trinh Q1.2025_001.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2025",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 1/2025 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2025/CV CBTT BCTC va giai trinh Q1.2025.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2025",
+      "title": "BCTC Hop nhat Quy 1/2025 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2023",
+      "title": "Báo cáo tài chính Hợp nhất Quý 1/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/VJC BCTC HN Quý 1.2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2023",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 1/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/VJC BCTC riêng Quý 1.2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2022",
+      "title": "Báo cáo tài chính Hợp nhất Quý 1/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/VJC_BCTC HN Q1.2022_.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2022",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 1/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/VJC_BCTC Q1.2022_Cty Me_001.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2020",
+      "title": "Báo cáo tài chính hợp nhất quý 1/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2020/BC Hop nhat Q1.2020_001.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/04/2020",
+      "title": "Báo cáo tài chính riêng quý 1/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2020/BC Rieng le Q1.2020_001.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/04/2019",
+      "title": "Báo cáo tài chính hợp nhất quý 1/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/BCTC Hop nhat Quy 1.2019.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2019",
+      "title": "Báo cáo tài chính riêng quý 1/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/BCTC Rieng Quy 1.2019.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/03/2018",
+      "title": "NQ 11 bổ nhiệm PTGĐ Nguyễn Thanh Sơn",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/30032018-CBTT bổ nhiệm Phó Tổng Giám đốc Nguyễn Thanh Sơn.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/03/2018",
+      "title": "CBTT báo cáo của GIC",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/30032018-CBTT bao cao cua GIC.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/03/2018",
+      "title": "Thông báo giao dịch cổ đông nội bộ (Mr Lương Thế Phúc)",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/30032018-CBTT GDCDNB MR Luong The Phuc che.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "Báo cáo tình hình quản trị Công ty năm 2025",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2026/20260130 - VJC Bao cao tinh hinh quan tri cong ty 2025 che tt seal.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "Báo cáo tài chính Hợp nhất Quý 4/2025 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2025/CV CBTT BCTC Q4.2025_001.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 4/2025 và Giải trình chênh lệch lợi nhuận",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-quy/2025/CV CBTT BCTC Q4.2025.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "Bao cao tinh hinh quan tri Cong ty nam 2025",
+      "link": "https://ir.vietjetair.com",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "BCTC Hop nhat Quy 4/2025 - DT 82,093 ty (+14%), LNST 2,123 ty (+51.2%), Tong TS 139,459 ty",
+      "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "BCTC Cong ty me Quy 4/2025 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "Nhan 22 tau bay moi trong Q4/2025 - Lon nhat trong lich su Vietjet. Ky 92 dong co Trent 7000 voi Rolls-Royce (3.8 ty USD)",
+      "link": "https://ir.vietjetair.com",
+      "cat": "doi-bay"
+    },
+    {
+      "date": "30/01/2024",
+      "title": "Báo cáo tình hình quản trị Công ty năm 2023",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2024/20240130 - VJC - CBTT Bao cao tinh hinh quan tri nam 2023.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2024",
+      "title": "Báo cáo tài chính Hợp nhất Quý 4/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/20240130-VJC-CBTT-BCTC-Hop-nhat-quy-4-nam-2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2024",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 4/2023",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2023/20240130-VJC-CBTT-BCTC-Cong-ty-me-quy-4-nam-2023.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2023",
+      "title": "VJC CBTT Báo cáo quản trị năm 2022",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2023/20230131 - VJC - CBTT bao cao quan tri nam 2022.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2023",
+      "title": "Báo cáo tài chính Hợp nhất Quý 4/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/VJC - FS - Consol - 31.12.2022 - VN - Final_001.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2023",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 4/2022",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh/2022/VJC - FS - Separate - 31.12.2022 - VN - Final.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2022",
+      "title": "VJC Báo cáo quản trị năm 2021",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2022/VJC_BCQT 2021_Signed.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2021",
+      "title": "Báo cáo tài chính Hợp nhất Quý 4/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2021/Vietjet BCTC Hợp nhất Q4.2020.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2021",
+      "title": "Báo cáo tài chính Công ty mẹ Quý 4/2020",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2021/3. Vietjet BCTC Riêng Q4.2020.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2020",
+      "title": "Báo cáo tình hình quản trị công ty 2019",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2020/Bao cao tinh hinh quan tri Cty 2019.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2020",
+      "title": "Báo cáo tài chính hợp nhất Quý 4/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/30012020 - BCTC HN Q4 2019.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2020",
+      "title": "Báo cáo tài chính riêng Quý 4/2019",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2019/30012020 - BCTC rieng Q4 2019.pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2019",
+      "title": "Báo cáo tình hình quản trị năm 2018",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2019/Bao cao tinh hinh Qtri cty nam 2018 - Final1.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2019",
+      "title": "Báo cáo tài chính hợp nhất quý 4/2018",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2018/1. BCTC Hop nhat Quy 4.2018..pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2019",
+      "title": "Báo cáo tài chính riêng Quý 4/2018",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2018/2. BCTC Rieng Quy 4.2018..pdf",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2018",
+      "title": "Báo cáo tình hình quản trị công ty năm 2017",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2018/bao cao quan tri cty VJC 2017 che.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2018",
+      "title": "Báo cáo tài chính riêng quý 4/2017",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2017/Vietjet-FS311217-Separate-VN-VAS - final.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2018",
+      "title": "Báo cáo tài chính hợp nhất quý 4/2017",
+      "link": "https://ir.vietjetair.com/File_Upload/thong-tin-tai-chinh/bao-cao-tai-chinh-hang-quy/2017/Vietjet-FS311217-Consol-VN-VAS - final.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "29/12/2025",
+      "title": "Nghị quyết HĐQT về việc phê duyệt phương án tăng vốn góp vào Công ty TNHH MTV Airport NEO",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2025/20251229 - VJC - CBTT NQ HDQT gop von vao Airport NEO seal.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "29/12/2023",
+      "title": "Các NQ HĐQT CTCP Hàng không Vietjet về việc triển khai Phương án chào bán cổ phiếu riêng lẻ cho các Nhà Đầu tư",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2023/20231229 - VJC - CBTT cac NQ trien khai phuong an chao ban cp rieng le.pdf",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "29/12/2022",
+      "title": "NQ phê duyệt phương án vay vốn và tái cấp hạn mức tín dụng tại Ngân hàng HDBank",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2022/VJC - 20231229 - CBTT NQ phe duyet han muc tin dung voi HDBank - vF_001.pdf",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "29/12/2021",
+      "title": "VJC CBTT về người nội bộ Ông Trần Hoài Nam",
+      "link": "https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2021/14012022191401-0001-merged.pdf",
+      "cat": "hanh-chinh"
+    }
   ],
-  "updated": "02/04/2026 10:00",
+  "updated": "02/04/2026 07:30",
   "source": "ir.vietjetair.com",
-  "new_count": 0
+  "new_count": 465
 }
