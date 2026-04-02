@@ -975,7 +975,61 @@ function renderCBTTAnalysis(){
   +'</div>';
 }
 
-window.addEventListener('DOMContentLoaded',function(){loadFromSheets();});
-</script>
+/* ── TRANG THAI CAP NHAT VJC ── */
+function updateFreshnessBar(data) {
+  var dot = document.getElementById('cbtt-dot');
+  var timeEl = document.getElementById('cbtt-update-time');
+  if (!data || !timeEl) return;
+  var updated = data.updated || '';
+  var newCount = data.new_count || 0;
+  var timeSince = '';
+  if (updated) {
+    var parts = updated.match(/(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/);
+    if (parts) {
+      var d = new Date(parts[3], parts[2]-1, parts[1], parts[4], parts[5]);
+      var diff = Date.now() - d.getTime();
+      var hours = Math.floor(diff / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      if (hours > 23) timeSince = Math.floor(hours/24) + ' ngày trước';
+      else if (hours > 0) timeSince = hours + 'h ' + mins + 'p trước';
+      else timeSince = mins + ' phút trước';
+    }
+  }
+  var newTxt = newCount > 0 ? ' · 🆕 ' + newCount + ' mới' : '';
+  timeEl.innerHTML = '✅ Cập nhật: <b>' + updated + '</b>'
+    + (timeSince ? ' <span style="color:var(--muted)">(' + timeSince + ')</span>' : '') + newTxt;
+  if (dot) dot.style.background = 'var(--green)';
+}
+
+function refreshAllData() {
+  var dot = document.getElementById('cbtt-dot');
+  var timeEl = document.getElementById('cbtt-update-time');
+  if (dot) dot.style.background = 'var(--amber)';
+  if (timeEl) timeEl.textContent = '⏳ Đang tải...';
+  cbttLoadedV = false;
+  fetch('data/vjc.json?v=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      updateFreshnessBar(data);
+      renderCBTT(data.cbtt || []);
+      var badge = document.getElementById('cbtt-badge');
+      if (badge) badge.textContent = (data.cbtt || []).length;
+    })
+    .catch(function(){
+      if (timeEl) timeEl.textContent = '⚠️ Không kết nối · Dùng cache';
+      if (dot) dot.style.background = 'var(--amber)';
+    });
+}
+
+window.addEventListener('DOMContentLoaded', function(){
+  loadFromSheets();
+  fetch('data/vjc.json?v=' + Date.now())
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(data){ if (data) updateFreshnessBar(data); })
+    .catch(function(){
+      var timeEl = document.getElementById('cbtt-update-time');
+      if (timeEl) timeEl.textContent = '⚠️ Chưa kết nối · Tự động cập nhật 8:00 sáng';
+    });
+});
 </body>
 </html>
