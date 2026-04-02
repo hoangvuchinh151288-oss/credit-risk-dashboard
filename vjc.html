@@ -101,21 +101,30 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
   <span class="ap-amber">BCTC kiểm toán 2025 hạn 31/03/2026 — chưa có</span>
 </div>
 
-<!-- SHEETS STATUS -->
-<div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:6px 14px;margin-bottom:10px;flex-wrap:wrap;gap:6px">
-  <div style="display:flex;align-items:center;gap:8px">
-    <span style="font-size:16px">✈️</span>
+<!-- DATA FRESHNESS BAR -->
+<div id="data-freshness-bar" style="display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 16px;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div id="cbtt-dot" style="width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0"></div>
     <div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">Nguồn dữ liệu</div>
-      <div id="sheets-status" style="font-size:11px;font-weight:600;color:var(--amber)">⟳ Kiểm tra Google Sheets...</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">📢 CBTT &amp; Công bố thông tin</div>
+      <div id="cbtt-update-time" style="font-size:11px;font-weight:600;color:var(--text)">⟳ Đang kiểm tra...</div>
     </div>
   </div>
-  <div style="display:flex;gap:6px">
-    <button onclick="loadFromSheets()" style="font-size:10px;padding:4px 10px;border-radius:5px;background:var(--bg3);color:var(--sky);border:1px solid var(--border);cursor:pointer">↻ Làm mới</button>
-    <a href="https://ir.vietjetair.com" target="_blank" style="font-size:10px;padding:4px 10px;border-radius:5px;background:rgba(56,189,248,.08);color:var(--sky);border:1px solid rgba(56,189,248,.2);text-decoration:none">🔗 ir.vietjetair.com</a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0"></div>
+    <div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">📊 Dữ liệu tài chính (BCTC)</div>
+      <div style="font-size:11px;font-weight:600;color:var(--green)">Năm 2025 · 31/12/2025 · Chưa kiểm toán (hạn 31/03/2026)</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div style="text-align:right">
+      <div style="font-size:10px;color:var(--muted)">🤖 Tự động cập nhật</div>
+      <div style="font-size:11px;font-weight:600;color:var(--green)">Mỗi ngày 8:00 sáng</div>
+    </div>
+    <button onclick="refreshAllData()" style="font-size:10px;padding:5px 10px;border-radius:6px;background:var(--bg3);color:var(--sky);border:1px solid var(--border);cursor:pointer;white-space:nowrap">↻ Làm mới</button>
   </div>
 </div>
-
 <!-- BANNER -->
 <div class="banner">
   <div>
