@@ -870,30 +870,23 @@ function loadCBTT(){
 }
 function fetchLiveCBTT(){
   var st=document.getElementById('cbtt-status');
-  if(st){st.textContent='⟳ Đang tải từ ir.vietjetair.com...';st.style.color='var(--amber)';}
-  var t=new Promise(function(_,r){setTimeout(function(){r(new Error('Timeout 8s'));},8000);});
-  var url='https://api.allorigins.win/get?url='+encodeURIComponent('https://ir.vietjetair.com/Home/Menu/cong-bo-thong-tin-bat-thuong');
-  Promise.race([fetch(url),t])
-    .then(function(r){return r.json();})
-    .then(function(j){
-      if(!j.contents)throw new Error('Nội dung rỗng');
-      var parser=new DOMParser();var doc=parser.parseFromString(j.contents,'text/html');
-      var rows=doc.querySelectorAll('table tr, .cbtt-item, li');
-      var fresh=[];
-      rows.forEach(function(r){
-        var txt=r.innerText.trim();
-        if(txt.length>20&&txt.length<300){
-          var link=r.querySelector('a');
-          fresh.push({date:'2025-2026',time:'',title:txt.substring(0,150),link:link?link.href:'',cat:'bctc'});
-        }
-      });
-      if(fresh.length>3){renderCBTT(fresh);if(st){st.textContent='✅ Đã tải lúc '+new Date().toLocaleTimeString('vi-VN')+' · '+fresh.length+' mục';st.style.color='var(--green)';}}
-      else throw new Error('Không đủ dữ liệu');
+  if(st){st.textContent='⏳ Dang tai du lieu...';st.style.color='var(--amber)';}
+  fetch('data/vjc.json?v='+Date.now())
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(function(data){
+      var items=data.cbtt||[];
+      if(!items.length)throw new Error('empty');
+      renderCBTT(items);
+      var badge=document.getElementById('cbtt-badge');if(badge)badge.textContent=items.length;
+      var newTxt=data.new_count>0?' · 🆕 '+data.new_count+' mới':'';
+      if(st){st.innerHTML='✅ Tự động cập nhật hàng ngày · GitHub Actions · Lần cuối: <b>'+(data.updated||'')+'</b>'+newTxt;st.style.color='var(--green)';}
     })
-    .catch(function(e){
-      if(st){st.textContent='⚠️ Dùng cache · ir.vietjetair.com (CORS) · '+e.message;st.style.color='var(--amber)';}
+    .catch(function(){
+      renderCBTT(CBTT_VJC);
+      if(st){st.textContent='⚠️ Dùng cache offline · Nhấn Làm mới để thử lại';st.style.color='var(--amber)';}
     });
 }
+
 
 function renderCBTT(items){
   var container=document.getElementById('cbtt-list');if(!container)return;container.innerHTML='';
