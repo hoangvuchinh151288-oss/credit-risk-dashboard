@@ -148,18 +148,31 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
     <span class="alert-pill ap-amber">Thuế CBPG Thái Lan hết hạn 15/6/2026</span>
   </div>
 </div>
-<!-- Sheets status bar -->
-<div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:6px 14px;margin-bottom:10px;flex-wrap:wrap;gap:6px">
-  <div style="display:flex;align-items:center;gap:8px">
-    <span style="font-size:16px">📊</span>
+<!-- DATA FRESHNESS BAR -->
+<div id="data-freshness-bar" style="display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:8px 16px;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+  <!-- Left: CBTT update status -->
+  <div style="display:flex;align-items:center;gap:10px">
+    <div id="cbtt-dot" style="width:8px;height:8px;border-radius:50%;background:var(--muted);flex-shrink:0"></div>
     <div>
-      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">Nguồn dữ liệu</div>
-      <div id="sheets-status" style="font-size:11px;font-weight:600;color:var(--amber)">⟳ Đang kiểm tra Google Sheets...</div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">📢 CBTT &amp; Công bố thông tin</div>
+      <div id="cbtt-update-time" style="font-size:11px;font-weight:600;color:var(--text)">⟳ Đang kiểm tra...</div>
     </div>
   </div>
-  <div style="display:flex;gap:6px">
-    <button onclick="loadFromSheets()" style="font-size:10px;padding:4px 10px;border-radius:5px;background:var(--bg3);color:var(--blue);border:1px solid var(--border);cursor:pointer">↻ Làm mới dữ liệu</button>
-    <a href="https://sheets.google.com" target="_blank" style="font-size:10px;padding:4px 10px;border-radius:5px;background:rgba(31,200,122,.08);color:var(--green);border:1px solid rgba(31,200,122,.2);text-decoration:none">📝 Mở Google Sheet</a>
+  <!-- Center: BCTC data status -->
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0"></div>
+    <div>
+      <div style="font-size:10px;color:var(--muted);margin-bottom:1px">📊 Dữ liệu tài chính (BCTC)</div>
+      <div style="font-size:11px;font-weight:600;color:var(--amber)">HY1 NĐ 2025-2026 · 31/12/2025 · EY soát xét</div>
+    </div>
+  </div>
+  <!-- Right: Schedule info + refresh -->
+  <div style="display:flex;align-items:center;gap:8px">
+    <div style="text-align:right">
+      <div style="font-size:10px;color:var(--muted)">🤖 Tự động cập nhật</div>
+      <div style="font-size:11px;font-weight:600;color:var(--green)">Mỗi ngày 8:00 sáng</div>
+    </div>
+    <button onclick="refreshAllData()" style="font-size:10px;padding:5px 10px;border-radius:6px;background:var(--bg3);color:var(--sky);border:1px solid var(--border);cursor:pointer;white-space:nowrap">↻ Làm mới</button>
   </div>
 </div>
 
