@@ -691,9 +691,74 @@ function updateBCDKT(){
 }
 
 /* Load Sheets ngay khi trang mở */
-window.addEventListener('DOMContentLoaded', function(){ loadFromSheets(); });
 
 function sw(n){
+
+/* ── THANH TRẠNG THÁI CẬP NHẬT ── */
+function updateFreshnessBar(data) {
+  var dot = document.getElementById('cbtt-dot');
+  var timeEl = document.getElementById('cbtt-update-time');
+  if (!data || !timeEl) return;
+
+  var updated = data.updated || '';
+  var newCount = data.new_count || 0;
+
+  // Tính thời gian đã qua
+  var timeSince = '';
+  if (updated) {
+    var parts = updated.match(/(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})/);
+    if (parts) {
+      var d = new Date(parts[3], parts[2]-1, parts[1], parts[4], parts[5]);
+      var diff = Date.now() - d.getTime();
+      var hours = Math.floor(diff / 3600000);
+      var mins = Math.floor((diff % 3600000) / 60000);
+      if (hours > 23) timeSince = Math.floor(hours/24) + ' ngày trước';
+      else if (hours > 0) timeSince = hours + 'h ' + mins + 'p trước';
+      else timeSince = mins + ' phút trước';
+    }
+  }
+
+  var newTxt = newCount > 0 ? ' · 🆕 ' + newCount + ' CBTT mới' : '';
+  timeEl.innerHTML = '✅ Cập nhật: <b>' + updated + '</b>'
+    + (timeSince ? ' <span style="color:var(--muted)">(' + timeSince + ')</span>' : '')
+    + newTxt;
+  if (dot) dot.style.background = 'var(--green)';
+}
+
+function refreshAllData() {
+  // Reset freshness bar
+  var dot = document.getElementById('cbtt-dot');
+  var timeEl = document.getElementById('cbtt-update-time');
+  if (dot) dot.style.background = 'var(--amber)';
+  if (timeEl) timeEl.textContent = '⏳ Đang tải dữ liệu mới nhất...';
+
+  // Reload CBTT
+  cbttLoaded = false;
+  fetch('data/sbt.json?v=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      updateFreshnessBar(data);
+      renderCBTT(data.cbtt || []);
+      var badge = document.getElementById('cbtt-badge');
+      if (badge) badge.textContent = (data.cbtt || []).length;
+    })
+    .catch(function(){
+      if (timeEl) { timeEl.textContent = '⚠️ Không kết nối được · Dùng cache'; }
+      if (dot) dot.style.background = 'var(--amber)';
+    });
+}
+
+window.addEventListener('DOMContentLoaded', function(){
+  loadFromSheets();
+  // Load freshness info từ sbt.json ngay khi mở trang
+  fetch('data/sbt.json?v=' + Date.now())
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(data){ if (data) updateFreshnessBar(data); })
+    .catch(function(){
+      var timeEl = document.getElementById('cbtt-update-time');
+      if (timeEl) timeEl.textContent = '⚠️ Chưa kết nối · Cập nhật mỗi ngày 8:00 sáng';
+    });
+});
   var ns=['overview','chain','debt','stress','vars','cbtt'];
   ns.forEach(function(x,i){
     document.querySelectorAll('.tab')[i].classList.toggle('active',x===n);
