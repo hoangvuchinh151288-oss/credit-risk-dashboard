@@ -1,0 +1,42 @@
+name: Auto-update CBTT Data
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Fetch SBT CBTT tu ttcagris.com.vn
+        run: python scripts/fetch_sbt.py
+
+      - name: Fetch VJC CBTT tu ir.vietjetair.com
+        run: python scripts/fetch_vjc.py
+
+      - name: Commit va push neu co thay doi
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/
+          if git diff --staged --quiet; then
+            echo "Khong co CBTT moi"
+          else
+            git commit -m "Auto-update CBTT $(date '+%d/%m/%Y %H:%M')"
+            git push
+          fi
