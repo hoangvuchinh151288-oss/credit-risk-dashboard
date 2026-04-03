@@ -1,37 +1,187 @@
 {
   "cbtt": [
-    {"date": "30/03/2026", "title": "BCTC Kiem toan nam 2025 da cong bo - UHY kiem toan. DT 82,093 ty (+14%), LNBT 2,630 ty (+44.3%), LNST 2,123 ty (+51.2%), Tong TS 139,459 ty, 254 duong bay, 113,923 tan hang hoa", "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-kiem-toan", "cat": "bctc"},
-    {"date": "10/03/2026", "title": "CBTT Nghi Quyet HDQT to chuc Dai hoi dong co dong thuong nien nam 2026", "link": "https://ir.vietjetair.com", "cat": "hanh-chinh"},
-    {"date": "30/01/2026", "title": "BCTC Hop nhat Quy 4/2025 - DT 82,093 ty (+14%), LNST 2,123 ty (+51.2%), Tong TS 139,459 ty", "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy", "cat": "bctc"},
-    {"date": "30/01/2026", "title": "BCTC Cong ty me Quy 4/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy", "cat": "bctc"},
-    {"date": "30/01/2026", "title": "Bao cao tinh hinh quan tri Cong ty nam 2025", "link": "https://ir.vietjetair.com", "cat": "hanh-chinh"},
-    {"date": "30/01/2026", "title": "Nhan 22 tau bay moi trong Q4/2025 - Lon nhat trong lich su Vietjet. Ky 92 dong co Trent 7000 voi Rolls-Royce (3.8 ty USD)", "link": "https://ir.vietjetair.com", "cat": "doi-bay"},
-    {"date": "30/12/2025", "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 2,500 ty dong - LAN 3 nam 2025 (Tong 2025: 10,500 ty)", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "29/12/2025", "title": "Nghi quyet HDQT phe duyet tang von gop vao Cong ty TNHH MTV Airport NEO", "link": "https://ir.vietjetair.com", "cat": "doi-bay"},
-    {"date": "12/11/2025", "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 5,000 ty dong - LAN 2 nam 2025", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "29/10/2025", "title": "BCTC Hop nhat Quy 3/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "22/10/2025", "title": "Nghi quyet HDQT thong qua phat hanh co phieu de tra co tuc va tang von dieu le", "link": "https://ir.vietjetair.com", "cat": "co-phieu"},
-    {"date": "17/10/2025", "title": "Vietjet hoan thanh nghia vu thue - Dong gop 10,537 ty dong vao ngan sach NN", "link": "https://ir.vietjetair.com", "cat": "hanh-chinh"},
-    {"date": "22/09/2025", "title": "Vietjet CBTT ve dot mua lai Trai phieu truoc han", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "20/09/2025", "title": "Nghi quyet HDQT dieu chinh phuong an phat hanh Trai phieu rieng le 3,000 ty - Lan 1 nam 2025", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "25/08/2025", "title": "Thay doi Giay chung nhan dang ky doanh nghiep - Tang von dieu le len 5,916.11 ty dong", "link": "https://ir.vietjetair.com", "cat": "co-phieu"},
-    {"date": "29/07/2025", "title": "Bo nhiem Ong Thai Trong Cang dam nhiem Quyen Ke toan truong", "link": "https://ir.vietjetair.com", "cat": "nhan-su"},
-    {"date": "30/07/2025", "title": "BCTC Hop nhat Quy 2/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "25/07/2025", "title": "TOA AN THUONG MAI ANH BAC BO phong toa tai san cua FWA - Vietjet thang kien vong 1", "link": "https://ir.vietjetair.com", "cat": "phap-ly"},
-    {"date": "05/07/2025", "title": "CBTT bo nhiem Giam doc Dieu hanh (COO) - Ong Nguyen Thanh Son", "link": "https://ir.vietjetair.com", "cat": "nhan-su"},
-    {"date": "26/06/2025", "title": "CANH BAO: CBTT ky Hop dong kiem toan voi UHY - Thay doi KTV tu PwC (Big4) sang UHY cho BCTC 2025", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "25/06/2025", "title": "Vietjet tiep tuc bao ve quyen loi trong tranh chap voi FWA lien quan den tau bay", "link": "https://ir.vietjetair.com", "cat": "phap-ly"},
-    {"date": "25/06/2025", "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 3,000 ty dong - LAN 1 nam 2025", "link": "https://ir.vietjetair.com", "cat": "trai-phieu"},
-    {"date": "20/06/2025", "title": "CTCP Aviation tro thanh co dong lon cua Vietjet Air", "link": "https://ir.vietjetair.com", "cat": "co-phieu"},
-    {"date": "17/06/2025", "title": "MoU ky ket 100 Airbus A321neo tai Paris Airshow 2025 (+ 50 quyen chon)", "link": "https://ir.vietjetair.com", "cat": "doi-bay"},
-    {"date": "13/06/2025", "title": "CBTT ket qua chao ban co phieu rieng le 50 trieu CP - Tang von CSH 5,000 ty dong", "link": "https://ir.vietjetair.com", "cat": "co-phieu"},
-    {"date": "04/06/2025", "title": "Thay doi thanh vien Hoi dong Quan tri (Thang 6/2025)", "link": "https://ir.vietjetair.com", "cat": "nhan-su"},
-    {"date": "16/05/2025", "title": "CBTT Bao cao thuong nien 2024", "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-thuong-nien", "cat": "bctc"},
-    {"date": "30/04/2025", "title": "BCTC Hop nhat Quy 1/2025 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "28/01/2025", "title": "BCTC Hop nhat Quy 4/2024 va Giai trinh chenh lech loi nhuan", "link": "https://ir.vietjetair.com", "cat": "bctc"},
-    {"date": "08/10/2024", "title": "Nhan ban giao tau bay A321 ky niem 50 nam quan he ngoai giao Viet-Phap tai san bay Orly Paris", "link": "https://ir.vietjetair.com", "cat": "doi-bay"}
+    {
+      "date": "30/03/2026",
+      "title": "BCTC Kiem toan nam 2025 da cong bo - UHY kiem toan. DT 82,093 ty (+14%), LNBT 2,630 ty (+44.3%), LNST 2,123 ty (+51.2%), Tong TS 139,459 ty, 254 duong bay, 113,923 tan hang hoa",
+      "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-kiem-toan",
+      "cat": "bctc"
+    },
+    {
+      "date": "10/03/2026",
+      "title": "CBTT Nghi Quyet HDQT to chuc Dai hoi dong co dong thuong nien nam 2026",
+      "link": "https://ir.vietjetair.com",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "BCTC Hop nhat Quy 4/2025 - DT 82,093 ty (+14%), LNST 2,123 ty (+51.2%), Tong TS 139,459 ty",
+      "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "BCTC Cong ty me Quy 4/2025 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "Bao cao tinh hinh quan tri Cong ty nam 2025",
+      "link": "https://ir.vietjetair.com",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "30/01/2026",
+      "title": "Nhan 22 tau bay moi trong Q4/2025 - Lon nhat trong lich su Vietjet. Ky 92 dong co Trent 7000 voi Rolls-Royce (3.8 ty USD)",
+      "link": "https://ir.vietjetair.com",
+      "cat": "doi-bay"
+    },
+    {
+      "date": "30/12/2025",
+      "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 2,500 ty dong - LAN 3 nam 2025 (Tong 2025: 10,500 ty)",
+      "link": "https://ir.vietjetair.com",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "29/12/2025",
+      "title": "Nghi quyet HDQT phe duyet tang von gop vao Cong ty TNHH MTV Airport NEO",
+      "link": "https://ir.vietjetair.com",
+      "cat": "doi-bay"
+    },
+    {
+      "date": "12/11/2025",
+      "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 5,000 ty dong - LAN 2 nam 2025",
+      "link": "https://ir.vietjetair.com",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "29/10/2025",
+      "title": "BCTC Hop nhat Quy 3/2025 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com",
+      "cat": "bctc"
+    },
+    {
+      "date": "22/10/2025",
+      "title": "Nghi quyet HDQT thong qua phat hanh co phieu de tra co tuc va tang von dieu le",
+      "link": "https://ir.vietjetair.com",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "17/10/2025",
+      "title": "Vietjet hoan thanh nghia vu thue - Dong gop 10,537 ty dong vao ngan sach NN",
+      "link": "https://ir.vietjetair.com",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "22/09/2025",
+      "title": "Vietjet CBTT ve dot mua lai Trai phieu truoc han",
+      "link": "https://ir.vietjetair.com",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "20/09/2025",
+      "title": "Nghi quyet HDQT dieu chinh phuong an phat hanh Trai phieu rieng le 3,000 ty - Lan 1 nam 2025",
+      "link": "https://ir.vietjetair.com",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "25/08/2025",
+      "title": "Thay doi Giay chung nhan dang ky doanh nghiep - Tang von dieu le len 5,916.11 ty dong",
+      "link": "https://ir.vietjetair.com",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "30/07/2025",
+      "title": "BCTC Hop nhat Quy 2/2025 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com",
+      "cat": "bctc"
+    },
+    {
+      "date": "29/07/2025",
+      "title": "Bo nhiem Ong Thai Trong Cang dam nhiem Quyen Ke toan truong",
+      "link": "https://ir.vietjetair.com",
+      "cat": "nhan-su"
+    },
+    {
+      "date": "25/07/2025",
+      "title": "TOA AN THUONG MAI ANH BAC BO phong toa tai san cua FWA - Vietjet thang kien vong 1",
+      "link": "https://ir.vietjetair.com",
+      "cat": "phap-ly"
+    },
+    {
+      "date": "05/07/2025",
+      "title": "CBTT bo nhiem Giam doc Dieu hanh (COO) - Ong Nguyen Thanh Son",
+      "link": "https://ir.vietjetair.com",
+      "cat": "nhan-su"
+    },
+    {
+      "date": "26/06/2025",
+      "title": "CANH BAO: CBTT ky Hop dong kiem toan voi UHY - Thay doi KTV tu PwC (Big4) sang UHY cho BCTC 2025",
+      "link": "https://ir.vietjetair.com",
+      "cat": "bctc"
+    },
+    {
+      "date": "25/06/2025",
+      "title": "Vietjet tiep tuc bao ve quyen loi trong tranh chap voi FWA lien quan den tau bay",
+      "link": "https://ir.vietjetair.com",
+      "cat": "phap-ly"
+    },
+    {
+      "date": "25/06/2025",
+      "title": "CANH BAO: Nghi quyet HDQT phe duyet phat hanh Trai phieu rieng le 3,000 ty dong - LAN 1 nam 2025",
+      "link": "https://ir.vietjetair.com",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "20/06/2025",
+      "title": "CTCP Aviation tro thanh co dong lon cua Vietjet Air",
+      "link": "https://ir.vietjetair.com",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "17/06/2025",
+      "title": "MoU ky ket 100 Airbus A321neo tai Paris Airshow 2025 (+ 50 quyen chon)",
+      "link": "https://ir.vietjetair.com",
+      "cat": "doi-bay"
+    },
+    {
+      "date": "13/06/2025",
+      "title": "CBTT ket qua chao ban co phieu rieng le 50 trieu CP - Tang von CSH 5,000 ty dong",
+      "link": "https://ir.vietjetair.com",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "04/06/2025",
+      "title": "Thay doi thanh vien Hoi dong Quan tri (Thang 6/2025)",
+      "link": "https://ir.vietjetair.com",
+      "cat": "nhan-su"
+    },
+    {
+      "date": "16/05/2025",
+      "title": "CBTT Bao cao thuong nien 2024",
+      "link": "https://ir.vietjetair.com/Home/Menu/bao-cao-thuong-nien",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2025",
+      "title": "BCTC Hop nhat Quy 1/2025 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com",
+      "cat": "bctc"
+    },
+    {
+      "date": "28/01/2025",
+      "title": "BCTC Hop nhat Quy 4/2024 va Giai trinh chenh lech loi nhuan",
+      "link": "https://ir.vietjetair.com",
+      "cat": "bctc"
+    },
+    {
+      "date": "08/10/2024",
+      "title": "Nhan ban giao tau bay A321 ky niem 50 nam quan he ngoai giao Viet-Phap tai san bay Orly Paris",
+      "link": "https://ir.vietjetair.com",
+      "cat": "doi-bay"
+    }
   ],
-  "updated": "02/04/2026 15:00",
+  "updated": "03/04/2026 06:01",
   "source": "ir.vietjetair.com",
-  "new_count": 1
+  "new_count": 0
 }

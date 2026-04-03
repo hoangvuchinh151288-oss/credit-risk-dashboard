@@ -1,23 +1,103 @@
 {
   "cbtt": [
-    {"date": "26/03/2026", "title": "CTCP Dau tu Thanh Thanh Cong dang ky ban 43.8 trieu CP SBT (20.9% -> 15.9%) trong 26/03-24/04/2026", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "co-phieu"},
-    {"date": "25/03/2026", "title": "Chao ban trai phieu chuyen doi ra cong chung 2026 - lai suat 9.5%/nam, dao han 12/09/2026, khong TSDB, muc dich co cau no", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "trai-phieu"},
-    {"date": "28/02/2026", "title": "BCTC HY1 Nien do 2025-2026 (01/07/2025-31/12/2025) - EY soat xet. DT 12,105 ty, LNST 367 ty, ICR 1.58x", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "bctc"},
-    {"date": "02/02/2026", "title": "Bo nhiem Pho Tong Giam doc - Ba Nguyen Bach Kim Vy", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "nhan-su"},
-    {"date": "15/01/2026", "title": "Nghi quyet HDQT thong qua ke hoach kinh doanh Nien do 2025-2026 - DT 26,500 ty, LNBT 951 ty", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "hanh-chinh"},
-    {"date": "10/10/2025", "title": "AgriS Stakeholder Meeting 2025 - Muc tieu DT 60,000 ty nam 2030, von hoa 2.7 ty USD", "link": "https://ttcagris.com.vn", "cat": "hanh-chinh"},
-    {"date": "05/05/2025", "title": "BCTC Quy 3 Nien do 2024-2025 - DT 7,289 ty (+18%), LNBT 231 ty (+15%), Luy ke 9T: DT 21,648 ty", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "bctc"},
-    {"date": "30/04/2025", "title": "BCTC Quy 3 Nien do 2024-2025 - San luong duong vuot 1 trieu tan (luy ke 9 thang)", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "bctc"},
-    {"date": "01/02/2025", "title": "BCTC Nien do 2024-2025 hoan thanh - DT 28,482 ty (+9% KH), LNBT 950 ty, LNST 834 ty (+4%)", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "bctc"},
-    {"date": "30/10/2024", "title": "Huy dong thanh cong 42 trieu USD tu SACE S.p.A va ING - Tai tro mo rong thuong mai quoc te", "link": "https://ttcagris.com.vn", "cat": "hanh-chinh"},
-    {"date": "08/08/2024", "title": "Ra mat san pham nuoc tang luc C-CANE CRUSH - Day manh mang FBMC", "link": "https://ttcagris.com.vn", "cat": "hanh-chinh"},
-    {"date": "15/04/2024", "title": "Ke hoach Nien do 2024-2025 - DT 26,100 ty, LNBT 900 ty, Co tuc 6% bang co phieu", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "hanh-chinh"},
-    {"date": "01/03/2024", "title": "Huy dong 270 trieu USD tu IFC, FCB, E.SUN Bank trong 1 nam - Co cau lai nguon von", "link": "https://ttcagris.com.vn", "cat": "co-phieu"},
-    {"date": "28/02/2024", "title": "BCTC HY1 Nien do 2024-2025 - Lai vay giam 12-24%, Chi phi BH va QLDN giam 8-12%", "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin", "cat": "bctc"},
-    {"date": "01/11/2022", "title": "Doi thuong hieu tu TTC Sugar sang TTC AgriS - Chuyen sang mo hinh kinh te nong nghiep thong minh", "link": "https://ttcagris.com.vn", "cat": "hanh-chinh"},
-    {"date": "01/01/2022", "title": "Huy dong thanh cong 3,000 ty dong von dai han trong lo trinh tai co cau nguon von", "link": "https://ttcagris.com.vn", "cat": "trai-phieu"}
+    {
+      "date": "26/03/2026",
+      "title": "CTCP Dau tu Thanh Thanh Cong dang ky ban 43.8 trieu CP SBT (20.9% -> 15.9%) trong 26/03-24/04/2026",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "25/03/2026",
+      "title": "Chao ban trai phieu chuyen doi ra cong chung 2026 - lai suat 9.5%/nam, dao han 12/09/2026, khong TSDB, muc dich co cau no",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "trai-phieu"
+    },
+    {
+      "date": "28/02/2026",
+      "title": "BCTC HY1 Nien do 2025-2026 (01/07/2025-31/12/2025) - EY soat xet. DT 12,105 ty, LNST 367 ty, ICR 1.58x",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "bctc"
+    },
+    {
+      "date": "02/02/2026",
+      "title": "Bo nhiem Pho Tong Giam doc - Ba Nguyen Bach Kim Vy",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "nhan-su"
+    },
+    {
+      "date": "15/01/2026",
+      "title": "Nghi quyet HDQT thong qua ke hoach kinh doanh Nien do 2025-2026 - DT 26,500 ty, LNBT 951 ty",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "10/10/2025",
+      "title": "AgriS Stakeholder Meeting 2025 - Muc tieu DT 60,000 ty nam 2030, von hoa 2.7 ty USD",
+      "link": "https://ttcagris.com.vn",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "05/05/2025",
+      "title": "BCTC Quy 3 Nien do 2024-2025 - DT 7,289 ty (+18%), LNBT 231 ty (+15%), Luy ke 9T: DT 21,648 ty",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/04/2025",
+      "title": "BCTC Quy 3 Nien do 2024-2025 - San luong duong vuot 1 trieu tan (luy ke 9 thang)",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "bctc"
+    },
+    {
+      "date": "01/02/2025",
+      "title": "BCTC Nien do 2024-2025 hoan thanh - DT 28,482 ty (+9% KH), LNBT 950 ty, LNST 834 ty (+4%)",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "bctc"
+    },
+    {
+      "date": "30/10/2024",
+      "title": "Huy dong thanh cong 42 trieu USD tu SACE S.p.A va ING - Tai tro mo rong thuong mai quoc te",
+      "link": "https://ttcagris.com.vn",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "08/08/2024",
+      "title": "Ra mat san pham nuoc tang luc C-CANE CRUSH - Day manh mang FBMC",
+      "link": "https://ttcagris.com.vn",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "15/04/2024",
+      "title": "Ke hoach Nien do 2024-2025 - DT 26,100 ty, LNBT 900 ty, Co tuc 6% bang co phieu",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "01/03/2024",
+      "title": "Huy dong 270 trieu USD tu IFC, FCB, E.SUN Bank trong 1 nam - Co cau lai nguon von",
+      "link": "https://ttcagris.com.vn",
+      "cat": "co-phieu"
+    },
+    {
+      "date": "28/02/2024",
+      "title": "BCTC HY1 Nien do 2024-2025 - Lai vay giam 12-24%, Chi phi BH va QLDN giam 8-12%",
+      "link": "https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin",
+      "cat": "bctc"
+    },
+    {
+      "date": "01/11/2022",
+      "title": "Doi thuong hieu tu TTC Sugar sang TTC AgriS - Chuyen sang mo hinh kinh te nong nghiep thong minh",
+      "link": "https://ttcagris.com.vn",
+      "cat": "hanh-chinh"
+    },
+    {
+      "date": "01/01/2022",
+      "title": "Huy dong thanh cong 3,000 ty dong von dai han trong lo trinh tai co cau nguon von",
+      "link": "https://ttcagris.com.vn",
+      "cat": "trai-phieu"
+    }
   ],
-  "updated": "02/04/2026 10:00",
+  "updated": "03/04/2026 06:01",
   "source": "ttcagris.com.vn",
   "new_count": 0
 }
