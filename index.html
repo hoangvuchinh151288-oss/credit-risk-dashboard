@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Credit Risk Dashboards</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0c0e14;color:#dde1f0;font-family:'Segoe UI',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.wrap{max-width:800px;width:100%;padding:40px 20px;text-align:center}
+.label{font-size:11px;letter-spacing:2px;color:#6b7280;text-transform:uppercase;margin-bottom:16px}
+h1{font-size:32px;font-weight:700;margin-bottom:8px}
+h1 span{color:#1fc87a}
+.sub{color:#6b7280;font-size:14px;margin-bottom:48px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left}
+@media(max-width:600px){.cards{grid-template-columns:1fr}}
+.card{background:#161b27;border:1px solid #1e2535;border-radius:16px;padding:28px;text-decoration:none;color:inherit;display:block;transition:all .2s}
+.card:hover{border-color:#1fc87a44;transform:translateY(-2px);box-shadow:0 8px 32px rgba(31,200,122,.1)}
+.card-icon{font-size:36px;margin-bottom:16px}
+.card-ticker{display:inline-flex;align-items:center;gap:8px;background:#0c0e14;border:1px solid #1e2535;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:1px;color:#1fc87a;margin-bottom:12px}
+.card h2{font-size:20px;font-weight:700;margin-bottom:6px}
+.card p{font-size:12px;color:#6b7280;line-height:1.6;margin-bottom:16px}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:10px;padding:3px 8px;border-radius:4px;font-weight:600}
+.pill-red{background:rgba(224,64,64,.12);color:#e04040;border:1px solid rgba(224,64,64,.2)}
+.pill-amber{background:rgba(232,160,32,.1);color:#e8a020;border:1px solid rgba(232,160,32,.2)}
+.pill-green{background:rgba(31,200,122,.1);color:#1fc87a;border:1px solid rgba(31,200,122,.2)}
+.btn{display:inline-block;margin-top:16px;padding:10px 20px;background:#1fc87a;color:#0c0e14;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none}
+.footer{margin-top:40px;font-size:11px;color:#3d4456}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="label">Cong cu kiem soat rui ro tin dung</div>
+  <h1>Credit Risk <span>Dashboards</span></h1>
+  <p class="sub">Chon cong ty de xem dashboard phan tich rui ro tin dung</p>
+  <div class="cards">
+    <a href="sbt.html" class="card">
+      <div class="card-icon">&#x1F36C;</div>
+      <div class="card-ticker">HOSE &middot; SBT</div>
+      <h2>TTC AgriS</h2>
+      <p>CTCP Thanh Thanh Cong &ndash; Bien Hoa &middot; Dau nganh mia duong VN &middot; 46% thi phan noi dia</p>
+      <div class="pills">
+        <span class="pill pill-amber">Gia duong ICE</span>
+        <span class="pill pill-amber">Bien LN gop</span>
+        <span class="pill pill-red">ICR 1.58x &#x26A0;&#xFE0F;</span>
+        <span class="pill pill-red">Thue CBPG T6/2026 &#x23F0;55d</span>
+      </div>
+      <a href="sbt.html" class="btn">Mo Dashboard SBT &rarr;</a>
+    </a>
+    <a href="vjc.html" class="card">
+      <div class="card-icon">&#x2708;&#xFE0F;</div>
+      <div class="card-ticker">HOSE &middot; VJC</div>
+      <h2>VietJet Air</h2>
+      <p>CTCP Hang khong Vietjet &middot; LCC hang dau VN &middot; 45% thi phan noi dia &middot; 28.2tr khach/nam</p>
+      <div class="pills">
+        <span class="pill pill-amber">Jet-A1 &middot; Brent</span>
+        <span class="pill pill-amber">USD/VND</span>
+        <span class="pill pill-red">TPRL 10,500 ty &#x26A0;&#xFE0F;</span>
+      </div>
+      <a href="vjc.html" class="btn">Mo Dashboard VJC &rarr;</a>
+    </a>
+  </div>
+  <div class="footer">Du lieu tu BCTC chinh thuc &middot; SBT: HY1 ND 2025-2026 (31/12/2025) &middot; VJC: Kiem toan 2025 (30/03/2026) &middot; CBTT tu dong cap nhat moi ngay 8:00 sang</div>
+</div>
+</body>
+</html>
