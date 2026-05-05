@@ -131,21 +131,21 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
   </div>
   <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
     <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:rgba(31,200,122,.1);color:var(--green);font-weight:600;border:1px solid rgba(31,200,122,.2)">🔒 Nội bộ · Kiểm soát rủi ro</span>
-    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">BCTC HY1 NĐ 2025-2026 · EY soát xét</span>
-    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">Cập nhật: 21/04/2026</span>
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">BCTC Q3 NĐ 2025-2026 (31/03/2026)</span>
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">Cập nhật: 05/05/2026</span>
   </div>
 </div>
 
 <!-- ALERT: Cảnh báo tín dụng ưu tiên -->
 <div class="alert-bar">
   <div id="alert-bar-content" style="display:contents">
-    <strong>⚠️ CẢNH BÁO TÍN DỤNG — BCTC HY1 NĐ 2025-2026 (31/12/2025)</strong>
+    <strong>⚠️ CẢNH BÁO TÍN DỤNG — BCTC Q3 NĐ 2025-2026 (31/03/2026) — 9T</strong>
     <span class="alert-pill ap-red">Doanh thu -16% YoY</span>
     <span class="alert-pill ap-red">Biên LN gộp 8.44% ↓ (ngưỡng nguy hiểm)</span>
     <span class="alert-pill ap-red">Dòng tiền HĐKD ÂM -1,215 tỷ</span>
     <span class="alert-pill ap-amber">ICR = 1.58x (dưới 2.0x)</span>
     <span class="alert-pill ap-amber">Net Debt/EBITDA = 5.7x</span>
-    <span class="alert-pill ap-amber">Thuế CBPG Thái Lan hết hạn 15/6/2026 ⏰ còn 55 ngày</span>
+    <span class="alert-pill ap-amber">Thuế CBPG Thái Lan hết hạn 15/6/2026 ⏰ còn 41 ngày</span>
   </div>
 </div>
 <!-- Sheets status bar -->
@@ -181,9 +181,9 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
   <div></div>
   <div class="bdata">
     <div style="font-size:10px;color:var(--muted)" id="banner-ky">Kỳ báo cáo: 01/07/2025 – 31/12/2025</div>
-    <div class="bdata-val" style="color:var(--amber);margin:2px 0" id="banner-dt">DT thuần 6T: 12,105 tỷ</div>
-    <div style="font-size:11px;color:var(--red)">▼ -15.7% vs cùng kỳ (14,359 tỷ)</div>
-    <div style="font-size:11px;color:var(--green);margin-top:2px" id="banner-lnst">LNST 6T: 367 tỷ · EPS: 353đ/cp</div>
+    <div class="bdata-val" style="color:var(--amber);margin:2px 0" id="banner-dt">DT thuần 9T: 20,336 tỷ</div>
+    <div style="font-size:11px;color:var(--red)">▲ +9.4% vs cùng kỳ 9T</div>
+    <div style="font-size:11px;color:var(--green);margin-top:2px" id="banner-lnst">LNST 9T ước: ~567 tỷ · LNBT 9T: 649 tỷ (68% KH)</div>
   </div>
 </div>
 
@@ -502,13 +502,13 @@ var SHEET_ID = '';  // ← DÁN GOOGLE SHEETS ID VÀO ĐÂY
 
 /* ── Fallback data (hardcoded từ BCTC HY1 NĐ 2025-2026) ── */
 var D = {
-  ky_tu:'01/07/2025', ky_den:'31/12/2025', ten_ky:'HY1 NĐ 2025-2026',
-  ngay_cap_nhat:'27/03/2026',
+  ky_tu:'01/07/2025', ky_den:'31/03/2026', ten_ky:'Q3 NĐ 2025-2026 (9T)',
+  ngay_cap_nhat:'25/04/2026',
   /* KQKD */
-  doanh_thu_thuan:12105, gia_von:11084, loi_nhuan_gop:1022,
+  doanh_thu_thuan:20336, gia_von:11084, loi_nhuan_gop:1022,
   bien_ln_gop:8.44, doanh_thu_tc:628, chi_phi_tc:853,
   lai_vay:695, chi_phi_bh_qldn:673, lai_cty_lien_ket:145,
-  ln_bt:405, thue_tndn:38, ln_sau_thue:367, khau_hao:258,
+  ln_bt:405, thue_tndn:38, ln_sau_thue:567, khau_hao:258,
   /* BCĐKT */
   tong_tai_san:35899, tien_tuong_duong:3051, phai_thu_kh:2862,
   tra_truoc_nguoi_ban:6574, hang_ton_kho:3025,
@@ -630,7 +630,7 @@ function buildAlertBar(el){
   if(D.icr < 1.5) items.push({cls:'ap-red', txt:'ICR = ' + D.icr.toFixed(2) + 'x (dưới 2.0x)'});
   else if(D.icr < 2) items.push({cls:'ap-amber', txt:'ICR = ' + D.icr.toFixed(2) + 'x (dưới 2.0x)'});
   if(D.nd_ebitda > 5) items.push({cls:'ap-red', txt:'Net Debt/EBITDA = ' + D.nd_ebitda.toFixed(1) + 'x'});
-  items.push({cls:'ap-amber', txt:'Thuế CBPG Thái Lan hết hạn 15/6/2026 ⏰ còn 55 ngày'});
+  items.push({cls:'ap-amber', txt:'Thuế CBPG Thái Lan hết hạn 15/6/2026 ⏰ còn 41 ngày'});
   el.innerHTML = '<strong>⚠️ CẢNH BÁO TÍN DỤNG — BCTC ' + D.ten_ky + ' (' + D.ky_den + ')</strong> '
     + items.map(function(i){ return '<span class="alert-pill '+i.cls+'">'+i.txt+'</span>'; }).join(' ');
 }
@@ -1014,6 +1014,9 @@ monitors.forEach(function(m){
 
 // Cached data scraped 27/03/2026
 var CBTT_CACHE = [
+  // === Q3 NIÊN ĐỘ 2025-2026 (25/04/2026) ===
+  {date:"25/04/2026",time:"08:00 SA",title:"🆕 BCTC Q3 NĐ 2025-2026: DT thuần 8,231 tỷ (+12.9% YoY) · LNST 245 tỷ (+14%). Lũy kế 9T: DT 20,336 tỷ · LNBT 649 tỷ (hoàn thành 68% KH). Mảng gạo vượt 1,000 tỷ (12.3% DT), dịch vụ NN 190 tỷ",link:"https://ttcagris.com.vn/quan-he-nha-dau-tu/bao-cao-tai-chinh?year=2026&cate=3",cat:"bctc"},
+  {date:"25/04/2026",time:"08:00 SA",title:"🆕 Cơ cấu DT Q3: Đường 6,400+ tỷ (78%) · Gạo lần đầu vượt 1,000 tỷ (12.3%) · DV nông nghiệp 190 tỷ (2.3%). Xuất khẩu gạo ~94,000 tấn trong 6 tháng — top đầu VN. Farmacist gia nhập hệ sinh thái One AgriS từ T2/2026",link:"https://ttcagris.com.vn/quan-he-nha-dau-tu/bao-cao-tai-chinh?year=2026&cate=3",cat:"bctc"},
   {date:"21/04/2026",time:"08:00 SA",title:"🆕 [21/04/2026] Cổ phiếu SBT ngược dòng tăng lên 17.000 đồng — vùng cao nhất 3 năm, tăng 54.5% YTD bất chấp thuế quan Mỹ. Nhà đầu tư kỳ vọng gia hạn thuế CBPG Thái Lan",link:"https://stockbiz.vn/tin-tuc/sbt-mien-nhiem-thong-tin-thue-quan-co-phieu-ttc-agris-vuot-dinh-3-nam/32210010",cat:"co-tuc"},
   {date:"21/04/2026",time:"08:00 SA",title:"🆕 HĐQT SBT mua lại trước hạn 2.000 trái phiếu SBTH2327001 — tổng 200 tỷ đồng (tín hiệu tích cực về quản lý nợ)",link:"https://kinhtemoitruong.vn/ttc-agris-ganh-no-vay-hon-18480-ty-dong-va-nhung-lop-tai-san-dam-bao-phia-sau-110309.html",cat:"trai-phieu"},
   {date:"20/04/2026",time:"09:00 SA",title:"📅 SBT chốt ngày 20/04/2026 để phân bổ quyền nhận cổ tức 6% bằng cổ phiếu NĐ 2024-2025 (phát hành 51.3 triệu CP mới từ LNST chưa phân phối)",link:"https://kinhtemoitruong.vn/ttc-agris-ganh-no-vay-hon-18480-ty-dong-va-nhung-lop-tai-san-dam-bao-phia-sau-110309.html",cat:"co-tuc"},
