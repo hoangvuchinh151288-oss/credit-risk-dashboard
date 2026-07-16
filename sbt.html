@@ -132,7 +132,7 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
   <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
     <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:rgba(31,200,122,.1);color:var(--green);font-weight:600;border:1px solid rgba(31,200,122,.2)">🔒 Nội bộ · Kiểm soát rủi ro</span>
     <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">BCTC Q3 NĐ 2025-2026 (31/03/2026)</span>
-    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">Cập nhật: 05/05/2026</span>
+    <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:var(--bg3);color:var(--muted);border:1px solid var(--border)">Cập nhật: 16/07/2026</span>
   </div>
 </div>
 
@@ -145,7 +145,7 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
     <span class="alert-pill ap-red">Dòng tiền HĐKD ÂM -1,215 tỷ</span>
     <span class="alert-pill ap-amber">ICR = 1.58x (dưới 2.0x)</span>
     <span class="alert-pill ap-amber">Net Debt/EBITDA = 5.7x</span>
-    <span class="alert-pill ap-amber">Thuế CBPG Thái Lan hết hạn 15/6/2026 ⏰ còn 41 ngày</span>
+    <span class="alert-pill ap-amber">✅ CBPG GIA HẠN 5 NĂM đến 15/6/2031 (QĐ 1309, 02/6/2026)</span>
   </div>
 </div>
 <!-- Sheets status bar -->
@@ -456,7 +456,7 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
         <div><div style="font-size:13px;font-weight:700">Biến 3 · Chính sách thuế CBPG</div><div style="font-size:10px;color:var(--muted)">Sự kiện nhị phân · Hết hạn 15/6/2026 · Còn ~3 tháng</div></div>
       </div>
       <div style="font-size:11px;color:var(--text);line-height:1.7;margin-bottom:9px">
-        Thuế CBPG đường Thái Lan 47.64% hết hạn 15/6/2026 — còn khoảng 3 tháng. Đây là rủi ro đơn lẻ lớn nhất. Khi đang ở biên LN gộp chỉ 8.44%, việc giá nội địa giảm thêm 10–20% (do đường Thái Lan tràn vào với thuế 5%) sẽ đẩy SBT vào tình huống không đủ EBITDA để trả lãi vay.
+        ✅ ĐÃ GIẢI QUYẾT (02/6/2026): Bộ Công Thương ban hành QĐ 1309/QĐ-BCT gia hạn thuế CBPG 42.99% + CTC 4.65% thêm 5 NĂM — đến hết 15/6/2031. Kèm QĐ 1310 gia hạn chống lẩn tránh qua 5 nước ASEAN. Rủi ro đơn lẻ lớn nhất của SBT chính thức được gỡ bỏ. Giá đường nội địa được bảo hộ ổn định thêm 5 năm — nền tảng vững chắc cho biên LN mảng sản xuất và khả năng trả nợ trong trung hạn.
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px">
         <div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.2);border-radius:5px;padding:7px;text-align:center">
@@ -630,7 +630,7 @@ function buildAlertBar(el){
   if(D.icr < 1.5) items.push({cls:'ap-red', txt:'ICR = ' + D.icr.toFixed(2) + 'x (dưới 2.0x)'});
   else if(D.icr < 2) items.push({cls:'ap-amber', txt:'ICR = ' + D.icr.toFixed(2) + 'x (dưới 2.0x)'});
   if(D.nd_ebitda > 5) items.push({cls:'ap-red', txt:'Net Debt/EBITDA = ' + D.nd_ebitda.toFixed(1) + 'x'});
-  items.push({cls:'ap-amber', txt:'Thuế CBPG Thái Lan hết hạn 15/6/2026 ⏰ còn 41 ngày'});
+  items.push({cls:'ap-green', txt:'🟢 CBPG GIA HẠN 5 NĂM đến 15/6/2031 — Rủi ro số 1 đã gỡ bỏ (QĐ 1309/QĐ-BCT)'});
   el.innerHTML = '<strong>⚠️ CẢNH BÁO TÍN DỤNG — BCTC ' + D.ten_ky + ' (' + D.ky_den + ')</strong> '
     + items.map(function(i){ return '<span class="alert-pill '+i.cls+'">'+i.txt+'</span>'; }).join(' ');
 }
@@ -1014,6 +1014,9 @@ monitors.forEach(function(m){
 
 // Cached data scraped 27/03/2026
 var CBTT_CACHE = [
+  // === CBPG GIA HẠN 5 NĂM — TIN LỚN NHẤT 2026 ===
+  {date:"02/06/2026",time:"14:00 CH",title:"🟢🟢 QUYẾT ĐỊNH LỚN: Bộ Công Thương ban hành QĐ 1309/QĐ-BCT — GIA HẠN thuế CBPG + CTC đường Thái Lan THÊM 5 NĂM (đến 15/6/2031). Thuế CBPG 42.99% + CTC 4.65% giữ nguyên (riêng nhóm Mitr Phol 32.75%). Hiệu lực từ 16/6/2026. Rủi ro số 1 của SBT chính thức được GỠ BỎ",link:"https://moit.gov.vn/tin-tuc/bo-cong-thuong-ban-hanh-quyet-dinh-ve-ket-qua-ra-soat-cuoi-ky-viec-ap-dung-bien-phap-chong-ban-pha-gia-va-chong-tro-cap-.html",cat:"bctc"},
+  {date:"02/06/2026",time:"14:00 CH",title:"🟢 QĐ 1310/QĐ-BCT cùng ngày: gia hạn biện pháp chống lẩn tránh với đường từ Campuchia, Indonesia, Lào, Malaysia, Myanmar — chặn đường Thái đi vòng qua ASEAN. Nhập khẩu Thái đã giảm từ 924K tấn → 274K tấn (NĐ 24/25). SX trong nước đạt 1.2 triệu tấn (+70% vs NĐ 20/21)",link:"https://tapchicongthuong.vn/bo-cong-thuong-gia-han-ap-dung-bien-phap-chong-ban-pha-gia-va-chong-tro-cap-voi-duong-mia-thai-lan-522988.htm",cat:"bctc"},
   // === Q3 NIÊN ĐỘ 2025-2026 (25/04/2026) ===
   {date:"25/04/2026",time:"08:00 SA",title:"🆕 BCTC Q3 NĐ 2025-2026: DT thuần 8,231 tỷ (+12.9% YoY) · LNST 245 tỷ (+14%). Lũy kế 9T: DT 20,336 tỷ · LNBT 649 tỷ (hoàn thành 68% KH). Mảng gạo vượt 1,000 tỷ (12.3% DT), dịch vụ NN 190 tỷ",link:"https://ttcagris.com.vn/quan-he-nha-dau-tu/bao-cao-tai-chinh?year=2026&cate=3",cat:"bctc"},
   {date:"25/04/2026",time:"08:00 SA",title:"🆕 Cơ cấu DT Q3: Đường 6,400+ tỷ (78%) · Gạo lần đầu vượt 1,000 tỷ (12.3%) · DV nông nghiệp 190 tỷ (2.3%). Xuất khẩu gạo ~94,000 tấn trong 6 tháng — top đầu VN. Farmacist gia nhập hệ sinh thái One AgriS từ T2/2026",link:"https://ttcagris.com.vn/quan-he-nha-dau-tu/bao-cao-tai-chinh?year=2026&cate=3",cat:"bctc"},
