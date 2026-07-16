@@ -97,7 +97,7 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
   <span class="ap-red">🔴 TPRL 3 đợt = 10,500 tỷ trong 2025</span>
   <span class="ap-amber">⚠️ Đổi KTV từ PwC → UHY</span>
   <span class="ap-amber">🏛️ Tranh chấp FWA tại Tòa Anh · Thắng vòng 1</span>
-  <span class="ap-blue">22 tàu mới Q4/2025 · MoU 100 A321neo Paris Airshow · ⚠️ Cắt 18% chuyến bay T4/2026 (nhiên liệu)</span>
+  <span class="ap-blue">Q1/2026: 44 A320neo P&W GTF ($5.4B) · 6 B737-8 ($965M) · 10 Comac C909 · 600 TB plan 2035</span>
   <span class="ap-amber">BCTC kiểm toán 2025 ✅ Đã công bố 30/03/2026 · UHY kiểm toán</span>
 </div>
 
@@ -341,10 +341,10 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
         <div><div style="font-size:13px;font-weight:700">Biến 1 · Giá Nhiên liệu Jet-A1</div><div style="font-size:10px;color:var(--muted)">30-35% tổng chi phí vận hành · Biến động theo Brent</div></div>
       </div>
       <div style="font-size:11px;line-height:1.7;margin-bottom:9px">
-        Nhiên liệu là chi phí lớn nhất của VJC, toàn bộ tính bằng USD theo giá Jet-A1 (dao động ~Brent + 15-20%). Năm 2025 được hưởng lợi từ giá dầu giảm (~80$/thùng vs đỉnh 95$/thùng 2022-2023) — đây là nguyên nhân chính cải thiện biên LN gộp từ ~8% → ~10%. <b style="color:var(--amber)">Rủi ro 2026: xung đột địa chính trị Trung Đông có thể đẩy Brent lên 90-100$.</b>
+        Nhiên liệu là chi phí lớn nhất của VJC, toàn bộ tính bằng USD theo giá Jet-A1 (dao động ~Brent + 15-20%). Năm 2025 biên LN cải thiện nhờ dầu ~80$/thùng. <b style="color:var(--green)">📉 Cập nhật 25/06/2026: Brent giảm còn 73.74 USD (-4.3% phiên), WTI 70.34 USD — đã giảm ~40% từ đỉnh chiến tranh (~120 USD T3/2026). Nguyên nhân: thỏa thuận Mỹ-Iran (19/6), eo biển Hormuz thông suốt trở lại, UAE xuất khẩu 85% mức trước chiến tranh. Đây là tin cực tốt: Jet A-1 giảm theo → biên LN Q2-Q3/2026 cải thiện mạnh, ước +2-3 điểm % so với Q1.</b>
       </div>
       <div style="background:rgba(232,160,32,.07);border:1px solid rgba(232,160,32,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
-        <span style="color:var(--amber);font-weight:600">Ngưỡng quan trọng: </span>Brent &lt;70$/thùng → Biên LN gộp &gt;13% ✅ · Brent 80-90$ → Biên 9-11% ⚠️ · Brent &gt;100$ → Biên &lt;7% 🔴
+        <span style="color:var(--amber);font-weight:600"><b style="color:var(--green)">🟢 HIỆN TẠI: Brent 73.74$ → Biên LN gộp dự báo >12% (vùng tốt) ✅</b><br><span style="color:var(--amber);font-weight:600">Ngưỡng tham chiếu: </span>Brent &lt;70$ → Biên &gt;13% ✅ · Brent 70-80$ → Biên 11-13% ✅ · Brent 80-90$ → Biên 9-11% ⚠️ · Brent &gt;100$ → Biên &lt;7% 🔴
       </div>
       <div class="cw" style="height:120px"><canvas id="v1c"></canvas></div>
     </div>
@@ -805,14 +805,25 @@ monitors.forEach(function(m){
 /* ── TAB 6: CBTT ── */
 // CBTT thực — crawled từ ir.vietjetair.com ngày 29/03/2026
 var CBTT_VJC=[
+  // === GIÁ DẦU GIẢM MẠNH 25/06/2026 ===
+  {date:'25/06/2026',title:'📊 Ước tính tác động dầu giảm lên VJC: Brent từ 120→74 USD (-38%) → Jet A-1 giảm ~35% → Chi phí NL giảm ~9,190 tỷ/năm (32% DT × 35% giảm × 82,093 tỷ DT 2025). Dự báo LNST Q2/2026 tăng đột biến so với Q1 nếu tần suất bay duy trì',link:'https://ir.vietjetair.com',cat:'bien-so'},
+  {date:'25/06/2026',title:'🟢 GIÁ DẦU LAO DỐC: Brent 73.74 USD/thùng (-4.3%), WTI 70.34 USD (-3.9%) — thấp nhất kể từ trước xung đột Mỹ-Iran. Giá dầu đã giảm ~40% từ đỉnh chiến tranh (~120 USD). Tác động tích cực trực tiếp lên chi phí Jet A-1 của VJC',link:'https://dantri.com.vn/kinh-doanh/dieu-gi-khien-gia-dau-tiep-tuc-lao-doc-tren-thi-truong-the-gioi-20260623135622315.htm',cat:'bien-so'},
+  {date:'24/06/2026',title:'🟢 Eo biển Hormuz gần như thông suốt hoàn toàn: UAE xuất khẩu ~85% mức trước chiến tranh, tàu dầu đi lại bình thường. Thỏa thuận Mỹ-Iran: miễn trừ lệnh trừng phạt dầu mỏ 60 ngày ngừng bắn. Nguồn cung Iran sắp quay lại thị trường',link:'https://vietgiaitri.com/dieu-gi-khien-gia-dau-tiep-tuc-lao-doc-tren-thi-truong-the-gioi-20260624i7720523/',cat:'bien-so'},
+  // === MỚI NHẤT T5/2026 ===
+  {date:'20/05/2026',title:'🆕 VJC: Con trai bà Thảo đăng ký mua 2 triệu CP khi VJC giảm sâu. Kế hoạch nhận 600 tàu bay đến 2035, có tháng nhận tới 22 chiếc',link:'https://ir.vietjetair.com',cat:'co-phieu'},
+  {date:'01/05/2026',title:'🆕 BCTC Q1/2026 HN: DT 21,021 tỷ (+17.1%) · LNBT 1,142 tỷ (+36.5%) · LNST 1,023 tỷ (+59.6%) gấp đôi Q4/2025. CTM: DT 19,473 tỷ (+8.7%) · LNST 922 tỷ (+47%). Tổng TS 143,534 tỷ',link:'https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy',cat:'bctc'},
+  {date:'01/05/2026',title:'🆕 Q1/2026 vận hành: 7.2 triệu khách (+5.1%) · 39,903 chuyến (+3.3%) · 186 đường bay (45 nội địa, 141 QT). Nợ vay ròng/VCSH 2.1x · Hệ số TK 1.5x · Nộp NSNN 1,941 tỷ. ISAGO Nội Bài gia hạn đến 3/2028',link:'https://ir.vietjetair.com/Home/Menu/ket-qua-hoat-dong-quy',cat:'doi-bay'},
+  {date:'01/05/2026',title:'🆕 Đặt hàng đội bay Q1/2026: 44 A320neo động cơ P&W GTF (~5.4 tỷ USD) · 6 Boeing 737-8 (~965 triệu USD) · 10 Comac C909 · Thành viên sáng lập TT Tài chính HK Châu Á-TBD · Hợp tác AI tối ưu nhiên liệu với Open Airlines & Safran',link:'https://ir.vietjetair.com',cat:'doi-bay'},
+  {date:'27/04/2026',title:'ĐHĐCĐ 2026: Chia cổ tức 30% bằng CP · 2025 LNST 2,123 tỷ (+51.2%, 120% KH) · 28.2 triệu khách · 254 đường bay · Đặt 100 A321neo + 50 quyền chọn + 20 A330neo · Đầu tư MRO Long Thành',link:'https://ir.vietjetair.com/Home/Menu/thong-tin-dinh-ky',cat:'co-phieu'},
+  {date:'01/04/2026',title:'Giải thưởng 2026: Siêu tiết kiệm tốt nhất TG (AirlineRatings) · Top 10 LCC an toàn nhất 2026 · Nơi làm việc tốt nhất toàn cầu · Phát thải thấp nhất ĐNÁ (Cirium Flight Emissions Review 2025)',link:'https://ir.vietjetair.com',cat:'co-phieu'},
   // === Q1/2026 MỚI NHẤT ===
   {date:'01/05/2026',title:'🆕 BCTC Q1/2026: DT hợp nhất 21,021 tỷ (+17.1% YoY) · LNBT 1,142 tỷ (+36.5%) · LNST hợp nhất 1,023 tỷ (+59.6%) · Tổng TS 143,534 tỷ · Nợ vay ròng/VCSH: 2.1x · Thanh khoản: 1.5x',link:'https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-quy',cat:'bctc'},
   {date:'01/05/2026',title:'🆕 Q1/2026: Vận chuyển 7.2 triệu khách (+5.1%) · 39,903 chuyến bay (+3.3%) · 186 đường bay (45 nội địa, 141 quốc tế) · Đặt hàng GTF cho 44 A320neo (~5.4 tỷ USD) · 6 Boeing 737-8 (~965 triệu USD) · 10 Comac C909',link:'https://ir.vietjetair.com/Home/Menu/ket-qua-hoat-dong-quy',cat:'doi-bay'},
   {date:'01/05/2026',title:'🆕 ĐHĐCĐ 2026: Chia cổ tức 30% bằng cổ phiếu · Kế hoạch mở rộng mạng bay quốc tế · VJC được AirlineRatings vinh danh hãng siêu tiết kiệm tốt nhất thế giới 2026',link:'https://ir.vietjetair.com/Home/Menu/thong-tin-dinh-ky',cat:'co-phieu'},
   // === MỚI NHẤT THÁNG 4/2026 ===
-  {date:'21/04/2026',title:'🆕 VJC cắt giảm 18% sản lượng bay tháng 4/2026 (nội địa -22%, quốc tế -11%) do áp lực chi phí nhiên liệu Jet A-1 từ căng thẳng địa chính trị Trung Đông',link:'https://cafef.vn/vietjet-air.html',cat:'doi-bay'},
+  {date:'21/04/2026',title:'🆕 VJC cắt giảm 18% sản lượng bay tháng 4/2026 (nội địa -22%, quốc tế -11%) do áp lực chi phí nhiên liệu Jet A-1 khi Brent đỉnh ~120 USD. ✅ Cập nhật: Dầu giảm 40% về 74 USD (25/06/2026) — VJC có thể phục hồi tần suất bay Q3',link:'https://cafef.vn/vietjet-air.html',cat:'doi-bay'},
   {date:'21/04/2026',title:'🆕 Cổ phiếu VJC tăng kịch trần lên 166,900 đồng/cp sau công bố BCTC kiểm toán 2025 — vốn hóa đạt kỷ lục 99,000 tỷ đồng. Tài sản bà Thảo ~3.9 tỷ USD',link:'https://www.dnse.com.vn/senses/tin-tuc/vietjet-air-bao-tin-vui-toi-hang-trieu-khach-hang-co-phieu-cua-ty-phu-nguyen-thi-phuong-thao-lap-tuc-tim-lim-35209325',cat:'co-phieu'},
-  {date:'30/03/2026',title:'✅ BCTC Kiểm toán năm 2025 đã công bố — UHY kiểm toán. DT 21,021 tỷ (+14%), LNBT 1,142 tỷ (+36.5%), LNST 1,023 tỷ (+59.6%). Tổng TS 143,534 tỷ · Nợ/VCSH 2.1x',link:'https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-kiem-toan',cat:'bctc'},
+  {date:'30/03/2026',title:'✅ BCTC Kiểm toán năm 2025 đã công bố — UHY kiểm toán. DT 21,021 tỷ (+14%), LNBT 1,142 tỷ (+36.5%), LNST 1,023 tỷ (+59.6%) = gấp đôi Q4/2025. Tổng TS 143,534 tỷ · Nợ ròng/VCSH 2.1x · TK 1.5x',link:'https://ir.vietjetair.com/Home/Menu/bao-cao-tai-chinh-kiem-toan',cat:'bctc'},
   // 2026
   {date:'10/03/2026',title:'CBTT Nghị Quyết HĐQT về việc tổ chức Đại hội đồng cổ đông thường niên năm 2026',link:'https://ir.vietjetair.com/File_Upload/co-dong/cong-bo-thong-tin/thong-tin-khac/2026/20260310 - VJC - CBTT NQ HDQT vv to chuc dhdcd 2026.pdf',cat:'hanh-chinh'},
   {date:'10/03/2026',title:'Vietjet thông báo giao dịch mua cổ phiếu của người nội bộ',link:'https://ir.vietjetair.com',cat:'co-phieu'},
