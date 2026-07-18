@@ -1073,6 +1073,33 @@ function loadCBTT(){
   fetchLiveCBTT();
 }
 
+function fixCBTTLink(a){
+  if(!a) return '';
+  var h = a.getAttribute('href') || '';
+  if(!h) return '';
+  if(h.indexOf('http') === 0){
+    try{
+      var u = new URL(h);
+      // Proxy trả về link absolute nhưng resolve sai domain (vd github.io/media/...) → sửa lại về ttcagris.com.vn
+      if(u.hostname.indexOf('ttcagris.com.vn') === -1 && u.pathname.indexOf('/media/') === 0){
+        return 'https://ttcagris.com.vn' + u.pathname + u.search;
+      }
+    }catch(e){}
+    return h;
+  }
+  if(h.charAt(0) === '/') return 'https://ttcagris.com.vn' + h;
+  return 'https://ttcagris.com.vn/' + h;
+}
+function mergeCBTT(fresh){
+  // Gộp dữ liệu live với cache phân tích thủ công — KHÔNG đè mất các mục phân tích (🆕/🟢/✅...)
+  var norm = function(t){ return (t||'').toLowerCase().replace(/[^a-z0-9à-ỹ]/g,'').slice(0,80); };
+  var seen = {}, out = [];
+  fresh.forEach(function(it){ var k = norm(it.title); if(k && !seen[k]){ seen[k]=1; out.push(it); } });
+  CBTT_CACHE.forEach(function(it){ var k = norm(it.title); if(k && !seen[k]){ seen[k]=1; out.push(it); } });
+  var pd = function(d){ var p=(d||'').split('/'); return p.length===3 ? new Date(+p[2],+p[1]-1,+p[0]).getTime() : 0; };
+  out.sort(function(a,b){ return pd(b.date)-pd(a.date); });
+  return out;
+}
 function fetchLiveCBTT(){
   var statusEl = document.getElementById('cbtt-status');
   if(statusEl) { statusEl.textContent = '⟳ Đang tải dữ liệu mới nhất từ ttcagris.com.vn...'; statusEl.style.color='var(--amber)'; }
@@ -1102,16 +1129,17 @@ function fetchLiveCBTT(){
             date: parts[0]?parts[0].trim():'',
             time: parts[1]?parts[1].trim():'',
             title: tds[1].innerText.trim(),
-            link: link ? link.href : '',
+            link: fixCBTTLink(link),
             cat: categorizeCBTT(tds[1].innerText.trim())
           });
         }
       });
       if(fresh.length > 0){
-        renderCBTT(fresh);
+        var merged = mergeCBTT(fresh);
+        renderCBTT(merged);
         var badge = document.getElementById('cbtt-badge');
-        if(badge) badge.textContent = fresh.length;
-        if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' · ' + fresh.length + ' công bố năm 2026'; statusEl.style.color='var(--green)'; }
+        if(badge) badge.textContent = merged.length;
+        if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' · ' + fresh.length + ' CBTT live + ' + (merged.length - fresh.length) + ' mục phân tích'; statusEl.style.color='var(--green)'; }
       } else {
         throw new Error('Không có dữ liệu hợp lệ');
       }
@@ -1134,20 +1162,21 @@ function fetchLiveCBTT(){
             if(tds.length >= 2 && tds[1].innerText.trim()){
               var dateStr = tds[0].innerText.trim();
               var parts = dateStr.split('|');
-              fresh.push({ date: parts[0]?parts[0].trim():'', time: parts[1]?parts[1].trim():'', title: tds[1].innerText.trim(), link: link?link.href:'', cat: categorizeCBTT(tds[1].innerText.trim()) });
+              fresh.push({ date: parts[0]?parts[0].trim():'', time: parts[1]?parts[1].trim():'', title: tds[1].innerText.trim(), link: fixCBTTLink(link), cat: categorizeCBTT(tds[1].innerText.trim()) });
             }
           });
           if(fresh.length > 0){
-            renderCBTT(fresh);
+            var merged = mergeCBTT(fresh);
+            renderCBTT(merged);
             var badge = document.getElementById('cbtt-badge');
-            if(badge) badge.textContent = fresh.length;
-            if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' (proxy 2) · ' + fresh.length + ' công bố'; statusEl.style.color='var(--green)'; }
+            if(badge) badge.textContent = merged.length;
+            if(statusEl){ statusEl.textContent = '✅ Cập nhật lúc ' + new Date().toLocaleTimeString('vi-VN') + ' (proxy 2) · ' + fresh.length + ' CBTT live + ' + (merged.length - fresh.length) + ' mục phân tích'; statusEl.style.color='var(--green)'; }
           } else throw new Error('Không có dữ liệu từ proxy 2');
         })
         .catch(function(e2){
           // Cuối cùng: dùng cache có sẵn
           renderCBTT(CBTT_CACHE);
-          if(statusEl){ statusEl.textContent = '⚠️ Không thể kết nối trực tiếp — hiển thị cache (27/03/2026). Nhấn "Làm mới" để thử lại.'; statusEl.style.color='var(--amber)'; }
+          if(statusEl){ statusEl.textContent = '⚠️ Không thể kết nối trực tiếp — hiển thị cache (08/07/2026). Nhấn "Làm mới" để thử lại.'; statusEl.style.color='var(--amber)'; }
         });
     });
 }
