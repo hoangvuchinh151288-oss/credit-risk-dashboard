@@ -99,6 +99,7 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
   <span class="ap-amber">🏛️ Tranh chấp FWA tại Tòa Anh · Thắng vòng 1</span>
   <span class="ap-blue">Q1/2026: 44 A320neo P&W GTF ($5.4B) · 6 B737-8 ($965M) · 10 Comac C909 · 600 TB plan 2035</span>
   <span class="ap-amber">BCTC kiểm toán 2025 ✅ Đã công bố 30/03/2026 · UHY kiểm toán</span>
+  <span class="ap-red">🚨 17/07: Mỹ-Iran leo thang trở lại, Hormuz gián đoạn, Brent vọt lên ~86$ (+10% tuần) — đảo ngược hoàn toàn kịch bản giảm giá dầu tháng 6</span>
 </div>
 
 <!-- SHEETS STATUS -->
@@ -341,10 +342,10 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
         <div><div style="font-size:13px;font-weight:700">Biến 1 · Giá Nhiên liệu Jet-A1</div><div style="font-size:10px;color:var(--muted)">30-35% tổng chi phí vận hành · Biến động theo Brent</div></div>
       </div>
       <div style="font-size:11px;line-height:1.7;margin-bottom:9px">
-        Nhiên liệu là chi phí lớn nhất của VJC, toàn bộ tính bằng USD theo giá Jet-A1 (dao động ~Brent + 15-20%). Năm 2025 biên LN cải thiện nhờ dầu ~80$/thùng. <b style="color:var(--green)">📉 Cập nhật 25/06/2026: Brent giảm còn 73.74 USD (-4.3% phiên), WTI 70.34 USD — đã giảm ~40% từ đỉnh chiến tranh (~120 USD T3/2026). Nguyên nhân: thỏa thuận Mỹ-Iran (19/6), eo biển Hormuz thông suốt trở lại, UAE xuất khẩu 85% mức trước chiến tranh. Đây là tin cực tốt: Jet A-1 giảm theo → biên LN Q2-Q3/2026 cải thiện mạnh, ước +2-3 điểm % so với Q1.</b>
+        Nhiên liệu là chi phí lớn nhất của VJC, toàn bộ tính bằng USD theo giá Jet-A1 (dao động ~Brent + 15-20%). Năm 2025 biên LN cải thiện nhờ dầu ~80$/thùng. Cuối tháng 6 dầu giảm mạnh nhờ MOU Mỹ-Iran, nhưng <b style="color:var(--coral)">🚨 Cập nhật 17/07/2026: MOU sụp đổ — Mỹ không kích Iran đêm thứ 7 liên tiếp dọc eo biển Hormuz, Iran tuyên bố đóng eo biển và mở rộng tấn công căn cứ Mỹ tại Qatar/Bahrain/Kuwait/Jordan, đe dọa đóng cả tuyến Bab-el-Mandeb (Biển Đỏ). Brent tăng vọt lên 85.95 USD (+10% trong tuần, +24% so cùng kỳ năm ngoái), WTI theo sát. Đây là đảo ngược hoàn toàn so với nhận định tích cực 25/06 — kịch bản KB-D (leo thang) đang hiện thực hóa. Nếu Brent duy trì vùng 85-90$, biên LN gộp Q3/2026 của VJC có nguy cơ co lại về vùng 9-11% thay vì cải thiện như kỳ vọng trước đó.</b>
       </div>
-      <div style="background:rgba(232,160,32,.07);border:1px solid rgba(232,160,32,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
-        <span style="color:var(--amber);font-weight:600"><b style="color:var(--green)">🟢 HIỆN TẠI: Brent 73.74$ → Biên LN gộp dự báo >12% (vùng tốt) ✅</b><br><span style="color:var(--amber);font-weight:600">Ngưỡng tham chiếu: </span>Brent &lt;70$ → Biên &gt;13% ✅ · Brent 70-80$ → Biên 11-13% ✅ · Brent 80-90$ → Biên 9-11% ⚠️ · Brent &gt;100$ → Biên &lt;7% 🔴
+      <div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
+        <span style="color:var(--coral);font-weight:600"><b style="color:var(--coral)">🔴 HIỆN TẠI (17/07): Brent ~86$ → Biên LN gộp dự báo 9-11% (vùng cảnh báo) ⚠️</b><br><span style="color:var(--amber);font-weight:600">Ngưỡng tham chiếu: </span>Brent &lt;70$ → Biên &gt;13% ✅ · Brent 70-80$ → Biên 11-13% ✅ · Brent 80-90$ → Biên 9-11% ⚠️ · Brent &gt;100$ → Biên &lt;7% 🔴 — Theo dõi sát: nếu Trump thực hiện đe dọa tấn công hạ tầng Iran tuần tới, rủi ro Brent test lại vùng 100$+ (kịch bản KB-D full)
       </div>
       <div class="cw" style="height:120px"><canvas id="v1c"></canvas></div>
     </div>
@@ -805,6 +806,7 @@ monitors.forEach(function(m){
 /* ── TAB 6: CBTT ── */
 // CBTT thực — crawled từ ir.vietjetair.com ngày 29/03/2026
 var CBTT_VJC=[
+  {date:'17/07/2026',title:'🚨 ĐẢO CHIỀU RỦI RO NHIÊN LIỆU: MOU Mỹ-Iran sụp đổ, Mỹ không kích Iran 7 đêm liên tiếp quanh Hormuz, Iran tuyên bố đóng eo biển + mở rộng tấn công căn cứ Mỹ (Qatar/Bahrain/Kuwait/Jordan), đe dọa đóng cả Bab-el-Mandeb. Brent vọt lên 85.95 USD (+10% tuần), đảo ngược hoàn toàn xu hướng giảm tháng 6. Rủi ro chi phí Jet A-1 quay lại tăng, đe dọa biên LN gộp Q3/2026',link:'https://vnexpress.net/my-khong-kich-dem-thu-7-lien-tiep-iran-doa-tan-cong-tong-luc-5098778.html',cat:'bien-so'},
   // === CẬP NHẬT 17/07/2026 ===
   {date:'01/07/2026',title:'🆕 VJC nộp đơn xin khai thác HÀNG NGÀN chuyến bay nội địa/năm tại AUSTRALIA — khả năng lập hãng bay mới tại Úc, tận dụng khoảng trống sau khi Rex Airlines rút khỏi các tuyến chính (giá vé nội địa Úc đã tăng 13.3%)',link:'https://vietstock.vn/2026/07/vietjet-muon-lap-hang-bay-moi-tai-australia-737-1461010.htm',cat:'doi-bay'},
   {date:'08/05/2026',title:'🆕 Ký hợp tác chiến lược với GMR Airports & Bird Group (Ấn Độ) trước chứng kiến của Tổng Bí thư, Chủ tịch nước Tô Lâm tại Diễn đàn DN Việt-Ấn. Khai mở đường bay TP.HCM – Colombo (Sri Lanka)',link:'https://ir.vietjetair.com/Home/Menu/thong-cao-bao-chi',cat:'doi-bay'},
