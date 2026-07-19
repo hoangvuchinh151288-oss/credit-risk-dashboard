@@ -153,6 +153,18 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
 
 <!-- ════ TAB 1: OVERVIEW ════ -->
 <div class="panel active" id="panel-overview">
+  <!-- ═══ CREDIT SCORECARD TỔNG HỢP ═══ -->
+  <div class="card mb10" style="border:1px solid rgba(232,160,32,.35);background:linear-gradient(180deg,rgba(232,160,32,.04),transparent)">
+    <div class="ctitle">🎯 CREDIT SCORECARD — Đánh giá tổng hợp cho quyết định tín dụng <span class="tag t-amber">Cập nhật 18/07/2026 · FY2025 kiểm toán + sự kiện T7/2026</span></div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:6px" id="scorecardGrid"></div>
+    <div style="display:flex;align-items:center;gap:12px;margin-top:9px;padding:8px 11px;background:rgba(232,160,32,.07);border:1px solid rgba(232,160,32,.25);border-radius:7px">
+      <div style="font-size:22px;font-weight:800;color:var(--amber)">6/14</div>
+      <div style="flex:1;font-size:11px;line-height:1.55">
+        <b style="color:var(--amber)">KHUYẾN NGHỊ: DUY TRÌ CÓ ĐIỀU KIỆN — THEO DÕI SÁT BIẾN NHIÊN LIỆU.</b> Nền tảng vận hành tốt (load factor 88.5%, DT +14%, LNST +51%) nhưng 3 áp lực đồng thời: (1) Brent đảo chiều lên ~86$ đe dọa biên Q3-Q4; (2) Adj ND/EBITDAR ~6.5x vượt nhẹ ngưỡng ngành trong chu kỳ nhận 50 tàu mới; (3) đáo hạn TPRL ~10,500 tỷ 2026-2028. Điều kiện khuyến nghị: (a) yêu cầu chính sách hedge nhiên liệu bằng văn bản + báo cáo trạng thái quý; (b) bóc tách LN core vs lãi SLB trong mọi kỳ thẩm định; (c) chốt lịch đáo hạn từng lô TPRL và phương án nguồn; (d) giới hạn kỳ hạn tài trợ mới ≤ chu kỳ dòng tiền rõ ràng, ưu tiên tài trợ có TSBĐ tàu bay/dòng tiền bán vé.
+      </div>
+    </div>
+  </div>
+
   <div class="kpir k5 mb10">
     <div class="kpi green" id="kpi-dt"><div class="kl">Doanh thu hợp nhất 2025</div><div class="kv cg">82,093 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cg">▲ +14% vs 71,990 tỷ (2024)</div></div>
     <div class="kpi green" id="kpi-bien"><div class="kl">Biên LN gộp (Cty mẹ)</div><div class="kv cs">10.09<span style="font-size:12px;color:var(--muted)">%</span></div><div class="ks cg">▲ vs ~8.3% năm 2024</div></div>
@@ -214,6 +226,25 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
     <div class="ctitle">Chỉ số Tín dụng VJC — Đánh giá từ BCTC 2025 <span class="tag t-amber">UHY kiểm toán · Công bố 30/03/2026</span></div>
     <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px" id="creditGrid"></div>
   </div>
+
+  <!-- ═══ CHẤT LƯỢNG LỢI NHUẬN: CORE vs SALE-AND-LEASEBACK ═══ -->
+  <div class="card mb10" style="border-top:3px solid var(--amber)">
+    <div class="ctitle">🔍 Chất lượng lợi nhuận: Vận tải cốt lõi vs Lãi Sale-and-Leaseback <span class="tag t-amber">Bóc tách bắt buộc trước khi tính DSCR</span></div>
+    <div class="g32">
+      <div style="font-size:11px;line-height:1.65">
+        LNST 2025 tăng +51.2% lên 2,123 tỷ — con số đẹp, nhưng lịch sử VJC cho thấy lợi nhuận phụ thuộc đáng kể vào <b style="color:var(--amber)">lãi từ bán & tái thuê tàu bay (SLB)</b> và doanh thu chuyển giao quyền sở hữu/thương mại tàu bay, ghi nhận "lumpy" theo lịch nhận tàu chứ không lặp lại đều.<br><br>
+        <b style="color:var(--red)">Hệ quả cho người cho vay:</b> DSCR/ICR tính trên LN tổng sẽ <b>ảo</b> nếu năm đó có nhiều deal SLB. Chu kỳ nhận 50+ tàu 2026-2028 sẽ tạo lãi SLB lớn — che khuất sức khỏe mảng bay thuần đúng lúc chi phí nhiên liệu leo thang. Nguồn trả nợ bền vững = dòng tiền vận tải cốt lõi, không phải lãi kế toán từ SLB.
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px;font-size:10.5px;line-height:1.6">
+        <b>Cách bóc tách từ BCTC (checklist):</b><br>
+        1. TM doanh thu: tách "DT vận chuyển hành khách + phụ trợ" vs "DT chuyển giao sở hữu & thương mại tàu bay"<br>
+        2. Thu nhập khác/DT tài chính: lãi thanh lý — bán tài sản (tàu bay)<br>
+        3. Tính <b>EBITDA core</b> = EBITDA − lãi SLB & thương mại tàu → dùng số này cho ICR/DSCR thẩm định<br>
+        4. LCTT: đối chiếu LN với dòng tiền HĐKD — lãi SLB nằm ở dòng đầu tư, nếu LN cao mà CFO thấp kéo dài → cờ đỏ<br>
+        5. Theo dõi tỷ trọng: lãi SLB/LNBT > 40% trong 2 năm liên tiếp → điều chỉnh giảm xếp hạng dòng tiền
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ════ TAB 2: CHAIN ════ -->
@@ -246,8 +277,8 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
           <div style="font-size:11px;font-weight:600;color:var(--sky);margin-bottom:3px">📐 Chỉ số đặc thù ngành hàng không</div>
           <div style="font-size:10px;color:var(--teal);font-family:monospace;line-height:1.8">
             EBITDAR = EBITDA + Aircraft Lease Cost<br>
-            EBITDAR Margin (2025 ước): ~15-17%<br>
-            Net Debt / EBITDAR: ~4.5-5.5x (vs ngưỡng ≤6x ngành)<br>
+            EBITDAR Margin (2025 ước): ~24-25% (EBITDAR ~20,430 tỷ / DT 82,093 tỷ)<br>
+            Adjusted Net Debt / EBITDAR: <b style='color:var(--amber)'>~6.5x</b> — tử số = Nợ vay ròng 70,800 + 7× thuê năm ~9,000 = ~133,800 tỷ (vs ngưỡng ≤6x ngành → VƯỢT NHẸ)<br>
             CASK (Cost/ASK): đo hiệu quả chi phí<br>
             Load Factor (ngưỡng hòa vốn): ~75-78%
           </div>
@@ -263,7 +294,30 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
       <span style="color:var(--red)">🔴 &lt;8%</span>: EBITDA thu hẹp mạnh, rủi ro vi phạm covenant &nbsp;
       <span style="color:var(--amber)">🟡 8-12%</span>: Cảnh báo &nbsp;
       <span style="color:var(--green)">🟢 &gt;12%</span>: Tốt &nbsp;
-      <span style="color:var(--coral)">★ Vị trí 2025: Brent ~80$/thùng, USD/VND ~25,400 → Biên ~10.1%</span>
+      <span style="color:var(--coral)">★ Vị trí 2025: Brent ~80$/thùng, USD/VND ~25,400 → Biên ~10.1% · <b>Hiện tại 17/07/2026: Brent ~86$ → dịch sang cột 85-90$</b></span>
+    </div>
+  </div>
+
+  <!-- ═══ HEDGING NHIÊN LIỆU — LÁ CHẮN CÒN THIẾU THÔNG TIN ═══ -->
+  <div class="card mb10" style="border-top:3px solid var(--coral)">
+    <div class="ctitle">🛡️ Hedging nhiên liệu — Biến số quyết định độ nhạy THỰC <span class="tag t-red">Thông tin phải thu thập ngay khi Brent đảo chiều</span></div>
+    <div class="g32">
+      <div style="font-size:11px;line-height:1.65">
+        Ma trận nhạy cảm ở trên giả định <b>KHÔNG hedge</b> (exposure 100%). Thực tế tác động của Brent 86$ lên VJC phụ thuộc tỷ lệ hedge — thông tin <b style="color:var(--red)">chưa được VJC công bố chi tiết</b>, phải yêu cầu trực tiếp hoặc soi TM BCTC phần công cụ tài chính phái sinh.<br><br>
+        <b>Khung đọc nhanh (nhu cầu nhiên liệu ~26,000 tỷ/năm @Brent 80$):</b><br>
+        · Hedge 0% + Brent 86$ (+7.5%): chi phí +~1,950 tỷ/năm → bào mòn ~74% LNBT 2025<br>
+        · Hedge 30%: tác động ròng +~1,365 tỷ → nghiêm trọng nhưng chịu được<br>
+        · Hedge 50% @<80$: tác động +~975 tỷ → biên gộp giữ được ~9.2-9.5%<br>
+        <span style="color:var(--muted);font-size:10px">(Ước tính tuyến tính, chưa tính khả năng tăng phụ thu nhiên liệu/giá vé — historically LCC chuyển được ~30-50% sau 1-2 quý)</span>
+      </div>
+      <div style="background:rgba(240,104,64,.06);border:1px solid rgba(240,104,64,.2);border-radius:7px;padding:10px 12px;font-size:10.5px;line-height:1.6">
+        <b style="color:var(--coral)">Yêu cầu thông tin kỳ thẩm định tới:</b><br>
+        1. Chính sách hedging bằng văn bản: công cụ (swap/collar/cap), tỷ lệ mục tiêu, tenor<br>
+        2. Trạng thái hiện tại: % nhu cầu 12T đã khóa, mức giá khóa bình quân<br>
+        3. MTM phái sinh tại 30/06 và collateral/margin call nếu có<br>
+        4. Cơ chế phụ thu nhiên liệu (fuel surcharge) nội địa/quốc tế — tốc độ chuyển giá<br>
+        <b style="color:var(--amber)">Nguyên tắc:</b> Không có hedge + Brent >90$ kéo dài = hạ 1 bậc đánh giá nội bộ và xem xét lại pricing khoản vay.
+      </div>
     </div>
   </div>
 </div>
@@ -303,6 +357,43 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
   <div class="card mb10">
     <div class="ctitle">Trái phiếu & Vay lớn — VJC (từ CBTT công khai) <span class="tag t-amber">Ưu tiên theo dõi đáo hạn</span></div>
     <table class="htb" id="bondTable"></table>
+  </div>
+
+  <!-- ═══ LADDER ĐÁO HẠN TPRL & CÂN ĐỐI NGUỒN CAPEX ═══ -->
+  <div class="card mb10" style="border-top:3px solid var(--red)">
+    <div class="ctitle">📅 Ladder đáo hạn TPRL 2025 & Cân đối nguồn – sử dụng vốn 2026-2028 <span class="tag t-red">Câu hỏi tín dụng cốt lõi</span></div>
+    <div class="g32">
+      <div>
+        <div style="font-size:11px;font-weight:600;margin-bottom:5px">3 lô TPRL phát hành 2025 (~10,500 tỷ):</div>
+        <table class="htb">
+          <tr><th>Lô</th><th>Giá trị</th><th>Kỳ hạn ước</th><th>Đáo hạn ước</th></tr>
+          <tr><td>Đợt 1 (H1/2025)</td><td style="color:var(--amber)">~3,000 tỷ</td><td>1.5–3 năm</td><td style="color:var(--red)">2026-2028 ⚠️</td></tr>
+          <tr><td>Đợt 2 (giữa 2025)</td><td style="color:var(--amber)">~5,000 tỷ</td><td>2–3 năm</td><td style="color:var(--red)">2027-2028</td></tr>
+          <tr><td>Đợt 3 (cuối 2025)</td><td style="color:var(--amber)">~2,500 tỷ</td><td>2–3 năm</td><td style="color:var(--red)">2027-2028</td></tr>
+        </table>
+        <div style="font-size:10px;color:var(--red);margin-top:5px;line-height:1.5">⚠️ Kỳ hạn/ngày đáo hạn chính xác từng lô <b>cần xác nhận từ HNX/BCTC TM</b> — yêu cầu số 1 trong kỳ thẩm định tới. Rủi ro chính: đỉnh đáo hạn TPRL trùng chu kỳ trả PDP nhận 50+ tàu; nếu thị trường TPDN kém → nhu cầu dồn về tín dụng NH.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px;font-size:10.5px;line-height:1.65">
+        <b>Cân đối nguồn – sử dụng 2026-2028 (khung):</b><br>
+        <span style="color:var(--red)">SỬ DỤNG:</span> PDP + delivery payments cho 44 A320neo ($5.4B) + 6 B737-8 ($965M) + 10 C909 · hoàn trả TPRL ~10,500 tỷ · lãi vay ~3,300+ tỷ/năm<br>
+        <span style="color:var(--green)">NGUỒN:</span> EBITDA ~11,400 tỷ/năm · Sale-and-leaseback từng tàu khi nhận · TPRL/TP mới · vay ECA/tài trợ tàu bay có TSBĐ · tiền bán vé nhận trước<br>
+        <b style="color:var(--amber)">Điểm nghẽn cần chất vấn:</b> mô hình phụ thuộc SLB liên tục — nếu lãi suất USD cao/lessor thắt chặt, gap tài trợ xuất hiện ngay. Yêu cầu DN cung cấp lịch delivery-payment 24 tháng + cam kết SLB đã ký (số tàu, đối tác) để định lượng gap.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ COVENANT & HEADROOM ═══ -->
+  <div class="card mb10" style="border-top:3px solid var(--purple)">
+    <div class="ctitle">📜 Covenant tham chiếu & Headroom <span class="tag t-amber">Điền covenant thực theo HĐTD từng NH</span></div>
+    <div style="overflow-x:auto"><table class="htb">
+      <tr><th>Covenant (tham chiếu ngành HK)</th><th>Ngưỡng</th><th>Thực tế 2025</th><th>Headroom</th><th>Trạng thái</th></tr>
+      <tr><td>ICR (EBIT/Lãi vay)</td><td>≥ 2.0x</td><td style="color:var(--amber);font-weight:600">~1.8x</td><td style="color:var(--amber)">−10%</td><td>🟡 Dưới nhẹ; nhạy với lãi vay tăng theo đội bay</td></tr>
+      <tr><td>Adjusted Net Debt/EBITDAR</td><td>≤ 6.0x</td><td style="color:var(--amber);font-weight:600">~6.5x</td><td style="color:var(--amber)">−8%</td><td>🟡 Vượt nhẹ; xu hướng tăng theo chu kỳ nhận tàu</td></tr>
+      <tr><td>D/E (Nợ vay/VCSH)</td><td>≤ 3.0x</td><td style="color:var(--green);font-weight:600">2.25x</td><td style="color:var(--green)">+25%</td><td>🟢 Còn đệm</td></tr>
+      <tr><td>Thanh khoản (tiền+TĐT/DT ngày)</td><td>≥ 30 ngày DT</td><td style="color:var(--amber);font-weight:600">~31 ngày</td><td style="color:var(--amber)">+3%</td><td>🟡 Tiền ~7,000 tỷ / DT ~225 tỷ/ngày — mỏng cho hãng bay mùa cao điểm nhiên liệu</td></tr>
+      <tr><td>Biên EBITDAR</td><td>≥ 20%</td><td style="color:var(--green);font-weight:600">~24.9%</td><td style="color:var(--green)">+25%</td><td>🟢 Tốt — nhưng giảm nhanh nếu Brent >95$ không hedge</td></tr>
+    </table></div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px">⚠️ Ngưỡng <b>tham chiếu thị trường</b> — covenant pháp lý lấy theo từng HĐTD. Khuyến nghị khi cấp mới: covenant thanh khoản tối thiểu (tiền ≥ 30 ngày DT), trần Adj ND/EBITDAR ≤ 7.0x, nghĩa vụ báo cáo hedge nhiên liệu và lịch delivery-payment nửa năm.</div>
   </div>
 </div>
 
@@ -356,7 +447,7 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
         <div><div style="font-size:13px;font-weight:700">Biến 2 · Tỷ giá USD/VND</div><div style="font-size:10px;color:var(--muted)">RỦI RO LỚN NHẤT · ~70% chi phí bằng USD</div></div>
       </div>
       <div style="font-size:11px;line-height:1.7;margin-bottom:9px">
-        VJC thu tiền vé bằng VND (nội địa) và USD/ngoại tệ (quốc tế), nhưng chi trả gần như toàn bộ chi phí vận hành bằng USD: tiền thuê tàu bay, nhiên liệu, bảo dưỡng, phụ tùng, phí hạ cất cánh quốc tế. USD mạnh lên 1% so với VND → chi phí tăng ước <b style="color:var(--red)">~800-1,000 tỷ VND</b>. Đây là rủi ro phi đối xứng lớn nhất của VJC.
+        VJC thu tiền vé bằng VND (nội địa) và USD/ngoại tệ (quốc tế ~41% lượng khách), nhưng chi trả phần lớn chi phí vận hành bằng USD: thuê tàu, nhiên liệu, bảo dưỡng, phụ tùng, phí quốc tế. <b>Định lượng:</b> chi phí gốc USD ước ~70% × ~74,000 tỷ ≈ <b style="color:var(--red)">~51,700 tỷ/năm</b>; trừ hedge tự nhiên từ doanh thu ngoại tệ (~35,000-38,000 tỷ) → <b style="color:var(--red)">net short USD ~14,000-17,000 tỷ/năm</b>. VND mất giá 1% → (a) chi phí hoạt động ròng +~150-170 tỷ; (b) CỘNG lỗ tỷ giá đánh giá lại số dư nợ vay/thuê gốc USD — khoản này lớn hơn nhiều và đánh thẳng vào chi phí tài chính. Tổng tác động 1% ước <b style="color:var(--red)">~400-600 tỷ LNBT</b>.
       </div>
       <div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.2);border-radius:6px;padding:8px 10px;font-size:10px;margin-bottom:6px">
         <span style="color:var(--red);font-weight:600">⚠️ Năm 2025: </span>Chi phí chênh lệch tỷ giá tăng đáng kể do VND mất giá. Lỗ chênh lệch tỷ giá là một trong các item lớn trong chi phí tài chính của VJC.
@@ -445,14 +536,40 @@ var D = {
 function calcDerived(){
   D.ebit = D.lnbt + D.lai_vay;
   D.ebitda = D.ebit + D.khau_hao;
-  D.ebitdar = D.ebitda + D.doanh_thu * 0.28; // ~28% doanh thu là thuê tàu bay
+  D.chi_phi_thue_nam = D.chi_phi_thue_nam || 9000; // ~ước chi phí thuê hoạt động tàu bay/năm (tỷ VND) — cần thay bằng số TM BCTC khi có
+  D.ebitdar = D.ebitda + D.chi_phi_thue_nam; // ĐÚNG: EBITDA + chi phí thuê tàu (KHÔNG phải 28% doanh thu)
+  D.adj_net_debt = D.no_vay_rong + 7 * D.chi_phi_thue_nam; // Chuẩn ngành HK: vốn hóa thuê = 7× rent năm
   D.icr = D.ebit / D.lai_vay;
   D.nd_ebitda = D.no_vay_rong / D.ebitda;
-  D.nd_ebitdar = D.no_vay_rong / D.ebitdar;
+  D.nd_ebitdar = D.adj_net_debt / D.ebitdar; // Adjusted Net Debt / EBITDAR — tử số PHẢI gồm thuê vốn hóa
   D.dt_yoy = ((D.doanh_thu - D.dt_2024)/D.dt_2024*100).toFixed(1);
   D.lnst_yoy = ((D.lnst - D.lnst_2024)/D.lnst_2024*100).toFixed(1);
 }
 calcDerived();
+
+/* ── CREDIT SCORECARD ── */
+var scorecard=[
+  {n:'Rủi ro nhiên liệu',v:'Brent ~86$ ↑',st:0,tr:'↘',d:'MOU sụp đổ; KB-D hiện thực hóa'},
+  {n:'Đòn bẩy (Adj ND/EBITDAR)',v:'~6.5x',st:1,tr:'→',d:'Vượt nhẹ ngưỡng ≤6x ngành'},
+  {n:'Khả năng trả lãi (ICR)',v:'~1.8x',st:1,tr:'→',d:'Dưới chuẩn 2.0x; lãi vay +29%'},
+  {n:'Đáo hạn TPRL',v:'~10,500 tỷ',st:0,tr:'→',d:'3 lô 2025 → đỉnh 2026-2028'},
+  {n:'Vận hành cốt lõi',v:'LF 88.5%',st:2,tr:'↗',d:'28.2tr khách +8.9%; thị phần NĐ 45%'},
+  {n:'Tăng trưởng & sinh lời',v:'LNST +51%',st:2,tr:'↗',d:'⚠️ cần bóc tách phần lãi SLB'},
+  {n:'Pháp lý & khác',v:'FWA đang kháng',st:1,tr:'?',d:'Phán quyết Anh; theo dõi exposure'},
+];
+(function(){
+  var sg=document.getElementById('scorecardGrid'); if(!sg) return;
+  scorecard.forEach(function(s){
+    var col=s.st===2?'var(--green)':s.st===1?'var(--amber)':'var(--red)';
+    var icon=s.st===2?'🟢':s.st===1?'🟡':'🔴';
+    var d=document.createElement('div');
+    d.style.cssText='background:var(--bg3);border:1px solid var(--border);border-top:2px solid '+col+';border-radius:7px;padding:7px 9px';
+    d.innerHTML='<div style="font-size:9px;color:var(--muted);margin-bottom:2px">'+icon+' '+s.n+' <span style="float:right;color:'+col+'">'+s.tr+'</span></div>'
+      +'<div style="font-size:13px;font-weight:700;color:'+col+'">'+s.v+'</div>'
+      +'<div style="font-size:8.5px;color:var(--muted);line-height:1.35">'+s.d+'</div>';
+    sg.appendChild(d);
+  });
+})();
 
 /* ── SHEETS FETCH ── */
 function loadFromSheets(){
@@ -543,7 +660,7 @@ _charts.cost=mkChart('costChart','doughnut',['Nhiên liệu (32%)','Thuê tàu b
 var crats=[
   {n:'ICR (EBIT/Lãi vay)',v:'~1.8x',thr:'≥ 2.0x',st:'amber',d:'EBIT ~5,930 / Lãi vay ~3,300 tỷ'},
   {n:'Net Debt/EBITDA ước',v:'~5.5x',thr:'≤ 5x',st:'amber',d:'Điển hình ngành HK có thuê tàu bay'},
-  {n:'Net Debt/EBITDAR',v:'~4.2x',thr:'≤ 6x',st:'green',d:'Chỉ số chuẩn ngành hàng không ✓'},
+  {n:'Adj ND/EBITDAR',v:'~6.5x',thr:'≤ 6x',st:'amber',d:'Nợ vay ròng + 7×thuê (133,800) / EBITDAR 20,430 — vượt nhẹ ngưỡng ngành'},
   {n:'Nợ vay ròng/VCSH',v:'2.25x',thr:'≤ 5x',st:'green',d:'Thấp hơn nhiều vs thế giới ✓'},
   {n:'Thanh khoản',v:'1.53x',thr:'≥ 1.0x',st:'green',d:'Dẫn đầu ngành HK Việt Nam ✓'},
   {n:'DT tăng trưởng',v:'+14%',thr:'Dương',st:'green',d:'2025: 82,093 vs 2024: 71,990 tỷ'},
@@ -562,7 +679,7 @@ crats.forEach(function(r){
 
 /* ── TAB 2: CHAIN ── */
 var chainData=[
-  {t:'🛢️ Brent Crude',v:'~80$/thùng',col:'var(--amber)'},
+  {t:'🛢️ Brent Crude',v:'~86$/thùng ↑ (17/07)',col:'var(--red)'},
   {t:'⛽ Jet-A1 Price',v:'~85$/thùng',col:'var(--coral)'},
   {t:'💱 USD/VND',v:'~25,400đ',col:'var(--red)'},
   {t:'✈️ Chi phí VH',v:'~73,880 tỷ',col:'var(--amber)'},
@@ -642,7 +759,7 @@ fleets.forEach(function(f){
 var dr=[
   {n:'ICR ước (EBIT/Lãi vay)',v:'~1.8x',thr:'≥ 2.0x',st:'amber',d:'Cần theo dõi — dưới ngưỡng lý tưởng'},
   {n:'Net Debt/EBITDA ước',v:'~5.5x',thr:'≤ 5.0x',st:'amber',d:'Cao do bao gồm nợ thuê tàu bay'},
-  {n:'Net Debt/EBITDAR ước',v:'~4.2x',thr:'≤ 6.0x ngành',st:'green',d:'Chỉ số chuẩn HK · Ở mức tốt ✓'},
+  {n:'Adj Net Debt/EBITDAR',v:'~6.5x',thr:'≤ 6.0x ngành',st:'amber',d:'Gồm thuê vốn hóa 7× rent (~63,000 tỷ) — vượt nhẹ; số cũ ~4.2x đã bỏ vì thiếu thuê vốn hóa'},
   {n:'Nợ vay ròng/VCSH',v:'2.25x',thr:'≤ 5x',st:'green',d:'Thấp hơn nhiều vs trung bình ngành'},
   {n:'Thanh khoản (current)',v:'1.53x',thr:'≥ 1.0x',st:'green',d:'Tốt nhất trong ngành HK Việt Nam'},
   {n:'Lãi vay/Doanh thu',v:'~4.0%',thr:'≤ 5%',st:'green',d:'3,300/21,021 tỷ — chấp nhận được'},
@@ -784,14 +901,16 @@ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:fals
 
 /* Monitor list */
 var monitors=[
-  {c:'Hàng tuần',n:'Giá Brent Crude & Jet-A1',t:'>95$/thùng kéo dài >2 tuần',a:'Stress test ngay; kiểm tra hedge ratio',col:'var(--coral)'},
+  {c:'Hàng ngày',n:'Leo thang Mỹ-Iran / Eo Hormuz & Bab-el-Mandeb',t:'Đóng eo biển hoặc tấn công hạ tầng dầu Iran → Brent có thể test 100$+',a:'Kích hoạt kịch bản KB-D; stress test biên LN Q3-Q4 ngay',col:'var(--red)'},
+  {c:'Hàng tuần',n:'Giá Brent Crude & Jet-A1',t:'>95$/thùng kéo dài >2 tuần (hiện ~86$ ↑)',a:'Stress test ngay; kiểm tra hedge ratio',col:'var(--coral)'},
   {c:'Hàng tuần',n:'Tỷ giá USD/VND',t:'>26,500đ/USD → Chi phí tăng đột biến',a:'Đánh giá lại EBITDAR forecast; báo cáo lên ban lãnh đạo',col:'var(--red)'},
+  {c:'Hàng quý',n:'Tỷ lệ hedge nhiên liệu (hỏi DN/BCTC phái sinh)',t:'Hedge <30% nhu cầu 12T trong môi trường Brent >85$ → rủi ro biên LN không được che chắn',a:'Yêu cầu chính sách hedging bằng văn bản; định lượng độ nhạy còn lại',col:'var(--coral)'},
   {c:'Hàng tháng',n:'Load Factor (dữ liệu CAAV)',t:'<82% trong 2 tháng liên tiếp',a:'Kiểm tra yield management; xem xét capacity điều chỉnh',col:'var(--amber)'},
   {c:'Hàng tháng',n:'ICR (EBIT/Lãi vay ước tính)',t:'<1.5x → Cảnh báo / <1.0x → Sự kiện vi phạm',a:'Kích hoạt đàm phán điều khoản vay; báo cáo tín dụng',col:'var(--amber)'},
-  {c:'Hàng quý',n:'BCTC Quý (30/4, 30/7, 30/10, 30/1)',t:'Lệch >15% so với dự báo',a:'Cập nhật model; họp đánh giá tín dụng',col:'var(--blue)'},
-  {c:'Hàng quý',n:'Net Debt/EBITDAR',t:'>7.0x → Ngưỡng nguy hiểm ngành HK',a:'Xem xét lại hạn mức tín dụng',col:'var(--amber)'},
-  {c:'Theo sự kiện',n:'BCTC kiểm toán năm 2025',t:'Hạn chót 31/03/2026',a:'Cập nhật toàn bộ dashboard với số liệu chính thức',col:'var(--sky)'},
-  {c:'Theo sự kiện',n:'Nhận tàu bay Boeing 737 MAX',t:'Mỗi lần nhận tàu mới → nợ vay tăng',a:'Cập nhật lịch đáo hạn và tổng nợ vay',col:'var(--blue)'},
+  {c:'Hàng quý',n:'BCTC Quý (30/4, 30/7, 30/10, 30/1)',t:'Q2/2026 công bố ~30/07 — kỳ đầu tiên phản ánh dầu biến động mạnh',a:'Đối chiếu biên LN gộp với ngưỡng dự báo theo Brent; cập nhật model',col:'var(--blue)'},
+  {c:'Hàng quý',n:'Adjusted Net Debt/EBITDAR',t:'>7.0x → Ngưỡng nguy hiểm ngành HK (hiện ~6.5x)',a:'Xem xét lại hạn mức tín dụng',col:'var(--amber)'},
+  {c:'Theo sự kiện',n:'Đáo hạn TPRL ~10,500 tỷ (3 lô phát hành 2025)',t:'60 ngày trước từng lô — xác nhận nguồn thanh toán/tái phát hành',a:'Nếu thị trường TPDN đóng băng → rủi ro dồn về tín dụng NH',col:'var(--red)'},
+  {c:'Theo sự kiện',n:'Nhận tàu bay (A320neo/B737-8/C909)',t:'Mỗi lần nhận tàu mới → nợ vay/nghĩa vụ thuê tăng',a:'Cập nhật lịch đáo hạn, tổng nợ vay và Adj ND/EBITDAR',col:'var(--blue)'},
 ];
 var ml=document.getElementById('monitorList');
 monitors.forEach(function(m){
