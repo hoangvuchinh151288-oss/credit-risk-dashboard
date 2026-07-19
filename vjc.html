@@ -195,6 +195,38 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
     </div>
   </div>
 
+  <!-- ═══ PEER BENCHMARKING · TÍN HIỆU THỊ TRƯỜNG · QUỸ ĐẠO ═══ -->
+  <div class="card mb10" style="border-top:3px solid var(--teal)">
+    <div class="ctitle">🌐 Peer Benchmarking · Tín hiệu thị trường · Quỹ đạo Scorecard <span class="tag t-blue">Giá cập nhật 15/07/2026</span></div>
+    <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px">
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px">SO SÁNH LCC CHÂU Á + HVN (~FY2025, ước từ báo cáo công bố)</div>
+        <table class="htb" style="font-size:9.5px">
+          <tr><th></th><th>VJC</th><th>HVN</th><th>IndiGo</th><th>Cebu Pac</th><th>Capital A</th></tr>
+          <tr><td>Adj ND/EBITDAR</td><td style="color:var(--amber);font-weight:600">~6.5x</td><td style="color:var(--red)">~5-6x</td><td style="color:var(--green)">~1-2x</td><td style="color:var(--green)">~2-3x</td><td style="color:var(--red)">&gt;7x</td></tr>
+          <tr><td>Biên EBITDAR</td><td style="color:var(--green);font-weight:600">~25%</td><td style="color:var(--amber)">~20%</td><td style="color:var(--green)">~28-30%</td><td style="color:var(--green)">~28%</td><td style="color:var(--amber)">~22%</td></tr>
+          <tr><td>ICR</td><td style="color:var(--amber);font-weight:600">~1.8x</td><td style="color:var(--amber)">~1.5-2x</td><td style="color:var(--green)">&gt;8x</td><td style="color:var(--green)">~4-5x</td><td style="color:var(--red)">~1x</td></tr>
+          <tr><td>Thị phần nội địa</td><td style="color:var(--green);font-weight:600">~45%</td><td>~42%</td><td>~62% (Ấn Độ)</td><td>~55% (Phil.)</td><td>~40% (Mal.)</td></tr>
+        </table>
+        <div style="font-size:9px;color:var(--muted);margin-top:4px;line-height:1.45"><b style="color:var(--amber)">Kết luận peer:</b> VJC vận hành tốt (biên, thị phần ngang nhóm khỏe) nhưng đòn bẩy nằm ở <b>nửa yếu</b> của LCC châu Á — giữa Capital A (tái cấu trúc) và IndiGo/Cebu (chuẩn vàng). Đòn bẩy sẽ còn tăng theo chu kỳ nhận 50+ tàu → dư địa chịu sốc nhiên liệu hẹp hơn peers khỏe.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:9px 11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px">TÍN HIỆU THỊ TRƯỜNG (EWI từ giá CP)</div>
+        <div class="drow"><span class="dk">Giá (~15/07)</span><span class="dv cm">~137,000đ · Vốn hóa ~74,000 tỷ</span></div>
+        <div class="drow"><span class="dk">Vùng 52 tuần</span><span class="dv">67,000 – 169,231đ</span></div>
+        <div class="drow"><span class="dk">Drawdown từ đỉnh</span><span class="dv ca">~−19% 🟡</span></div>
+        <div class="drow"><span class="dk">Diễn biến gần</span><span class="dv co">Nến đỏ dài 15/07 — bị chặn tại kháng cự 139-146k đúng lúc tin Hormuz xấu</span></div>
+        <div class="drow"><span class="dk">Merton DD (1Y)</span><span class="dv cm">3.68 → PD thị trường ~0.01%</span></div>
+        <div style="font-size:9px;line-height:1.5;margin-top:5px;padding:5px 7px;background:rgba(232,160,32,.08);border-radius:5px"><b style="color:var(--amber)">⚠️ PHÂN KỲ:</b> PD thị trường ~0.01% vs fundamental ~2.5-5%. Equity định giá tăng trưởng đội bay + hệ sinh thái Sovico; credit nhìn ICR kỳ vọng 1.17x. Trigger theo dõi: giá thủng 120,000đ (−29% từ đỉnh) đồng thời Brent &gt;95$ → 2 tín hiệu hội tụ, chuyển trạng thái giám sát sang cảnh báo.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:9px 11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:6px">QUỸ ĐẠO SCORECARD (điểm /14 theo kỳ đánh giá)</div>
+        <div id="scoreHist"></div>
+        <div style="font-size:9px;color:var(--muted);margin-top:6px;line-height:1.45">01/26: FY25 đẹp, dầu ổn · 04/26: dầu đỉnh ~120$, cắt 18% chuyến bay · 06/26: MOU Mỹ-Iran, dầu về 74$ · 07/26: MOU sụp đổ, dầu 86$ — điểm dao động chủ yếu theo biến nhiên liệu → xác nhận đây là biến số chi phối hồ sơ tín dụng VJC.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="kpir k5 mb10">
     <div class="kpi green" id="kpi-dt"><div class="kl">Doanh thu hợp nhất 2025</div><div class="kv cg">82,093 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cg">▲ +14% vs 71,990 tỷ (2024)</div></div>
     <div class="kpi green" id="kpi-bien"><div class="kl">Biên LN gộp (Cty mẹ)</div><div class="kv cs">10.09<span style="font-size:12px;color:var(--muted)">%</span></div><div class="ks cg">▲ vs ~8.3% năm 2024</div></div>
@@ -598,6 +630,25 @@ var scorecard=[
       +'<div style="font-size:13px;font-weight:700;color:'+col+'">'+s.v+'</div>'
       +'<div style="font-size:8.5px;color:var(--muted);line-height:1.35">'+s.d+'</div>';
     sg.appendChild(d);
+  });
+})();
+
+/* ── SCORE HISTORY ── */
+var SCORE_HISTORY=[
+  {ky:'01/2026 (FY25)',diem:7},
+  {ky:'04/2026 (dầu ~120$)',diem:5},
+  {ky:'06/2026 (dầu 74$)',diem:8},
+  {ky:'07/2026 (dầu 86$↑)',diem:6},
+];
+(function(){
+  var el=document.getElementById('scoreHist'); if(!el) return;
+  SCORE_HISTORY.forEach(function(h){
+    var pct=h.diem/14*100;
+    var col=h.diem>=10?'var(--green)':h.diem>=7?'var(--amber)':'var(--red)';
+    el.innerHTML+='<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">'
+      +'<div style="font-size:8.5px;color:var(--muted);width:98px;flex-shrink:0">'+h.ky+'</div>'
+      +'<div style="flex:1;height:13px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:'+col+';opacity:.75"></div></div>'
+      +'<div style="font-size:10px;font-weight:700;color:'+col+';width:34px;text-align:right">'+h.diem+'/14</div></div>';
   });
 })();
 
