@@ -1,3 +1,2 @@
 Last updated: 18/07/2026
-VJC: cập nhật rủi ro leo thang Mỹ-Iran / giá dầu Brent
-SBT: không có tin mới trọng yếu kể từ 17/07/2026 baseline
+SBT + VJC: hoàn thiện toàn diện theo review tín dụng — fix P0 (dữ liệu 9T nhất quán, annualize x4/3, EBITDAR/Adj Net Debt), thêm Credit Scorecard, covenant panel, các panel phân tích bổ sung
