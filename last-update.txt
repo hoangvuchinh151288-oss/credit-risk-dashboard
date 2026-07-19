@@ -1,2 +1,2 @@
-Last updated: 18/07/2026
-SBT + VJC: hoàn thiện toàn diện theo review tín dụng — fix P0 (dữ liệu 9T nhất quán, annualize x4/3, EBITDAR/Adj Net Debt), thêm Credit Scorecard, covenant panel, các panel phân tích bổ sung
+Last updated: 19/07/2026
+SBT + VJC: dashboard hoàn chỉnh — scorecard, Z''-EM, shadow rating, kịch bản trọng số, peer benchmark, tín hiệu thị trường (Merton DD), quỹ đạo scorecard, covenant, EWS
