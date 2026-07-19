@@ -242,6 +242,38 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
     </div>
   </div>
 
+  <!-- ═══ PEER BENCHMARKING · TÍN HIỆU THỊ TRƯỜNG · QUỸ ĐẠO ═══ -->
+  <div class="card mb11" style="border-top:3px solid var(--teal)">
+    <div class="ctitle">🌐 Peer Benchmarking · Tín hiệu thị trường · Quỹ đạo Scorecard <span class="tag t-blue">Giá cập nhật 10/07/2026</span></div>
+    <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:10px">
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px">SO SÁNH CÙNG NGÀNH ĐƯỜNG VN (~FY2025, ước từ BCTC công bố)</div>
+        <table class="htb" style="font-size:9.5px">
+          <tr><th></th><th>SBT</th><th>QNS</th><th>LSS</th><th>SLS</th></tr>
+          <tr><td>Biên LN gộp</td><td style="color:var(--red);font-weight:600">~8.7%</td><td style="color:var(--green)">~30%*</td><td style="color:var(--amber)">~11%</td><td style="color:var(--green)">~27%</td></tr>
+          <tr><td>Net Debt/EBITDA</td><td style="color:var(--red);font-weight:600">5.6x</td><td style="color:var(--green)">Tiền ròng</td><td style="color:var(--green)">~0.5x</td><td style="color:var(--green)">Tiền ròng</td></tr>
+          <tr><td>ICR</td><td style="color:var(--red);font-weight:600">1.62x</td><td style="color:var(--green)">&gt;20x</td><td style="color:var(--green)">~6x</td><td style="color:var(--green)">n/a (không nợ)</td></tr>
+          <tr><td>Thị phần đường</td><td style="color:var(--green);font-weight:600">~46%</td><td>~12%</td><td>~7%</td><td>~4%</td></tr>
+        </table>
+        <div style="font-size:9px;color:var(--muted);margin-top:4px;line-height:1.45">*QNS pha trộn sữa đậu nành biên cao. <b style="color:var(--coral)">Kết luận peer:</b> SBT dẫn đầu quy mô nhưng là DN <b>đòn bẩy cao nhất & biên mỏng nhất</b> ngành — mô hình tăng trưởng bằng nợ + thương mại, ngược với peers "ít nợ, biên dày". Rủi ro tín dụng SBT KHÔNG đại diện cho ngành đường.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:9px 11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px">TÍN HIỆU THỊ TRƯỜNG (EWI từ giá CP)</div>
+        <div class="drow"><span class="dk">Giá (10/07)</span><span class="dv cm">21,300đ · Vốn hóa ~19,300 tỷ</span></div>
+        <div class="drow"><span class="dk">Đỉnh 52 tuần</span><span class="dv">26,750đ (10/10/2025)</span></div>
+        <div class="drow"><span class="dk">Drawdown từ đỉnh</span><span class="dv ca">−20.4% 🟡</span></div>
+        <div class="drow"><span class="dk">Xu hướng 12T</span><span class="dv cg">≈ +99% — vẫn uptrend dài</span></div>
+        <div class="drow"><span class="dk">Merton DD (1Y)</span><span class="dv cm">3.13 → PD thị trường ~0.09%</span></div>
+        <div style="font-size:9px;line-height:1.5;margin-top:5px;padding:5px 7px;background:rgba(232,160,32,.08);border-radius:5px"><b style="color:var(--amber)">⚠️ PHÂN KỲ LỚN:</b> PD thị trường (Merton ~0.1%) vs PD fundamental (~5-8%). Equity đang định giá kỳ vọng chuối/dứa + tái cấu trúc; credit nhìn dòng tiền hiện tại. Một trong hai sẽ đúng — nếu giá CP gãy xu hướng (drawdown &gt;30%, thủng MA200 ~19,500đ) → thị trường quay về phía credit, siết điều kiện ngay.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:9px 11px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:6px">QUỸ ĐẠO SCORECARD (điểm /14 theo kỳ đánh giá)</div>
+        <div id="scoreHist"></div>
+        <div style="font-size:9px;color:var(--muted);margin-top:6px;line-height:1.45">01/26: HY1 xấu nhưng CBPG chưa rõ · 04/26: Q3 phục hồi + gom CP chủ tịch · 07/26: sửa lỗi năm hóa → lộ rõ nguồn trả gốc chỉ ~10% nợ NH (điểm giảm do đo đúng hơn, không phải DN xấu đi). Mỗi kỳ cập nhật dashboard → thêm 1 điểm vào chuỗi để thấy quỹ đạo.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="kpir k5" style="margin-bottom:10px">
     <div class="kpi green" id="kpi-dt">
       <div class="kl">Doanh thu 9T (thực tế)</div>
@@ -862,6 +894,24 @@ var scorecard=[
       +'<div style="font-size:13px;font-weight:700;color:'+col+'">'+s.v+'</div>'
       +'<div style="font-size:8.5px;color:var(--muted);line-height:1.35">'+s.d+'</div>';
     sg.appendChild(d);
+  });
+})();
+
+/* ── SCORE HISTORY ── */
+var SCORE_HISTORY=[
+  {ky:'01/2026 (HY1)',diem:5},
+  {ky:'04/2026 (Q3+CBPG)',diem:5},
+  {ky:'07/2026 (hiện tại)',diem:4},
+];
+(function(){
+  var el=document.getElementById('scoreHist'); if(!el) return;
+  SCORE_HISTORY.forEach(function(h){
+    var pct=h.diem/14*100;
+    var col=h.diem>=10?'var(--green)':h.diem>=7?'var(--amber)':'var(--red)';
+    el.innerHTML+='<div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">'
+      +'<div style="font-size:8.5px;color:var(--muted);width:98px;flex-shrink:0">'+h.ky+'</div>'
+      +'<div style="flex:1;height:13px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div style="width:'+pct+'%;height:100%;background:'+col+';opacity:.75"></div></div>'
+      +'<div style="font-size:10px;font-weight:700;color:'+col+';width:34px;text-align:right">'+h.diem+'/14</div></div>';
   });
 })();
 
