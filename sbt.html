@@ -212,6 +212,36 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
     </div>
   </div>
 
+  <!-- ═══ ĐỊNH LƯỢNG RỦI RO: Z-SCORE · SHADOW RATING · KỊCH BẢN TRỌNG SỐ ═══ -->
+  <div class="card mb11" style="border-top:3px solid var(--purple)">
+    <div class="ctitle">📐 Định lượng rủi ro — Altman Z''-EM · Shadow Rating · ICR kỳ vọng trọng số <span class="tag t-amber">Chuẩn tham chiếu quốc tế</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:10px">
+      <div style="background:rgba(224,64,64,.05);border:1px solid rgba(224,64,64,.2);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:3px">ALTMAN Z''-SCORE (EM, phi SX & mới nổi)</div>
+        <div style="font-size:26px;font-weight:800;color:var(--red)">1.06</div>
+        <div style="font-size:10px;color:var(--red);font-weight:600;margin-bottom:5px">🔴 RANH GIỚI VÙNG NGUY HIỂM (&lt;1.1)</div>
+        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Z'' = 6.56·X1 + 3.26·X2 + 6.72·X3 + 1.05·X4<br>X1 (WC/TTS) = <b style="color:var(--red)">−0.025</b> (VLĐ ròng ÂM −882 tỷ) · X2 (RE/TTS) ≈ 0.078 · X3 (EBIT/TTS) = 0.063 · X4 (VCSH/Nợ) = 0.516<br>Vùng: &gt;2.6 an toàn · 1.1–2.6 xám · &lt;1.1 nguy hiểm. <b>Kéo tụt chủ yếu bởi VLĐ ròng âm</b> — nhất quán với 72% nợ vay là ngắn hạn.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:3px">SHADOW RATING (từ scorecard 4/14)</div>
+        <div style="font-size:26px;font-weight:800;color:var(--red)">B / B−</div>
+        <div style="font-size:10px;color:var(--amber);font-weight:600;margin-bottom:5px">PD 1 năm tham chiếu: ~5–8%</div>
+        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Ánh xạ điểm scorecard → thang S&P với PD lịch sử default toàn cầu (12–14: ≥BBB− &lt;0.5% · 10–11: BB ~0.5–1% · 8–9: BB−/B+ ~1–2.5% · 6–7: B+/B ~2.5–5% · <b style="color:var(--red)">4–5: B/B− ~5–8%</b> · ≤3: CCC &gt;10%).<br>⚠️ Tham chiếu nội bộ, KHÔNG phải xếp hạng chính thức. Hàm ý pricing: margin cho vay phải đủ bù EL ≈ PD × LGD (~45% unsecured; thấp hơn theo giá trị TSBĐ thực tế).</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px">KỊCH BẢN TRỌNG SỐ XÁC SUẤT — Giá đường NĐ 2026-27 → ICR</div>
+        <table class="htb" style="font-size:9.5px">
+          <tr><th>Kịch bản</th><th>Giá NĐ</th><th>p</th><th>EBIT ann</th><th>ICR</th></tr>
+          <tr><td>A · ICE phục hồi &gt;23ct</td><td>~19,000đ</td><td>20%</td><td>~3,200</td><td style="color:var(--green)">2.30x</td></tr>
+          <tr><td>B · Base (hiện tại)</td><td>17,500-18,000đ</td><td>50%</td><td>~2,256</td><td style="color:var(--amber)">1.62x</td></tr>
+          <tr><td>C · Giảm về sát hòa vốn</td><td>~16,500đ</td><td>20%</td><td>~1,600</td><td style="color:var(--coral)">1.15x</td></tr>
+          <tr><td>D · ICE sụp + ATIGA lách</td><td>&lt;16,000đ</td><td>10%</td><td>~1,000</td><td style="color:var(--red)">0.72x</td></tr>
+        </table>
+        <div style="margin-top:6px;padding:6px 9px;background:rgba(232,160,32,.08);border-radius:5px;font-size:10.5px"><b>ICR kỳ vọng trọng số = <span style="color:var(--amber)">~1.57x</span></b> — dưới ngưỡng thận trọng 2.0x, trên ngưỡng cảnh báo 1.5x với biên mỏng. Xác suất ICR rơi &lt;1.5x trong 12T ≈ <b style="color:var(--coral)">30%</b> (KB C+D). Lãi vay ann ~1,391 tỷ.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="kpir k5" style="margin-bottom:10px">
     <div class="kpi green" id="kpi-dt">
       <div class="kl">Doanh thu 9T (thực tế)</div>
