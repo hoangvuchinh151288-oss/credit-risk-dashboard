@@ -165,6 +165,36 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
     </div>
   </div>
 
+  <!-- ═══ ĐỊNH LƯỢNG RỦI RO: Z-SCORE · SHADOW RATING · KỊCH BẢN TRỌNG SỐ ═══ -->
+  <div class="card mb10" style="border-top:3px solid var(--purple)">
+    <div class="ctitle">📐 Định lượng rủi ro — Altman Z''-EM · Shadow Rating · ICR kỳ vọng trọng số <span class="tag t-amber">Chuẩn tham chiếu quốc tế</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:10px">
+      <div style="background:rgba(232,160,32,.05);border:1px solid rgba(232,160,32,.2);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:3px">ALTMAN Z''-SCORE (EM, phi SX & mới nổi)</div>
+        <div style="font-size:26px;font-weight:800;color:var(--amber)">1.57</div>
+        <div style="font-size:10px;color:var(--amber);font-weight:600;margin-bottom:5px">🟡 VÙNG XÁM (1.1 – 2.6)</div>
+        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Z'' = 6.56·X1 + 3.26·X2 + 6.72·X3 + 1.05·X4<br>X1 (WC/TTS) = +0.125 (VLĐ ròng dương ~17,500 tỷ nhờ tiền bán vé nhận trước) · X2 ≈ 0.047 · X3 (EBIT/TTS) = 0.043 · X4 (VCSH/Nợ) = 0.291<br>Vùng: &gt;2.6 an toàn · 1.1–2.6 xám · &lt;1.1 nguy hiểm. Kéo tụt bởi X4 thấp (đòn bẩy TTS lớn) — đặc thù ngành HK, nhưng vẫn là tín hiệu cần TSBĐ tốt.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:3px">SHADOW RATING (từ scorecard 6/14)</div>
+        <div style="font-size:26px;font-weight:800;color:var(--amber)">B+ / B</div>
+        <div style="font-size:10px;color:var(--amber);font-weight:600;margin-bottom:5px">PD 1 năm tham chiếu: ~2.5–5%</div>
+        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Ánh xạ điểm scorecard → thang S&P với PD lịch sử default toàn cầu (12–14: ≥BBB− &lt;0.5% · 10–11: BB ~0.5–1% · 8–9: BB−/B+ ~1–2.5% · <b style="color:var(--amber)">6–7: B+/B ~2.5–5%</b> · 4–5: B/B− ~5–8% · ≤3: CCC &gt;10%).<br>⚠️ Tham chiếu nội bộ, KHÔNG phải xếp hạng chính thức. So sánh: các LCC châu Á được rate chính thức phần lớn nằm BB−/B+ — VJC không lệch chuẩn ngành, nhưng đang ở pha rủi ro nhiên liệu tăng.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px">KỊCH BẢN TRỌNG SỐ XÁC SUẤT — Brent bq H2/2026 → ICR (đã tính pass-through phụ thu ~40%)</div>
+        <table class="htb" style="font-size:9.5px">
+          <tr><th>Kịch bản</th><th>Brent</th><th>p</th><th>EBIT ước</th><th>ICR</th></tr>
+          <tr><td>A · Hạ nhiệt, đàm phán lại</td><td>~75$</td><td>15%</td><td>~7,100</td><td style="color:var(--green)">2.15x</td></tr>
+          <tr><td>B · Căng thẳng kéo dài (base)</td><td>85-90$</td><td>45%</td><td>~4,565</td><td style="color:var(--coral)">1.38x</td></tr>
+          <tr><td>C · Leo thang thêm</td><td>~95$</td><td>25%</td><td>~3,005</td><td style="color:var(--red)">0.91x</td></tr>
+          <tr><td>D · Đóng Hormuz thực sự</td><td>&gt;110$</td><td>15%</td><td>~80</td><td style="color:var(--red)">0.02x</td></tr>
+        </table>
+        <div style="margin-top:6px;padding:6px 9px;background:rgba(240,104,64,.1);border-radius:5px;font-size:10.5px"><b>ICR kỳ vọng trọng số = <span style="color:var(--coral)">~1.17x</span></b> — DƯỚI ngưỡng cảnh báo 1.5x. Xác suất ICR &lt;1.0x trong H2/2026 ≈ <b style="color:var(--red)">40%</b> (KB C+D) <b>nếu không hedge</b>. Đây là lý do trạng thái hedge là thông tin tín dụng số 1 hiện nay — hedge 50% sẽ kéo ICR kỳ vọng lên ~1.5-1.6x. Lãi vay ~3,300 tỷ.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="kpir k5 mb10">
     <div class="kpi green" id="kpi-dt"><div class="kl">Doanh thu hợp nhất 2025</div><div class="kv cg">82,093 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cg">▲ +14% vs 71,990 tỷ (2024)</div></div>
     <div class="kpi green" id="kpi-bien"><div class="kl">Biên LN gộp (Cty mẹ)</div><div class="kv cs">10.09<span style="font-size:12px;color:var(--muted)">%</span></div><div class="ks cg">▲ vs ~8.3% năm 2024</div></div>
