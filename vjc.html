@@ -81,7 +81,7 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
   <div>
     <div style="font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Công cụ kiểm soát rủi ro tín dụng</div>
     <h1 style="font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.5px;line-height:1">Dashboard theo dõi <span style="color:var(--sky)">VIETJET AIR</span></h1>
-    <div style="font-size:11px;color:var(--muted);margin-top:3px">VJC · CTCP Hàng không Vietjet · Mô hình: Jet-A1 + USD/VND + Load factor → EBITDAR → Khả năng trang trải nợ vay</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:3px">VJC · CTCP Hàng không Vietjet · Mô hình LCC: CASK/RASK + Jet-A1 + USD/VND + Load factor → EBITDAR core → Khả năng trang trải nợ vay</div>
   </div>
   <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
     <span style="font-size:10px;padding:3px 10px;border-radius:12px;background:rgba(31,200,122,.1);color:var(--green);font-weight:600;border:1px solid rgba(31,200,122,.2)">🔒 Nội bộ · Kiểm soát rủi ro</span>
@@ -161,9 +161,9 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
     <div class="ctitle">🎯 CREDIT SCORECARD — Đánh giá tổng hợp cho quyết định tín dụng <span class="tag t-amber">Cập nhật 18/07/2026 · FY2025 kiểm toán + sự kiện T7/2026</span></div>
     <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:6px" id="scorecardGrid"></div>
     <div style="display:flex;align-items:center;gap:12px;margin-top:9px;padding:8px 11px;background:rgba(232,160,32,.07);border:1px solid rgba(232,160,32,.25);border-radius:7px">
-      <div style="font-size:22px;font-weight:800;color:var(--red)">3/14</div>
+      <div style="font-size:22px;font-weight:800;color:var(--red)">2/14</div>
       <div style="flex:1;font-size:11px;line-height:1.55">
-        <b style="color:var(--red)">KHUYẾN NGHỊ: CẢNH BÁO — SIẾT ĐIỀU KIỆN, KHÔNG TĂNG HẠN MỨC.</b> BCTC Q2/2026 (30/07) xác nhận kịch bản xấu: <b>mảng vận tải hàng không cốt lõi LỖ GỘP ~227 tỷ</b>; toàn bộ lợi nhuận đến từ thương mại tàu bay (DT 12,157 tỷ, LN gộp ~1,929 tỷ) — nguồn thu <b>không lặp lại, phụ thuộc lịch nhận tàu và khẩu vị lessor</b>. LNST Q2 −47%, tiền mặt giảm 6,900 tỷ, thanh khoản 1.36x. Điểm tựa còn lại: sản lượng 6.2tr khách/quý, thị phần dẫn đầu, hệ sinh thái Sovico. Điều kiện bắt buộc: (a) <b>đòi bằng được trạng thái hedge nhiên liệu</b> — biến số quyết định Q3-Q4; (b) mọi thẩm định phải dùng <b>EBITDA core</b> (loại lãi bán tàu) để tính ICR/DSCR; (c) không tăng hạn mức tín chấp; ưu tiên tài trợ có TSBĐ tàu bay hoặc dòng tiền bán vé về tài khoản; (d) chốt lịch đáo hạn từng lô TPRL ~10,500 tỷ + phương án nguồn trước 30/09; (e) đặt covenant thanh khoản tối thiểu (tiền ≥ 30 ngày DT) và trần Adj ND/EBITDAR ≤ 7.5x.
+        <b style="color:var(--red)">KHUYẾN NGHỊ: CẢNH BÁO — SIẾT ĐIỀU KIỆN, KHÔNG TĂNG HẠN MỨC.</b> BCTC Q2/2026 (30/07) xác nhận kịch bản xấu: <b>mảng vận tải hàng không cốt lõi LỖ GỘP ~227 tỷ</b>; toàn bộ lợi nhuận đến từ thương mại tàu bay (DT 12,157 tỷ, LN gộp ~1,929 tỷ) — nguồn thu <b>không lặp lại, phụ thuộc lịch nhận tàu và khẩu vị lessor</b>. LNST Q2 −47%. <b>Đáng ngại hơn: sản lượng khách H1 giảm 6.5% YoY (13.4tr vs ~14.3tr)</b> — doanh thu +44% trong khi chở ít khách hơn, tức mảng bay đang co lại chứ không tăng trưởng. Tiền mặt giảm 6,900 tỷ; tiền+ĐTNH chỉ còn 10.6% doanh thu LTM (chuẩn ngành hàng không ≥20%). Điểm tựa còn lại: sản lượng 6.2tr khách/quý, thị phần dẫn đầu, hệ sinh thái Sovico. Điều kiện bắt buộc: (a) <b>đòi bằng được trạng thái hedge nhiên liệu</b> — biến số quyết định Q3-Q4; (b) mọi thẩm định phải dùng <b>EBITDA core</b> (loại lãi bán tàu) để tính ICR/DSCR; (c) không tăng hạn mức tín chấp; ưu tiên tài trợ có TSBĐ tàu bay hoặc dòng tiền bán vé về tài khoản; (d) chốt lịch đáo hạn từng lô TPRL ~10,500 tỷ + phương án nguồn trước 30/09; (e) đặt covenant thanh khoản tối thiểu (tiền ≥ 30 ngày DT) và trần Adj ND/EBITDAR ≤ 7.5x.
       </div>
     </div>
   </div>
@@ -195,6 +195,60 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
     </div>
   </div>
 
+  <!-- ═══ KINH TẾ ĐƠN VỊ LCC — KHUNG CHUẨN NGÀNH ═══ -->
+  <div class="card mb10" style="border-top:3px solid var(--sky)">
+    <div class="ctitle">✈️ Kinh tế đơn vị mô hình LCC — Khung chuẩn ngành hàng không giá rẻ <span class="tag t-blue">Ô trống = phải đòi từ DN/CAAV, không suy đoán</span></div>
+    <div class="g32">
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px">A. TÍNH ĐƯỢC TỪ SỐ CÔNG BỐ — LỢI NHUẬN TRÊN MỖI HÀNH KHÁCH (mảng bay core)</div>
+        <table class="htb" style="font-size:10px">
+          <tr><th>Chỉ tiêu / hành khách</th><th>Q2/2025 (~)</th><th>Q2/2026</th><th>Thay đổi</th></tr>
+          <tr><td>Doanh thu core / khách</td><td>2.57 tr.đ</td><td>2.96 tr.đ</td><td style="color:var(--green)">+391k (+15.2%)</td></tr>
+          <tr><td>Giá vốn core / khách</td><td>2.21 tr.đ</td><td>3.00 tr.đ</td><td style="color:var(--red)">+783k (+35.4%)</td></tr>
+          <tr><td><b>LN gộp / khách</b></td><td style="color:var(--green);font-weight:700">+355,400đ</td><td style="color:var(--red);font-weight:700">−36,600đ 🔴</td><td style="color:var(--red)">−392,000đ</td></tr>
+          <tr><td>Sản lượng khách</td><td>~6.8 triệu</td><td>6.2 triệu</td><td style="color:var(--red)">−8.8%</td></tr>
+        </table>
+        <div style="margin-top:6px;padding:7px 10px;background:rgba(232,160,32,.08);border:1px solid rgba(232,160,32,.2);border-radius:6px;font-size:10.5px;line-height:1.6">
+          <b style="color:var(--amber)">🔑 PHÁT HIỆN — Pass-through thực tế chỉ ~50%:</b> VJC <b>đã tăng giá vé/nâng tỷ trọng quốc tế</b> (doanh thu/khách +15.2%) nhưng chi phí đơn vị tăng +35.4% → chỉ chuyển được <b>một nửa</b> mức tăng chi phí sang khách hàng. Vì biên gốc vốn mỏng, phần còn lại đủ đẩy LN gộp/khách từ dương sang âm. <b>Hàm ý Q3-Q4:</b> dư địa tăng giá tiếp bị giới hạn bởi cạnh tranh với VNA/Bamboo và độ co giãn cầu của phân khúc giá rẻ — không nên giả định pass-through cải thiện mạnh.
+        </div>
+        <div style="font-size:9px;color:var(--muted);margin-top:4px">Sản lượng khách Q2/2025 là số ước (VJC không công bố riêng quý) — suy từ FY2025 28.2tr và Q4/2025 6.7tr, có tính mùa vụ Tết ở Q1. Sai số ±0.3tr không đổi kết luận.</div>
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:5px">B. CHỈ SỐ LCC CHUẨN — CHỜ DỮ LIỆU (ưu tiên đòi trong hồ sơ tái cấp)</div>
+        <table class="htb" style="font-size:9.5px">
+          <tr><th>Chỉ số</th><th>Chuẩn LCC tốt</th><th>VJC</th></tr>
+          <tr><td><b>CASK ex-fuel</b></td><td>&lt; 3.0 US cent</td><td style="color:var(--muted)">— cần ASK</td></tr>
+          <tr><td>CASK tổng</td><td>4.0–5.0 cent</td><td style="color:var(--muted)">— cần ASK</td></tr>
+          <tr><td>RASK</td><td>&gt; CASK ≥0.5 cent</td><td style="color:var(--muted)">— cần ASK</td></tr>
+          <tr><td>Yield (DT/RPK)</td><td>tùy stage length</td><td style="color:var(--muted)">— cần RPK</td></tr>
+          <tr><td><b>DT phụ trợ/khách</b></td><td>25–40% tổng DT</td><td style="color:var(--muted)">— cần TM</td></tr>
+          <tr><td><b>Utilization</b></td><td>11–13 block hrs/ngày</td><td style="color:var(--muted)">— cần báo cáo</td></tr>
+          <tr><td>Load factor</td><td>&gt; 85%</td><td style="color:var(--green)">~88-89% ✅</td></tr>
+          <tr><td>Stage length bq</td><td>—</td><td style="color:var(--muted)">— cần số liệu</td></tr>
+        </table>
+        <div style="font-size:9.5px;color:var(--muted);margin-top:6px;line-height:1.5"><b style="color:var(--sky)">Vì sao bắt buộc với LCC:</b> mô hình giá rẻ thắng bằng <b>chi phí đơn vị</b>, không bằng giá vé. <b>CASK ex-fuel</b> là thước đo hiệu quả thật (loại biến nhiên liệu ngoài tầm kiểm soát) — nếu CASK ex-fuel của VJC đang xấu đi thì vấn đề là <b>cấu trúc</b>, không chỉ là dầu. <b>Doanh thu phụ trợ</b> (hành lý, chọn chỗ, ăn uống) biên rất cao và <b>không tốn nhiên liệu</b> — đây là van giảm sốc quan trọng nhất khi dầu tăng; Ryanair/Wizz đạt 30-40%.</div>
+      </div>
+    </div>
+    <div style="margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:rgba(155,127,232,.05);border:1px solid rgba(155,127,232,.2);border-radius:7px;padding:9px 11px;font-size:10.5px;line-height:1.6">
+        <b style="color:var(--purple)">C. AIR TRAFFIC LIABILITY (doanh thu chưa thực hiện) — chỉ báo cầu sớm nhất</b><br>
+        Tiền vé bán trước là khoản <b>khách hàng cho hãng bay vay không lãi</b> — nguồn tạo vốn lưu động âm đặc thù ngành. Ý nghĩa kép với người cho vay:<br>
+        · <b>Thanh khoản:</b> ATL tăng = dòng tiền vào trước khi phát sinh chi phí bay<br>
+        · <b>Cảnh báo sớm:</b> ATL <b>giảm</b> báo hiệu cầu yếu đi <b>trước</b> khi doanh thu ghi nhận giảm — thường sớm 1-2 quý<br>
+        · <b>Rủi ro ẩn:</b> nếu hãng gặp khó, ATL là nghĩa vụ phải hoàn/phải bay — không phải vốn tự do<br>
+        <b style="color:var(--amber)">→ Cần trích từ BCĐKT (mục Doanh thu chưa thực hiện ngắn hạn) mỗi quý và theo dõi xu hướng. Chưa có trong dashboard vì thông cáo không nêu.</b>
+      </div>
+      <div style="background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.2);border-radius:7px;padding:9px 11px;font-size:10.5px;line-height:1.6">
+        <b style="color:var(--sky)">D. HIỆU CHỈNH MÙA VỤ — tránh phản ứng quá mức</b><br>
+        Hàng không VN có mùa rõ rệt: <b>Q1 (Tết) và Q3 (hè) cao điểm · Q2 và Q4 thấp điểm</b>. Do đó:<br>
+        · Cú lỗ gộp Q2/2026 <b>một phần là mùa vụ</b>, không hoàn toàn suy thoái cấu trúc<br>
+        · <b>Luôn so Q2 với Q2</b>, không so với quý liền trước — dashboard đã áp dụng (Q2/26 vs Q2/25)<br>
+        · Q3/2026 (Jul-Sep) là <b>cao điểm hè</b> → nếu mảng core <b>vẫn lỗ gộp trong Q3</b>, đó là bằng chứng suy thoái cấu trúc chứ không phải mùa vụ → <b>trigger hạ bậc nội bộ</b><br>
+        · Ngược lại Q3 dương gộp trở lại chỉ là điều kiện cần, chưa đủ — phải xem Q4 (thấp điểm) có trụ được không
+      </div>
+    </div>
+  </div>
+
   <!-- ═══ ĐỊNH LƯỢNG RỦI RO: Z-SCORE · SHADOW RATING · KỊCH BẢN TRỌNG SỐ ═══ -->
   <div class="card mb10" style="border-top:3px solid var(--purple)">
     <div class="ctitle">📐 Định lượng rủi ro — Altman Z''-EM · Shadow Rating · ICR kỳ vọng trọng số <span class="tag t-amber">Chuẩn tham chiếu quốc tế</span></div>
@@ -203,10 +257,11 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
         <div style="font-size:10px;color:var(--muted);margin-bottom:3px">ALTMAN Z''-SCORE (EM, phi SX & mới nổi)</div>
         <div style="font-size:26px;font-weight:800;color:var(--coral)">1.39</div>
         <div style="font-size:10px;color:var(--coral);font-weight:600;margin-bottom:5px">🟠 VÙNG XÁM — ĐANG TRƯỢT VỀ NGƯỠNG NGUY HIỂM</div>
-        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Z'' = 6.56·X1 + 3.26·X2 + 6.72·X3 + 1.05·X4 · <b>Tính lại theo BCĐKT 30/06/2026</b><br>X1 (WC/TTS) ≈ +0.092 (↓ từ 0.125) · X2 ≈ 0.050 · X3 (EBIT/TTS) ≈ 0.049 · X4 (VCSH/Nợ) ≈ 0.282<br><b style="color:var(--red)">Nếu dùng EBIT core (loại lãi bán tàu bay) → X3 âm, Z'' rơi xuống ~1.0-1.1 = vùng nguy hiểm.</b> Trước: 1.57 (31/12/2025) → nay 1.39.</div>
+        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Z'' = 6.56·X1 + 3.26·X2 + 6.72·X3 + 1.05·X4 · <b>Tính lại theo BCĐKT 30/06/2026</b><br>X1 (WC/TTS) ≈ +0.092 (↓ từ 0.125) · X2 ≈ 0.050 · X3 (EBIT/TTS) ≈ 0.049 · X4 (VCSH/Nợ) ≈ 0.282<br><b style="color:var(--red)">Nếu dùng EBIT core (loại lãi bán tàu bay) → X3 âm, Z'' rơi xuống ~1.0-1.1.</b> Trước: 1.57 (31/12/2025) → nay 1.39.<br>
+        <b style="color:var(--amber)">⚠️ HIỆU CHUẨN NGÀNH — ĐỌC KỸ:</b> Altman Z xây trên DN <b>sản xuất</b>. Hãng bay có cấu trúc <b>vốn lưu động âm tự nhiên</b> (khách trả tiền trước khi bay → air traffic liability) và tài sản nặng đòn bẩy, nên <b>gần như mọi hãng bay khỏe mạnh cũng rơi vùng xám/nguy hiểm</b> theo thang gốc. Z''=1.39 của VJC KHÔNG mang nghĩa như 1.39 của một DN sản xuất. Cách dùng đúng: theo dõi <b>xu hướng của chính VJC qua các kỳ</b> (1.57→1.39 = xấu đi thật) và so với chính các hãng bay, không so với thang tuyệt đối.</div>
       </div>
       <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
-        <div style="font-size:10px;color:var(--muted);margin-bottom:3px">SHADOW RATING (từ scorecard 3/14)</div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:3px">SHADOW RATING (từ scorecard 2/14)</div>
         <div style="font-size:26px;font-weight:800;color:var(--red)">B / B−</div>
         <div style="font-size:10px;color:var(--red);font-weight:600;margin-bottom:5px">PD 1 năm tham chiếu: ~5–8% (hạ từ B+/B)</div>
         <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Ánh xạ điểm scorecard → thang S&P với PD lịch sử default toàn cầu (12–14: ≥BBB− &lt;0.5% · 10–11: BB ~0.5–1% · 8–9: BB−/B+ ~1–2.5% · 6–7: B+/B ~2.5–5% · <b style="color:var(--red)">4–5: B/B− ~5–8%</b> · ≤3: CCC &gt;10%).<br>⚠️ Tham chiếu nội bộ, KHÔNG phải xếp hạng chính thức. <b>Hạ 1 bậc sau BCTC Q2/2026</b> do mảng core lỗ gộp + chất lượng LN phụ thuộc bán tàu. Các LCC châu Á được rate chính thức phần lớn nằm BB−/B+ → VJC hiện <b>dưới mặt bằng peers</b>.</div>
@@ -258,9 +313,9 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
   </div>
 
   <div class="kpir k5 mb10">
-    <div class="kpi green" id="kpi-dt"><div class="kl">Doanh thu Q2/2026</div><div class="kv cg">30,499 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks ca">▲ +70% — nhưng 40% là thương mại tàu bay</div></div>
+    <div class="kpi green" id="kpi-dt"><div class="kl">Doanh thu Q2/2026</div><div class="kv cg">30,499 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cr">▲ +70% nhưng khách H1 −6.5% YoY 🔴</div></div>
     <div class="kpi red" id="kpi-bien"><div class="kl">Biên LN gộp Q2/2026</div><div class="kv cr">5.58<span style="font-size:12px;color:var(--muted)">%</span></div><div class="ks cr">▼ từ 13.5% Q2/2025 — sụp do nhiên liệu</div></div>
-    <div class="kpi red" id="kpi-icr"><div class="kl">LN gộp mảng BAY (core) Q2</div><div class="kv cr">−227 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cr">🔴 LỖ GỘP — toàn bộ LN từ bán tàu bay</div></div>
+    <div class="kpi red" id="kpi-icr"><div class="kl">LN gộp mảng BAY (core) Q2</div><div class="kv cr">−227 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cr">🔴 −36,600đ/khách (Q2/25: +355,400đ)</div></div>
     <div class="kpi red" id="kpi-lnst"><div class="kl">LNST Q2/2026</div><div class="kv co">349 <span style="font-size:11px;color:var(--muted)">tỷ</span></div><div class="ks cr">▼ −47% vs 660 tỷ Q2/2025 · 6T: 1,372 tỷ</div></div>
     <div class="kpi amber" id="kpi-nde"><div class="kl">Nợ vay ròng/VCSH (30/06)</div><div class="kv ca">2.37<span style="font-size:12px;color:var(--muted)">x</span></div><div class="ks ca">▲ từ 2.25x · Thanh khoản 1.36x (↓1.53x)</div></div>
   </div>
@@ -482,10 +537,12 @@ input[type=range]{flex:1;accent-color:var(--sky);height:3px;cursor:pointer}
       <tr><td>ICR (EBIT/Lãi vay)</td><td>≥ 2.0x</td><td style="color:var(--amber);font-weight:600">~1.8x</td><td style="color:var(--amber)">−10%</td><td>🟡 Dưới nhẹ; nhạy với lãi vay tăng theo đội bay</td></tr>
       <tr><td>Adjusted Net Debt/EBITDAR</td><td>≤ 6.0x</td><td style="color:var(--amber);font-weight:600">~6.5x</td><td style="color:var(--amber)">−8%</td><td>🟡 Vượt nhẹ; xu hướng tăng theo chu kỳ nhận tàu</td></tr>
       <tr><td>D/E (Nợ vay/VCSH)</td><td>≤ 3.0x</td><td style="color:var(--green);font-weight:600">2.25x</td><td style="color:var(--green)">+25%</td><td>🟢 Còn đệm</td></tr>
-      <tr><td>Thanh khoản (tiền+TĐT/DT ngày)</td><td>≥ 30 ngày DT</td><td style="color:var(--amber);font-weight:600">~31 ngày</td><td style="color:var(--amber)">+3%</td><td>🟡 Tiền ~7,000 tỷ / DT ~225 tỷ/ngày — mỏng cho hãng bay mùa cao điểm nhiên liệu</td></tr>
+      <tr><td><b>Thanh khoản chuẩn ngành HK</b><br><span style="font-size:9px;color:var(--muted)">(Tiền+ĐTNH)/Doanh thu 12T gần nhất</span></td><td>≥ 20% tốt<br>15-20% đủ</td><td style="color:var(--red);font-weight:600">10.6%</td><td style="color:var(--red)">−47% so ngưỡng 20%</td><td>🔴 10,383 tỷ / DT LTM ~97,840 tỷ. Chỉ riêng tiền mặt: <b>4.1%</b>. Loại DT bán tàu bay khỏi mẫu số vẫn chỉ 13.4% — <b>dưới ngưỡng lo ngại ở mọi cách tính</b></td></tr>
+      <tr><td>FFO/Debt (chuẩn rating agency HK)</td><td>≥ 20%</td><td style="color:var(--red);font-weight:600">~6-9% (ước)</td><td style="color:var(--red)">−55% trở lên</td><td>🔴 FFO ≈ EBITDA core − lãi vay − thuế. Cần LCTT 6T để chốt số — <b>yêu cầu bổ sung trong hồ sơ</b></td></tr>
       <tr><td>Biên EBITDAR</td><td>≥ 20%</td><td style="color:var(--green);font-weight:600">~24.9%</td><td style="color:var(--green)">+25%</td><td>🟢 Tốt — nhưng giảm nhanh nếu Brent >95$ không hedge</td></tr>
     </table></div>
-    <div style="font-size:10px;color:var(--muted);margin-top:5px">⚠️ Ngưỡng <b>tham chiếu thị trường</b> — covenant pháp lý lấy theo từng HĐTD. Khuyến nghị khi cấp mới: covenant thanh khoản tối thiểu (tiền ≥ 30 ngày DT), trần Adj ND/EBITDAR ≤ 7.0x, nghĩa vụ báo cáo hedge nhiên liệu và lịch delivery-payment nửa năm.</div>
+    <div style="font-size:10px;color:var(--muted);margin-top:5px">⚠️ Ngưỡng <b>tham chiếu thị trường</b> — covenant pháp lý lấy theo từng HĐTD. Khuyến nghị khi cấp mới: <b>covenant thanh khoản (tiền+ĐTNH ≥ 15% DT LTM)</b>, trần Adj ND/EBITDAR ≤ 7.5x đo trên EBITDA core, nghĩa vụ báo cáo hedge nhiên liệu và lịch delivery-payment nửa năm.<br>
+    <b>📌 Ghi chú phương pháp vốn hóa thuê:</b> Dashboard dùng hệ số <b>7× tiền thuê năm</b> (chuẩn Moody's đời trước). S&P hiện dùng <b>hiện giá cam kết thuê thực tế</b> — chính xác hơn nhưng cần bảng cam kết thuê từ TM BCTC. VJC hạch toán theo VAS (thuê vận hành <b>ngoài bảng</b>) nên điều chỉnh 7× là phù hợp; <b>cần kiểm tra không có phần thuê đã vốn hóa để tránh đếm hai lần</b>. Khi có số cam kết thuê theo năm → chuyển sang PV để thay thế.</div>
   </div>
 </div>
 
@@ -647,13 +704,13 @@ calcDerived();
 
 /* ── CREDIT SCORECARD ── */
 var scorecard=[
-  {n:'Rủi ro nhiên liệu',v:'Đã hiện thực',st:0,tr:'↘',d:'Biên gộp Q2 sụp 13.5%→5.58%'},
-  {n:'Đòn bẩy (Adj ND/EBITDAR)',v:'~7.4x (core)',st:0,tr:'↘',d:'Nợ ròng/VCSH 2.37x ↑ từ 2.25x'},
+  {n:'Vị thế thị trường (franchise)',v:'45% nội địa',st:2,tr:'→',d:'213 đường bay · thương hiệu · slot — điểm tựa duy nhất'},
+  {n:'Sản lượng & xu hướng cầu',v:'13.4tr khách H1',st:0,tr:'↘',d:'−6.5% YoY · Q2 6.2tr < Q4/25 6.7tr'},
+  {n:'Chi phí đơn vị & nhiên liệu',v:'−36,600đ/khách',st:0,tr:'↘',d:'LN gộp/khách: +355k → −37k (Q2 YoY)'},
+  {n:'Chất lượng lợi nhuận',v:'40% DT bán tàu bay',st:0,tr:'↘',d:'12,157 tỷ vs 429 tỷ cùng kỳ'},
   {n:'ICR mảng BAY (core)',v:'ÂM',st:0,tr:'↘',d:'LN gộp core Q2 −227 tỷ'},
-  {n:'Đáo hạn TPRL',v:'~10,500 tỷ',st:0,tr:'→',d:'3 lô 2025 → đỉnh 2026-2028'},
-  {n:'Vận hành (sản lượng)',v:'6.2tr khách Q2',st:2,tr:'↗',d:'213 đường bay; thị phần NĐ ~45%'},
-  {n:'Chất lượng lợi nhuận',v:'40% DT từ bán TB',st:0,tr:'↘',d:'12,157 tỷ vs 429 tỷ cùng kỳ'},
-  {n:'Thanh khoản',v:'1.36x ↓',st:1,tr:'↘',d:'Tiền −6,900 tỷ còn 4,012 tỷ'},
+  {n:'Đòn bẩy (Adj ND/EBITDAR)',v:'~7.4x (core)',st:0,tr:'↘',d:'Nợ ròng/VCSH 2.37x ↑ từ 2.25x'},
+  {n:'Thanh khoản (chuẩn ngành HK)',v:'10.6% DT LTM',st:0,tr:'↘',d:'Chuẩn ≥20% tốt · <15% lo ngại 🔴'},
 ];
 (function(){
   var sg=document.getElementById('scorecardGrid'); if(!sg) return;
@@ -675,7 +732,7 @@ var SCORE_HISTORY=[
   {ky:'04/2026 (dầu ~120$)',diem:5},
   {ky:'06/2026 (dầu 74$)',diem:8},
   {ky:'07/2026 (dầu 86$↑)',diem:6},
-  {ky:'31/07 (BCTC Q2) 🆕',diem:3},
+  {ky:'31/07 (BCTC Q2) 🆕',diem:2},
 ];
 (function(){
   var el=document.getElementById('scoreHist'); if(!el) return;
@@ -1031,6 +1088,12 @@ var monitors=[
   {c:'Hàng quý',n:'Adjusted Net Debt/EBITDAR',t:'>7.0x → Ngưỡng nguy hiểm ngành HK (hiện ~6.5x)',a:'Xem xét lại hạn mức tín dụng',col:'var(--amber)'},
   {c:'Theo sự kiện',n:'Đáo hạn TPRL ~10,500 tỷ (3 lô phát hành 2025)',t:'60 ngày trước từng lô — xác nhận nguồn thanh toán/tái phát hành',a:'Nếu thị trường TPDN đóng băng → rủi ro dồn về tín dụng NH',col:'var(--red)'},
   {c:'Theo sự kiện',n:'Nhận tàu bay (A320neo/B737-8/C909)',t:'Mỗi lần nhận tàu mới → nợ vay/nghĩa vụ thuê tăng',a:'Cập nhật lịch đáo hạn, tổng nợ vay và Adj ND/EBITDAR',col:'var(--blue)'},
+  {c:'Hàng quý',n:'Sản lượng khách & CASK ex-fuel',t:'Khách giảm 2 quý liên tiếp (H1/26 đã −6.5%) HOẶC CASK ex-fuel tăng → vấn đề CẤU TRÚC, không chỉ do dầu',a:'Phân biệt sốc chu kỳ vs suy giảm cạnh tranh; nếu cấu trúc → hạ bậc nội bộ',col:'var(--red)'},
+  {c:'Hàng quý',n:'Air traffic liability (DT chưa thực hiện)',t:'Giảm so cùng kỳ → cầu yếu, thường báo trước doanh thu 1-2 quý',a:'Trích từ BCĐKT mỗi quý; cảnh báo sớm nhất về nhu cầu đi lại',col:'var(--coral)'},
+  {c:'Hàng quý',n:'Doanh thu phụ trợ / tổng doanh thu',t:'<20% → mất van giảm sốc quan trọng nhất của mô hình LCC khi dầu tăng',a:'Yêu cầu TM chi tiết; so với chuẩn LCC 25-40%',col:'var(--amber)'},
+  {c:'Theo sự kiện',n:'⚙️ Động cơ P&W GTF trên 44 A320neo đặt hàng',t:'Bất kỳ khuyến cáo/triệu hồi nào của P&W → tàu nằm sân nhưng VẪN trả tiền thuê',a:'Rủi ro kép: mất doanh thu + giữ nguyên chi phí cố định. Hỏi DN về AOG rate và điều khoản bồi thường từ P&W',col:'var(--red)'},
+  {c:'Hàng quý',n:'Đường bay quốc tế mới (Kazakhstan/Séc/Sri Lanka)',t:'Đường dài-mỏng thường đốt tiền 12-24 tháng trước hòa vốn; mở rộng nhanh đúng lúc sốc nhiên liệu',a:'Yêu cầu P&L theo đường bay; đánh giá tỷ lệ đường bay chưa hòa vốn / tổng mạng',col:'var(--coral)'},
+  {c:'Hàng quý',n:'Utilization (block hours/ngày)',t:'<10h/ngày → mô hình LCC mất lợi thế chi phí đơn vị',a:'So với chuẩn ngành 11-13h; kiểm tra nguyên nhân (thiếu tàu, AOG, cắt chuyến)',col:'var(--amber)'},
 ];
 var ml=document.getElementById('monitorList');
 monitors.forEach(function(m){
