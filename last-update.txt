@@ -1,2 +1,3 @@
-Last updated: 19/07/2026
-SBT + VJC: dashboard hoàn chỉnh — scorecard, Z''-EM, shadow rating, kịch bản trọng số, peer benchmark, tín hiệu thị trường (Merton DD), quỹ đạo scorecard, covenant, EWS
+Last updated: 31/07/2026
+VJC: cap nhat BCTC Q2/2026 - mang bay cot loi LO GOP 227 ty, toan bo LN tu thuong mai tau bay. Scorecard 6->3/14, shadow rating ha 1 bac.
+SBT: cho DHDCD 24/07 va BCTC nam ND 25-26
