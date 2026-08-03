@@ -139,15 +139,14 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
 <!-- ALERT: Cảnh báo tín dụng ưu tiên -->
 <div class="alert-bar">
   <div id="alert-bar-content" style="display:contents">
-    <strong>⚠️ CẢNH BÁO TÍN DỤNG — BCTC Q3 NĐ 2025-2026 (31/03/2026) — 9T</strong>
-    <span class="alert-pill ap-red">🔴 DT 9T −6.1% YoY · LNST 9T 611 tỷ (−10.1%)</span>
-    <span class="alert-pill ap-amber">Q3: DT 8,231 tỷ (+13%) nhưng biên gộp ↓ 10.17%→9.36%</span>
-    <span class="alert-pill ap-red">Biên LN gộp 9T 8.82% (dưới ngưỡng an toàn 11%)</span>
-    <span class="alert-pill ap-red">Dòng tiền HĐKD ÂM -1,215 tỷ (6T)</span>
-    <span class="alert-pill ap-amber">ICR 9T = 1.60x · Lãi vay ~4.2 tỷ/NGÀY</span>
-    <span class="alert-pill ap-amber">Net Debt/EBITDA = 5.6x</span>
-    <span class="alert-pill ap-amber">✅ CBPG GIA HẠN 5 NĂM đến 15/6/2031 (QĐ 1309, 02/6/2026)</span>
-  </div>
+    <strong>📗 BCTC HỢP NHẤT NIÊN ĐỘ 2025-2026 (30/06/2026) — công bố 30/07/2026</strong>
+    <span class="alert-pill ap-amber">DT cả năm 26,892 tỷ (−5.6%) · đạt 101.5% KH</span>
+    <span class="alert-pill ap-green">🟢 Q4 biên gộp BẬT lên 13.54% (từ 8.35% cùng kỳ) — vụ ép cuối tốt</span>
+    <span class="alert-pill ap-red">🔴 LN thuần HĐKD 723 tỷ (−28.4%) — LNTT 908 tỷ giữ được nhờ liên kết 301 tỷ (×8.9) + LN khác 185 tỷ</span>
+    <span class="alert-pill ap-red">🔴 LCTT HĐKD ÂM 333 tỷ — NĂM THỨ 2 LIÊN TIẾP</span>
+    <span class="alert-pill ap-red">🔴 Nợ miễn truy đòi bộ chứng từ 3,977 tỷ (+125%) — nợ tài chính THỰC 21,817 tỷ</span>
+    <span class="alert-pill ap-amber">ICR 1.59x · Lãi vay 1,546 tỷ = 4.2 tỷ/ngày</span>
+    <span class="alert-pill ap-red">🔴 Vay mới 34,319 tỷ / trả nợ 33,382 tỷ = đảo nợ 1.92× dư nợ</span></div>
 </div>
 <!-- Sheets status bar -->
 <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:6px 14px;margin-bottom:10px;flex-wrap:wrap;gap:6px">
@@ -182,9 +181,9 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
   <div></div>
   <div class="bdata">
     <div style="font-size:10px;color:var(--muted)" id="banner-ky">Kỳ báo cáo: 01/07/2025 – 31/12/2025</div>
-    <div class="bdata-val" style="color:var(--amber);margin:2px 0" id="banner-dt">DT thuần 9T: 20,336 tỷ</div>
-    <div style="font-size:11px;color:var(--red)">▼ −6.1% vs cùng kỳ 9T (~21,657 tỷ)</div>
-    <div style="font-size:11px;color:var(--green);margin-top:2px" id="banner-lnst">LNST 9T: 611 tỷ (−10.1%) · LNBT 9T: 649 tỷ (68.2% KH)</div>
+    <div class="bdata-val" style="color:var(--amber);margin:2px 0" id="banner-dt">DT thuần cả niên độ: 26,892 tỷ</div>
+    <div style="font-size:11px;color:var(--amber)">▼ −5.6% vs 28,482 tỷ · đạt 101.5% KH</div>
+    <div style="font-size:11px;color:var(--green);margin-top:2px" id="banner-lnst">LNST: 840 tỷ (+0.7%) · LNTT: 908 tỷ (95.5% KH)</div>
   </div>
 </div>
 
@@ -208,32 +207,64 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
     <div style="display:flex;align-items:center;gap:12px;margin-top:9px;padding:8px 11px;background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.2);border-radius:7px">
       <div style="font-size:22px;font-weight:800;color:var(--red)">3/14</div>
       <div style="flex:1;font-size:11px;line-height:1.55">
-        <b style="color:var(--red)">KHUYẾN NGHỊ: THEO DÕI CHẶT — TĂNG CƯỜNG QUẢN LÝ.</b> Khả năng trả nợ phụ thuộc gần như hoàn toàn vào đảo nợ (nguồn trả gốc từ EBITDA chỉ ~10% nợ vay NH đến hạn). <b style='color:var(--red)'>Đính chính quan trọng: doanh thu 9T GIẢM 6.1% và LNST GIẢM 10.1% — không phải tăng như bản dashboard trước.</b> Q3 doanh thu +13% nhưng biên gộp co từ 10.17% xuống 9.36%, tức tăng trưởng đến từ mảng biên mỏng (thương mại, gạo) chứ không phải cải thiện hiệu quả. Điểm tựa: TSBĐ đa dạng + thị phần 46% + CBPG chốt 5 năm + LN từ liên doanh liên kết chuyển từ lỗ sang lãi. Điều kiện khuyến nghị khi cấp/tái cấp hạn mức: (1) kiểm soát dòng tiền về tài khoản tại BIDV theo tỷ lệ tài trợ; (2) yêu cầu bóc tách trả trước người bán theo đối tượng hàng quý; (3) covenant ICR ≥ 1.3x đo hàng quý với lộ trình lên 1.5x; (4) chốt phương án nguồn xử lý TPCĐ 700 tỷ trước 15/08/2026.
+        <b style="color:var(--red)">KHUYẾN NGHỊ: THEO DÕI CHẶT — TÁI CẤP CÓ ĐIỀU KIỆN, KHÔNG TĂNG HẠN MỨC.</b> BCTC niên độ 2025-2026 (30/07/2026) cho bức tranh hai chiều. <b style="color:var(--green)">Tích cực:</b> vượt KH doanh thu (101.5%), đạt 95.5% KH lợi nhuận, Q4 biên gộp bật lên 13.54%, vốn lưu động ròng chuyển dương, Z''-score cải thiện 1.06→1.81, trả trước bên liên quan chỉ 59 tỷ (bác bỏ nghi ngờ chuyển vốn nội bộ). <b style="color:var(--red)">Tiêu cực:</b> lợi nhuận cốt lõi −28.4%, LCTT HĐKD âm năm thứ 2, nợ ẩn miễn truy đòi 3,977 tỷ (+125%) đẩy nợ tài chính thực lên 21,817 tỷ, đảo nợ 1.92× dư nợ/năm, dòng tiền chảy sang cho vay/góp vốn (5,593 tỷ) nhiều hơn đầu tư SXKD (974 tỷ). <b>Điều kiện bắt buộc khi tái tục các khoản T9–T12/2026:</b> (1) yêu cầu giải trình chi tiết khối trả trước "các bên khác" 4,867 tỷ theo đối tượng và tuổi nợ; (2) làm rõ bản chất, đối tác và điều kiện của 3,977 tỷ giao dịch miễn truy đòi — có truy đòi ngược trong trường hợp nào; (3) tính covenant ICR trên EBIT cốt lõi (loại lãi liên kết & LN khác), đặt ngưỡng ≥1.3x; (4) rà soát exposure hợp nhất toàn hệ thống BIDV (2,466 tỷ, 5 chi nhánh) và nhóm KH liên quan; (5) định giá lại TSBĐ, duy trì tỷ lệ tài trợ/TSBĐ thận trọng; (6) kiểm soát dòng tiền bán hàng về tài khoản BIDV theo tỷ lệ tài trợ.</div>
+    </div>
+  </div>
+
+  <!-- ═══ KẾT QUẢ NIÊN ĐỘ & PHÁT HIỆN TỪ BCTC ═══ -->
+  <div class="card mb11" style="border:1px solid rgba(224,64,64,.3);background:linear-gradient(180deg,rgba(224,64,64,.04),transparent)">
+    <div class="ctitle">🔬 KẾT QUẢ NIÊN ĐỘ 2025-2026 & 4 PHÁT HIỆN TỪ BCTC <span class="tag t-green">✅ Số thật, công bố 30/07/2026</span></div>
+    <div class="g32">
+      <div>
+        <table class="htb" style="font-size:10px">
+          <tr><th>Chỉ tiêu</th><th>NĐ 25-26</th><th>NĐ 24-25</th><th>%</th><th>KH</th></tr>
+          <tr><td>Doanh thu thuần</td><td>26,892</td><td>28,482</td><td style="color:var(--amber)">−5.6%</td><td style="color:var(--green)">101.5% ✓</td></tr>
+          <tr><td>LN gộp (biên)</td><td>2,680 (9.97%)</td><td>2,984 (10.48%)</td><td style="color:var(--amber)">−10.2%</td><td>—</td></tr>
+          <tr style="background:rgba(224,64,64,.06)"><td><b>LN thuần HĐKD</b></td><td style="color:var(--red);font-weight:700">723</td><td>1,010</td><td style="color:var(--red);font-weight:700">−28.4% 🔴</td><td>—</td></tr>
+          <tr><td>+ Lãi công ty liên kết</td><td style="color:var(--green)">301</td><td>34</td><td style="color:var(--green)">×8.9</td><td>—</td></tr>
+          <tr><td>+ Lợi nhuận khác</td><td style="color:var(--green)">185</td><td>−59</td><td style="color:var(--green)">đảo chiều</td><td>—</td></tr>
+          <tr><td><b>LNTT</b></td><td><b>908</b></td><td>950</td><td style="color:var(--amber)">−4.4%</td><td style="color:var(--amber)">95.5%</td></tr>
+          <tr><td>LNST</td><td>840</td><td>834</td><td style="color:var(--green)">+0.7%</td><td>—</td></tr>
+          <tr style="border-top:2px solid var(--border);background:rgba(31,200,122,.05)"><td><b>Q4 riêng</b> (Apr–Jun)</td><td>DT 6,555</td><td>6,834</td><td>−4.1%</td><td style="color:var(--green)">Biên 13.54% 🟢</td></tr>
+        </table>
+        <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5"><b style="color:var(--green)">🟢 Điểm sáng:</b> Q4 (cuối vụ ép) biên gộp bật từ 8.35% lên <b>13.54%</b>, LNTT Q4 259 tỷ (+46%). Giá đường phục hồi + CBPG chốt 5 năm đang phát huy. Vượt kế hoạch doanh thu, đạt 95.5% kế hoạch LNTT — dự báo trước đó của dashboard (cần 302 tỷ LNTT Q4) sát thực tế (259 tỷ).</div>
+      </div>
+      <div style="background:rgba(224,64,64,.06);border:1px solid rgba(224,64,64,.22);border-radius:7px;padding:10px 12px;font-size:10.5px;line-height:1.6">
+        <b style="color:var(--red)">4 PHÁT HIỆN TRỌNG YẾU:</b><br><br>
+        <b>1️⃣ Lợi nhuận cốt lõi sụt 28.4%.</b> LNTT chỉ giảm 4.4% nhờ liên kết 301 tỷ (×8.9 lần) + LN khác 185 tỷ. Loại 2 khoản này, <b>ICR rơi từ 1.59x xuống 1.27x</b>. Liên kết lớn nhất là Toàn Hải Vân 2,562 tỷ — <b>BĐS/kho cảng, không phải ngành đường</b>.<br><br>
+        <b>2️⃣ Nợ ẩn 3,977 tỷ ngoài mục "vay".</b> "Phải trả từ giao dịch miễn truy đòi bộ chứng từ" tăng <b>+125%</b> (1,764 → 3,977 tỷ) — bản chất là tài trợ thương mại/chiết khấu bộ chứng từ, nghĩa vụ tài chính thật nhưng KHÔNG nằm trong dòng vay. <b>Nợ tài chính thực = 17,840 + 3,977 = 21,817 tỷ</b>, bằng 81% doanh thu năm.<br><br>
+        <b>3️⃣ LCTT HĐKD âm năm thứ 2 liên tiếp</b> (−333 tỷ, CK −606 tỷ). Vòng quay đảo nợ khổng lồ: <b>vay mới 34,319 tỷ / trả nợ 33,382 tỷ</b> = 1.92× dư nợ cuối kỳ. FCF −1,307 tỷ. Tiền mặt giảm 42.6% còn 2,042 tỷ (nhưng tiền gửi kỳ hạn tăng lên 6,264 tỷ).<br><br>
+        <b>4️⃣ Dòng tiền chảy ra ngoài SXKD.</b> LCTT đầu tư −2,989 tỷ, trong đó <b>chi cho vay 3,417 tỷ</b> và góp vốn 2,176 tỷ — lớn hơn nhiều so với mua sắm TSCĐ (974 tỷ). Cộng "góp vốn hợp tác kinh doanh" 1,596 tỷ ở phải thu dài hạn. <b>SBT đang hoạt động một phần như định chế tài chính.</b>
       </div>
     </div>
   </div>
 
-  <!-- ═══ TIẾN ĐỘ KẾ HOẠCH NIÊN ĐỘ & Q4 QUYẾT ĐỊNH ═══ -->
+  <!-- ═══ TRẢ TRƯỚC NGƯỜI BÁN — BÓC TÁCH THẬT & EXPOSURE BIDV ═══ -->
   <div class="card mb11" style="border-top:3px solid var(--amber)">
-    <div class="ctitle">📆 Tiến độ kế hoạch niên độ 2025-2026 & Q4 quyết định <span class="tag t-red">BCTC năm (30/06/2026) CHƯA công bố — dự kiến T8-T9/2026</span></div>
+    <div class="ctitle">🔗 Trả trước người bán 7,283 tỷ — bóc tách THẬT (TM8) & Exposure BIDV (TM24.1) <span class="tag t-green">Lần đầu có số chi tiết</span></div>
     <div class="g32">
       <div>
         <table class="htb" style="font-size:10px">
-          <tr><th>Chỉ tiêu</th><th>KH niên độ</th><th>9T thực hiện</th><th>% KH</th><th>Q4 cần đạt</th></tr>
-          <tr><td>Doanh thu thuần</td><td>26,500 tỷ</td><td style="color:var(--amber)">20,336 tỷ</td><td style="color:var(--amber)">76.7%</td><td>6,164 tỷ</td></tr>
-          <tr><td>LNTT</td><td>951 tỷ</td><td style="color:var(--coral)">649 tỷ</td><td style="color:var(--coral)">68.2%</td><td style="color:var(--red)">302 tỷ ⚠️</td></tr>
-          <tr style="border-top:2px solid var(--border)"><td>NĐ trước (24-25)</td><td colspan="2">DT 28,492 tỷ · LNBT 950 tỷ · LNST 834 tỷ</td><td colspan="2" style="color:var(--red)">KH năm nay đã đặt DT thấp hơn 7%</td></tr>
+          <tr><th>Đối tượng trả trước</th><th>30/06/2026</th><th>30/06/2025</th><th>Tỷ trọng</th><th>Đánh giá</th></tr>
+          <tr><td>Bên liên quan (TTC)</td><td>59</td><td>62</td><td style="color:var(--green)">0.8%</td><td style="color:var(--green)">🟢 RẤT NHỎ</td></tr>
+          <tr><td>Nông dân trồng mía (NH+DH)</td><td>2,357</td><td>2,434</td><td style="color:var(--green)">32.4%</td><td style="color:var(--green)">🟢 Có GCN QSDĐ + hưởng lãi</td></tr>
+          <tr style="background:rgba(224,64,64,.06)"><td><b>Các bên khác</b></td><td style="color:var(--red);font-weight:700">4,867</td><td>3,315</td><td style="color:var(--red);font-weight:700">66.8%</td><td style="color:var(--red)">🔴 +46.8% — ẩn số</td></tr>
+          <tr style="border-top:2px solid var(--border)"><td><b>TỔNG</b></td><td><b>7,283</b></td><td>5,811</td><td>19% TTS</td><td style="color:var(--amber)">+25.3%</td></tr>
         </table>
-        <div style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.55"><b style="color:var(--red)">⚠️ Q4 (Apr–Jun 2026) phải tạo LNBT 302 tỷ</b> — cao hơn mức bình quân 216 tỷ/quý của 9T đầu. Đây là quý <b>cuối vụ ép</b>, thường không phải quý mạnh nhất. Nếu Q4 chỉ đi ngang, LNBT cả niên độ ước ~865 tỷ (91% KH) và <b>giảm ~9% so với 950 tỷ niên độ trước</b> — năm thứ hai liên tiếp lợi nhuận đi lùi trong khi nợ vay giữ nguyên.</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.55"><b style="color:var(--green)">✅ Bác bỏ một giả thuyết:</b> dashboard trước nghi ngờ khối trả trước là kênh chuyển vốn sang hệ sinh thái TTC. Số thật cho thấy <b>bên liên quan chỉ 59 tỷ (0.8%)</b> — giả thuyết này KHÔNG đúng. <b style="color:var(--red)">Nhưng rủi ro dịch chuyển, không biến mất:</b> "các bên khác" 4,867 tỷ (67%) tăng 46.8% trong 1 năm là khối lớn nhất và không được thuyết minh chi tiết. Đây là <b>câu hỏi số 1 cho kỳ thẩm định tới</b>: danh mục theo đối tượng, tuổi nợ, mục đích, có phải nhà cung cấp thật hay là kênh cấp tín dụng thương mại?</div>
       </div>
-      <div style="background:rgba(224,64,64,.05);border:1px solid rgba(224,64,64,.2);border-radius:7px;padding:10px 12px;font-size:10.5px;line-height:1.6">
-        <b style="color:var(--red)">🔬 BÓC TÁCH CHẤT LƯỢNG LỢI NHUẬN Q3 — cảnh báo:</b><br>
-        LNST Q3 245 tỷ (+14%) nhìn tích cực, nhưng nguồn gốc đáng lo:<br>
-        · <b>Biên gộp CO LẠI</b>: 10.17% → 9.36%. DT +13% nhưng giá vốn +14% — tăng trưởng đến từ mảng biên mỏng (thương mại, gạa)<br>
-        · <b>LN liên doanh liên kết chuyển từ lỗ sang lãi</b> — khoản ngoài hoạt động cốt lõi<br>
-        · <b>DT tài chính +40% lên 372 tỷ</b> (lãi tiền gửi, cho vay, lãi từ khoản ứng trước 218.6 tỷ) — liên quan trực tiếp đến khối trả trước người bán 6,574 tỷ<br>
-        · Chi phí bán hàng <b>+54%</b>, QLDN +20% — tốc độ vượt xa doanh thu<br>
-        <b style="color:var(--amber)">→ Lợi nhuận tăng KHÔNG đến từ kinh doanh đường cốt lõi. Khi thẩm định, phải tính EBITDA loại phần liên kết và DT tài chính.</b>
+      <div style="background:rgba(74,144,226,.06);border:1px solid rgba(74,144,226,.25);border-radius:7px;padding:10px 12px">
+        <div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px">🏦 EXPOSURE BIDV TẠI SBT (vay ngắn hạn 30/06/2026)</div>
+        <table class="htb" style="font-size:10px">
+          <tr><th>Chi nhánh</th><th>Dư nợ (tỷ)</th><th>Kỳ hạn</th></tr>
+          <tr><td>BIDV Gia Định</td><td style="color:var(--amber);font-weight:700">1,398</td><td>T7–T12/2026</td></tr>
+          <tr><td>BIDV TP.HCM</td><td>482</td><td>T7–T9/2026</td></tr>
+          <tr><td>BIDV Khánh Hòa</td><td>353</td><td>T7–T12/2026</td></tr>
+          <tr><td>BIDV Gia Lai</td><td>199</td><td>T8–T11/2026</td></tr>
+          <tr><td>BIDV Ninh Thuận</td><td>34</td><td>T7–T12/2026</td></tr>
+          <tr style="border-top:2px solid var(--border);background:rgba(74,144,226,.08)"><td><b>TỔNG BIDV</b></td><td style="color:var(--blue);font-weight:700">2,466</td><td><b>30.4% vay NH ngân hàng</b></td></tr>
+        </table>
+        <div style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.55"><b style="color:var(--red)">⚠️ BIDV là chủ nợ ngân hàng LỚN NHẤT của SBT</b> — 2,466 tỷ trên tổng 8,099 tỷ vay ngắn hạn ngân hàng, trải 5 chi nhánh, <b>toàn bộ đáo hạn trong T7–T12/2026</b>. Tổng danh sách có ~35 ngân hàng (nhiều NH nước ngoài: First Commercial 1,054 tỷ, UOB 473, Mizuho 395, ESUN 259, China Construction 250...). TSBĐ: chứng khoán kinh doanh, QSDĐ và tài sản gắn liền với đất, hàng tồn kho, phải thu.<br><b style="color:var(--amber)">→ Khuyến nghị: rà soát exposure hợp nhất toàn hệ thống BIDV với SBT và nhóm khách hàng liên quan (SBT + GEG + TTC Land...) theo quy định nhóm KH liên quan của NHNN; kiểm tra định giá lại TSBĐ và tỷ lệ cho vay/TSBĐ trước khi tái tục các khoản T9–T12/2026.</b></div>
       </div>
     </div>
   </div>
@@ -244,26 +275,26 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
     <div style="display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:10px">
       <div style="background:rgba(224,64,64,.05);border:1px solid rgba(224,64,64,.2);border-radius:7px;padding:10px 12px">
         <div style="font-size:10px;color:var(--muted);margin-bottom:3px">ALTMAN Z''-SCORE (EM, phi SX & mới nổi)</div>
-        <div style="font-size:26px;font-weight:800;color:var(--red)">1.06</div>
-        <div style="font-size:10px;color:var(--red);font-weight:600;margin-bottom:5px">🔴 RANH GIỚI VÙNG NGUY HIỂM (&lt;1.1)</div>
-        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Z'' = 6.56·X1 + 3.26·X2 + 6.72·X3 + 1.05·X4<br>X1 (WC/TTS) = <b style="color:var(--red)">−0.025</b> (VLĐ ròng ÂM −882 tỷ) · X2 (RE/TTS) ≈ 0.078 · X3 (EBIT/TTS) = 0.063 · X4 (VCSH/Nợ) = 0.516<br>Vùng: &gt;2.6 an toàn · 1.1–2.6 xám · &lt;1.1 nguy hiểm. <b>Kéo tụt chủ yếu bởi VLĐ ròng âm</b> — nhất quán với 72% nợ vay là ngắn hạn.</div>
+        <div style="font-size:26px;font-weight:800;color:var(--amber)">1.81</div>
+        <div style="font-size:10px;color:var(--amber);font-weight:600;margin-bottom:5px">🟡 VÙNG XÁM (1.1 – 2.6) — cải thiện từ 1.06</div>
+        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Z'' = 6.56·X1 + 3.26·X2 + 6.72·X3 + 1.05·X4<br>Tính lại theo BCĐKT 30/06/2026: X1 (WC/TTS) = <b style="color:var(--green)">+0.118</b> (VLĐ ròng DƯƠNG 4,523 tỷ — đảo chiều từ âm) · X2 = 0.032 · X3 (EBIT/TTS) = 0.064 · X4 (VCSH/Nợ) = 0.481<br>Vùng: &gt;2.6 an toàn · 1.1–2.6 xám · &lt;1.1 nguy hiểm. <b style="color:var(--green)">Cải thiện thật</b> nhờ vốn lưu động ròng chuyển dương (tăng đầu tư TC ngắn hạn 7,027 tỷ). <b style="color:var(--amber)">Lưu ý:</b> nếu tính thêm nợ miễn truy đòi 3,977 tỷ vào nợ ngắn hạn, X1 về ~0.014 và Z rơi xuống ~1.13 — sát ngưỡng nguy hiểm.</div>
       </div>
       <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
         <div style="font-size:10px;color:var(--muted);margin-bottom:3px">SHADOW RATING (từ scorecard 4/14)</div>
         <div style="font-size:26px;font-weight:800;color:var(--red)">B / B−</div>
         <div style="font-size:10px;color:var(--amber);font-weight:600;margin-bottom:5px">PD 1 năm tham chiếu: ~5–8%</div>
-        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Ánh xạ điểm scorecard → thang S&P với PD lịch sử default toàn cầu (12–14: ≥BBB− &lt;0.5% · 10–11: BB ~0.5–1% · 8–9: BB−/B+ ~1–2.5% · 6–7: B+/B ~2.5–5% · <b style="color:var(--red)">4–5: B/B− ~5–8%</b> · ≤3: CCC &gt;10%).<br>⚠️ Tham chiếu nội bộ, KHÔNG phải xếp hạng chính thức. Hàm ý pricing: margin cho vay phải đủ bù EL ≈ PD × LGD (~45% unsecured; thấp hơn theo giá trị TSBĐ thực tế).</div>
+        <div style="font-size:9.5px;color:var(--muted);line-height:1.5">Ánh xạ điểm scorecard → thang S&P với PD lịch sử default toàn cầu (12–14: ≥BBB− &lt;0.5% · 10–11: BB ~0.5–1% · 8–9: BB−/B+ ~1–2.5% · 6–7: B+/B ~2.5–5% · <b style="color:var(--red)">3–5: B/B− ~5–8%</b> · ≤2: CCC &gt;10%).<br>⚠️ Tham chiếu nội bộ, KHÔNG phải xếp hạng chính thức. Hàm ý pricing: margin cho vay phải đủ bù EL ≈ PD × LGD (~45% unsecured; thấp hơn theo giá trị TSBĐ thực tế).</div>
       </div>
       <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
         <div style="font-size:10px;color:var(--muted);margin-bottom:4px">KỊCH BẢN TRỌNG SỐ XÁC SUẤT — Giá đường NĐ 2026-27 → ICR</div>
         <table class="htb" style="font-size:9.5px">
           <tr><th>Kịch bản</th><th>Giá NĐ</th><th>p</th><th>EBIT ann</th><th>ICR</th></tr>
           <tr><td>A · ICE phục hồi &gt;23ct</td><td>~19,000đ</td><td>20%</td><td>~3,200</td><td style="color:var(--green)">2.30x</td></tr>
-          <tr><td>B · Base (hiện tại)</td><td>17,500-18,000đ</td><td>50%</td><td>~2,301</td><td style="color:var(--amber)">1.60x</td></tr>
+          <tr style="background:rgba(31,200,122,.08)"><td><b>✅ THỰC TẾ NĐ 25-26</b></td><td>—</td><td>—</td><td><b>2,454</b></td><td style="color:var(--amber);font-weight:700">1.59x</td></tr>
           <tr><td>C · Giảm về sát hòa vốn</td><td>~16,500đ</td><td>20%</td><td>~1,600</td><td style="color:var(--coral)">1.15x</td></tr>
           <tr><td>D · ICE sụp + ATIGA lách</td><td>&lt;16,000đ</td><td>10%</td><td>~1,000</td><td style="color:var(--red)">0.72x</td></tr>
         </table>
-        <div style="margin-top:6px;padding:6px 9px;background:rgba(232,160,32,.08);border-radius:5px;font-size:10.5px"><b>ICR kỳ vọng trọng số = <span style="color:var(--amber)">~1.56x</span></b> — dưới ngưỡng thận trọng 2.0x, trên ngưỡng cảnh báo 1.5x với biên mỏng. Xác suất ICR rơi &lt;1.5x trong 12T ≈ <b style="color:var(--coral)">30%</b> (KB C+D). Lãi vay ann ~1,436 tỷ (~4.2 tỷ/ngày).</div>
+        <div style="margin-top:6px;padding:6px 9px;background:rgba(232,160,32,.08);border-radius:5px;font-size:10.5px"><b style="color:var(--green)">✅ KIỂM CHỨNG MÔ HÌNH:</b> dự báo ICR kỳ vọng trọng số 1.56x — thực tế cả niên độ <b>1.59x</b>, sai số 2%. Mô hình kịch bản hoạt động tốt. <b style="color:var(--amber)">Cảnh báo cho NĐ 26-27:</b> ICR 1.59x này đã bao gồm 301 tỷ lãi liên kết (×8.9 lần, khó lặp lại) và 185 tỷ LN khác. <b>ICR chỉ từ hoạt động cốt lõi = 1.27x</b>. Nếu liên kết trở về mức bình thường (~50-100 tỷ), ICR NĐ tới có thể rơi về <b>1.35-1.45x</b> ngay cả khi kinh doanh đường ổn định.</div>
       </div>
     </div>
   </div>
@@ -301,40 +332,34 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
   </div>
 
   <div class="kpir k5" style="margin-bottom:10px">
-    <div class="kpi green" id="kpi-dt">
-      <div class="kl">Doanh thu 9T (thực tế)</div>
-      <div class="kv co">20,336 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
-      <div class="ks cr">▼ −6.1% vs cùng kỳ (~21,657 tỷ) · 76.7% KH</div>
+    <div class="kpi amber" id="kpi-dt">
+      <div class="kl">Doanh thu niên độ 25-26</div>
+      <div class="kv ca">26,892 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cm">▼ −5.6% vs 28,482 tỷ · đạt 101.5% KH</div>
     </div>
-    <div class="kpi red" id="kpi-bien">
-      <div class="kl">Biên LN gộp 9T</div>
-      <div class="kv co">8.82<span style="font-size:12px;color:var(--muted)">%</span></div>
-      <div class="ks cr">Q3 riêng 9.36% ↓ từ 10.17% cùng kỳ</div>
+    <div class="kpi amber" id="kpi-bien">
+      <div class="kl">Biên LN gộp cả năm</div>
+      <div class="kv ca">9.97<span style="font-size:12px;color:var(--muted)">%</span></div>
+      <div class="ks cg">🟢 Q4 riêng: 13.54% (từ 8.35%)</div>
     </div>
-    <div class="kpi amber">
-      <div class="kl">EBIT 9T (ước)</div>
-      <div class="kv ca">1,726 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
-      <div class="ks cm">LNBT 649 + lãi vay 1,077</div>
+    <div class="kpi red" id="kpi-icr">
+      <div class="kl">LN thuần HĐKD</div>
+      <div class="kv cr">723 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cr">▼ −28.4% vs 1,010 tỷ ⚠️ cốt lõi yếu</div>
     </div>
     <div class="kpi red" id="kpi-lctt">
-      <div class="kl">Dòng tiền HĐKD (6T)</div>
-      <div class="kv cr">-1,215 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
-      <div class="ks cr">⚠️ ÂM — Rủi ro thanh khoản cao</div>
+      <div class="kl">LCTT HĐKD cả năm</div>
+      <div class="kv cr">−333 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cr">ÂM năm thứ 2 (CK −606 tỷ)</div>
     </div>
-    <div class="kpi green" id="kpi-lnst">
-      <div class="kl">LNST 9T</div>
-      <div class="kv co">611 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
-      <div class="ks cr">▼ −10.1% vs ~680 tỷ cùng kỳ</div>
+    <div class="kpi amber" id="kpi-lnst">
+      <div class="kl">LNST niên độ</div>
+      <div class="kv ca">840 <span style="font-size:11px;color:var(--muted)">tỷ</span></div>
+      <div class="ks cm">▲ +0.7% · EPS 795đ (CK 856đ)</div>
     </div>
   </div>
-
-  <div class="g32 mb11">
-    <div class="card">
-      <div class="ctitle">P&L Waterfall — 9 tháng kết thúc 31/03/2026 <span class="tag t-blue">LNBT/LNST: số công bố · chi tiết: nội suy 6T+Q3</span></div>
-      <div id="wfDiv"></div>
       <div style="font-size:10px;color:var(--muted);margin-top:8px;padding:7px 10px;background:var(--bg3);border-radius:6px">
-        <span style="color:var(--red);font-weight:600">⚠️ Điểm quan trọng:</span> Biên LN gộp 9T ~8.74% — cải thiện nhẹ so với 8.44% của HY1 (giá đường nhích lên + mảng gạo đóng góp) nhưng vẫn dưới xa vùng an toàn 11%. LNBT 9T 649 tỷ bao gồm ~218 tỷ từ công ty liên kết — <b>LN cốt lõi từ SXKD đường vẫn rất mỏng</b>. Các dòng chi tiết P&L là nội suy từ 6T soát xét + KQKD Q3, cần đối chiếu lại khi có TM BCTC Q3 đầy đủ.
-      </div>
+        <span style="color:var(--red);font-weight:600">⚠️ Điểm quan trọng — CHẤT LƯỢNG LỢI NHUẬN:</span> LNTT 908 tỷ chỉ giảm 4.4%, nhưng <b style="color:var(--red)">LN thuần từ HĐKD giảm 28.4%</b> (1,010 → 723 tỷ). Chênh lệch được bù bởi 2 nguồn ngoài cốt lõi: <b>phần lãi công ty liên kết 301 tỷ</b> (gấp 8.9 lần mức 34 tỷ cùng kỳ — chủ yếu từ Toàn Hải Vân/BĐS-kho cảng, XNK Bến Tre, Coco Investment) và <b>lợi nhuận khác 185 tỷ</b> (cùng kỳ ÂM 59 tỷ). Nếu loại 2 khoản này, EBIT còn ~1,968 tỷ → <b>ICR chỉ 1.27x</b>. Ngoài ra doanh thu tài chính 1,460 tỷ (+15%) phần lớn là lãi tiền gửi và <b>lãi từ khoản ứng trước cho nhà cung cấp</b> — tức SBT đang thu lãi trên chính khối trả trước 7,283 tỷ.</div>
     </div>
     <div class="card">
       <div class="ctitle">So sánh kỳ này vs cùng kỳ</div>
@@ -656,50 +681,66 @@ var SHEET_ID = '';  // ← DÁN GOOGLE SHEETS ID VÀO ĐÂY
 
 /* ── Fallback data (hardcoded từ BCTC HY1 NĐ 2025-2026) ── */
 var D = {
-  ky_tu:'01/07/2025', ky_den:'31/03/2026', ten_ky:'Q3 NĐ 2025-2026 (9T)',
-  ngay_cap_nhat:'18/07/2026',
-  /* KQKD — LŨY KẾ 9 THÁNG (01/07/2025–31/03/2026). LNBT 649 & DT 20,336 là số công bố;
-     các dòng chi tiết P&L nội suy từ 6T đã soát xét + Q3, đánh dấu (~) khi chưa có TM chi tiết */
-  doanh_thu_thuan:20336, gia_von:18543, loi_nhuan_gop:1793,
-  bien_ln_gop:8.82, doanh_thu_tc:1000, chi_phi_tc:1372,
-  lai_vay:1077, chi_phi_bh_qldn:1152, lai_cty_lien_ket:218,
-  ln_bt:649, thue_tndn:38, ln_sau_thue:611, khau_hao:387,
-  q3_dt:8231, q3_gia_von:7460, q3_ln_gop:771, q3_bien:9.36, q3_bien_ck:10.17,
-  q3_lnst:245, q3_lai_vay:382, q3_cp_tc:519, q3_dt_tc:372, q3_cpbh:278, q3_cpql:201,
+  ky_tu:'01/07/2025', ky_den:'30/06/2026', ten_ky:'NIÊN ĐỘ 2025-2026 (CẢ NĂM)',
+  ngay_cap_nhat:'01/08/2026', nguon:'BCTC hợp nhất Q4 NĐ 25-26, công bố 30/07/2026 (chưa kiểm toán)',
+  /* KQKD CẢ NIÊN ĐỘ — SỐ THẬT TỪ BCTC */
+  doanh_thu_thuan:26892, gia_von:24212, loi_nhuan_gop:2680, bien_ln_gop:9.97,
+  doanh_thu_tc:1460, chi_phi_tc:2008, lai_vay:1546,
+  chi_phi_bh:973, chi_phi_ql:738, chi_phi_bh_qldn:1711, lai_cty_lien_ket:301,
+  ln_thuan_hdkd:723, ln_khac:185, ln_bt:908, thue_tndn:68, ln_sau_thue:840, ln_sau_thue_me:838,
+  khau_hao:521, eps:795,
+  /* Q4 riêng (01/04–30/06/2026) */
+  q4_dt:6555, q4_gia_von:5668, q4_ln_gop:888, q4_bien:13.54, q4_bien_ck:8.35,
+  q4_lntt:259, q4_lnst:228, q4_lv:469, q4_dttc:459, q4_llk:63, q4_cpbh:338, q4_cpql:221,
+  /* Cùng kỳ niên độ 2024-2025 */
+  dt_cung_ky:28482, ln_gop_cung_ky:2984, chi_phi_tc_cung_ky:1819, lai_vay_cung_ky:1522,
+  ln_bt_cung_ky:950, ln_sau_thue_cung_ky:834, llk_cung_ky:34, ln_hdkd_cung_ky:1010,
+  /* Kế hoạch niên độ */
   kh_doanh_thu:26500, kh_lnbt:951,
-  nd_truoc_dt:28492, nd_truoc_lnbt:950, nd_truoc_lnst:834,
-  /* BCĐKT — tại 31/12/2025 (BCTC HY1 soát xét, chưa có BCĐKT 31/03) */
-  tong_tai_san:35899, tien_tuong_duong:3051, phai_thu_kh:2862,
-  tra_truoc_nguoi_ban:6574, hang_ton_kho:3025,
-  tong_no_phai_tra:23688, no_ngan_han:18194, no_dai_han:5494,
-  von_chu_so_huu:12210, tong_no_vay_tc:18481,
-  /* LCTT — 6T (HY1), chưa có LCTT 9T */
-  lctt_hdkd:-1215, lctt_hddt:-1896, lctt_hdtc:2632,
-  vay_moi_trong_ky:19213, tra_no_goc:17591,
-  /* So sánh cùng kỳ 9T NĐ 2024-2025 (~ ước từ tăng trưởng công bố) */
-  dt_cung_ky:21657, ln_gop_cung_ky:2010, chi_phi_tc_cung_ky:1230,
-  lai_vay_cung_ky:1010, ln_bt_cung_ky:735, ln_sau_thue_cung_ky:680,
-  /* Kỳ dữ liệu để năm hóa: 9 tháng → hệ số 12/9 = 4/3 */
-  so_thang_ky:9,
-  /* Nguồn dữ liệu */
-  _source:'cache', _loaded:false
+  /* BCĐKT 30/06/2026 */
+  tong_tai_san:38324, tsnh:24254, tien_tuong_duong:2042, dt_tc_ngan_han:7027,
+  tien_gui_ky_han:6264, phai_thu_kh:2862, tra_truoc_nguoi_ban:6918, tra_truoc_dh:365,
+  hang_ton_kho:4031, phai_thu_khac_nh:1317, gop_von_hop_tac:1596,
+  tong_no_phai_tra:25882, no_ngan_han:19731, no_dai_han:6151, von_chu_so_huu:12441,
+  tong_no_vay_tc:17840, vay_ngan_han:11876, vay_dai_han:4988, tpcd_dai_han:976,
+  mien_truy_doi:3977, mien_truy_doi_ck:1764,
+  dau_tu_lien_ket:5743, xdcb_do_dang:904, tscd:3464,
+  /* BCĐKT 30/06/2025 để so sánh */
+  tts_ck:32679, tien_ck:3555, dttc_ck:3548, tra_truoc_ck:5568, vcsh_ck:10851,
+  no_phai_tra_ck:21828, tong_vay_ck:16913,
+  /* LCTT CẢ NIÊN ĐỘ */
+  lctt_hdkd:-333, lctt_hddt:-2989, lctt_hdtc:1824, lctt_thuan:-1498,
+  lctt_hdkd_ck:-606, vay_moi_trong_ky:34319, tra_no_goc:33382,
+  chi_mua_tscd:974, chi_cho_vay:3417, chi_gop_von:2176, thu_hoi_gop_von:2421,
+  lai_vay_da_tra:1415, thay_doi_phai_thu:-2680, thay_doi_phai_tra:2849,
+  /* Bóc tách trả trước người bán (TM8) */
+  tt_ben_lien_quan:59, tt_nong_dan:2357, tt_ben_khac:4867,
+  /* Exposure BIDV (TM24.1) */
+  bidv_gia_dinh:1398, bidv_hcm:482, bidv_khanh_hoa:353, bidv_gia_lai:199, bidv_ninh_thuan:34,
+  bidv_tong:2466, vay_nh_ngan_hang:8099,
+  so_thang_ky:12, _source:'BCTC', _loaded:true
 };
 
 /* ── Hàm tính toán các chỉ số phát sinh ── */
 function calcDerived(){
-  D.ebit       = D.ln_bt + D.lai_vay;  // EBIT = LNBT + lãi vay
-  D.ebitda     = D.ebit + D.khau_hao;
-  var annF     = 12 / (D.so_thang_ky || 9);   // 9T → ×4/3 (KHÔNG dùng ×2 của kỳ 6T cũ)
-  D.ebit_ann   = D.ebit * annF;
-  D.ebitda_ann = D.ebitda * annF;
-  D.lai_vay_ann= D.lai_vay * annF;
-  D.icr        = D.ebit / D.lai_vay;
-  D.net_debt   = D.tong_no_vay_tc - D.tien_tuong_duong;
-  D.nd_ebitda  = D.net_debt / D.ebitda_ann;
-  D.de_ratio   = D.tong_no_phai_tra / D.von_chu_so_huu;
+  D.ebit       = D.ln_bt + D.lai_vay;              // 2,454
+  D.ebitda     = D.ebit + D.khau_hao;              // 2,975
+  D.ebit_ann   = D.ebit;                            // CẢ NĂM — không cần năm hóa nữa
+  D.ebitda_ann = D.ebitda;
+  D.lai_vay_ann= D.lai_vay;
+  D.icr        = D.ebit / D.lai_vay;                // 1.59x
+  D.net_debt   = D.tong_no_vay_tc - D.tien_tuong_duong;                    // 15,798
+  D.net_debt_full = D.tong_no_vay_tc + D.mien_truy_doi - D.tien_tuong_duong - D.tien_gui_ky_han; // 12,748
+  D.no_tai_chinh_thuc = D.tong_no_vay_tc + D.mien_truy_doi;                // 21,817
+  D.nd_ebitda  = D.net_debt / D.ebitda;             // 5.31x
+  D.nd_ebitda_full = D.net_debt_full / D.ebitda;    // 4.29x
+  D.de_ratio   = D.tong_no_phai_tra / D.von_chu_so_huu;   // 2.08x
+  D.current_ratio = D.tsnh / D.no_ngan_han;         // 1.23x
   D.dt_yoy_pct = ((D.doanh_thu_thuan - D.dt_cung_ky) / D.dt_cung_ky * 100).toFixed(1);
-  D.no_nh_pct  = (D.no_ngan_han / D.tong_no_vay_tc * 100).toFixed(0);
-  D.lai_vay_per_day = (D.lai_vay_ann / 365).toFixed(1);
+  D.no_nh_pct  = (D.vay_ngan_han / D.tong_no_vay_tc * 100).toFixed(0);
+  D.lai_vay_per_day = (D.lai_vay / 365).toFixed(1);
+  D.dao_no_x   = (D.vay_moi_trong_ky / D.tong_no_vay_tc).toFixed(2);
+  D.fcf        = D.lctt_hdkd - D.chi_mua_tscd;
 }
 calcDerived();
 
@@ -801,9 +842,9 @@ function rebuildCharts(){
   if(_charts.yoy){ _charts.yoy.destroy(); }
   var yoyEl = document.getElementById('yoyChart');
   if(yoyEl) _charts.yoy = mkChart('yoyChart','bar',
-    ['DT thuần','LN gộp','Chi phí TC','Lãi vay','LNBT','LNST'],[
-      {label:'Kỳ này',data:[D.doanh_thu_thuan,D.loi_nhuan_gop,D.chi_phi_tc,D.lai_vay,D.ln_bt,D.ln_sau_thue],backgroundColor:'rgba(74,144,226,.65)',borderRadius:3},
-      {label:'Cùng kỳ trước',data:[D.dt_cung_ky,D.ln_gop_cung_ky,D.chi_phi_tc_cung_ky,D.lai_vay_cung_ky,D.ln_bt_cung_ky,D.ln_sau_thue_cung_ky],backgroundColor:'rgba(31,200,122,.3)',borderRadius:3}
+    ['DT thuần','LN gộp','LN thuần HĐKD','Lãi vay','LNTT','LNST'],[
+      {label:'Kỳ này',data:[D.doanh_thu_thuan,D.loi_nhuan_gop,D.ln_thuan_hdkd,D.lai_vay,D.ln_bt,D.ln_sau_thue],backgroundColor:'rgba(74,144,226,.65)',borderRadius:3},
+      {label:'Cùng kỳ trước',data:[D.dt_cung_ky,D.ln_gop_cung_ky,D.ln_hdkd_cung_ky,D.lai_vay_cung_ky,D.ln_bt_cung_ky,D.ln_sau_thue_cung_ky],backgroundColor:'rgba(31,200,122,.3)',borderRadius:3}
     ],{plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:10},boxWidth:10}}},
       scales:{x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}},
               y:{ticks:{callback:function(v){return(v/1000).toFixed(0)+'k'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}}}});
@@ -862,24 +903,27 @@ function mkChart(id,type,labels,datasets,opts){
 
 /* ── TAB 1: P&L WATERFALL ── */
 var wfData=[
-  {l:'Doanh thu thuần 9T',v:20336,c:'#1fc87a',base:true},
-  {l:'(-) Giá vốn',v:-18543,c:'rgba(224,64,64,.7)'},
-  {l:'= LN gộp (8.82%)',v:1793,c:'#e8a020',sub:true},
-  {l:'+ Doanh thu TC (~)',v:1000,c:'rgba(74,144,226,.6)'},
-  {l:'(-) Chi phí TC (~lãi+tỷ giá)',v:-1372,c:'rgba(224,64,64,.6)'},
-  {l:'  Trong đó: lãi vay',v:-1077,c:'rgba(224,80,80,.4)',indent:true},
-  {l:'(-) Chi phí BH & QLDN (~)',v:-1152,c:'rgba(224,64,64,.5)'},
-  {l:'+ Lợi nhuận CT liên kết (~)',v:218,c:'rgba(74,144,226,.5)'},
-  {l:'= LNBT 9T (công bố)',v:649,c:'#4a90e2',sub:true},
-  {l:'(-) Thuế TNDN',v:-38,c:'rgba(224,64,64,.4)'},
-  {l:'= LNST 9T (công bố)',v:611,c:'#e8a020',base:true},
-  {l:'(+) Khấu hao (~ước)',v:387,c:'rgba(155,127,232,.6)'},
-  {l:'= EBITDA 9T (~ước)',v:2113,c:'#18c8e8',sub:true},
+  {l:'Doanh thu thuần niên độ',v:26892,c:'#1fc87a',base:true},
+  {l:'(-) Giá vốn hàng bán',v:-24212,c:'rgba(224,64,64,.7)'},
+  {l:'= LN gộp (9.97%)',v:2680,c:'#e8a020',sub:true},
+  {l:'+ Doanh thu tài chính',v:1460,c:'rgba(74,144,226,.6)'},
+  {l:'(-) Chi phí tài chính',v:-2008,c:'rgba(224,64,64,.6)'},
+  {l:'  Trong đó: lãi vay',v:-1546,c:'rgba(224,80,80,.4)',indent:true},
+  {l:'+ Lãi công ty liên kết',v:301,c:'rgba(74,144,226,.5)'},
+  {l:'(-) Chi phí bán hàng',v:-973,c:'rgba(224,64,64,.5)'},
+  {l:'(-) Chi phí QLDN',v:-738,c:'rgba(224,64,64,.5)'},
+  {l:'= LN thuần HĐKD',v:723,c:'#e04040',sub:true},
+  {l:'+ Lợi nhuận khác',v:185,c:'rgba(74,144,226,.4)'},
+  {l:'= LNTT niên độ',v:908,c:'#4a90e2',sub:true},
+  {l:'(-) Thuế TNDN',v:-68,c:'rgba(224,64,64,.4)'},
+  {l:'= LNST niên độ',v:840,c:'#1fc87a',base:true},
+  {l:'(+) Khấu hao',v:521,c:'rgba(155,127,232,.6)'},
+  {l:'= EBITDA',v:2975,c:'#18c8e8',sub:true},
 ];
 var wfDiv=document.getElementById('wfDiv');
 wfData.forEach(function(r){
   var row=document.createElement('div');row.className='wfr';
-  var max=20336;var pct=Math.abs(r.v)/max*100;
+  var max=26892;var pct=Math.abs(r.v)/max*100;
   var ind=r.indent?'padding-left:14px':'';
   row.innerHTML='<div class="wfl" style="'+ind+'">'+r.l+'</div>'
     +'<div class="wfb"><div class="wfbar" style="width:'+Math.round(pct*1.5)+'px;background:'+r.c+'"></div></div>'
@@ -888,14 +932,14 @@ wfData.forEach(function(r){
 });
 
 /* YoY chart */
-mkChart('yoyChart','bar',['DT thuần','LN gộp','Chi phí TC','Lãi vay','LNBT','LNST'],[
-  {label:'9T NĐ 25/26',data:[20336,1793,1372,1077,649,611],backgroundColor:'rgba(74,144,226,.65)',borderRadius:3},
-  {label:'9T NĐ 24/25 (~)',data:[21657,2010,1230,1010,735,680],backgroundColor:'rgba(31,200,122,.3)',borderRadius:3}
+mkChart('yoyChart','bar',['DT thuần','LN gộp','LN thuần HĐKD','Lãi vay','LNTT','LNST'],[
+  {label:'NĐ 25/26 (cả năm)',data:[26892,2680,723,1546,908,840],backgroundColor:'rgba(74,144,226,.65)',borderRadius:3},
+  {label:'NĐ 24/25 (cả năm)',data:[28482,2984,1010,1522,950,834],backgroundColor:'rgba(31,200,122,.3)',borderRadius:3}
 ],{plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:10},boxWidth:10}}},scales:{x:{ticks:{color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'}},y:{ticks:{callback:function(v){return(v/1000).toFixed(0)+'k'},color:'#444',font:{size:10}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tỷ VND',font:{size:10},color:'#444'}}}});
 
 /* Cost chart */
-mkChart('costChart','doughnut',['NVL, VL, HH (86.6%)','DV mua ngoài (6.0%)','Nhân công (4.6%)','Khấu hao (2.2%)','Khác (0.6%)'],[
-  {data:[10164,709,543,258,73],backgroundColor:['#e8a020','#9b7fe8','#4a90e2','#1fc87a','#52566e'],borderWidth:0,hoverOffset:4}
+mkChart('costChart','doughnut',['Giá vốn hàng bán','Chi phí lãi vay','Chi phí bán hàng','Chi phí QLDN','CP tài chính khác'],[
+  {data:[24212,1546,973,738,462],backgroundColor:['#e8a020','#9b7fe8','#4a90e2','#1fc87a','#52566e'],borderWidth:0,hoverOffset:4}
 ],{plugins:{legend:{display:true,position:'right',labels:{color:'#52566e',font:{size:10},boxWidth:8,padding:4}}}});
 
 /* Cash flow chart */
@@ -905,13 +949,13 @@ mkChart('cfChart','bar',['LCTT HĐKD','LCTT HĐ Đầu tư','LCTT HĐ TC','LCTT 
 
 /* ── CREDIT SCORECARD ── */
 var scorecard=[
-  {n:'Khả năng trả lãi (ICR)',v:'1.62x',st:0,tr:'↗',d:'9T; dưới chuẩn 2.0x'},
-  {n:'Đòn bẩy (ND/EBITDA)',v:'5.6x',st:0,tr:'→',d:'Vượt xa ngưỡng 4.0x'},
-  {n:'Thanh khoản & đảo nợ',v:'72% nợ NH',st:0,tr:'→',d:'LCTT KD âm; phụ thuộc tái tục'},
-  {n:'Chất lượng tài sản',v:'6,574 tỷ trả trước',st:1,tr:'→',d:'18% TTS — cần bóc tách đối tượng'},
-  {n:'Xu hướng KQKD',v:'DT −6.1% · LNST −10.1%',st:0,tr:'↘',d:'Q3 DT +13% nhưng biên gộp co lại'},
-  {n:'Rủi ro chính sách',v:'CBPG chốt 2031',st:2,tr:'↗',d:'QĐ 1309+1310: rào chắn 5 năm'},
-  {n:'Sự kiện vốn sắp tới',v:'TPCĐ + ĐHĐCĐ',st:1,tr:'?',d:'12/09 TPCĐ · 24/07 ĐHĐCĐ BT'},
+  {n:'Khả năng trả lãi (ICR)',v:'1.59x',st:0,tr:'→',d:'Cốt lõi 1.27x · lãi 4.2 tỷ/ngày'},
+  {n:'Đòn bẩy (ND/EBITDA)',v:'5.31x',st:0,tr:'→',d:'Nợ TC thực 21,817 (gồm 3,977 ngoài mục vay)'},
+  {n:'Thanh khoản & đảo nợ',v:'Đảo 1.92× dư nợ',st:0,tr:'↘',d:'Vay mới 34,319 / trả 33,382 tỷ/năm'},
+  {n:'Chất lượng tài sản',v:'4,867 tỷ bên khác',st:0,tr:'↘',d:'Trả trước 7,283: liên quan 59, nông dân 2,357'},
+  {n:'Chất lượng lợi nhuận',v:'HĐKD −28.4%',st:0,tr:'↘',d:'LNTT giữ nhờ liên kết 301 + LN khác 185'},
+  {n:'Vụ ép & giá đường',v:'Q4 biên 13.54%',st:2,tr:'↗',d:'CBPG chốt 2031 · Q4 bật từ 8.35%'},
+  {n:'Sự kiện vốn sắp tới',v:'TPCĐ 499 tỷ 12/09',st:1,tr:'?',d:'TPCĐ mới 997 tỷ (2028) · TP 2,200 tỷ 26-28'},
 ];
 (function(){
   var sg=document.getElementById('scorecardGrid'); if(!sg) return;
@@ -931,7 +975,7 @@ var scorecard=[
 var SCORE_HISTORY=[
   {ky:'01/2026 (HY1)',diem:5},
   {ky:'04/2026 (Q3+CBPG)',diem:5},
-  {ky:'08/2026 (Q3 chuẩn)',diem:3},
+  {ky:'08/2026 (BCTC năm) 🆕',diem:3},
 ];
 (function(){
   var el=document.getElementById('scoreHist'); if(!el) return;
@@ -947,12 +991,12 @@ var SCORE_HISTORY=[
 
 /* Credit ratios grid */
 var crats=[
-  {n:'ICR (EBIT/Lãi vay)',v:'1.60x',thr:'≥ 2.0x',st:'red',desc:'9T (649+1,077)/1,077 · ~4.2 tỷ lãi/ngày'},
-  {n:'Net Debt/EBITDA',v:'5.5x',thr:'≤ 4.0x',st:'red',desc:'15,430 / EBITDA ann. ~2,817 tỷ'},
-  {n:'D/E Ratio',v:'1.94x',thr:'≤ 1.5x',st:'red',desc:'Nợ 23,688 / VCSH 12,210'},
-  {n:'Biên LN gộp',v:'8.82%',thr:'≥ 11%',st:'coral',desc:'Q3 9.36% ↓ từ 10.17% cùng kỳ'},
-  {n:'LCTT HĐKD (6T)',v:'-1,215 tỷ',thr:'Dương',st:'red',desc:'ÂM — rủi ro thanh khoản'},
-  {n:'Nợ NH / Tổng nợ',v:'72%',thr:'≤ 50%',st:'red',desc:'13,199 / 18,481 tỷ'},
+  {n:'ICR (EBIT/Lãi vay)',v:'1.59x',thr:'≥ 2.0x',st:'red',desc:'Cả năm (908+1,546)/1,546 · 4.2 tỷ lãi/ngày'},
+  {n:'Net Debt/EBITDA',v:'5.31x',thr:'≤ 4.0x',st:'red',desc:'15,798 / EBITDA 2,975 · gồm miễn truy đòi & trừ tiền gửi: 4.29x'},
+  {n:'D/E Ratio',v:'2.08x',thr:'≤ 1.5x',st:'red',desc:'Nợ 25,882 / VCSH 12,441 ↑ từ 2.01x'},
+  {n:'Biên LN gộp',v:'9.97%',thr:'≥ 11%',st:'coral',desc:'Cả năm · Q4 riêng 13.54% 🟢'},
+  {n:'LCTT HĐKD cả năm',v:'−333 tỷ',thr:'Dương',st:'red',desc:'ÂM năm thứ 2 (CK −606) · FCF −1,307'},
+  {n:'Vay NH / Tổng vay',v:'67%',thr:'≤ 50%',st:'red',desc:'11,876 / 17,840 tỷ'},
 ];
 var cg=document.getElementById('creditGrid');
 crats.forEach(function(r){
@@ -1034,12 +1078,12 @@ mkChart('ebitdaWf','bar',['EBITDA\nann.~2,772tỷ','(-) Lãi vay\nann.~1,391tỷ
 
 /* Debt ratios */
 var dr=[
-  {n:'ICR thực tế (EBIT 9T / Lãi vay 9T)',v:'1.60x',thr:'≥ 2.0x',st:'red',d:'Lãi vay 9T 1,077 tỷ ~ 4.2 tỷ/ngày'},
-  {n:'ICR annualized (EBIT ann./Lãi ann.)',v:'~1.60x',thr:'≥ 2.0x',st:'red',d:'Q4 (Apr-Jun) cuối vụ ép — chờ BCTC năm'},
-  {n:'Net Debt/EBITDA (ann.)',v:'5.5x',thr:'≤ 4.0x',st:'red',d:'Net Debt 15,430 / EBITDA ann. ~2,817'},
-  {n:'Debt/Revenue (ann.)',v:'68%',thr:'≤ 40%',st:'red',d:'Nợ 18,481 / DT ann. ~27,100 (KH 26,500)'},
-  {n:'Nợ NH / Tổng nợ vay',v:'72%',thr:'≤ 50%',st:'red',d:'13,199 tỷ phải đảo trong 12T'},
-  {n:'Nguồn trả gốc từ EBITDA / Nợ vay NH',v:'~10%',thr:'≥ 100%',st:'red',d:'~1,362 tỷ / 13,199 tỷ → phụ thuộc đảo nợ'},
+  {n:'ICR cả niên độ (EBIT/Lãi vay)',v:'1.59x',thr:'≥ 2.0x',st:'red',d:'EBIT 2,454 / lãi vay 1,546 tỷ'},
+  {n:'ICR chỉ từ HĐKD cốt lõi',v:'1.47x',thr:'≥ 2.0x',st:'red',d:'Loại LN liên kết 301 + LN khác 185 → EBIT 1,968'},
+  {n:'Net Debt/EBITDA',v:'5.31x',thr:'≤ 4.0x',st:'red',d:'17,840 − tiền 2,042 = 15,798 / EBITDA 2,975'},
+  {n:'Nợ tài chính THỰC/Doanh thu',v:'81%',thr:'≤ 40%',st:'red',d:'(17,840 vay + 3,977 miễn truy đòi) / DT 26,892'},
+  {n:'Vay ngắn hạn / Tổng vay',v:'67%',thr:'≤ 50%',st:'red',d:'11,876 tỷ phải đảo trong 12 tháng'},
+  {n:'Nguồn trả gốc / Vay ngắn hạn',v:'12%',thr:'≥ 100%',st:'red',d:'EBITDA 2,975 − lãi 1,546 = 1,429 / 11,876 → PHỤ THUỘC ĐẢO NỢ'},
 ];
 var dd=document.getElementById('debtRatios');
 dr.forEach(function(r){
@@ -1068,9 +1112,17 @@ lt.innerHTML='<tr><th>Ngân hàng</th><th>Dư nợ (tỷ)</th><th>Đáo hạn</t
 loans.forEach(function(l){
   lt.innerHTML+='<tr><td>'+l.nh+'</td><td style="font-weight:600;color:var(--amber)">'+l.v+'</td><td style="color:var(--red)">'+l.mat+'</td><td>'+l.rate+'</td><td>'+l.db+'</td></tr>';
 });
-lt.innerHTML+='<tr><td style="font-weight:600">Tổng 8 khoản lớn nhất</td><td style="font-weight:700;color:var(--red)">8,318</td><td colspan="3" style="color:var(--muted);font-size:10px">Đây là 8 trong số 25+ khoản vay NH ngắn hạn theo TM26.1</td></tr>';
-lt.innerHTML+='<tr style="border-top:2px solid var(--border)"><td style="font-weight:600;color:var(--purple)">TPCĐ 2026 (chào bán 25/03)</td><td style="font-weight:700;color:var(--purple)">700</td><td style="color:var(--red)">Chuyển đổi/đáo hạn 12/09/2026</td><td style="color:var(--amber)">9.5%/năm</td><td style="font-size:10px">Không TSBĐ · Giá CĐ = 75% BQ 20 phiên · Mục đích: cơ cấu nợ AgriS Gia Lai. ⚠️ Lãi suất 9.5% cao hơn vay NH — tín hiệu chi phí vốn biên tăng; nếu trái chủ không chuyển đổi → SBT phải hoàn trả tiền mặt</td></tr>';
-lt.innerHTML+='<tr><td style="font-weight:600;color:var(--green)">✅ TP SBTH2327001 (200 tỷ)</td><td style="color:var(--green)">0</td><td colspan="3" style="color:var(--green);font-size:10px">Đã TẤT TOÁN TRƯỚC HẠN 30/06/2026 — đúng kế hoạch HĐQT, tín hiệu quản trị nợ tích cực</td></tr>';
+lt.innerHTML+='<tr style="background:rgba(74,144,226,.08)"><td style="font-weight:700;color:var(--blue)">TỔNG BIDV (5 chi nhánh)</td><td style="font-weight:700;color:var(--blue)">2,466</td><td style="color:var(--red)">T7–T12/2026</td><td colspan="2" style="font-size:10px"><b>Chủ nợ ngân hàng LỚN NHẤT — 30.4% vay NH ngân hàng.</b> Gia Định 1,398 · HCM 482 · Khánh Hòa 353 · Gia Lai 199 · Ninh Thuận 34</td></tr>';
+lt.innerHTML+='<tr><td>First Commercial Bank – HCM</td><td>1,054</td><td>T7/2026</td><td colspan="2" style="font-size:10px">NH nước ngoài lớn nhất</td></tr>';
+lt.innerHTML+='<tr><td>UOB Việt Nam / Mizuho HN / Sinopac</td><td>473 / 395 / 306</td><td>T7–T11/2026</td><td colspan="2" style="font-size:10px">Nhóm NH nước ngoài</td></tr>';
+lt.innerHTML+='<tr><td>VIB Đồng Nai / ESUN Đồng Nai / Hua Nan</td><td>422 / 259 / 260</td><td>T10–T12/2026</td><td colspan="2" style="font-size:10px"></td></tr>';
+lt.innerHTML+='<tr style="border-top:2px solid var(--border)"><td style="font-weight:700">TỔNG VAY NGẮN HẠN NGÂN HÀNG</td><td style="font-weight:700;color:var(--red)">8,099</td><td colspan="3" style="font-size:10px">~35 ngân hàng · VND 5,896 · USD 79.6 · LAK 85.3 (quy đổi tỷ). TSBĐ: chứng khoán KD, QSDĐ & tài sản gắn liền đất, HTK, phải thu</td></tr>';
+lt.innerHTML+='<tr><td style="color:var(--purple)">Vay dài hạn ngân hàng</td><td style="color:var(--purple)">5,740</td><td>2026–2032</td><td colspan="2" style="font-size:10px">ING Bank 1,058 · First Commercial 1,310 · ESUN 1,038 · Mizuho 493 · DEG (Đức) 649 · Responsability 550 · Kasikornbank 375</td></tr>';
+lt.innerHTML+='<tr><td style="color:var(--purple)">Trái phiếu dài hạn</td><td style="color:var(--purple)">2,200</td><td>T11/26 – T6/28</td><td colspan="2" style="font-size:10px">PVI 500 (T11/26) · Vietcap 500 (T1/27) · TCBS 700 (T12/27) + 500 (T6/28)</td></tr>';
+lt.innerHTML+='<tr><td style="color:var(--purple)">Trái phiếu chuyển đổi</td><td style="color:var(--purple)">499 + 997</td><td>12/09/2026 · 2028</td><td colspan="2" style="font-size:10px">TPCĐ ngắn hạn 499.3 tỷ đáo hạn <b style="color:var(--red)">12/09/2026</b> (phát hành 12/9/2025, mục đích cơ cấu nợ) · TPCĐ dài hạn 997.1 tỷ phát hành 10/06/2026 kỳ hạn 2 năm</td></tr>';
+lt.innerHTML+='<tr><td>Vay bên khác: DOLE ASIA HOLDINGS</td><td>83</td><td>T9/26–T12/29</td><td colspan="2" style="font-size:10px">3.14 triệu USD</td></tr>';
+lt.innerHTML+='<tr style="background:rgba(224,64,64,.1);border-top:2px solid var(--border)"><td style="font-weight:700;color:var(--red)">🔴 Phải trả GD miễn truy đòi bộ chứng từ</td><td style="font-weight:700;color:var(--red)">3,977</td><td colspan="3" style="font-size:10px"><b>KHÔNG nằm trong mục "Vay và nợ thuê tài chính"</b> nhưng là nghĩa vụ tài chính thật. Tăng +125% từ 1,764 tỷ. Nằm ở "Phải trả ngắn hạn khác" (TM23). Cần làm rõ điều kiện truy đòi ngược</td></tr>';
+lt.innerHTML+='<tr style="background:rgba(224,64,64,.06)"><td style="font-weight:700">TỔNG NỢ TÀI CHÍNH THỰC</td><td style="font-weight:700;color:var(--red)">21,817</td><td colspan="3" style="font-size:10px">17,840 (vay + TP + TPCĐ + thuê TC) + 3,977 (miễn truy đòi) = <b>81% doanh thu năm · 1.75× VCSH</b></td></tr>';
 
 /* ── TAB 4: STRESS TEST ── */
 var sParams=[
@@ -1197,10 +1249,13 @@ var monitors=[
   {c:'Hàng tháng',n:'Lãi suất VND bình quân',t:'> 9% → Chi phí tài chính tăng mạnh',a:'Review chi phí lãi vay và ICR',col:'var(--teal)'},
   {c:'Hàng quý',n:'ICR (EBIT/Lãi vay thực tế)',t:'< 1.5x → Cảnh báo / < 1.0x → Sự kiện vi phạm',a:'Kích hoạt đàm phán tái cơ cấu',col:'var(--amber)'},
   {c:'Hàng quý',n:'Dòng tiền HĐKD',t:'Âm 2 kỳ liên tiếp → Rủi ro thanh khoản hệ thống',a:'Yêu cầu kế hoạch thanh khoản chi tiết',col:'var(--amber)'},
-  {c:'Hàng quý',n:'Trả trước cho người bán NH',t:'> 8,000 tỷ (lưu ý mùa ép T12–T4 thường tăng) → Cảnh báo chất lượng TS',a:'Yêu cầu chi tiết danh mục, đối tượng (đặc biệt bên liên quan) và tuổi nợ',col:'var(--amber)'},
+  {c:'Hàng quý',n:'Trả trước "các bên khác" (không phải nông dân/liên quan)',t:'30/06/2026: 4,867 tỷ (+46.8% YoY) = 67% khối trả trước → nếu vượt 5,500 tỷ hoặc tiếp tục tăng >20%/năm',a:'ĐÒI danh mục theo đối tượng, tuổi nợ, mục đích. Đây là ẩn số chất lượng tài sản số 1',col:'var(--red)'},
+  {c:'Hàng quý',n:'Phải trả GD miễn truy đòi bộ chứng từ',t:'3,977 tỷ (+125%) — nợ tài chính ngoài mục vay. Nếu vượt 5,000 tỷ',a:'Làm rõ đối tác, điều kiện truy đòi ngược, tác động khi thị trường tài trợ thương mại thắt chặt',col:'var(--red)'},
+  {c:'Hàng quý',n:'LN thuần HĐKD vs LNTT',t:'Khoảng cách >30% (NĐ 25-26: HĐKD 723 vs LNTT 908) → LN phụ thuộc nguồn ngoài cốt lõi',a:'Tính covenant ICR trên EBIT cốt lõi (loại liên kết & LN khác); ngưỡng ≥1.3x',col:'var(--red)'},
   {c:'Theo sự kiện',n:'ĐHĐCĐ bất thường 24/07/2026',t:'Kết quả chuyển đổi 21.6tr CP ưu đãi + chiến lược chuối & dứa 2025-2030',a:'Đánh giá tác động cấu trúc vốn + capex kế hoạch mở rộng ≥5 lần diện tích',col:'var(--red)'},
-  {c:'Theo sự kiện',n:'BCTC Q4 + kiểm toán NĐ 25-26 (30/06)',t:'Công bố ~T8–T9/2026 → chốt ICR/biên LN cả năm',a:'Rà soát toàn diện; cập nhật xếp hạng và điều kiện tín dụng',col:'var(--red)'},
-  {c:'Theo sự kiện',n:'TPCĐ 700 tỷ (lãi 9.5%/năm)',t:'Mốc chuyển đổi/đáo hạn 12/09/2026 — theo dõi tỷ lệ chuyển đổi vs hoàn trả',a:'Nếu hoàn trả tiền mặt → áp lực thanh khoản thêm ~700 tỷ',col:'var(--red)'},
+  {c:'Theo sự kiện',n:'BCTC KIỂM TOÁN niên độ 25-26',t:'✅ BCTC tự lập đã ra 30/07. Bản KIỂM TOÁN dự kiến T9-T10/2026 — đối chiếu chênh lệch, đặc biệt dự phòng phải thu & trả trước',a:'Nếu kiểm toán điều chỉnh giảm LN >10% hoặc thêm dự phòng lớn → rà soát lại toàn bộ',col:'var(--red)'},
+  {c:'Theo sự kiện',n:'TPCĐ 499 tỷ đáo hạn 12/09/2026',t:'Còn <45 ngày. Theo dõi: chuyển đổi thành CP hay hoàn trả tiền mặt',a:'Nếu hoàn trả tiền mặt → áp lực thanh khoản ~499 tỷ ngay trong quý. Lưu ý TPCĐ mới 997 tỷ (10/06/2026, kỳ hạn 2 năm) đã thay thế một phần',col:'var(--red)'},
+  {c:'Theo sự kiện',n:'Trái phiếu PVI 500 tỷ đáo hạn T11/2026',t:'Lô trái phiếu dài hạn đầu tiên trong chuỗi 2,200 tỷ đến hạn',a:'Xác nhận nguồn thanh toán/tái phát hành trước 60 ngày. Chuỗi tiếp theo: Vietcap T1/27, TCBS T12/27 và T6/28',col:'var(--red)'},
   {c:'Theo sự kiện',n:'Đáo hạn nợ lớn',t:'30 ngày trước mỗi khoản > 500 tỷ',a:'Xác nhận kế hoạch tái tục/thanh toán',col:'var(--red)'},
 ];
 var ml=document.getElementById('monitorList');
@@ -1220,6 +1275,7 @@ monitors.forEach(function(m){
 
 // Cached data scraped 27/03/2026
 var CBTT_CACHE = [
+  {date:'30/07/2026',title:'📗 BCTC HỢP NHẤT NIÊN ĐỘ 2025-2026 (30/06/2026): DT 26,892 tỷ (−5.6%, đạt 101.5% KH) · LN gộp 2,680 tỷ (biên 9.97%) · LNTT 908 tỷ (95.5% KH) · LNST 840 tỷ (+0.7%) · EPS 795đ. ⚠️ LN thuần HĐKD chỉ 723 tỷ (−28.4%) — LNTT giữ được nhờ lãi công ty liên kết 301 tỷ (gấp 8.9 lần) + LN khác 185 tỷ. Q4 riêng biên gộp BẬT lên 13.54% (từ 8.35%), LNTT Q4 259 tỷ (+46%). BCĐKT: TTS 38,324 tỷ (+17.3%) · VCSH 12,441 tỷ · nợ vay 17,840 tỷ + phải trả miễn truy đòi bộ chứng từ 3,977 tỷ (+125%). LCTT HĐKD ÂM 333 tỷ (năm thứ 2); vay mới 34,319 / trả nợ 33,382 tỷ',link:'https://ttcagris.com.vn/quan-he-nha-dau-tu/cong-bo-thong-tin',cat:'bctc'},
   {date:'24/07/2026',title:'✅ ĐHĐCĐ BẤT THƯỜNG NĐ 2025-2026 tại Tây Ninh — THÔNG QUA 8 tờ trình: điều lệ, quy chế quản trị, ngành nghề KD, cơ cấu HĐQT và phương án chuyển đổi 21.6tr CP ưu đãi → 34.6tr CP phổ thông. Định hướng: đường vẫn là nền tảng, đẩy mạnh đa dạng hóa sang gạo, dừa, chuối, dứa + hệ sinh thái dịch vụ nông nghiệp công nghệ cao',link:'https://vietstock.vn/2026/07/agris-sbt-to-chuc-thanh-cong-dhdcd-bat-thuong-nien-do-2025-2026-kien-toan-nen-tang-quan-tri-cho-giai-doan-tang-truong-moi-737-1471215.htm',cat:'hanh-chinh'},
   {date:'30/04/2026',title:'📊 BCTC HỢP NHẤT Q3 NĐ 2025-2026: DT 9T 20,336 tỷ GIẢM 6.1% YoY · LNST 9T 611 tỷ GIẢM 10.1% · LNBT 649 tỷ (68.2% KH). Q3 riêng: DT 8,231 tỷ (+13%, cao nhất 2 năm) nhưng giá vốn +14% → biên gộp CO TỪ 10.17% XUỐNG 9.36%. LNST Q3 245 tỷ (+14%) chủ yếu nhờ LN liên doanh liên kết chuyển từ lỗ sang lãi + DT tài chính +40% (372 tỷ). Lãi vay Q3 382 tỷ — bình quân 4.2 tỷ/NGÀY. CPBH +54%, CPQL +20%. Gạo lần đầu vượt 1,000 tỷ/quý',link:'https://www.nguoiduatin.vn/ttc-agris-tang-truong-doanh-thu-nhung-hut-hoi-o-loi-nhuan-204260506105153419.htm',cat:'bctc'},
   // === CẬP NHẬT 17/07/2026 ===
