@@ -192,6 +192,7 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
   <div class="tab active" onclick="sw('overview')">📊 Tổng quan tài chính</div>
   <div class="tab" onclick="sw('chain')">🔗 Chuỗi truyền dẫn giá</div>
   <div class="tab" onclick="sw('debt')">💳 Phân tích nợ vay</div>
+  <div class="tab" onclick="sw('cashflow')">💰 Dòng tiền & Mục đích vốn <span style="display:inline-block;background:rgba(224,64,64,.8);color:#fff;border-radius:10px;padding:1px 5px;font-size:9px;margin-left:3px;font-weight:700">NEW</span></div>
   <div class="tab" onclick="sw('stress')">⚡ Stress test</div>
   <div class="tab" onclick="sw('vars')">📌 3 biến số trọng yếu</div>
   <div class="tab" onclick="sw('cbtt')" id="tab-cbtt">📢 Công bố thông tin <span id="cbtt-badge" style="display:inline-block;background:rgba(224,64,64,.8);color:#fff;border-radius:10px;padding:1px 6px;font-size:9px;margin-left:3px;font-weight:700">16</span></div>
@@ -570,6 +571,167 @@ input[type=range]{flex:1;accent-color:var(--blue);height:3px;cursor:pointer}
 </div>
 
 <!-- ════════════════════ TAB 4: STRESS TEST ════════════════════ -->
+<!-- ════════════════════ TAB: DÒNG TIỀN & MỤC ĐÍCH SỬ DỤNG VỐN ════════════════════ -->
+<div class="panel" id="panel-cashflow">
+
+  <div class="card mb11" style="border:1px solid rgba(224,64,64,.35);background:linear-gradient(180deg,rgba(224,64,64,.05),transparent)">
+    <div class="ctitle">🎯 KẾT LUẬN CỐT LÕI — Nguồn trả nợ thực tế của SBT là gì? <span class="tag t-green">Từ LCTT & BCĐKT niên độ 25-26</span></div>
+    <div style="font-size:11.5px;line-height:1.7;padding:4px 2px">
+      SBT <b>không phải doanh nghiệp thua lỗ</b> — LNST 840 tỷ, vượt kế hoạch doanh thu, Q4 biên gộp bật lên 13.54%. Nhưng cấu trúc dòng tiền đã lệch khỏi mô hình sản xuất:<br>
+      <span style="color:var(--red);font-weight:600">① Dòng tiền vận hành âm 2 năm liên tiếp</span> (−606 → −333 tỷ) ·
+      <span style="color:var(--red);font-weight:600">② Nợ tăng để tài trợ tài sản TÀI CHÍNH, không phải năng lực sản xuất</span> (tài sản tài chính +6,239 tỷ, TSCĐ −256 tỷ) ·
+      <span style="color:var(--red);font-weight:600">③ EBITDA cốt lõi vừa đúng bằng lãi vay + thuế, không dư đồng nào</span> ·
+      <span style="color:var(--red);font-weight:600">④ Spread carry trade đã ÂM</span> (thu nhập TC 1,460 < lãi vay 1,546 tỷ).<br><br>
+      <b style="color:var(--red);font-size:12px">→ Nguồn trả nợ thực tế hiện nay là KHẢ NĂNG ĐẢO NỢ và THANH LÝ TÀI SẢN TÀI CHÍNH, không phải dòng tiền từ bán đường.</b>
+    </div>
+  </div>
+
+  <!-- A. SOURCES & USES -->
+  <div class="card mb11" style="border-top:3px solid var(--amber)">
+    <div class="ctitle">💵 A. Nguồn & Sử dụng vốn niên độ 2025-2026 — Tiền chảy đi đâu? <span class="tag t-amber">Từ Báo cáo LCTT</span></div>
+    <div class="g32">
+      <div>
+        <table class="htb" style="font-size:10px">
+          <tr><th colspan="2" style="color:var(--green)">NGUỒN VỐN (tỷ)</th><th colspan="3" style="color:var(--red)">SỬ DỤNG VỐN (tỷ)</th></tr>
+          <tr><td>Vay ròng mới (34,319 vay − 33,382 trả)</td><td style="color:var(--green)">848</td><td style="background:rgba(224,64,64,.08)"><b>CHO VAY RA</b></td><td style="color:var(--red);font-weight:700;background:rgba(224,64,64,.08)">3,417</td><td style="color:var(--red);font-weight:700;background:rgba(224,64,64,.08)">49%</td></tr>
+          <tr><td>Phát hành CP + CĐ thiểu số góp vốn</td><td style="color:var(--green)">1,069</td><td style="background:rgba(224,64,64,.08)"><b>GÓP VỐN ĐẦU TƯ</b></td><td style="color:var(--red);font-weight:700;background:rgba(224,64,64,.08)">2,176</td><td style="color:var(--red);font-weight:700;background:rgba(224,64,64,.08)">31%</td></tr>
+          <tr><td>Thu hồi đầu tư góp vốn</td><td style="color:var(--green)">2,421</td><td>Mua sắm TSCĐ (đầu tư SXKD)</td><td style="color:var(--amber)">974</td><td style="color:var(--amber)">14%</td></tr>
+          <tr><td>Thu lãi tiền gửi, cổ tức</td><td style="color:var(--green)">923</td><td>Bù thâm hụt dòng tiền HĐKD</td><td>333</td><td>5%</td></tr>
+          <tr><td>Thanh lý TSCĐ</td><td style="color:var(--green)">234</td><td>Cổ tức đã trả</td><td>93</td><td>1%</td></tr>
+          <tr><td><b>RÚT TIỀN MẶT</b> (3,555→2,042)</td><td style="color:var(--coral);font-weight:700">1,498</td><td></td><td></td><td></td></tr>
+          <tr style="border-top:2px solid var(--border)"><td><b>TỔNG NGUỒN</b></td><td style="font-weight:700">6,993</td><td><b>TỔNG SỬ DỤNG</b></td><td style="font-weight:700">6,993</td><td>100%</td></tr>
+        </table>
+        <div style="margin-top:7px;padding:8px 11px;background:rgba(224,64,64,.08);border:1px solid rgba(224,64,64,.22);border-radius:6px;font-size:11px;line-height:1.6">
+          <b style="color:var(--red)">🔑 Cho vay ra + góp vốn = 5,593 tỷ = 80% tổng sử dụng vốn</b>, gấp <b>5.7 lần</b> đầu tư sản xuất (974 tỷ). Đây là câu trả lời trực tiếp cho câu hỏi "tiền chảy đi đâu": <b>tiền đi ra khỏi hoạt động sản xuất đường</b>.
+        </div>
+      </div>
+      <div>
+        <div class="cw cw240"><canvas id="usesChart"></canvas></div>
+        <div style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5">Lưu ý phương pháp: bảng được lập từ Báo cáo LCTT hợp nhất, gộp cả 3 hoạt động; "rút tiền mặt" là mức giảm số dư tiền trong kỳ, được coi là một nguồn tài trợ. Tổng nguồn và tổng sử dụng cân bằng tuyệt đối (lệch 0), xác nhận bóc tách đúng.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- B. TÀI SẢN TĂNG Ở ĐÂU -->
+  <div class="card mb11" style="border-top:3px solid var(--purple)">
+    <div class="ctitle">🏗️ B. Nợ tăng để mua tài sản gì? — Tài sản TÀI CHÍNH vs Tài sản SẢN XUẤT</div>
+    <div class="g32">
+      <div>
+        <table class="htb" style="font-size:10px">
+          <tr><th>Khoản mục</th><th>30/06/2025</th><th>30/06/2026</th><th>Thay đổi</th></tr>
+          <tr style="background:rgba(155,127,232,.06)"><td>Tiền gửi có kỳ hạn (đầu tư giữ đến đáo hạn)</td><td>2,785</td><td>6,264</td><td style="color:var(--red);font-weight:700">+3,479</td></tr>
+          <tr style="background:rgba(155,127,232,.06)"><td>Trả trước cho người bán (NH+DH)</td><td>5,811</td><td>7,283</td><td style="color:var(--red);font-weight:700">+1,472</td></tr>
+          <tr style="background:rgba(155,127,232,.06)"><td>Đầu tư vào công ty liên kết</td><td>4,651</td><td>5,743</td><td style="color:var(--red);font-weight:700">+1,092</td></tr>
+          <tr style="background:rgba(155,127,232,.06)"><td>Góp vốn hợp tác kinh doanh (phải thu DH)</td><td>1,400</td><td>1,596</td><td style="color:var(--coral)">+196</td></tr>
+          <tr><td>Phải thu khách hàng</td><td>2,199</td><td>2,662</td><td style="color:var(--amber)">+463</td></tr>
+          <tr><td>Hàng tồn kho</td><td>3,583</td><td>4,031</td><td style="color:var(--amber)">+448</td></tr>
+          <tr><td>XDCB dở dang (vùng nguyên liệu, nhà máy nước mía)</td><td>469</td><td>904</td><td style="color:var(--green)">+435</td></tr>
+          <tr style="background:rgba(31,200,122,.06)"><td><b>TSCĐ hữu hình + vô hình + thuê TC</b></td><td>3,720</td><td>3,464</td><td style="color:var(--green);font-weight:700">−256 ⬇</td></tr>
+          <tr><td>Tiền &amp; tương đương tiền</td><td>3,555</td><td>2,042</td><td style="color:var(--coral)">−1,513</td></tr>
+          <tr style="border-top:2px solid var(--border)"><td><b>TỔNG TÀI SẢN</b></td><td><b>32,679</b></td><td><b>38,324</b></td><td style="font-weight:700">+5,645</td></tr>
+        </table>
+      </div>
+      <div style="background:rgba(155,127,232,.06);border:1px solid rgba(155,127,232,.25);border-radius:7px;padding:11px 13px;font-size:11px;line-height:1.65">
+        <b style="color:var(--purple)">Tài sản TÀI CHÍNH &amp; trả trước tăng: +6,239 tỷ</b><br>
+        <b style="color:var(--green)">Tài sản SẢN XUẤT (TSCĐ): −256 tỷ (GIẢM)</b><br><br>
+        Mức tăng của riêng nhóm tài sản tài chính (6,239 tỷ) còn <b>lớn hơn cả mức tăng tổng tài sản</b> (5,645 tỷ) — nghĩa là phần còn lại của bảng cân đối đang co lại để nhường chỗ.<br><br>
+        <b style="color:var(--red)">Ý nghĩa tín dụng:</b> khi ngân hàng cấp vốn lưu động cho một doanh nghiệp sản xuất, giả định ngầm là tiền đó quay vòng trong chu kỳ mua mía → sản xuất → bán đường → thu tiền. Số liệu cho thấy một phần đáng kể vốn vay đang nằm ở <b>tiền gửi, cho vay lại, góp vốn và ứng trước dài ngày</b> — chu kỳ hoàn toàn khác, rủi ro hoàn toàn khác, và <b>không tạo ra dòng tiền vận hành để trả nợ</b>.<br><br>
+        <b style="color:var(--amber)">Điểm tích cực cần ghi nhận:</b> XDCB dở dang +435 tỷ (dự án vùng nguyên liệu 274 tỷ, nhà máy nước mía 310 tỷ) cho thấy vẫn có đầu tư thật vào chuỗi sản xuất, dù quy mô nhỏ so với dòng tiền chảy sang tài chính.
+      </div>
+    </div>
+  </div>
+
+  <!-- C. KIỂM ĐỊNH NỢ = NỢ + LÃI -->
+  <div class="card mb11" style="border-top:3px solid var(--coral)">
+    <div class="ctitle">🔍 C. Kiểm định giả thuyết: "Dư nợ năm sau = dư nợ năm trước + lãi vay phát sinh"? <span class="tag t-amber">Câu trả lời: KHÔNG — nhưng thực tế đáng lo hơn</span></div>
+    <div class="g32">
+      <div>
+        <table class="htb" style="font-size:10px">
+          <tr><th>Kiểm định</th><th>Số liệu</th><th>Kết luận</th></tr>
+          <tr><td>Tổng vay 30/06/2025 → 30/06/2026</td><td>16,913 → 17,840</td><td style="color:var(--amber)">+927 tỷ</td></tr>
+          <tr><td>Lãi vay phát sinh trong kỳ</td><td>1,546 tỷ</td><td>—</td></tr>
+          <tr><td>Nếu lãi nhập gốc hoàn toàn thì nợ phải là</td><td>18,459 tỷ</td><td style="color:var(--green)">Thực tế thấp hơn 619 tỷ ✓</td></tr>
+          <tr style="background:rgba(31,200,122,.06)"><td><b>Lãi vay ĐÃ TRẢ BẰNG TIỀN</b></td><td style="color:var(--green);font-weight:700">1,415 tỷ (91.5%)</td><td style="color:var(--green)">🟢 Không có lãi nhập gốc</td></tr>
+          <tr><td>Lãi chưa trả tích lũy tăng (TM22 + TM23)</td><td>+131 tỷ</td><td style="color:var(--green)">Khớp chênh lệch 1,546−1,415</td></tr>
+          <tr style="border-top:2px solid var(--border);background:rgba(224,64,64,.07)"><td><b>Nợ tài chính THỰC</b> (gồm miễn truy đòi)</td><td style="color:var(--red);font-weight:700">18,677 → 21,817</td><td style="color:var(--red);font-weight:700">+3,140 = 2.03× lãi vay 🔴</td></tr>
+        </table>
+        <div style="margin-top:7px;padding:8px 11px;background:rgba(232,160,32,.08);border:1px solid rgba(232,160,32,.25);border-radius:6px;font-size:11px;line-height:1.6">
+          <b style="color:var(--amber)">Kết luận:</b> SBT <b>KHÔNG</b> rơi vào mô hình "lãi đẻ nợ" — lãi vay vẫn được trả bằng tiền mặt đầy đủ. <b style="color:var(--red)">Nhưng tiền trả lãi đó không đến từ kinh doanh</b> (HĐKD âm 333 tỷ), mà từ vay mới, thu hồi đầu tư và rút tiền mặt dự trữ. Về bản chất kinh tế, kết quả tương tự mô hình lãi nhập gốc, chỉ khác ở hình thức kế toán.
+        </div>
+      </div>
+      <div style="background:rgba(240,104,64,.07);border:1px solid rgba(240,104,64,.25);border-radius:7px;padding:11px 13px;font-size:11px;line-height:1.65">
+        <b style="color:var(--coral);font-size:12px">⚠️ MÔ HÌNH THỰC TẾ: CARRY TRADE ĐANG LỖ</b><br><br>
+        SBT vay để nắm giữ tài sản sinh lãi — tiền gửi kỳ hạn 6,264 tỷ, cho vay 141 tỷ, ứng trước nông dân có lãi 2,357 tỷ, góp vốn HTKD 1,596 tỷ (~10,400 tỷ tài sản sinh lãi trên 17,840 tỷ nợ vay).<br><br>
+        <div style="background:var(--bg3);border-radius:6px;padding:8px 10px;margin:6px 0">
+          <div class="drow"><span class="dk">Doanh thu tài chính cả năm</span><span class="dv cg">1,460 tỷ</span></div>
+          <div class="drow"><span class="dk">Chi phí lãi vay cả năm</span><span class="dv cr">1,546 tỷ</span></div>
+          <div class="drow" style="border-top:1px solid var(--border);padding-top:4px"><span class="dk"><b>SPREAD</b></span><span class="dv cr"><b>−86 tỷ 🔴</b></span></div>
+        </div>
+        Chênh lệch lãi suất thu được <b>không bù nổi chi phí vốn</b>. Đây là mô hình tự bào mòn: càng mở rộng danh mục tài chính bằng vốn vay, lỗ carry càng lớn, trong khi rủi ro tín dụng đối tác (người được cho vay, bên nhận ứng trước) dồn hết về SBT — và cuối cùng về phía ngân hàng tài trợ.
+      </div>
+    </div>
+  </div>
+
+  <!-- D. DÒNG TIỀN CỐT LÕI -->
+  <div class="card mb11" style="border:1px solid rgba(224,64,64,.4);background:linear-gradient(180deg,rgba(224,64,64,.05),transparent)">
+    <div class="ctitle">🔬 D. Hoạt động kinh doanh cốt lõi có tạo ra dòng tiền không? <span class="tag t-red">Phần nghiêm trọng nhất</span></div>
+    <div class="g32">
+      <div>
+        <table class="htb" style="font-size:10px">
+          <tr><th>Chỉ tiêu 08 LCTT (tỷ)</th><th>NĐ 2024-25</th><th>NĐ 2025-26</th><th>Δ</th></tr>
+          <tr><td>Lợi nhuận trước thuế</td><td>950</td><td>908</td><td>−4%</td></tr>
+          <tr><td>+ Khấu hao</td><td>535</td><td>521</td><td></td></tr>
+          <tr><td>+ Dự phòng / chênh lệch tỷ giá</td><td>−46</td><td>−28</td><td></td></tr>
+          <tr style="background:rgba(224,64,64,.08)"><td><b>− Lãi từ HOẠT ĐỘNG ĐẦU TƯ</b><br><span style="font-size:9px;color:var(--muted)">(loại khỏi HĐKD theo chuẩn mực)</span></td><td>(307)</td><td style="color:var(--red);font-weight:700">(1,420)</td><td style="color:var(--red);font-weight:700">×4.6 🔴</td></tr>
+          <tr><td>+ Chi phí lãi vay (cộng lại)</td><td>1,522</td><td>1,546</td><td></td></tr>
+          <tr style="border-top:2px solid var(--border);background:rgba(232,160,32,.08)"><td><b>= EBITDA CỐT LÕI</b><br><span style="font-size:9px;color:var(--muted)">không gồm thu nhập tài chính</span></td><td style="font-weight:700">2,654</td><td style="color:var(--coral);font-weight:700">1,527</td><td style="color:var(--red);font-weight:700">−42.5% 🔴</td></tr>
+          <tr><td>− Lãi vay trả bằng tiền</td><td>(1,699)</td><td>(1,415)</td><td></td></tr>
+          <tr><td>− Thuế TNDN đã nộp</td><td>(126)</td><td>(116)</td><td></td></tr>
+          <tr style="border-top:2px solid var(--border);background:rgba(224,64,64,.1)"><td><b>= CÒN LẠI</b></td><td style="color:var(--green);font-weight:700">+829</td><td style="color:var(--red);font-weight:800;font-size:12px">−4 tỷ 🔴</td><td></td></tr>
+          <tr><td><b>ICR BẰNG TIỀN</b> (EBITDA cốt lõi / lãi trả)</td><td style="color:var(--amber);font-weight:700">1.56x</td><td style="color:var(--red);font-weight:700">1.08x</td><td style="color:var(--red)">−31%</td></tr>
+        </table>
+      </div>
+      <div style="background:rgba(224,64,64,.07);border:1px solid rgba(224,64,64,.25);border-radius:7px;padding:11px 13px;font-size:11px;line-height:1.65">
+        <b style="color:var(--red);font-size:12px">🔴 PHÁT HIỆN QUAN TRỌNG NHẤT</b><br><br>
+        Dòng "Lãi từ hoạt động đầu tư" trong LCTT tăng vọt từ 307 lên <b>1,420 tỷ</b>. Đây là khoản kế toán bắt buộc loại khỏi dòng tiền kinh doanh vì bản chất thuộc hoạt động đầu tư.<br><br>
+        Nghĩa là: <b style="color:var(--red)">trong LNTT 908 tỷ, có tới 1,420 tỷ là thu nhập tài chính</b> (lãi tiền gửi, lãi cho vay, lãi từ khoản ứng trước cho nhà cung cấp, lãi chuyển nhượng danh mục đầu tư, cổ tức). Suy ra hoạt động sản xuất và bán đường thuần túy <b>đang lỗ ở cấp lợi nhuận trước thuế</b>.<br><br>
+        Và kết quả cuối cùng: tiền tạo ra từ kinh doanh cốt lõi năm nay (1,527 tỷ) <b>vừa đúng bằng lãi vay cộng thuế (1,531 tỷ) — thiếu 4 tỷ, không dư một đồng nào</b> để trả gốc, tái đầu tư hay chia cổ tức.<br><br>
+        <b style="color:var(--amber)">So sánh:</b> năm trước còn dư 829 tỷ sau khi trả lãi và thuế. Chỉ một niên độ, đệm an toàn này biến mất hoàn toàn.
+      </div>
+    </div>
+    <div style="margin-top:10px">
+      <div style="font-size:11px;font-weight:600;margin-bottom:6px">Chuỗi dòng tiền HĐKD theo niên độ (tỷ VND)</div>
+      <div class="cw cw200"><canvas id="cfTrendChart"></canvas></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:5px;line-height:1.5">NĐ 24-25 và NĐ 25-26 lấy trực tiếp từ BCTC hợp nhất (cột kỳ này và kỳ trước). <b>NĐ 23-24 (~−430 tỷ) là số tham khảo từ nguồn báo chí, CHƯA đối chiếu BCTC gốc</b> — cần xác minh để dựng chuỗi 3 năm chính thức. Theo thông lệ phân tích tín dụng, dòng tiền HĐKD âm liên tục từ 3 năm trở lên là dấu hiệu suy giảm cấu trúc, không còn là biến động chu kỳ.</div>
+    </div>
+  </div>
+
+  <!-- E. CÂU HỎI THẨM ĐỊNH -->
+  <div class="card mb11" style="border-top:3px solid var(--blue)">
+    <div class="ctitle">❓ E. Câu hỏi bắt buộc đặt cho khách hàng trước khi tái tục T9–T12/2026</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:10.5px;line-height:1.6">
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
+        <b style="color:var(--red)">1. Về 3,417 tỷ cho vay ra trong niên độ:</b><br>
+        · Cho ai vay — bên liên quan hay bên thứ ba độc lập?<br>
+        · Lãi suất, kỳ hạn, tài sản bảo đảm?<br>
+        · Nguồn vốn cho vay lấy từ đâu — vốn tự có hay vốn vay ngân hàng?<br>
+        · Đối chiếu: LCTT ghi chi cho vay 3,417 tỷ nhưng "phải thu về cho vay ngắn hạn" trên BCĐKT chỉ 141 tỷ và "thu hồi cho vay" bằng 0 → <b>khoản này đi đâu và được phân loại vào mục nào?</b> Đây là điểm cần giải trình ưu tiên số 1.
+      </div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:7px;padding:10px 12px">
+        <b style="color:var(--red)">2. Về 4,867 tỷ trả trước "các bên khác" (+46.8%):</b><br>
+        · Danh mục theo đối tượng, tuổi nợ, mục đích<br>
+        · Là ứng vốn mua hàng thật hay cấp tín dụng thương mại trá hình?<br>
+        · Có hưởng lãi suất không — nếu có, đây là hoạt động cho vay chứ không phải mua hàng<br>
+        · Vì sao chu kỳ ứng trước không giảm sau vụ ép (T5–T6)?<br><br>
+        <b style="color:var(--amber)">3. Về 3,977 tỷ miễn truy đòi:</b> đối tác, điều kiện truy đòi ngược, tác động nếu thị trường tài trợ thương mại thắt chặt.
+      </div>
+    </div>
+    <div style="margin-top:9px;padding:9px 12px;background:rgba(74,144,226,.07);border:1px solid rgba(74,144,226,.25);border-radius:6px;font-size:11px;line-height:1.6">
+      <b style="color:var(--blue)">📌 Khuyến nghị điều kiện tín dụng bổ sung:</b> (a) covenant ICR tính trên <b>EBITDA cốt lõi</b> (loại thu nhập tài chính và lãi liên kết), ngưỡng ≥1.3x đo hàng quý; (b) covenant <b>dòng tiền HĐKD lũy kế 12 tháng ≥ 0</b> — nếu vi phạm 2 kỳ liên tiếp thì dừng giải ngân mới; (c) cam kết mục đích sử dụng vốn: vốn vay VLĐ <b>không dùng để cho vay lại, góp vốn hoặc ứng trước ngoài chu kỳ mua mía</b>; (d) kiểm soát dòng tiền bán hàng về tài khoản BIDV theo tỷ lệ tài trợ; (e) báo cáo định kỳ khối trả trước và cho vay ra theo đối tượng.
+    </div>
+  </div>
+</div>
+
 <div class="panel" id="panel-stress">
   <div style="font-size:12px;font-weight:600;margin-bottom:9px">Điều chỉnh các biến → xem tác động tức thì đến khả năng trả lãi (ICR) và Net Debt/EBITDA</div>
 
@@ -883,7 +1045,7 @@ function updateBCDKT(){
 window.addEventListener('DOMContentLoaded', function(){ loadFromSheets(); });
 
 function sw(n){
-  var ns=['overview','chain','debt','stress','vars','cbtt'];
+  var ns=['overview','chain','debt','cashflow','stress','vars','cbtt'];
   ns.forEach(function(x,i){
     document.querySelectorAll('.tab')[i].classList.toggle('active',x===n);
     document.getElementById('panel-'+x).classList.toggle('active',x===n);
@@ -1564,6 +1726,29 @@ function renderCBTTAnalysis(){
 
 // Init CBTT analysis section right away (it's static)
 renderCBTTAnalysis();
+
+/* ── CHARTS TAB DÒNG TIỀN ── */
+(function(){
+  if(typeof Chart==='undefined') return;
+  var u=document.getElementById('usesChart');
+  if(u) new Chart(u,{type:'doughnut',data:{
+    labels:['Cho vay ra (49%)','Góp vốn đầu tư (31%)','Mua sắm TSCĐ (14%)','Bù thâm hụt HĐKD (5%)','Cổ tức (1%)'],
+    datasets:[{data:[3417,2176,974,333,93],backgroundColor:['#e04040','#f06840','#e8a020','#9b7fe8','#52566e'],borderWidth:0,hoverOffset:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#52566e',font:{size:9},boxWidth:9,padding:6}},
+      title:{display:true,text:'Sử dụng vốn NĐ 25-26 (tổng 6,993 tỷ)',font:{size:11},color:'#52566e'}}}});
+  var t=document.getElementById('cfTrendChart');
+  if(t) new Chart(t,{type:'bar',data:{
+    labels:['NĐ 23-24 (tham khảo)','NĐ 24-25 (BCTC)','NĐ 25-26 (BCTC)'],
+    datasets:[
+      {label:'LCTT HĐKD',data:[-430,-606,-333],backgroundColor:['rgba(224,64,64,.35)','rgba(224,64,64,.75)','rgba(224,64,64,.75)'],borderRadius:3,order:2},
+      {label:'EBITDA cốt lõi',type:'line',data:[null,2654,1527],borderColor:'#e8a020',backgroundColor:'transparent',borderWidth:2,pointRadius:5,pointBackgroundColor:'#e8a020',tension:.2,order:1},
+      {label:'Lãi vay trả bằng tiền',type:'line',data:[null,1699,1415],borderColor:'#4a90e2',backgroundColor:'transparent',borderWidth:2,borderDash:[5,3],pointRadius:4,pointBackgroundColor:'#4a90e2',tension:.2,order:1}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:true,labels:{color:'#52566e',font:{size:9},boxWidth:10}}},
+      scales:{x:{ticks:{color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'}},
+              y:{ticks:{callback:function(v){return v.toLocaleString()},color:'#444',font:{size:9}},grid:{color:'rgba(255,255,255,.03)'},title:{display:true,text:'Tỷ VND',font:{size:9},color:'#444'}}}}});
+})();
 </script>
 
 <!-- ════════════════════ TAB 6: CÔNG BỐ THÔNG TIN ════════════════════ -->
